@@ -5,6 +5,7 @@ include("json2.js");
 include("NTItemParser.dbl");
 include("OOG.js");
 include("AutoMule.js");
+include("AutoRogerThat.js");
 include("Gambling.js");
 include("CraftingSystem.js");
 include("TorchSystem.js");
@@ -160,8 +161,12 @@ function main() {
 
 	// Check for experience decrease -> log death. Skip report if life chicken is disabled.
 	if (stats.name === me.name && me.getStat(13) < stats.experience && Config.LifeChicken > 0) {
-		D2Bot.printToConsole("You died in last game", 9);
-		D2Bot.printToConsole("Experience decreased by " + (stats.experience - me.getStat(13)), 9);
+		if (Config.D2BotPrintDie) {
+			D2Bot.printToConsole("You died in last game", 9);
+		}
+		if (Config.D2BotPrintLostXp) {
+			D2Bot.printToConsole("Experience decreased by " + (stats.experience - me.getStat(13)), 9);
+		}
 		DataFile.updateStats("deaths");
 		D2Bot.updateDeaths();
 	}
@@ -195,9 +200,8 @@ function main() {
 	// One time maintenance - get corpse, clear leftover items, pick items in case anything important was dropped
 	if (!Scripts.UserAddon && !Scripts.Test) {
 		Town.getCorpse();
-		Town.clearBelt();
-		
-		if(Config.ClearInvOnStart) {
+		if (!Scripts.RogerThat) {
+			Town.clearBelt();
 			Town.clearInventory();
 		}
 		
@@ -288,6 +292,10 @@ function main() {
 
 	if (TorchSystem.keyCheck()) {
 		scriptBroadcast("torch");
+	}
+
+	if (Config.D2BotPrintGameTime) {
+		D2Bot.printToConsole("Total Game Time: " + Number((getTickCount() - startTime)/60000).toFixed(2) + " min", 10);
 	}
 
 	scriptBroadcast("quit");

@@ -17,9 +17,29 @@ var StarterConfig = {
 include("json2.js");
 include("OOG.js");
 include("GameAction.js");
+include("Gambling.js");
+include("common/Misc.js");
+include("NTItemParser.dbl");
+include("AutoMule.js");
+include("AutoRogerThat.js");
+include("CraftingSystem.js");
+include("TorchSystem.js");
 include("MuleLogger.js");
 include("common/misc.js");
 include("common/util.js");
+include("GameAction.js");
+include("common/Attack.js");
+include("common/Cubing.js");
+include("common/CollMap.js");
+include("common/Config.js");
+include("common/Loader.js");
+include("common/Pickit.js");
+include("common/Pather.js");
+include("common/Precast.js");
+include("common/Prototypes.js");
+include("common/Runewords.js");
+include("common/Storage.js");
+include("common/Town.js");
 
 if (!FileTools.exists("data/" + me.profile + ".json")) {
 	DataFile.create();
@@ -61,6 +81,22 @@ function ReceiveCopyData(mode, msg) {
 	}
 }
 
+function keyEvent(key) {
+	if (me.ingame) {
+		switch (key) {
+			case 46: // delete
+			case 102: // Numpad 6
+			MuleLogger.LogEquipped = true;
+			MuleLogger.LogMerc = true;
+			MuleLogger.logCharRogerThat();
+			delay(150);
+			print("Logged char: ÿc2" + me.name + "ÿc0");
+			me.overhead("Logged char: ÿc2" + me.name + "ÿc0");
+			break;
+		}
+	}
+}
+
 function locationTimeout(time, location) {
 	var endtime = getTickCount() + time;
 
@@ -87,6 +123,7 @@ function updateCount() {
 }
 
 function main () {
+	addEventListener("keyup", keyEvent);
 	addEventListener('copydata', ReceiveCopyData);
 
 	while (!handle) {
@@ -169,11 +206,6 @@ MainSwitch:
 				ControlAction.timeoutDelay("Min game time wait", StarterConfig.MinGameTime * 1e3 + gameStart - getTickCount());
 			}
 
-			print("updating runs");
-			D2Bot.updateRuns();
-			delay(1000);
-
-			gameCount += 1;
 			lastGameStatus = "ready";
 			ingame = false;
 
@@ -183,17 +215,6 @@ MainSwitch:
 		}
 
 		if (GameAction.gameInfo() !== null) { // a game name was specified
-		
-			if (++ftj > 5) {
-				GameAction.update("done", "GameAction failed to join game!");
-				D2Bot.stop(me.profile,true);
-				break;
-			}
-			
-			if (!ControlAction.click(6, 533, 469, 120, 20)) { // Create screen to check if character is dead or not
-				break;
-			}
-
 			if (getControl(6, 533, 469, 120, 20) && getControl(6, 533, 469, 120, 20).disabled === 4) { // dead HC character
 				ControlAction.click(6, 693, 490, 80, 20); // Quit from Lobby
 				break;
@@ -212,14 +233,17 @@ MainSwitch:
 					break;
 				}
 			}
-		} else {
-			
-			if (++ftj > 5) {
-				GameAction.update("done", "GameAction failed to create game!");
-				D2Bot.stop(me.profile,true);
-				break;
+
+			if (!locationTimeout(5000, location)) { // in case join button gets bugged
+				if (!ControlAction.click(6, 533, 469, 120, 20)) { // Create
+					break;
+				}
+
+				if (!ControlAction.click(6, 652, 469, 120, 20)) { // Join
+					break;
+				}
 			}
-			
+		} else {
 			if (!ControlAction.click(6, 533, 469, 120, 20)) { // Create
 				break;
 			}
@@ -248,12 +272,6 @@ MainSwitch:
 
 		break;
 	case 4: // Create Game
-		if (creatingActions.indexOf(JSON.parse(tag).action) < 0) {
-			GameAction.update("done", "GameAction failed to create game!");
-			D2Bot.stop(me.profile,true);
-			break;
-		}
-	
 		D2Bot.updateStatus("Creating Game");
 
 		control = getControl(1, 657, 342, 27, 20);
@@ -262,20 +280,12 @@ MainSwitch:
 			ControlAction.click(6, 431, 341, 15, 16); // remove level restriction
 		}
 
-		if (gameCount >= 99) {
-			gameCount = 1;
-
-			DataFile.updateStats("runs", gameCount);
-		}
-
 		if (lastGameStatus === "pending") {
 			D2Bot.printToConsole("Failed to create game");
-
-			gameCount += 1;
 		}
 
 		timeoutDelay("Make Game Delay", StarterConfig.CreateGameDelay * 1e3);
-		ControlAction.createGame(gameInfo.gameName + gameCount, gameInfo.gamePass, 0);
+      		ControlAction.createGame(gameInfo.gameName, gameInfo.gamePass, gameInfo.difficulty);
 		locationTimeout(5000, location);
 
 		lastGameStatus = "pending";
@@ -578,12 +588,6 @@ MainSwitch:
 
 		break;
 	case 26: // Lobby - Game Name Exists
-		if (++ftj > 5) {
-			GameAction.update("done", "GameAction failed to create game!");
-			D2Bot.stop(me.profile,true);
-			break;
-		}
-		ControlAction.timeoutDelay("Game Already Exists", 5e3);
 		ControlAction.click(6, 533, 469, 120, 20);
 
 		break;

@@ -1,28 +1,29 @@
 var StarterConfig = {
-	MinGameTime: 120, // Minimum game length in seconds. If a game is ended too soon, the rest of the time is waited in the lobby
-	PingQuitDelay: 30, // Time in seconds to wait in lobby after quitting due to high ping
-	CreateGameDelay: 10, // Seconds to wait before creating a new game
-	ResetCount: 999, // Reset game count back to 1 every X games.
-	CharacterDifference: 99, // Character level difference. Set to false to disable character difference.
-	ChatActionsDelay: 2, // Seconds to wait in lobby before entering a channel
+	MinGameTime        : 900,            // Minimum game length in seconds. If a game is ended too soon, the rest of the time is waited in the lobby
+	PingQuitDelay      : rand(30, 40),   // Time in seconds to wait in lobby after quitting due to high ping
+	CreateGameDelay    : rand(10, 25),   // Seconds to wait before creating a new game
+	ResetCount         : 999,            // Reset game count back to 1 every X games.
+	CharacterDifference: 99,             // Character level difference. Set to false to disable character difference.
+	ChatActionsDelay   : rand(2, 5),     // Seconds to wait in lobby before entering a channel
 
 	// ChannelConfig can override these options for individual profiles.
-	JoinChannel: "", // Default channel. Can be an array of channels - ["channel 1", "channel 2"]
-	FirstJoinMessage: "", // Default join message. Can be an array of messages
-	AnnounceGames: false, // Default value
-	AfterGameMessage: "", // Default message after a finished game. Can be an array of messages
+	JoinChannel     : "",      // Default channel. Can be an array of channels - ["channel 1", "channel 2"]
+	FirstJoinMessage: "",      // Default join message. Can be an array of messages
+	AnnounceGames   : false,   // Default value
+	AfterGameMessage: "",      // Default message after a finished game. Can be an array of messages
 
-	SwitchKeyDelay: 5, // Seconds to wait before switching a used/banned key or after realm down
-	CrashDelay: rand(120, 150), // Seconds to wait after a d2 window crash
-	FTJDelay: 10, // Seconds to wait after failing to create a game
-	RealmDownDelay: 3, // Minutes to wait after getting Realm Down message
-	UnableToConnectDelay: 5, // Minutes to wait after Unable To Connect message
-	TCPIPNoHostDelay: 5, // Seconds to wait after Cannot Connect To Server message
-	CDKeyInUseDelay: 5, // Minutes to wait before connecting again if CD-Key is in use.
-	ConnectingTimeout: 20, // Seconds to wait before cancelling the 'Connecting...' screen
-	PleaseWaitTimeout: 10, // Seconds to wait before cancelling the 'Please Wait...' screen
-	WaitInLineTimeout: 60, // Seconds to wait before cancelling the 'Waiting in Line...' screen
-	GameDoesNotExistTimeout: 30 // Seconds to wait before cancelling the 'Game does not exist.' screen
+	SwitchKeyDelay         : rand(5, 15),      // Seconds to wait before switching a used/banned key or after realm down
+	CrashDelay             : rand(1, 10),      // Seconds to wait after a d2 window crash
+	FTJDelay               : rand(900, 900),   // Seconds to wait after failing to create a game
+	RealmDownDelay         : rand(10, 15),     // Minutes to wait after getting Realm Down message
+	BnetNotResponding      : 90,               // Minutes to wait after 6 attempts to connect
+	UnableToConnectDelay   : rand(10, 15),     // Minutes to wait after Unable To Connect message
+	TCPIPNoHostDelay       : 5,                // Seconds to wait after Cannot Connect To Server message
+	CDKeyInUseDelay        : rand(15, 20),     // Minutes to wait before connecting again if CD-Key is in use.
+	ConnectingTimeout      : rand(60, 80),     // Seconds to wait before cancelling the 'Connecting...' screen
+	PleaseWaitTimeout      : rand(60, 80),     // Seconds to wait before cancelling the 'Please Wait...' screen
+	WaitInLineTimeout      : 28800,            // Seconds to wait before cancelling the 'Waiting in Line...' screen
+	GameDoesNotExistTimeout: rand(480, 600)    // Seconds to wait before cancelling the 'Game does not exist.' screen
 };
 
 var ChannelConfig = {
@@ -71,6 +72,7 @@ include("gambling.js");
 include("craftingsystem.js");
 include("torchsystem.js");
 include("common/misc.js");
+include("common/config.js");
 include("common/util.js");
 
 if (!FileTools.exists("data/" + me.profile + ".json")) {
@@ -83,6 +85,9 @@ var gameInfo, gameStart, ingame, chatActionsDone, pingQuit,
 	loginRetry = 0,
 	lastGameStatus = "ready",
 	isUp = "no",
+	lastGameFlag = false,
+	newCreateGameDelay = 0,
+	loginCount = 1,
 	chanInfo = {
 		joinChannel: "",
 		firstMsg: "",
@@ -184,8 +189,22 @@ function updateCount() {
 	ControlAction.click(6, 33, 572, 128, 35);
 }
 
+function updateCreateGameDelay() {
+	if (lastGameFlag) {
+		newCreateGameDelay = 2000;
+	} else {
+		newCreateGameDelay = StarterConfig.CreateGameDelay;
+	}
+}
+
 function ScriptMsgEvent(msg) {
 	switch (msg) {
+        case "lastGameON":
+            lastGameFlag = true;
+            break;
+        case "lastGameOFF":
+            lastGameFlag = false;
+            break;
 	case "mule":
 		AutoMule.check = true;
 
@@ -266,12 +285,14 @@ function main() {
 		if (!!DataFile.getStats().debugInfo) {
 			gameInfo.crashInfo = DataFile.getStats().debugInfo;
 
-			D2Bot.printToConsole("Crash Info: Script: " + JSON.parse(gameInfo.crashInfo).currScript + " Area: " + JSON.parse(gameInfo.crashInfo).area, 10);
+			// D2Bot.printToConsole("Crash Info: Script: " + JSON.parse(gameInfo.crashInfo).currScript + " Area: " + JSON.parse(gameInfo.crashInfo).area, 10);
 		}
 
-		/*if (gameInfo.crashInfo) {
-			D2Bot.printToConsole("Crash Info: Script: " + gameInfo.crashInfo.currScript + " Area: " + gameInfo.crashInfo.area + (gameInfo.crashInfo.hasOwnProperty("lastAction") ? " " + gameInfo.crashInfo.lastAction : ""), 10);
-		}*/
+		if (gameInfo.crashInfo) {
+			if (Config.D2BotPrintCrash) {
+				D2Bot.printToConsole("Crash Info: Script: " + gameInfo.crashInfo.currScript + " Area: " + gameInfo.crashInfo.area + (gameInfo.crashInfo.hasOwnProperty("lastAction") ? " " + gameInfo.crashInfo.lastAction : ""), 10);
+			}
+		}
 
 		ControlAction.timeoutDelay("Crash Delay", StarterConfig.CrashDelay * 1e3);
 		D2Bot.updateRuns();
@@ -553,8 +574,8 @@ MainSwitch:
 			D2Bot.updateRuns();
 		}
 
-		ControlAction.createGame((gameInfo.gameName === "?" ? randomString(null,true) : gameInfo.gameName + gameCount), (gameInfo.gamePass === "?" ? randomString(null,true) : gameInfo.gamePass), gameInfo.difficulty, StarterConfig.CreateGameDelay * 1000);
-
+		updateCreateGameDelay();
+		ControlAction.createGame(gameInfo.gameName === "?" ? randomString(null, true) : gameInfo.gameName + gameCount, gameInfo.gamePass === "?" ? randomString(null, true) : gameInfo.gamePass, gameInfo.difficulty, newCreateGameDelay * 1000);
 		lastGameStatus = "pending";
 
 		setNextGame();
@@ -694,17 +715,30 @@ MainSwitch:
 					ControlAction.timeoutDelay("Key switch delay", StarterConfig.SwitchKeyDelay * 1000);
 					D2Bot.restart(true);
 				} else {
-					D2Bot.stop();
+					// D2Bot.stop();
+					if (loginCount <= 5) {
+						D2Bot.updateStatus("Login - Attemp " + loginCount);
+						delay(loginCount * loginCount * 60000);
+						getControl().click(400, 400);
+						locationAction(getLocation());
+						loginCount += 1;
+					} else {
+						D2Bot.printToConsole("Login Error - " + string);
+						ControlAction.timeoutDelay("Bnet is not Responding", StarterConfig.BnetNotResponding * 6e4);
+						D2Bot.CDKeyRD();
+						D2Bot.restart();
+					}
 				}
 
 				break;
 			}
 		}
 
-		ControlAction.click(6, 335, 412, 128, 35);
-
-		while (true) {
-			delay(1000);
+		if (string != "Battle.net is not responding. Please try connecting again in a few minutes.") {
+			ControlAction.click(6, 335, 412, 128, 35);
+			while (true) {
+				delay(1000);
+			}
 		}
 
 		break;
@@ -881,7 +915,7 @@ MainSwitch:
 
 		break;
 	case 28: // Lobby - Game Does Not Exist
-		D2Bot.printToConsole("Game doesn't exist");
+		// D2Bot.printToConsole("Game doesn't exist");
 
 		if (gameInfo.rdBlocker) {
 			D2Bot.printToConsole(gameInfo.mpq + " is probably flagged.", 6);
