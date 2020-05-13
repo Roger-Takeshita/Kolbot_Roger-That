@@ -27,6 +27,15 @@ var JoinSettings = {
 		"D6 - T MF F",
 		"D7 - T MF F",
 		"D8 - T MF F"
+	],
+	"D1 - Rush Q": [
+		"D2 - Rush F",
+		"D3 - Rush F",
+		"D4 - Rush F",
+		"D5 - Rush F",
+		"D6 - Rush F",
+		"D7 - Rush F",
+		"D8 - Rusher"
 	]
 };
 
@@ -38,7 +47,14 @@ var AdvancedConfig = {
 	"D5 - T MF F": { JoinDelay: 4 },
 	"D6 - T MF F": { JoinDelay: 5 },
 	"D7 - T MF F": { JoinDelay: 6 },
-	"D8 - T MF F": { JoinDelay: 7 }
+	"D8 - T MF F": { JoinDelay: 7 },
+	"D2 - Rush F": { JoinDelay: 1 },
+	"D3 - Rush F": { JoinDelay: 2 },
+	"D4 - Rush F": { JoinDelay: 3 },
+	"D5 - Rush F": { JoinDelay: 4 },
+	"D6 - Rush F": { JoinDelay: 5 },
+	"D7 - Rush F": { JoinDelay: 6 },
+	"D8 - Rusher": { JoinDelay: 7 },
 };
 
 
