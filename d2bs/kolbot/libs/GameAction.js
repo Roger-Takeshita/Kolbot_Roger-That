@@ -5,12 +5,12 @@
 */
 
 var GameAction = {
-	LogNames: true, // Put account/character name on the picture
-	LogItemLevel: true, // Add item level to the picture
-	LogEquipped: false, // include equipped items
-	LogMerc: false, // include items merc has equipped (if alive)
-	SaveScreenShot: false, // Save pictures in jpg format (saved in 'Images' folder)
-	IngameTime: 60, // Time to wait after leaving game
+    LogNames: true, // Put account/character name on the picture
+    LogItemLevel: true, // Add item level to the picture
+    LogEquipped: true, // include equipped items
+    LogMerc: true, // include items merc has equipped (if alive)
+    SaveScreenShot: false, // Save pictures in jpg format (saved in 'Images' folder)
+    IngameTime: rand(60, 90), // Time to wait after leaving game
 
 	// don't edit
 	init: function (task) {
@@ -68,7 +68,7 @@ var GameAction = {
 
 		// drop specific object
 		if (this.task.data["items"] && this.task.data.items.length > 0) {
-			li.realm = this.task.data.items[0].realm
+			li.realm = this.task.data.items[0].realm;
 			li.account = this.task.data.items[0].account;
 		}
 
@@ -83,7 +83,8 @@ var GameAction = {
 
 		if (!li.password || !li.account || !li.realm) {
 			this.update("done", "Realm, Account, or Password was invalid!");
-			D2Bot.stop();
+      // D2Bot.stop();
+      D2Bot.stop(me.profile, true);
 			delay(500);
 		}
 
@@ -154,7 +155,7 @@ var GameAction = {
 	},
 
 	inGameCheck: function () {
-		if (getScript("D2BotGameAction.dbj")) {
+    if (getScript("D2BotRogerThatGameAction.dbj")) {
 			while (!this["task"]) {
 				D2Bot.getProfile();
 				delay(500);
@@ -189,7 +190,8 @@ var GameAction = {
 
 		if (!FileTools.exists(filename)) {
 			this.update("done", "File " + filename + " does not exist!");
-			D2Bot.stop();
+      // D2Bot.stop();
+      D2Bot.stop(me.profile, true);
 			delay(5000);
 			quitGame();
 		}
@@ -423,6 +425,9 @@ var GameAction = {
 	},
 
 	logChar: function (logIlvl, logName, saveImg) {
+    if (!isIncluded("AutoRogerThat.js")) {
+      include("AutoRogerThat.js");
+    }
 		while (!me.gameReady) {
 			delay(100);
 		}
@@ -443,6 +448,37 @@ var GameAction = {
 			items = me.getItems(),
 			realm = me.realm || "Single Player",
 			merc,
+      j,
+      logFlag = true,
+      notLogItems = [
+        "Super Healing Potion",
+        "Super Mana Potion",
+        "Great Healing Potion",
+        "Great Mana Potion",
+        "Mana Potion",
+        "Healing Potion",
+        "Light Mana Potion",
+        "Light Healing Potion",
+        "Minor Mana Potion",
+        "Minor Healing Potion",
+        "Full Rejuvenation Potion",
+        "Rejuvenation Potion",
+        "Arrows",
+        "Key",
+        "Horadric Cube",
+        "Tome of Town Portal",
+        "Tome of Identify",
+        "Scroll of Identify ",
+        "Scroll of Town Portal",
+        "Hand Axe",
+        "Short Staff",
+        "Short Sword",
+        "Wand",
+        "Katar",
+        "Club",
+        "Javelin",
+        "Buckler"
+      ],
 			finalString = "";
 
 		if (!FileTools.exists("mules/" + realm)) {
@@ -464,6 +500,34 @@ var GameAction = {
 		items.sort(function (a, b) { return b.itemType - a.itemType; });
 
 		for (i = 0; i < items.length; i += 1) {
+      logFlag = true;
+      for (j = 0; j < notLogItems.length; j += 1) {
+        if (items[i].classid == 549) {
+          logFlag = false;
+          // print ("Not logged: " + items[i].name);
+          break;
+        }
+        if (notLogItems[j] == items[i].name) {
+          logFlag = false;
+          // print ("Not logged: " + items[i].name);
+          break;
+        }
+      }
+      if (logFlag) {
+        if (
+          !AutoRogerThat.cubingIngredient(items[i]) &&
+          !AutoRogerThat.runewordIngredient(items[i]) &&
+          !AutoRogerThat.utilityIngredient(items[i])
+        ) {
+          logFlag = true;
+        } else {
+          // print("Not logged: " + items[i].name);
+          logFlag = false;
+        }
+      }
+      if (!logFlag) {
+        continue;
+      }
 			if (this.LogEquipped || (!this.LogEquipped && items[i].mode === 0)) {
 				parsedItem = this.logItem(items[i], logIlvl);
 
