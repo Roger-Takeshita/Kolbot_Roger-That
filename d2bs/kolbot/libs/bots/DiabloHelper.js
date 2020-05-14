@@ -5,6 +5,34 @@
 */
 
 function DiabloHelper() {
+	var TeleStompFlag = Config.TeleStomp,
+		DodgeHPPercent = Config.DodgeHP,
+		leader;
+
+	this.DodgeTelestomp = function () {
+		if (me.classid == 1 && TeleStompFlag) {
+			Config.TeleStomp = TeleStompFlag;
+			Config.DodgeHP = DodgeHPPercent;
+		}
+	};
+
+	if (me.classid == 1 && TeleStompFlag) {
+		Config.TeleStomp = false;
+		Config.DodgeHP = 100;
+	}
+
+	leader = Config.Leader;
+	while (!Misc.inMyParty(leader)) {
+		for (let j=0 ; j < Config.QuitList.length ; j++) {
+			if (Misc.inMyParty(Config.QuitList[j])) {
+				leader = Config.QuitList[j];
+				print("ÿc4Diablo Helper: ÿc0Leader " + "ÿc1" + leader + "ÿc0");
+				break;
+			}
+		}
+		delay(1000);
+	}
+
 	// Sort function
 	this.sort = function (a, b) {
 		if (Config.BossPriority) {
@@ -173,7 +201,11 @@ function DiabloHelper() {
 		}
 
 		if (this.seisLayout === 1) {
-			Pather.moveTo(7771, 5196);
+			if (me.classid == 1) {
+				Pather.moveTo(7786, 5227);
+			} else {
+				Pather.moveTo(7771, 5196);
+			}
 		} else {
 			Pather.moveTo(7798, 5186);
 		}
@@ -190,21 +222,27 @@ function DiabloHelper() {
 	};
 
 	this.infectorSeal = function () {
-		Precast.doPrecast(true);
+		// Precast.doPrecast(true);
 		this.followPath(this.infLayout === 1 ? this.starToInfA : this.starToInfB, this.sort);
 
-		if (Config.DiabloHelper.OpenSeals) {
-			if (!this.openSeal(392)) {
-				throw new Error("Failed to open Infector seals.");
-			}
-		}
+		// if (Config.DiabloHelper.OpenSeals) {
+		// 	if (!this.openSeal(392)) {
+		// 		throw new Error("Failed to open Infector seals.");
+		// 	}
+		// }
 
 		if (this.infLayout === 1) {
+			if (me.classid == 1) {
+				Pather.moveTo(7889, 5296);
+			}
 			delay(1);
 		} else {
-			Pather.moveTo(7928, 5295); // temp
+			if (me.classid != 1) {
+				Pather.moveTo(7928, 5295);
+			} else {
+				Pather.moveTo(7933, 5295);
+			}
 		}
-
 		if (!this.getBoss(getLocaleString(2853))) {
 			throw new Error("Failed to kill Infector");
 		}
@@ -230,7 +268,7 @@ function DiabloHelper() {
 			3: () => this.infectorSeal(),
 			"vizier": () => this.vizierSeal(),
 			"seis": () => this.seisSeal(),
-			"infector": () => this.infectorSeal(),
+			"infector": () => this.infectorSeal()
 		};
 		Config.DiabloHelper.SealOrder.forEach(seal => {seals[seal]()});
 	};
@@ -412,7 +450,7 @@ function DiabloHelper() {
 				if (Attack.checkMonster(monster)) {
 					for (i = 0; i < this.cleared.length; i += 1) {
 						if (getDistance(monster, this.cleared[i][0], this.cleared[i][1]) < 30 && Attack.validSpot(monster.x, monster.y)) {
-							me.overhead("we got a stray");
+							// me.overhead("we got a stray");
 							Pather.moveToUnit(monster);
 							Attack.clear(15, 0, false, this.sort);
 
@@ -449,7 +487,7 @@ function DiabloHelper() {
 	if (Config.DiabloHelper.SkipIfBaal) {
 AreaInfoLoop:
 		while (true) {
-			me.overhead("Getting party area info");
+			// me.overhead("Getting party area info");
 
 			if (Misc.getPlayerCount() <= 1) {
 				throw new Error("Empty game"); // Alone in game
@@ -503,7 +541,7 @@ CSLoop:
 
 			if (party) {
 				do {
-					if (party.name !== me.name && party.area === 108 && (!Config.Leader || party.name === Config.Leader)) {
+					if (party.name !== me.name && party.area === 108 && (!Config.Leader || party.name === leader)) {
 						break CSLoop;
 					}
 				} while (party.getNext());
@@ -514,14 +552,14 @@ CSLoop:
 		}
 
 		if (i === Config.DiabloHelper.Wait) {
-			throw new Error("Player wait timed out (" + (Config.Leader ? "Leader not" : "No players") + " found in Chaos)");
+			throw new Error("Player wait timed out (" + (leader ? "Leader not" : "No players") + " found in Chaos)");
 		}
 	} else {
 		Pather.useWaypoint(103);
 		Town.move("portalspot");
 
 		for (i = 0; i < Config.DiabloHelper.Wait; i += 1) {
-			if (Pather.getPortal(108, Config.Leader || null) && Pather.usePortal(108, Config.Leader || null)) {
+			if (Pather.getPortal(108, leader || null) && Pather.usePortal(108, leader || null)) {
 				break;
 			}
 
@@ -529,7 +567,7 @@ CSLoop:
 		}
 
 		if (i === Config.DiabloHelper.Wait) {
-			throw new Error("Player wait timed out (" + (Config.Leader ? "No leader" : "No player") + " portals found)");
+			throw new Error("Player wait timed out (" + (leader ? "No leader" : "No player") + " portals found)");
 		}
 	}
 
@@ -563,6 +601,6 @@ CSLoop:
 
 	Attack.kill(243); // Diablo
 	Pickit.pickItems();
-
+	this.DodgeTelestomp();
 	return true;
 }
