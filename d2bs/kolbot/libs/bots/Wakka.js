@@ -13,7 +13,8 @@ function Wakka() {
 		maxDist = 80,
 		leaderUnit = null,
 		leaderPartyUnit = null,
-		leader = "";
+		leader = "",
+		party;
 
 	function autoLeaderDetect(destination) { // autoleader by Ethic
 		let solofail, suspect;
@@ -235,26 +236,38 @@ function Wakka() {
 	Town.goToTown(4);
 	Town.move("portalspot");
 
-	if (Config.Leader) {
-		leader = Config.Leader;
+	// if (Config.Leader) {
+	// 	leader = Config.Leader;
 
-		for (i = 0; i < 30; i += 1) {
-			if (Misc.inMyParty(leader)) {
+	// 	for (i = 0; i < 30; i += 1) {
+	// 		if (Misc.inMyParty(leader)) {
+	// 			break;
+	// 		}
+
+	// 		delay(1000);
+	// 	}
+
+	// 	if (i === 30) {
+	// 		throw new Error("Wakka: Leader not partied");
+	// 	}
+	// }
+
+	// autoLeaderDetect(108);
+	// Town.doChores();
+
+	while (!Misc.inMyParty(leader)) {
+		for (let j=0 ; j < Config.QuitList.length ; j++) {
+			if (Misc.inMyParty(Config.QuitList[j])) {
+				leader = Config.QuitList[j];
+				print("ÿc4Diablo Helper: ÿc0Leader " + "ÿc1" + leader + "ÿc0");
 				break;
 			}
-
-			delay(1000);
 		}
-
-		if (i === 30) {
-			throw new Error("Wakka: Leader not partied");
-		}
+		delay(1000);
 	}
-
-	autoLeaderDetect(108);
 	Town.doChores();
 
-	if (leader) {
+	if (leader || autoLeaderDetect(108)) {
 		while (Misc.inMyParty(leader)) {
 			if (me.getStat(12) >= stopLvl) {
 				D2Bot.stop();
@@ -272,13 +285,14 @@ function Wakka() {
 
 					//Pather.usePortal(108, leader);
 					Pather.usePortal(108, null);
+					Precast.doPrecast(true);
 				}
 
 				break;
 			case 108:
 				if (!safeTP) {
 					if (this.checkMonsters(25, false)) {
-						me.overhead("hot tp");
+						// me.overhead("hot tp");
 						//Pather.usePortal(103, leader);
 						Pather.usePortal(103, null);
 						this.getCorpse();
@@ -308,7 +322,7 @@ function Wakka() {
 							tick = getTickCount();
 						}
 
-						me.overhead("vizier dead");
+						// me.overhead("vizier dead");
 					}
 
 					break;
@@ -331,7 +345,7 @@ function Wakka() {
 							tick = getTickCount();
 						}
 
-						me.overhead("seis dead");
+						// me.overhead("seis dead");
 					}
 
 					break;
@@ -354,7 +368,7 @@ function Wakka() {
 							tick = getTickCount();
 						}
 
-						me.overhead("infector dead");
+						// me.overhead("infector dead");
 					}
 
 					break;
@@ -371,11 +385,19 @@ function Wakka() {
 				break;
 			}
 
+			party = getParty();
+			if (party) {
+				do {
+					if (party.area === 131 || party.area === 132) { // Player is in Throne of Destruction or Worldstone Chamber
+						return false; // End script
+					}
+				} while (party.getNext());
+			}
 			if (me.mode === 17) {
 				me.revive();
 			}
 
-			delay(200);
+		delay(1000);
 		}
 	} else {
 		throw new Error("Empty game.");
