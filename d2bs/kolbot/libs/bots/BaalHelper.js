@@ -5,6 +5,21 @@
 */
 
 function BaalHelper() { // experi-mental
+	var TeleStompFlag = Config.TeleStomp,
+		DodgeHPPercent = Config.DodgeHP;
+
+	this.DodgeTelestomp = function () {
+		if (me.classid == 1 && TeleStompFlag) {
+			Config.TeleStomp = TeleStompFlag;
+			Config.DodgeHP = DodgeHPPercent;
+		}
+	};
+
+	if (me.classid == 1 && TeleStompFlag) {
+		Config.TeleStomp = false;
+		Config.DodgeHP = 100;
+	}
+	
 	this.preattack = function () {
 		var check;
 
@@ -171,8 +186,8 @@ function BaalHelper() { // experi-mental
 
 	Town.goToTown(5);
 	Town.doChores();
-	Pather.useWaypoint(Config.RandomPrecast ? "random" : 129);
-	Precast.doPrecast(true);
+	// Pather.useWaypoint(Config.RandomPrecast ? "random" : 129);
+	// Precast.doPrecast(true);
 
 	if (Config.BaalHelper.SkipTP) {
 		if (me.area !== 129) {
@@ -232,7 +247,7 @@ WSKLoop:
 		Town.move("portalspot");
 
 		for (i = 0; i < Config.BaalHelper.Wait; i += 1) {
-			if (Pather.getPortal(131, Config.Leader || null) && Pather.usePortal(131, Config.Leader || null)) {
+      if (Pather.getPortal(131, null) && Pather.usePortal(131, null)) {
 				break;
 			}
 
@@ -249,12 +264,16 @@ WSKLoop:
 
 		return true;
 	}
+  if (Config.BaalHelper.SoulQuit && getUnit(1, 641)) {
+    quitGame();
+    return true;
+  }
 
-	Precast.doPrecast(false);
-	Attack.clear(15);
-	this.clearThrone();
-
-	tick = getTickCount();
+  Attack.clear(15);
+  this.clearThrone();
+  Pather.moveTo(15115, 5050);
+  Precast.doPrecast(true);
+  tick = getTickCount();
 
 	Pather.moveTo(15093, me.classid === 3 ? 5029 : 5039);
 
@@ -338,7 +357,7 @@ MainLoop:
 		} else {
 			throw new Error("Couldn't find portal.");
 		}
-
+    this.DodgeTelestomp();
 		Pather.moveTo(15134, 5923);
 		Attack.kill(544); // Baal
 		Pickit.pickItems();
@@ -347,6 +366,6 @@ MainLoop:
 			delay(500);
 		}
 	}
-
+  this.DodgeTelestomp();
 	return true;
 }
