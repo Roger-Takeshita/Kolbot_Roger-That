@@ -226,7 +226,9 @@ function Baal() {
 		this.announce();
 		Pather.moveTo(15118, 5002);
 		Pather.makePortal();
-		say(Config.Baal.HotTPMessage);
+    if (Config.Baal.HotTPMessage !== "") {
+      say(Config.Baal.HotTPMessage);
+    }
 		Attack.clear(15);
 	}
 
@@ -235,7 +237,9 @@ function Baal() {
 	if (Config.PublicMode) {
 		Pather.moveTo(15118, 5045);
 		Pather.makePortal();
-		say(Config.Baal.SafeTPMessage);
+    if (Config.Baal.SafeTPMessage !== "") {
+      say(Config.Baal.SafeTPMessage);
+    }
 		Precast.doPrecast(true);
 	}
 
