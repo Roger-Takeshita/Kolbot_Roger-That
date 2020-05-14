@@ -235,7 +235,6 @@ function Diablo() {
 	};
 
 	this.infectorSeal = function () {
-		Precast.doPrecast(true);
 		print("Inf layout " + this.infLayout);
 		this.followPath(this.infLayout === 1 ? this.starToInfA : this.starToInfB);
 
@@ -243,11 +242,18 @@ function Diablo() {
 			throw new Error("Failed to open Infector seals.");
 		}
 
-		if (this.infLayout === 1) {
+		if (this.infLayout === 1) { // Layout 1, Straight Line
+			if (me.classid == 1) {
+				Pather.moveTo(7889, 5296);
+			}
 			delay(1);
-		} else {
-			Pather.moveTo(7928, 5295); // temp
-		}
+			} else {
+				if (me.classid != 1) {
+					Pather.moveTo(7928, 5295);
+				} else {
+					Pather.moveTo(7933, 5295);
+				}
+			}
 
 		if (!this.getBoss(getLocaleString(2853))) {
 			throw new Error("Failed to kill Infector");
@@ -387,7 +393,7 @@ function Diablo() {
 				if (Attack.checkMonster(monster)) {
 					for (i = 0; i < this.cleared.length; i += 1) {
 						if (getDistance(monster, this.cleared[i][0], this.cleared[i][1]) < 30 && Attack.validSpot(monster.x, monster.y)) {
-							me.overhead("we got a stray");
+							// me.overhead("we got a stray");
 							Pather.moveToUnit(monster);
 							Attack.clear(15, 0, false, this.sort);
 
@@ -418,7 +424,7 @@ function Diablo() {
 					if (player) {
 						do {
 							if (player.name !== me.name && getDistance(monster, player) < 30) {
-								me.overhead("defending players");
+								// me.overhead("defending players");
 								Pather.moveToUnit(monster);
 								Attack.clear(15, 0, false, this.sort);
 							}
@@ -485,7 +491,7 @@ function Diablo() {
 
 	if (Config.PublicMode) {
 		Pather.makePortal();
-		say(Config.Diablo.StarTP);
+		// say(Config.Diablo.StarTP);
 		Pather.teleport = !Config.Diablo.WalkClear && Pather._teleport;
 	}
 
