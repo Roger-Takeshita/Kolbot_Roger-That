@@ -11,9 +11,9 @@ function AutoBaal() {
 	// editable variables
 	var i, baalCheck, throneCheck, hotCheck, leader, suspect, solofail, portal, baal,
 		// internal variables
-		safeMsg = ["safe", "throne clear", "leechers can come", "tp is up", "1 clear"], // safe message - casing doesn't matter
+		safeMsg = ["safe", "throne clear", "leechers can come", "tp is up", "1 clear", "come"], // safe message - casing doesn't matter
 		baalMsg = ["baal"], // baal message - casing doesn't matter
-		hotMsg = ["hot", "warm", "dangerous", "lethal"]; // used for shrine hunt
+		hotMsg = ["hot", "warm", "dangerous", "lethal", "chegay"]; // used for shrine hunt
 
 	addEventListener('chatmsg', // chat event, listen to what leader says
 		function (nick, msg) { // handler function
@@ -173,12 +173,15 @@ function AutoBaal() {
 		}
 	}
 
+	Town.doChores();
 	if (Config.AutoBaal.FindShrine === 2) {
 		hotCheck = true;
+		Town.move("waypoint");
+	} else if (Config.AutoBaal.FindShrine === 1) {
+		Town.move("waypoint");
+	} else {
+		Town.move("portalspot");
 	}
-
-	Town.doChores();
-	Town.move("portalspot");
 
 	if (leader || autoLeaderDetect(131)) { // find the first player in area 131 - throne of destruction
 		while (Misc.inMyParty(leader)) { // do our stuff while partied
