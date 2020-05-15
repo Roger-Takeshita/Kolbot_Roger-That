@@ -5,6 +5,21 @@
 */
 
 function Eyeback() {
+  var TeleStompFlag = Config.TeleStomp,
+    DodgeHPPercent = Config.DodgeHP;
+
+  this.DodgeTelestomp = function () {
+    if (me.classid == 1 && TeleStompFlag) {
+      Config.TeleStomp = TeleStompFlag;
+      Config.DodgeHP = DodgeHPPercent;
+    }
+  };
+
+  if (me.classid == 1 && TeleStompFlag) {
+    Config.TeleStomp = false;
+    Config.DodgeHP = 100;
+  }
+
 	Town.doChores();
 	Pather.useWaypoint(112);
 	Precast.doPrecast(true);
@@ -14,6 +29,6 @@ function Eyeback() {
 	}
 
 	Attack.clear(15, 0, getLocaleString(22499)); // Eyeback the Unleashed
-
+  this.DodgeTelestomp();
 	return true;
 }
