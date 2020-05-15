@@ -5,6 +5,21 @@
 */
 
 function Pit() {
+	var TeleStompFlag = Config.TeleStomp,
+		DodgeHPPercent = Config.DodgeHP;
+
+	this.DodgeTelestomp = function () {
+		if (me.classid == 1 && TeleStompFlag) {
+			Config.TeleStomp = TeleStompFlag;
+			Config.DodgeHP = DodgeHPPercent;
+		}
+	};
+
+	if (me.classid == 1 && TeleStompFlag) {
+		Config.TeleStomp = false;
+		Config.DodgeHP = 100;
+	}
+
 	Town.doChores();
 	Pather.useWaypoint(6);
 	Precast.doPrecast(true);
@@ -22,6 +37,6 @@ function Pit() {
 	}
 
 	Attack.clearLevel();
-
+	this.DodgeTelestomp();
 	return true;
 }
