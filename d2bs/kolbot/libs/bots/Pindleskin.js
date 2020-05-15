@@ -7,6 +7,21 @@
 function Pindleskin() {
 	var anya;
 
+	var TeleStompFlag = Config.TeleStomp,
+		DodgeHPPercent = Config.DodgeHP;
+
+	this.DodgeTelestomp = function () {
+		if (me.classid == 1 && TeleStompFlag) {
+			Config.TeleStomp = TeleStompFlag;
+			Config.DodgeHP = DodgeHPPercent;
+		}
+	};
+
+	if (me.classid == 1 && TeleStompFlag) {
+		Config.TeleStomp = false;
+		Config.DodgeHP = 100;
+	}
+
 	Town.goToTown(Config.Pindleskin.UseWaypoint ? undefined : 5);
 	Town.doChores();
 
@@ -52,6 +67,7 @@ function Pindleskin() {
 		Pather.moveToPreset(me.area, 2, 462, 10, 10);
 
 		if (Config.Pindleskin.ViperQuit && getUnit(1, 597)) {
+			this.DodgeTelestomp();
 			print("Tomb Vipers found.");
 
 			return true;
@@ -65,6 +81,6 @@ function Pindleskin() {
 		//Attack.clear(15, 0, 526);
 		Pickit.pickItems();
 	}
-
+	this.DodgeTelestomp();
 	return true;
 }
