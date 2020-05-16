@@ -118,7 +118,7 @@ var Pather = {
 	recursion: true,
 
 	useTeleport: function () {
-		return this.teleport && !Config.NoTele && !me.getState(139) && !me.getState(140) && !me.inTown && ((me.classid === 1 && me.getSkill(54, 1)) || me.getStat(97, 54));
+		return this.teleport && !Config.NoTele && !me.getState(139) && !me.getState(140) && !me.inTown && ((me.classid === 1 && me.getSkill(54, 1)) || me.getStat(97, 54))  && me.mp >= Math.floor(me.mpmax * Config.WalkIfManaLessThan / 100);
 	},
 
 	/*
@@ -473,7 +473,7 @@ ModeLoop:
 
 						while (getTickCount() - tick < 1000) {
 							if (door.mode === 2) {
-								me.overhead("Opened a door!");
+								// me.overhead("Opened a door!");
 
 								return true;
 							}
@@ -954,7 +954,7 @@ ModeLoop:
 
 							if (!getWaypoint(this.wpAreas.indexOf(targetArea))) {
 								me.cancel();
-								me.overhead("Trying to get the waypoint");
+								// me.overhead("Trying to get the waypoint");
 
 								if (this.getWP(targetArea)) {
 									return true;
