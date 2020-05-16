@@ -136,7 +136,7 @@ function ShopBot() {
 			}
 		} while (item.getNext());
 
-		me.overhead(npc.itemcount + " items, " + items.length + " valid");
+		// me.overhead(npc.itemcount + " items, " + items.length + " valid");
 
 		validItems += items.length;
 		frequency.text = "Valid base items / cycle: " + ((validItems / totalCycles).toFixed(2).toString());
