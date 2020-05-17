@@ -234,7 +234,10 @@ function Rushee() {
 				if (me.act >= 3) {
 					break;
 				}
-
+				Town.move(NPC.Cain);
+				npc = getUnit(1, NPC.Cain);
+				if (!npc || !npc.openMenu()) return false;
+				Town.move("portalspot");
 				Pather.usePortal(50, Config.Leader);
 				Pather.moveToExit(40, true);
 
@@ -318,12 +321,12 @@ function Rushee() {
 			if (me.area === preArea) {
 				me.cancel();
 				Town.move("portalspot");
-				say("Act change failed.");
+				me.overhead("Act change failed.");
 
 				return false;
 			}
 
-			say("Act change done.");
+			// say("Act change done.");
 		} catch (e) {
 			return false;
 		}
@@ -349,7 +352,7 @@ function Rushee() {
 		delay(500);
 	}
 
-	say("Leader found.");
+	me.overhead("Leader found.");
 
 	while (true) {
 		try {
@@ -383,6 +386,19 @@ function Rushee() {
 						Pather.usePortal(40, Config.Leader);
 						actions.shift();
 
+						break;
+					case 60: // Halls of the Dead level 3
+						Pather.usePortal(60, Config.Leader);
+						while (true) {
+							target = getUnit(4, 549);
+							Pickit.pickItem(target);
+							delay(150);
+							if (me.getItem(549)) {
+								Pather.usePortal(40, Config.Leader);
+								break;
+							}
+						}
+						actions.shift();
 						break;
 					}
 
@@ -452,7 +468,7 @@ function Rushee() {
 						if (target && target.openMenu()) {
 							actions.shift();
 							me.cancel();
-							say("drognan done");
+							// say("drognan done");
 						}
 
 						Town.move("portalspot");
@@ -647,6 +663,21 @@ function Rushee() {
 								}
 							}
 
+							break;
+						case 83: // Travincal
+							this.revive();
+							Town.move(NPC.Cain);
+							target = getUnit(1, NPC.Cain);
+							if (target && target.openMenu()) {
+								me.cancel();
+							} else {
+								break;
+							}
+							if (!this.checkQuest(21, 0)) {
+								D2Bot.printToConsole("Travincal quest failed", 9);
+								quit();
+							}
+							Town.move("portalspot");
 							break;
 						}
 
@@ -892,7 +923,11 @@ function Rushee() {
 					break;
 				case "exit":
 				case "bye ~":
-					D2Bot.restart();
+					Town.goToTown(1);
+					delay(2000);
+					quit();
+					delay(1000);
+					D2Bot.stop(me.profile, true);
 
 					break;
 				case "a2":
@@ -939,7 +974,7 @@ function Rushee() {
 
 					break;
 				case me.name + " quest":
-					say("I am quester.");
+					me.overhead("I am quester.");
 
 					Config.Rushee.Quester = true;
 
