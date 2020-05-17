@@ -59,7 +59,7 @@ function Rusher() {
 		do {
 			if (party.name !== me.name) {
 				while (!party.area) {
-					me.overhead("Waiting for party area info");
+					// me.overhead("Waiting for party area info");
 					delay(500);
 				}
 
@@ -93,21 +93,21 @@ function Rusher() {
 			switch (msg) {
 			case "master":
 				if (!master) {
-					say(nick + " is my master.");
+					me.overhead(nick + " is my master.");
 
 					master = nick;
 				} else {
-					say("I already have a master.");
+					me.overhead("I already have a master.");
 				}
 
 				break;
 			case "release":
 				if (nick === master) {
-					say("I have no master now.");
+					me.overhead("I have no master now.");
 
 					master = false;
 				} else {
-					say("I'm only accepting commands from my master.");
+					me.overhead("I'm only accepting commands from my master.");
 				}
 
 				break;
@@ -115,8 +115,9 @@ function Rusher() {
 				if (nick === master) {
 					say("bye ~");
 					scriptBroadcast("quit");
+					D2Bot.stop(me.profile, true);
 				} else {
-					say("I'm only accepting commands from my master.");
+					me.overhead("I'm only accepting commands from my master.");
 				}
 
 				break;
@@ -125,7 +126,7 @@ function Rusher() {
 					if (nick === master) {
 						commands.push(msg);
 					} else {
-						say("I'm only accepting commands from my master.");
+						me.overhead("I'm only accepting commands from my master.");
 					}
 				}
 
@@ -137,29 +138,29 @@ function Rusher() {
 	addEventListener("chatmsg", this.chatEvent);
 
 	while (this.getPlayerCount() < Math.min(8, Config.Rusher.WaitPlayerCount)) {
-		me.overhead("Waiting for players to join");
+		// me.overhead("Waiting for players to join");
 		delay(500);
 	}
 
 	// Skip to a higher act if all party members are there
 	switch (this.getPartyAct()) {
 	case 2:
-		say("Party is in act 2, starting from act 2");
+		me.overhead("Party is in act 2, starting from act 2");
 		rushThread.send("skiptoact 2");
 
 		break;
 	case 3:
-		say("Party is in act 3, starting from act 3");
+		me.overhead("Party is in act 3, starting from act 3");
 		rushThread.send("skiptoact 3");
 
 		break;
 	case 4:
-		say("Party is in act 4, starting from act 4");
+		me.overhead("Party is in act 4, starting from act 4");
 		rushThread.send("skiptoact 4");
 
 		break;
 	case 5:
-		say("Party is in act 5, starting from act 5");
+		me.overhead("Party is in act 5, starting from act 5");
 		rushThread.send("skiptoact 5");
 
 		break;
@@ -175,7 +176,7 @@ function Rusher() {
 			switch (command) {
 			case "pause":
 				if (rushThread.running) {
-					say("Pausing");
+					me.overhead("Pausing");
 
 					rushThread.pause();
 				}
@@ -183,7 +184,7 @@ function Rusher() {
 				break;
 			case "resume":
 				if (!rushThread.running) {
-					say("Resuming");
+					me.overhead("Resuming");
 
 					rushThread.resume();
 				}
@@ -207,14 +208,14 @@ function Rusher() {
 					}
 
 					if (i === sequence.length) {
-						say("Invalid sequence");
+						me.overhead("Invalid sequence");
 					}
 				} else if (commandSplit0.toLowerCase() === "clear") {
 					if (!isNaN(parseInt(command.split(" ")[1], 10)) && parseInt(command.split(" ")[1], 10) > 0 && parseInt(command.split(" ")[1], 10) <= 132) {
 						this.reloadThread();
 						rushThread.send(command);
 					} else {
-						say("Invalid area");
+						me.overhead("Invalid area");
 					}
 				}
 
