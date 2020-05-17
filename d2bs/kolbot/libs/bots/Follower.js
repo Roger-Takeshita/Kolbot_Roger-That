@@ -120,7 +120,7 @@ function Follower() {
 	// Talk to a NPC
 	this.talk = function (name) {
 		if (!me.inTown) {
-			say("I'm not in town!");
+			me.overhead("I'm not in town!");
 
 			return false;
 		}
@@ -128,7 +128,7 @@ function Follower() {
 		if (typeof name === "string") {
 			name = name.toLowerCase();
 		} else {
-			say("No NPC name given.");
+			me.overhead("No NPC name given.");
 
 			return false;
 		}
@@ -159,14 +159,14 @@ function Follower() {
 		}
 
 		if (names.indexOf(name) === -1) {
-			say("Invalid NPC.");
+			me.overhead("Invalid NPC.");
 
 			return false;
 		}
 
 		if (!Town.move(name === NPC.Jerhyn ? "palace" : name)) {
 			Town.move("portalspot");
-			say("Failed to move to town spot.");
+			me.overhead("Failed to move to town spot.");
 
 			return false;
 		}
@@ -179,14 +179,14 @@ function Follower() {
 					npc.openMenu();
 					me.cancel();
 					Town.move("portalspot");
-					say("Done talking.");
+					me.overhead("Done talking.");
 
 					return true;
 				}
 			} while (npc.getNext());
 		}
 
-		say("NPC not found.");
+		me.overhead("NPC not found.");
 		Town.move("portalspot");
 
 		return false;
@@ -300,16 +300,16 @@ function Follower() {
 		if (me.area === preArea) {
 			me.cancel();
 			Town.move("portalspot");
-			say("Act change failed.");
+			me.overhead("Act change failed.");
 
 			return false;
 		}
 
 		Town.move("portalspot");
-		say("Act change successful.");
+		me.overhead("Act change successful.");
 
 		if (act === 2) {
-			say("Don't forget to talk to Drognan after getting the Viper Amulet!");
+			me.overhead("Don't forget to talk to Drognan after getting the Viper Amulet!");
 		}
 
 		return true;
@@ -399,11 +399,11 @@ function Follower() {
 				if (Pather.teleport) {
 					Pather.teleport = false;
 
-					say("Teleport off.");
+					me.overhead("Teleport off.");
 				} else {
 					Pather.teleport = true;
 
-					say("Teleport on.");
+					me.overhead("Teleport on.");
 				}
 
 				break;
@@ -411,14 +411,14 @@ function Follower() {
 			case me.name + " tele off":
 				Pather.teleport = false;
 
-				say("Teleport off.");
+				me.overhead("Teleport off.");
 
 				break;
 			case "tele on":
 			case me.name + " tele on":
 				Pather.teleport = true;
 
-				say("Teleport on.");
+				me.overhead("Teleport on.");
 
 				break;
 			case "a":
@@ -426,11 +426,11 @@ function Follower() {
 				if (attack) {
 					attack = false;
 
-					say("Attack off.");
+					me.overhead("Attack off.");
 				} else {
 					attack = true;
 
-					say("Attack on.");
+					me.overhead("Attack on.");
 				}
 
 				break;
@@ -442,14 +442,14 @@ function Follower() {
 			case me.name + " aoff":
 				attack = false;
 
-				say("Attack off.");
+				me.overhead("Attack off.");
 
 				break;
 			case "aon":
 			case me.name + " aon":
 				attack = true;
 
-				say("Attack on.");
+				me.overhead("Attack on.");
 
 				break;
 			case "quit":
@@ -462,11 +462,11 @@ function Follower() {
 				if (stop) {
 					stop = false;
 
-					say("Resuming.");
+					me.overhead("Resuming.");
 				} else {
 					stop = true;
 
-					say("Stopping.");
+					me.overhead("Stopping.");
 				}
 
 				break;
@@ -484,7 +484,7 @@ function Follower() {
 						skill = parseInt(msg.split(" ")[2], 10);
 
 						if (me.getSkill(skill, 1)) {
-							say("Active aura is: " + skill);
+							me.overhead("Active aura is: " + skill);
 
 							Config.AttackSkill[2] = skill;
 							Config.AttackSkill[4] = skill;
@@ -492,7 +492,7 @@ function Follower() {
 							Skill.setSkill(skill, 0);
 							//Attack.init();
 						} else {
-							say("I don't have that aura.");
+							me.overhead("I don't have that aura.");
 						}
 					}
 
@@ -506,14 +506,14 @@ function Follower() {
 						skill = parseInt(msg.split(" ")[2], 10);
 
 						if (me.getSkill(skill, 1)) {
-							say("Attack skill is: " + skill);
+							me.overhead("Attack skill is: " + skill);
 
 							Config.AttackSkill[1] = skill;
 							Config.AttackSkill[3] = skill;
 
 							//Attack.init();
 						} else {
-							say("I don't have that skill.");
+							me.overhead("I don't have that skill.");
 						}
 					}
 
@@ -534,7 +534,7 @@ function Follower() {
 					commanders.push(piece);
 				}
 
-				say("Switching leader to " + piece);
+				me.overhead("Switching leader to " + piece);
 
 				Config.Leader = piece;
 				leader = Misc.findPlayer(Config.Leader);
@@ -562,18 +562,18 @@ function Follower() {
 	}
 
 	if (!leader) {
-		say("Leader not found.");
+		me.overhead("Leader not found.");
 		delay(1000);
 		quit();
 	} else {
-		say("Leader found.");
+		me.overhead("Leader found.");
 	}
 
 	while (!Misc.inMyParty(Config.Leader)) {
 		delay(500);
 	}
 
-	say("Partied.");
+	me.overhead("Partied.");
 
 	if (me.inTown) {
 		Town.move("portalspot");
@@ -588,7 +588,7 @@ function Follower() {
 			}
 
 			Town.move("portalspot");
-			say("I'm alive!");
+			me.overhead("I'm alive!");
 		}
 
 		while (stop) {
@@ -600,7 +600,7 @@ function Follower() {
 				leaderUnit = Misc.getPlayerUnit(Config.Leader);
 
 				if (leaderUnit) {
-					say("Leader unit found.");
+					me.overhead("Leader unit found.");
 				}
 			}
 
@@ -642,23 +642,23 @@ function Follower() {
 
 				switch (result) {
 				case 1:
-					say("Taking exit.");
+					me.overhead("Taking exit.");
 					delay(500);
 					Pather.moveToExit(leader.area, true);
 
 					break;
 				case 2:
-					say("Taking portal.");
+					me.overhead("Taking portal.");
 
 					break;
 				case 3:
-					say("Taking waypoint.");
+					me.overhead("Taking waypoint.");
 					delay(500);
 					Pather.useWaypoint(leader.area, true);
 
 					break;
 				case 4:
-					say("Special transit.");
+					me.overhead("Special transit.");
 
 					break;
 				}
@@ -677,7 +677,7 @@ function Follower() {
 				Town.move("portalspot");
 
 				if (!Pather.usePortal(39)) {
-					say("Failed to use cow portal.");
+					me.overhead("Failed to use cow portal.");
 				}
 			}
 
@@ -723,9 +723,9 @@ WPLoop:
 			}
 
 			if (getUIFlag(0x14)) {
-				say("Got wp.");
+				me.overhead("Got wp.");
 			} else {
-				say("Failed to get wp.");
+				me.overhead("Failed to get wp.");
 			}
 
 			me.cancel();
@@ -738,23 +738,23 @@ WPLoop:
 
 			break;
 		case "p":
-			say("!Picking items.");
+			me.overhead("!Picking items.");
 			Pickit.pickItems();
 
 			if (openContainers) {
 				this.openContainers(20);
 			}
 
-			say("!Done picking.");
+			me.overhead("!Done picking.");
 
 			break;
 		case "1":
 			if (me.inTown && leader.inTown && Misc.getPlayerAct(Config.Leader) !== me.act) {
-				say("Going to leader's town.");
+				me.overhead("Going to leader's town.");
 				Town.goToTown(Misc.getPlayerAct(Config.Leader));
 				Town.move("portalspot");
 			} else if (me.inTown) {
-				say("Going outside.");
+				me.overhead("Going outside.");
 				Town.goToTown(Misc.getPlayerAct(Config.Leader));
 				Town.move("portalspot");
 
@@ -772,17 +772,17 @@ WPLoop:
 		case "2":
 			if (!me.inTown) {
 				delay(150);
-				say("Going to town.");
+				me.overhead("Going to town.");
 				Pather.usePortal(null, leader.name);
 			}
 
 			break;
 		case "3":
 			if (me.inTown) {
-				say("Running town chores");
+				me.overhead("Running town chores");
 				Town.doChores();
 				Town.move("portalspot");
-				say("Ready");
+				me.overhead("Ready");
 			}
 
 			break;
@@ -822,7 +822,7 @@ WPLoop:
 				break;
 			}
 
-			say("No TP scrolls or tomes.");
+			me.overhead("No TP scrolls or tomes.");
 
 			break;
 		}
