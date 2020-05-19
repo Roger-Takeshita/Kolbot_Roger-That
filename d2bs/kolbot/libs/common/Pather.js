@@ -959,8 +959,9 @@ ModeLoop:
 								if (this.getWP(targetArea)) {
 									return true;
 								}
-
-								throw new Error("Pather.useWaypoint: Failed to go to waypoint");
+								me.overhead("Failed to go to waypoint");
+								return false;
+								// throw new Error("Pather.useWaypoint: Failed to go to waypoint");
 							}
 
 							break;
