@@ -909,12 +909,25 @@ IngredientLoop:
 	},
 
 	doCubing: function () {
+		var disabledProfiles = [
+			"D1 - Mule",
+			"D2 - Mule",
+			"D3 - Mule",
+			"D4 - Mule",
+			"D5 - Mule",
+			"D6 - Mule",
+			"D7 - Mule",
+			"D8 - Mule"
+		];
+
 		if (!Config.Cubing) {
 			return false;
 		}
-
-		if (!me.getItem(549) && !this.getCube()) {
-			return false;
+		
+		if (disabledProfiles.indexOf(me.profile) < 0 ? true : false) {
+			if (!me.getItem(549) && !this.getCube()) {
+				return false;
+			}
 		}
 
 		var i, j, items, string, result, tempArray;
