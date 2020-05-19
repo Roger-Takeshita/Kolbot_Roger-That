@@ -355,7 +355,6 @@ var Town = {
 				}
 			}
 		}
-
 		return true;
 	},
 
@@ -985,7 +984,7 @@ CursorLoop:
 						return false;
 					}
 
-					me.overhead("Buy: " + items[i].name);
+					// me.overhead("Buy: " + items[i].name);
 					items[i].buy(false, true);
 
 					newItem = this.getGambledItem(list);
@@ -1015,7 +1014,7 @@ CursorLoop:
 							break;
 						default:
 							Misc.itemLogger("Sold", newItem, "Gambling");
-							me.overhead("Sell: " + newItem.name);
+							// me.overhead("Sell: " + newItem.name);
 							newItem.sell();
 
 							if (!Config.PacketShopping) {
@@ -1385,7 +1384,7 @@ CursorLoop:
 				repairAction.push("repair");
 			}
 		} else {
-			print("ÿc4Town: ÿc1Can't afford repairs.");
+			// print("ÿc4Town: ÿc1Can't afford repairs.");
 		}
 
 		return repairAction;
