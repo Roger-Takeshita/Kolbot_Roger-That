@@ -99,7 +99,7 @@ function main() {
 	};
 
 	this.andariel = function () {
-		say("starting andariel");
+		me.overhead("starting andariel");
 		Town.doChores();
 		Pather.useWaypoint(35, true);
 		Precast.doPrecast(true);
@@ -138,7 +138,7 @@ function main() {
 
 	this.cube = function () {
 		if (me.diff === 0) {
-			say("starting cube");
+			me.overhead("starting cube");
 			Pather.useWaypoint(57, true);
 			Precast.doPrecast(true);
 
@@ -149,6 +149,10 @@ function main() {
 			Pather.makePortal();
 			Attack.securePosition(me.x, me.y, 30, 3000, true);
 			say("1");
+			while (!this.playerIn()) {
+				delay(500);
+			}
+			say("all in");
 
 			while (!this.playerIn()) {
 				delay(100);
@@ -165,7 +169,7 @@ function main() {
 	};
 
 	this.amulet = function () {
-		say("starting amulet");
+		me.overhead("starting amulet");
 		Town.doChores();
 		Pather.useWaypoint(44, true);
 		Precast.doPrecast(true);
@@ -198,7 +202,7 @@ function main() {
 	};
 
 	this.staff = function () {
-		say("starting staff");
+		me.overhead("starting staff");
 		Town.doChores();
 		Pather.useWaypoint(43, true);
 		Precast.doPrecast(true);
@@ -231,7 +235,7 @@ function main() {
 		// right down 25830 5447 (25866, 5431)
 		// left down 25447 5822 (25431, 5861)
 
-		say("starting summoner");
+		me.overhead("starting summoner");
 		Town.doChores();
 		Pather.useWaypoint(74, true);
 		Precast.doPrecast(true);
@@ -307,7 +311,7 @@ function main() {
 	};
 
 	this.duriel = function () {
-		say("starting duriel");
+		me.overhead("starting duriel");
 
 		if (me.inTown) {
 			Town.doChores();
@@ -375,7 +379,7 @@ function main() {
 	};
 
 	this.travincal = function () {
-		say("starting travincal");
+		me.overhead("starting travincal");
 		Town.doChores();
 		Pather.useWaypoint(83, true);
 		Precast.doPrecast(true);
@@ -408,7 +412,7 @@ function main() {
 	};
 
 	this.mephisto = function () {
-		say("starting mephisto");
+		me.overhead("starting mephisto");
 
 		var hydra;
 
@@ -471,7 +475,7 @@ function main() {
 	};
 
 	this.diablo = function () {
-		say("starting diablo");
+		me.overhead("starting diablo");
 
 		this.getLayout = function (seal, value) {
 			var sealPreset = getPresetUnit(108, 2, seal);
@@ -654,9 +658,10 @@ function main() {
 
 		Attack.kill(243);
 		say("2");
-
+		delay(1000);
+		say("a5");
 		if (me.gametype > 0) {
-			say("a5");
+			// say("a5");
 
 			while (!this.playersInAct(5)) {
 				delay(250);
@@ -676,7 +681,8 @@ function main() {
 		if (me.diff === 2) {
 			say("Hell rush complete~");
 			delay(500);
-			quit();
+			// quit();
+			D2Bot.stop(me.profile, true);
 
 			return false;
 		}
@@ -685,11 +691,13 @@ function main() {
 			say("No eligible bumpers detected. Rush complete~");
 			delay(500);
 			quit();
-
+			delay(1000);
+			D2Bot.printToConsole("No eligible bumpers detected. Rush complete~");
+			D2Bot.stop(me.profile, true);
 			return false;
 		}
 
-		say("starting ancients");
+		me.overhead("starting ancients");
 
 		var altar;
 
@@ -743,7 +751,7 @@ function main() {
 	};
 
 	this.baal = function () {
-		say("starting baal");
+		me.overhead("starting baal");
 
 		var tick, portal;
 
@@ -1011,7 +1019,7 @@ MainLoop:
 			return false;
 		}
 
-		say("starting radament");
+		me.overhead("starting radament");
 
 		var i, radaCoords, rada, radaPreset, returnSpot,
 			moveIntoPos = function (unit, range) {
@@ -1123,7 +1131,7 @@ MainLoop:
 			return false;
 		}
 
-		say("starting lamesen");
+		me.overhead("starting lamesen");
 
 		if (!Town.goToTown() || !Pather.useWaypoint(80, true)) {
 			throw new Error("Lam Essen quest failed");
@@ -1157,7 +1165,7 @@ MainLoop:
 			return false;
 		}
 
-		say("starting izual");
+		me.overhead("starting izual");
 
 		var i, izualCoords, izual, izualPreset, returnSpot,
 			moveIntoPos = function (unit, range) {
@@ -1252,7 +1260,7 @@ MainLoop:
 			return false;
 		}
 
-		say("starting shenk");
+		me.overhead("starting shenk");
 
 		Pather.useWaypoint(111, true);
 		Precast.doPrecast(false);
@@ -1284,7 +1292,7 @@ MainLoop:
 			return false;
 		}
 
-		say("starting anya");
+		me.overhead("starting anya");
 
 		var anya;
 
@@ -1369,7 +1377,7 @@ MainLoop:
 					}
 
 					scriptBroadcast("quit");
-
+					D2Bot.stop(me.profile, true);
 					return true;
 				}
 
