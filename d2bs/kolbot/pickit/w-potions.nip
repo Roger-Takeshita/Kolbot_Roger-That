@@ -1,0 +1,7 @@
+[name] == gold # [gold] >= 5
+[name] == lightmanapotion
+[name] == minormanapotion
+[name] == manapotion
+[name] == lighthealingpotion
+[name] == minorhealingpotion
+[name] == healingpotion
