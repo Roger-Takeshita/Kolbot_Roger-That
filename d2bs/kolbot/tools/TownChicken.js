@@ -81,30 +81,29 @@ function main() {
 	Cubing.init();
 
 	while (true) {
-		if (!me.inTown && (townCheck ||
-			(Config.TownHP > 0 && me.hp < Math.floor(me.hpmax * Config.TownHP / 100)) ||
-			(Config.TownMP > 0 && me.mp < Math.floor(me.mpmax * Config.TownMP / 100)))) {
-			this.togglePause();
-
-			while (!me.gameReady) {
-				delay(100);
-			}
-
-			try {
-				me.overhead("Going to town");
-				Town.visitTown();
-			} catch (e) {
-				Misc.errorReport(e, "TownChicken.js");
-				scriptBroadcast("quit");
-
-				return;
-			} finally {
+		if (Config.UseHP <= 0) {
+			if (!me.inTown && (townCheck || (Config.TownHP > 0 && me.hp < Math.floor((me.hpmax * Config.TownHP) / 100)) || (Config.TownMP > 0 && me.mp < Math.floor((me.mpmax * Config.TownMP) / 100)))) {
 				this.togglePause();
 
-				townCheck = false;
+				while (!me.gameReady) {
+					delay(100);
+				}
+
+				try {
+					me.overhead("Going to town");
+					Town.visitTown();
+				} catch (e) {
+					Misc.errorReport(e, "TownChicken.js");
+					scriptBroadcast("quit");
+
+					return;
+				} finally {
+					this.togglePause();
+
+					townCheck = false;
+				}
 			}
 		}
-
 		delay(50);
 	}
 }
