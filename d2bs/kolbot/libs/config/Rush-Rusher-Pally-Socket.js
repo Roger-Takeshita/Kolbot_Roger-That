@@ -19,12 +19,12 @@ function LoadConfig() {
    //! SCRIPTS -------------------------------------------------------------------------
       Scripts.Rusher = true;
          Config.Rusher.WaitPlayerCount = 8;
-         Config.Rusher.Radament = true;
-         Config.Rusher.LamEsen = true;
-         Config.Rusher.Izual = true;
+         Config.Rusher.Radament = false;
+         Config.Rusher.LamEsen = false;
+         Config.Rusher.Izual = false;
          Config.Rusher.Shenk = true;
-         Config.Rusher.Anya = true;
-         Config.Rusher.LastRun = "anya";
+         Config.Rusher.Anya = false;
+         Config.Rusher.LastRun = "shenk";
    //! INVENTORY SETTINGS --------------------------------------------------------------
       Config.Inventory[0] = [1,1,1,1,1,1,0,0,0,0];
       Config.Inventory[1] = [1,1,1,1,1,1,0,0,0,0];

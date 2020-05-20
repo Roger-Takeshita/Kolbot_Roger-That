@@ -17,10 +17,10 @@ function LoadConfig() {
          Config.Rushee.Quester =  true;
          Config.Rushee.Bumper  = false;
    //! INVENTORY SETTINGS --------------------------------------------------------------
-      Config.Inventory[0] = [1,1,1,1,1,1,1,1,1,1];
-      Config.Inventory[1] = [1,1,1,1,1,1,1,1,1,1];
-      Config.Inventory[2] = [1,1,1,1,1,1,1,1,1,1];
-      Config.Inventory[3] = [1,1,1,1,1,1,1,1,1,1];
+      Config.Inventory[0] = [0,0,0,0,0,0,0,0,0,0];
+      Config.Inventory[1] = [0,0,0,0,0,0,0,0,0,0];
+      Config.Inventory[2] = [0,0,0,0,0,0,0,0,0,0];
+      Config.Inventory[3] = [0,0,0,0,0,0,0,0,0,0];
 
       Config.StashGold = 100000;
 
@@ -57,12 +57,14 @@ function LoadConfig() {
          Config.TownHP        = 55;                      // Go to town if life is under designated percent.
          Config.TownMP        =  0;                      // Go to town if mana is under designated percent.
    //! PICK LIST -----------------------------------------------------------------------
+      Config.PickitFiles.push("w-bot1.nip");
+      Config.PickitFiles.push("w-bot2.nip");
+      Config.PickitFiles.push("w-bot3.nip");
+      Config.PickitFiles.push("w-bot4.nip");
+      // Config.PickitFiles.push("w-potions.nip");
+      Config.PickitFiles.push("w-koltonEarlyLadder.nip");
+      Config.PickitFiles.push("w-koltonEndLadder.nip");
       Config.PickitFiles.push("w-kolton.nip");
-      Config.PickitFiles.push("w-koltonDontDropAnything.nip");
-      // Config.PickitFiles.push("w-bot1.nip");
-      // Config.PickitFiles.push("w-bot2.nip");
-      // Config.PickitFiles.push("w-bot3.nip");
-      Config.PickitFiles.push("w-potions.nip");
       Config.PickitFiles.push("w-LLD.nip");
       Config.PickRange = 40;
       Config.FastPick  = true;
@@ -86,6 +88,7 @@ function LoadConfig() {
       Config.Silence = false;                            // Make the bot not say a word. Do not use in combination with LocalChat
       Config.ScanShrines = [15, 2, 3];                   // 15 = XP, 2 = Health, 3 = Mana
       Config.WaypointMenu = true;
+      Config.WalkIfManaLessThan = 10;
    //! MONSTER SKIP CONFIG -------------------------------------------------------------
       Config.SkipImmune  = [];
       Config.SkipEnchant = [];
