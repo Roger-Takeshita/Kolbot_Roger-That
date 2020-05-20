@@ -102,6 +102,10 @@ function Cows() {
 		}
 
 		if (!portal) {
+			if (Config.MFLeader) {
+				say("MFHelper, you are free");
+				scriptBroadcast("MFHelper, you are free");
+			}
 			throw new Error("Tristram portal not found");
 		}
 
@@ -124,7 +128,10 @@ function Cows() {
 				return me.getItem(-1, -1, gid);
 			}
 		}
-
+		if (Config.MFLeader) {
+			say("MFHelper, you are free");
+			scriptBroadcast("MFHelper, you are free");
+		}
 		throw new Error("Failed to get the leg");
 	};
 
@@ -144,6 +151,10 @@ function Cows() {
 		}
 
 		if (!akara) {
+			if (Config.MFLeader) {
+				say("MFHelper, you are free");
+				scriptBroadcast("MFHelper, you are free");
+			}
 			throw new Error("Failed to buy tome");
 		}
 
@@ -160,7 +171,10 @@ function Cows() {
 				} while (tome.getNext());
 			}
 		}
-
+		if (Config.MFLeader) {
+			say("MFHelper, you are free");
+			scriptBroadcast("MFHelper, you are free");
+		}
 		throw new Error("Failed to buy tome");
 	};
 
@@ -168,14 +182,26 @@ function Cows() {
 		var i;
 
 		if (!Town.openStash()) {
+			if (Config.MFLeader) {
+				say("MFHelper, you are free");
+				scriptBroadcast("MFHelper, you are free");
+			}
 			throw new Error("Failed to open stash");
 		}
 
 		if (!Cubing.emptyCube()) {
+			if (Config.MFLeader) {
+				say("MFHelper, you are free");
+				scriptBroadcast("MFHelper, you are free");
+			}
 			throw new Error("Failed to empty cube");
 		}
 
 		if (!Storage.Cube.MoveTo(leg) || !Storage.Cube.MoveTo(tome) || !Cubing.openCube()) {
+			if (Config.MFLeader) {
+				say("MFHelper, you are free");
+				scriptBroadcast("MFHelper, you are free");
+			}
 			throw new Error("Failed to cube leg and tome");
 		}
 
@@ -188,31 +214,50 @@ function Cows() {
 			}
 
 			delay(200);
+		};
+		if (Config.MFLeader) {
+			say("MFHelper, you are free");
+			scriptBroadcast("MFHelper, you are free");
 		}
-
 		throw new Error("Portal not found");
 	};
 
 	var leg, tome;
 
 	// we can begin now
-	if (me.getQuest(4, 10)) { // king dead or cain not saved
+	if (me.getQuest(4, 10)) { // king dead or cain not sav
+		if (Config.MFLeader) {
+			say("MFHelper, you are free");
+			scriptBroadcast("MFHelper, you are free");
+		}
 		throw new Error("Already killed the Cow King.");
 	}
 
 	if (!me.getQuest(4, 0)) {
+		if (Config.MFLeader) {
+			say("MFHelper, you are free");
+			scriptBroadcast("MFHelper, you are free");
+		}
 		throw new Error("Cain quest incomplete");
 	}
 
 	switch (me.gametype) {
 	case 0: // classic
 		if (!me.getQuest(26, 0)) { // diablo not completed
+			if (Config.MFLeader) {
+				say("MFHelper, you are free");
+				scriptBroadcast("MFHelper, you are free");
+			}
 			throw new Error("Diablo quest incomplete.");
 		}
 
 		break;
 	case 1: // expansion
 		if (!me.getQuest(40, 0)) { // baal not completed
+			if (Config.MFLeader) {
+				say("MFHelper, you are free");
+				scriptBroadcast("MFHelper, you are free");
+			}
 			throw new Error("Baal quest incomplete.");
 		}
 
@@ -229,6 +274,9 @@ function Cows() {
 	Pather.usePortal(39);
 	Precast.doPrecast(false);
 	this.clearCowLevel();
-
+	if (Config.MFLeader) {
+		say("MFHelper, you are free");
+		scriptBroadcast("MFHelper, you are free");
+	}
 	return true;
 }
