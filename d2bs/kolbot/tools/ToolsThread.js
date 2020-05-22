@@ -28,14 +28,18 @@ include("common/Prototypes.js");
 include("common/Runewords.js");
 include("common/Storage.js");
 include("common/Town.js");
-
+include("AutoRogerThat.js");
 const sdk = require('../libs/modules/sdk')
 
 function main() {
 	var i, mercHP, ironGolem, tick, merc,
+		preArea,
+		preAct,
 		debugInfo = {area: 0, currScript: "no entry"},
 		pingTimer = [],
 		quitFlag = false,
+		lastGameFlag = false,
+		pvpTimeFlag = false,
 		quitListDelayTime,
 		cloneWalked = false,
 		canQuit = true,
@@ -71,7 +75,7 @@ function main() {
 		for (i = 0; i < Config.PingQuit.length; i += 1) {
 			if (Config.PingQuit[i].Ping > 0) {
 				if (me.ping >= Config.PingQuit[i].Ping) {
-					me.overhead("High Ping");
+					// me.overhead("High Ping");
 
 					if (pingTimer[i] === undefined || pingTimer[i] === 0) {
 						pingTimer[i] = getTickCount();
@@ -403,66 +407,298 @@ function main() {
 	// Event functions
 	this.keyEvent = function (key) {
 		switch (key) {
-		case 19: // Pause/Break key
-			this.togglePause();
+			case 106: //- * key    - Set Hot IP
+				FileTools.writeText("logs/ip.txt", me.gameserverip.split(".")[3]);
+				delay(150);
+				showConsole();
+				print("Hot IP set to: " + "ÿc1" + me.gameserverip.split(".")[3] + "ÿc0");
+				delay(100);
+				me.overhead("Hot IP set to: " + "ÿc1" + me.gameserverip.split(".")[3] + "ÿc0");
 
-			break;
-		case 35: // End key
-			MuleLogger.logChar();
-			delay(rand(Config.QuitListDelay[0] * 1e3, Config.QuitListDelay[1] * 1e3));
-			D2Bot.printToConsole(me.profile + " - end run " + me.gamename);
-			D2Bot.stop(me.profile, true);
+				break;
+			case 109: //- Numpad - - Check Hot IP
+				let gameIp = me.gameserverip.split(".")[3];
 
-			break;
-		case 45: // Ins key
-			me.overhead("Revealing " + Pather.getAreaName(me.area));
-			revealLevel(true);
-
-			break;
-		case 107: // Numpad +
-			showConsole();
-
-			var merc = me.getMerc();
-			print(this.getStatsString(me));
-			if (merc)
-				print("Merc stats:\n" + this.getStatsString(merc));
-
-			break;
-		case 101: // numpad 5
-			if (AutoMule.getInfo() && AutoMule.getInfo().hasOwnProperty("muleInfo")) {
-				if (AutoMule.getMuleItems().length > 0) {
-					print("ÿc2Mule triggered");
-					scriptBroadcast("mule");
-					this.exit();
+				if (FileTools.readText("logs/ip.txt") !== gameIp) {
+					print("Not the right IP: " + "ÿc3" + gameIp + "ÿc0");
+					me.overhead("Not the right IP: " + "ÿc3" + gameIp + "ÿc0");
 				} else {
-					me.overhead("No items to mule.");
+					showConsole();
+					print("Here we go! IP: " + "ÿc1" + gameIp + "ÿc0" + " is ÿc1HOT!ÿc0");
+					me.overhead("Here we go! IP: " + "ÿc1" + gameIp + "ÿc0" + " is ÿc1HOT!ÿc0");
 				}
-			} else {
-				me.overhead("Profile not enabled for muling.");
-			}
 
-			break;
-		case 102: // Numpad 6
-			MuleLogger.logChar();
-			me.overhead("Logged char: " + me.name);
+				break;
+			case 107: //- Numpad + - Check Stats
+				showConsole();
 
-			break;
-		case 109: // Numpad -
-			Misc.spy(me.name);
+				// me.getStat(105) will return real FCR from gear + Config.FCR from char cfg
+				var realFCR = me.getStat(105) - Config.FCR;
+				var realIAS = me.getStat(93) - Config.IAS;
+				var realFBR = me.getStat(102) - Config.FBR;
+				var realFHR = me.getStat(99) - Config.FHR;
 
-			break;
-		case 110: // decimal point
-			say("/fps");
+				print("ÿc4MF: ÿc0" + me.getStat(80) + " ÿc4GF: ÿc0" + me.getStat(79) + " ÿc1FR: ÿc0" + me.getStat(39) + " ÿc3CR: ÿc0" + me.getStat(43) + " ÿc9LR: ÿc0" + me.getStat(41) + " ÿc2PR: ÿc0" + me.getStat(45) + "\n" + "FCR: " + realFCR + " IAS: " + realIAS + " FBR: " + realFBR + " FHR: " + realFHR + " FRW: " + me.getStat(96) + "\n" + "CB: " + me.getStat(136) + " DS: " + me.getStat(141) + " OW: " + me.getStat(135) + " ÿc1LL: ÿc0" + me.getStat(60) + " ÿc3ML: ÿc0" + me.getStat(62) + " DR: " + me.getStat(36) + "% + " + me.getStat(34) + " MDR: " + me.getStat(37) + "% + " + me.getStat(35) + "\n" + (me.getStat(153) > 0 ? "ÿc3Cannot be Frozenÿc1" : ""));
 
-			break;
-		case 105: // numpad 9 - get nearest preset unit id
-			print(this.getNearestPreset());
+				break;
+			case 187: //- Equal    - Go To Shenk
+				if (pvpTimeFlag) break;
+				var target;
 
-			break;
-		case 106: // numpad * - precast
-			Precast.doPrecast(true);
+				if (me.act !== 5) {
+					me.cancel();
+					Town.goToTown(5);
+					Town.move(NPC.Larzuk);
+					target = getUnit(1, NPC.Larzuk);
+					target.openMenu();
+					if (!target.useMenu(0x58dc)) me.cancel();
+				} else if (me.act !== 1) {
+					Town.goToTown(1);
+					Town.move("stash");
+				}
 
-			break;
+				break;
+			case 219: //- [        - Drop Everything
+				if (pvpTimeFlag) break;
+				me.cancel();
+
+				if (AutoRogerThat.dropStuff()) {
+					me.overhead("Done boos!");
+				} else {
+					me.overhead("Sorry! I'm poor!");
+				}
+
+				Pather.moveTo(me.x + rand(-6, 6), me.y + rand(-6, 6));
+
+				break;
+			case 221: //- ]        - Pick Everything
+				if (pvpTimeFlag) break;
+				var pickStatus;
+				me.cancel();
+				Config.PickitTries = 0;
+				pickStatus = AutoRogerThat.pickItems();
+				Pather.moveTo(me.x + rand(-6, 6), me.y + rand(-6, 6));
+
+				if (pickStatus === "full") {
+					me.overhead("I'm full");
+				} else if (pickStatus) {
+					me.overhead("Done boss!");
+				} else {
+					me.overhead("There is nothing good to be picked");
+				}
+
+				break;
+			case 111: //- /        - PVP Time
+				pvpTimeFlag = !pvpTimeFlag;
+
+				if (pvpTimeFlag) {
+					//* Town settings
+						Config.HealHP = 0;
+						Config.HealMP = 0;
+						Config.HealStatus = false;
+						Config.UseMerc = false;
+						Config.MercWatch = false;
+					//* Potion settings
+						Config.UseHP = 0;
+						Config.UseRejuvHP = 0;
+						Config.UseMP = 40;
+						Config.UseRejuvMP = 0;
+						Config.UseMercHP = 0;
+						Config.UseMercRejuv = 0;
+						Config.HPBuffer = 0;
+						Config.MPBuffer = 0;
+						Config.RejuvBuffer = 0;
+					//* Chicken settings
+						Config.LifeChicken = 0;
+						Config.ManaChicken = 0;
+						Config.MercChicken = 0;
+						Config.TownHP = 0;
+						Config.TownMP = 0;
+				} else {
+					//* Town settings
+						Config.HealHP = 90;
+						Config.HealMP = 0;
+						Config.HealStatus = true;
+						Config.UseMerc = true;
+						Config.MercWatch = true;
+					//* Potion settings
+						Config.UseHP = 85;
+						Config.UseRejuvHP = 60;
+						Config.UseMP = 40;
+						Config.UseRejuvMP = 10;
+						Config.UseMercHP = 85;
+						Config.UseMercRejuv = 50;
+						Config.HPBuffer = 0;
+						Config.MPBuffer = 0;
+						Config.RejuvBuffer = 0;
+					//* Chicken settings
+						Config.LifeChicken = 35;
+						Config.ManaChicken = 0;
+						Config.MercChicken = 0;
+						Config.TownHP = 50;
+						Config.TownMP = 5;
+				}
+
+				scriptBroadcast("PVP Time");
+
+				break;
+			case 35:  //- End      - Pause
+				if (pvpTimeFlag) break;
+
+				if (!Config.PauseFlag) {
+					preArea = me.area;
+					preAct = me.act;
+					this.togglePause();
+
+					if (me.inTown) {
+						Town.openStash()
+					}
+
+					try {
+						Town.goToTown();
+						Town.openStash();
+					} catch (e) { }
+					
+					Config.PauseFlag = true;
+				} else {
+					me.cancel();
+					if (me.act !== preAct) Town.goToTown(preAct);
+					Town.move("portalspot");
+
+					if (!Pather.usePortal(preArea, me.name)) {
+						throw new Error("Town.visitTown: Failed to go back from town");
+					}
+
+					this.togglePause();
+					Config.PauseFlag = false;
+				}
+
+				break;
+			case 96:  //- Numpad 0 - Test
+				if (pvpTimeFlag) break;
+				//= NEW
+					var target = getUnit(1, 265);
+
+					if (target && target.openMenu()) {
+						delay(300);
+						me.cancel();
+					}
+					// Town.clearInventory();
+					// Cubing.emptyCube();
+				//= MOVE
+					// me.overhead(me.x + " x " + me.y);
+					// Pather.walkTo(4401 + rand(-5,5),4550 + rand(-5,5));
+					// Pather.moveTo(4393,4548);        //initial position
+					// Pather.moveTo(4393 + rand(-8,8), 4548 + rand(-8,8));
+				break;
+			case 97:  //- Numpad 1 - Run Bitch
+				if (pvpTimeFlag) break;
+				scriptBroadcast("Run Bitch");
+
+				break;
+			case 98:  //- Numpad 2 - Message Log
+				if (pvpTimeFlag) break;
+				Config.MessageLogFlag = !Config.MessageLogFlag;
+				scriptBroadcast("Message Log");
+
+				break;
+			case 99:  //- Numpad 3 - Drop Drop Trash
+				if (pvpTimeFlag) break;
+				me.cancel();
+
+				if (AutoRogerThat.dropTrash()) {
+					me.overhead("Dropped some trash!");
+				} else {
+					me.overhead("All Good!");
+				}
+
+				Pather.moveTo(me.x + rand(-6, 6), me.y + rand(-6, 6));
+
+				break
+			case 100: //- Numpad 4 - Open Stash
+				if (pvpTimeFlag) break;
+				if (!me.inTown) Town.goToTown();
+
+				if (getUIFlag(0x19)) {
+					me.cancel();
+					Pather.moveTo(me.x + rand(-6, 6), me.y + rand(-6, 6));
+				} else {
+					me.cancel();
+					Town.openStash();
+				}
+
+				break;
+			case 101: //- Numpad 5 - Auto Mule
+				if (pvpTimeFlag) break;
+
+				if (AutoMule.getInfo() && AutoMule.getInfo().hasOwnProperty("muleInfo")) {
+					if (AutoMule.getMuleItems().length > 0) {
+						print("ÿc2Mule triggered");
+						scriptBroadcast("mule");
+						this.exit();
+					} else {
+						me.overhead("No items to mule.");
+					}
+				} else {
+					me.overhead("Profile not enabled for muling.");
+				}
+
+				break;
+			case 46:  //- Delete   - Mule Log
+				MuleLogger.LogEquipped = true;
+				MuleLogger.LogMerc = true;
+				MuleLogger.logCharRogerThat();
+				delay(150);
+				print("Logged char: ÿc2" + me.name + "ÿc0");
+				me.overhead("Logged char: ÿc2" + me.name + "ÿc0");
+
+				break;
+			case 102: //- Numpad 6 - Mule Log
+				if (pvpTimeFlag) break;
+				MuleLogger.LogEquipped = true;
+				MuleLogger.LogMerc = true;
+				MuleLogger.logCharRogerThat();
+				delay(150);
+				print("Logged char: ÿc2" + me.name + "ÿc0");
+				me.overhead("Logged char: ÿc2" + me.name + "ÿc0");
+
+				break;
+			case 103: //- Numpad 7 - I Am The Boss
+				if (pvpTimeFlag) break;
+				FileTools.writeText("logs/leader.txt", me.name);
+				Config.Leader = "";
+				say("I am the boss");
+
+				break;
+			case 104: //- Numpad 8 - Last Game Button
+				if (pvpTimeFlag) break;
+				lastGameFlag = !lastGameFlag;
+
+				if (lastGameFlag) {
+					Messaging.sendToScript("D2BotLead.dbj", "lastGameON");
+					print("Last Game: " + "ÿc2ONÿc0");
+					me.overhead("Last Game: " + "ÿc2ONÿc0");
+				} else {
+					Messaging.sendToScript("D2BotLead.dbj", "lastGameOFF");
+					print("Last Game: " + "ÿc1OFFÿc0");
+					me.overhead("Last Game: " + "ÿc1OFFÿc0");
+				}
+
+				break;
+			case 105: //- Numpad 9 - Disable Mule Chat
+				pvpTimeFlag = false;
+				scriptBroadcast("Chat OnOff");
+
+				break;
+			case 110: //- .        - MH
+				if (!pvpTimeFlag) load("tools/mapthread.js");
+
+				break;
+			case 32:  //- Space    - Pause/Break
+				if (pvpTimeFlag) break;
+				this.togglePause();
+
+				break;
 		}
 	};
 
@@ -551,8 +787,22 @@ function main() {
 		var obj;
 
 		switch (msg) {
+		case "broadcastToToolsThread":
+			print("broadcast from script to here");
+
+			break;
+		case "MFHelper, you are free":
+			Config.MFLeader = false;
+			Config.MFHelper = false;
+
+			break;
 		case "toggleQuitlist":
 			canQuit = !canQuit;
+
+			break;
+		case me.profile:
+			AutoRogerThat.chatFlag = true;
+			me.overhead("ToolsThread");
 
 			break;
 		case "quit":
