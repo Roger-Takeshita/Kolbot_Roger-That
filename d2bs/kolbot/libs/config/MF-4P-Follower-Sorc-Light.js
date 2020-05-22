@@ -110,7 +110,7 @@ function LoadConfig() {
          Config.ManaChicken   =  0;                      // Exit game if mana is less or equal to designated percent.
          Config.MercChicken   =  0;                      // Exit game if merc's life is less or equal to designated percent.
          Config.TownHP        = 55;                      // Go to town if life is under designated percent.
-         Config.TownMP        =  0;                      // Go to town if mana is under designated percent.
+         Config.TownMP        = 10;                      // Go to town if mana is under designated percent.
    //! PICK LIST -----------------------------------------------------------------------
       // Config.PickitFiles.push("w-bot1.nip");
       Config.PickitFiles.push("w-bot2.nip");

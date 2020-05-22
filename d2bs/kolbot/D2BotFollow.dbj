@@ -36,7 +36,25 @@ var JoinSettings = {
 		"D6 - Rush F",
 		"D7 - Rush F",
 		"D8 - Rusher"
-	]
+	],
+	"D1 - Auto L": [
+		"D2 - AutoB F",
+		"D3 - AutoB F",
+		"D4 - AutoB F",
+		"D5 - AutoB F",
+		"D6 - AutoB F",
+		"D7 - AutoB F",
+		"D8 - AutoB F"
+	],
+	"D1 - XP L": [
+		"D2 - XP F",
+		"D3 - XP F",
+		"D4 - XP F",
+		"D5 - XP F",
+		"D6 - XP F",
+		"D7 - XP F",
+		"D8 - XP F"
+	],
 };
 
 // Advanced config - you don't have to edit this unless you need some of the features provided
@@ -55,6 +73,20 @@ var AdvancedConfig = {
 	"D6 - Rush F": { JoinDelay: 5 },
 	"D7 - Rush F": { JoinDelay: 6 },
 	"D8 - Rusher": { JoinDelay: 7 },
+	"D2 - Auto F": { JoinDelay: 1 },
+	"D3 - Auto F": { JoinDelay: 2 },
+	"D4 - Auto F": { JoinDelay: 3 },
+	"D5 - Auto F": { JoinDelay: 4 },
+	"D6 - Auto F": { JoinDelay: 5 },
+	"D7 - Auto F": { JoinDelay: 6 },
+	"D8 - Auto F": { JoinDelay: 7 },
+	"D2 - XP F"  : { JoinDelay: 1 },
+	"D3 - XP F"  : { JoinDelay: 2 },
+	"D4 - XP F"  : { JoinDelay: 3 },
+	"D5 - XP F"  : { JoinDelay: 4 },
+	"D6 - XP F"  : { JoinDelay: 5 },
+	"D7 - XP F"  : { JoinDelay: 6 },
+	"D8 - XP F"  : { JoinDelay: 7 },
 };
 
 
