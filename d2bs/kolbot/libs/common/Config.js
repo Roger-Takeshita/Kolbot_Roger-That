@@ -88,6 +88,10 @@ var Config = {
 
 		try {
 			LoadConfig.call();
+			if (Config.RogerThatInventoryFlag) {
+				AutoRogerThat.updateInventory();
+				AutoRogerThat.updateAttack();
+			}
 		} catch (e2) {
 			if (notify) {
 				print("ÿc8Error in " + e2.fileName.substring(e2.fileName.lastIndexOf("\\") + 1, e2.fileName.length) + "(line " + e2.lineNumber + "): " + e2.message);
@@ -178,6 +182,96 @@ var Config = {
 	QuitList: [],
 	QuitListMode: 0,
 	QuitListDelay: [],
+	D2BotPrintGameTime: false,
+	D2BotPrintChicken: false,
+	D2BotPrintCrash: false,
+	D2BotPrintDie: false,
+	D2BotPrintLostXp: false,
+	MessageLogFlag: false,
+	PauseFlag: false,
+	PickitTries: 0,
+	WalkIfManaLessThan: 0,
+	RogerThatLeaderList: [],
+	RogerThatFollower1List: [],
+	RogerThatFollower2List: [],
+	RogerThatFollower3List: [],
+	RogerThatFollower4List: [],
+	RogerThatFollower5List: [],
+	RogerThatFollower6List: [],
+	RogerThatFollower7List: [],
+	RogerThatInventoryFlag: false,
+	InventoryGeneric: [
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	],
+	InventoryLeader: [
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	],
+	InventoryFollower1: [
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	],
+	InventoryFollower2: [
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	],
+	InventoryFollower3: [
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	],
+	InventoryFollower4: [
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	],
+	InventoryFollower5: [
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	],
+	InventoryFollower6: [
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	],
+	InventoryFollower7: [
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	],
+	AttackZonSkill: [],
+	LowManaZonSkill: [],
+	AttackPallySkill: [],
+	LowManaPallySkill: [],
+	AttackSorcColdSkill: [],
+	LowManaSorcColdSkill: [],
+	AttackSorcFireSkill: [],
+	LowManaSorcFireSkill: [],
+	AttackSorcLightSkill: [],
+	LowManaSorcLightSkill: [],
+	AttackBarbSkill: [],
+	LowManaBarbSkill: [],
+	AttackNecSkill: [],
+	LowManaNecSkill: [],
+	AttackDruidSkill: [],
+	LowManaDruidSkill: [],
+	AttackSinSkill: [],
+	LowManaSinSkill: [],
 	HPBuffer: 0,
 	MPBuffer: 0,
 	RejuvBuffer: 0,
@@ -268,8 +362,8 @@ var Config = {
 	Dodge: false,
 	DodgeRange: 15,
 	DodgeHP: 100,
-	AttackSkill: [],
-	LowManaSkill: [],
+	AttackSkill: [0, 0, 0, 0, 0, 0, 0],
+	LowManaSkill: [0, 0],
 	CustomAttack: {},
 	TeleStomp: false,
 	NoTele: false,
@@ -378,12 +472,13 @@ var Config = {
 		KillGhosts: false
 	},
 	Baal: {
+		WaitPlayerCount: 0,
 		DollQuit: false,
 		SoulQuit: false,
 		KillBaal: false,
-		HotTPMessage: "Hot TP!",
-		SafeTPMessage: "Safe TP!",
-		BaalMessage: "Baal!"
+		HotTPMessage: "",
+		SafeTPMessage: "",
+		BaalMessage: ""
 	},
 	BaalAssistant: {
 		KillNihlathak: false,
@@ -407,6 +502,7 @@ var Config = {
 		KillNihlathak: false,
 		FastChaos: false,
 		DollQuit: false,
+		SoulQuit: false,
 		KillBaal: false,
 		SkipTP: false
 	},
