@@ -1,3 +1,49 @@
+## RogerThat
+
+### Print Colors
+
+```Bash
+	"ÿc1 red ÿc0"
+	"ÿc4 brown ÿc0"
+	"ÿc3 blue ÿc0"
+	"ÿc9 yellow ÿc0"
+	"ÿc2 green ÿc0"
+
+	"ÿc1" + red + "ÿc0"
+	"ÿc4" + brown + "ÿc0"
+	"ÿc3" + blue + "ÿc0"
+	"ÿc9" + yellow + "ÿc0"
+	"ÿc2" + green + "ÿc0"
+```
+
+### Screen Location
+
+- 800x600
+
+	```Bash
+		-3,0		# D1 - Mule
+		637, 0		# D2 - Mule
+		1277, 0		# D3 - Mule
+		1897, 0		# D4 - Mule
+		-3, 543		# D5 - Mule
+		637, 543	# D6 - Mule
+		1277, 543	# D7 - Mule
+		1897, 543	# D8 - Mule
+	```
+
+- 640x480
+
+	```Bash
+		-3, 37		# D1 - Mule
+		637, 37		# D2 - Mule
+		1277, 37	# D3 - Mule
+		1907, 37	# D4 - Mule
+		-3, 543		# D5 - Mule
+		637, 543	# D6 - Mule
+		1277, 543	# D7 - Mule
+		1897, 543	# D8 - Mule
+	```
+
 ## Rules
 
 1. D2BS, D2Bot and kolbot # are educational tools with an open source developer community. These tools are meant to be used offline or on private servers that explicitly allow them. These tools are not meant to be abused on battle.net (a Blizzard Entertainment entity).
