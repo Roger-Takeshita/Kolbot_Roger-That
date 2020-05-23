@@ -257,6 +257,11 @@ function LoadConfig() {
       Config.ScanShrines = [15, 2, 3];                   // 15 = XP, 2 = Health, 3 = Mana
       Config.WaypointMenu = true;
       Config.WalkIfManaLessThan = 10;
+   //! NOTIFICATION CONFIG -------------------------------------------------------------
+      Config.RogerThatTelegram.Active = true;
+         Config.RogerThatTelegram.Notify.Trade = true;
+         Config.RogerThatTelegram.Notify.HotIP = true;
+         Config.RogerThatTelegram.Notify.DiabloClone = true;
    //! DIABLO CLONE CONFIG -------------------------------------------------------------
       Config.StopOnDClone = false;                       // Go to town and idle as soon as Diablo walks the Earth
       Config.SoJWaitTime = 5;                            // Time in minutes to wait for another SoJ sale before leaving game. 0 = disabled

@@ -288,6 +288,11 @@ function LoadConfig() {
       Config.TownOnHostile = false;                      // Go to town instead of quitting when HostileAction is 0 or 1
       Config.RandomPrecast = false;                      // Anti-PK measure, only supported in Baal and BaalHelper and BaalAssisstant at the moment.
       Config.ViperCheck = false;                         // Quit if revived Tomb Vipers are sighted
+   //! NOTIFICATION CONFIG -------------------------------------------------------------
+      Config.RogerThatTelegram.Active = true;
+         Config.RogerThatTelegram.Notify.Trade = false;
+         Config.RogerThatTelegram.Notify.HotIP = true;
+         Config.RogerThatTelegram.Notify.DiabloClone = true;
    //! DIABLO CLONE CONFIG -------------------------------------------------------------
       Config.StopOnDClone = true;                        // Go to town and idle as soon as Diablo walks the Earth
       Config.SoJWaitTime = 5;                            // Time in minutes to wait for another SoJ sale before leaving game. 0 = disabled
