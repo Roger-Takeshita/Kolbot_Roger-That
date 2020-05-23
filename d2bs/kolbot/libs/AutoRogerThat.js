@@ -1641,4 +1641,27 @@ var AutoRogerThat = {
                 }
             },
 
+    //! SEND NOTIFICATIONS ============================================================
+        notify: function (data) {
+            if (Config.RogerThatTelegram.Active &&
+                (Config.RogerThatTelegram.Notify.Trade || Config.RogerThatTelegram.Notify.HotIP || Config.RogerThatTelegram.Notify.DiabloClone)) {
+                    if (Config.RogerThatTelegram.Url === '' || Config.RogerThatTelegram.Token === '' || Config.RogerThatTelegram.Port === undefined) {
+                        me.overhead("ÿc1ERROR:ÿc0 Headers are not configured.'");
+                    } else {
+                        const HTTP = require('../libs/modules/HTTP');
+
+                        HTTP({
+                            url: Config.RogerThatTelegram.Url + '/api/diablo/notify',
+                            port: Config.RogerThatTelegram.Port,
+                            method: 'POST',
+                            headers: {
+                                'Authorization': 'Bearer ' + Config.RogerThatTelegram.Token,
+                                'Content-Type': 'application/json'
+                            },
+                            data: JSON.stringify(data)
+                        });
+                    }
+
+            }
+        }
 };

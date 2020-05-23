@@ -576,16 +576,32 @@ function main() {
 				break;
 			case 96:  //- Numpad 0 - Test
 				if (pvpTimeFlag) break;
-				//= NEW
-					var target = getUnit(1, 265);
+				//= Send Notification
+					// Config.RogerThatTelegram.Active = true;
+					// 	Config.RogerThatTelegram.Notify.Trade = true;
+					// 	Config.RogerThatTelegram.Notify.HotIP = true;
+					// 	Config.RogerThatTelegram.Notify.DiabloClone = true;
+					// AutoRogerThat.notify({
+					// 	code: 'Test',
+					// 	message: 'Test from Diablo',
+					// 	data: {
+					// 		profile: me.profile,
+					// 		game: me.gamename,
+					// 		password: me.gamepassword,
+					// 		ip: me.gameserverip
+					// 	}
+					// });
+				//= Talk to Cain (act 1)
+					// var target = getUnit(1, 265);
 
-					if (target && target.openMenu()) {
-						delay(300);
-						me.cancel();
-					}
+					// if (target && target.openMenu()) {
+					// 	delay(300);
+					// 	me.cancel();
+					// }
+				//= Town Inventory
 					// Town.clearInventory();
 					// Cubing.emptyCube();
-				//= MOVE
+				//= Move
 					// me.overhead(me.x + " x " + me.y);
 					// Pather.walkTo(4401 + rand(-5,5),4550 + rand(-5,5));
 					// Pather.moveTo(4393,4548);        //initial position
@@ -739,7 +755,15 @@ function main() {
 
 			break;
 		case 0x11: // "%Param1 Stones of Jordan Sold to Merchants"
-			if (Config.DCloneQuit === 2) {
+			AutoRogerThat.notify({
+				code: 'Soj',
+				message: param1 + ' Stones of Jordan Sold to Merchants',
+				data: {
+					ip: me.gameserverip
+				}
+			});
+
+			if (Config.DCloneQuit === 2) {				
 				D2Bot.printToConsole("SoJ sold in game. Leaving.");
 
 				quitFlag = true;
@@ -754,6 +778,17 @@ function main() {
 
 			break;
 		case 0x12: // "Diablo Walks the Earth"
+			AutoRogerThat.notify({
+				code: 'Diablo Clone',
+				message: 'Diablo walks on the earth',
+				data: {
+					profile: me.profile,
+					game: me.gamename,
+					password: me.gamepassword,
+					ip: me.gameserverip
+				}
+			});
+
 			if (Config.DCloneQuit > 0) {
 				D2Bot.printToConsole("Diablo walked in game. Leaving.");
 

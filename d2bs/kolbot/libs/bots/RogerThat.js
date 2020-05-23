@@ -367,6 +367,15 @@ function RogerThat() {
                     }
 
                     if (messageFlag) {
+                        AutoRogerThat.notify({
+                            code: 'Trade',
+                            message: 'Trade Time',
+                            data: {
+                                profile: me.profile,
+                                game: me.gamename
+                            }
+                        });
+
                         messageFlag = false;
                         Town.move("stash");
                         
@@ -990,8 +999,8 @@ function RogerThat() {
 
         //+ Toggle info class =====================================================
             function UnitInfo() {
-                this.x = 684;
-                this.y = 157;
+                this.x = resolution !== 0 ? 670 : 510;
+                this.y = 30;
                 this.hooks = [];
                 this.cleared = true;
 
@@ -1689,6 +1698,7 @@ function RogerThat() {
                         case "Info":
                             if (!toggleInfoFlag) {
                                 me.overhead("     Info ÿc2ON");
+                                info.x = me.screensize !== 0 ? 670 : 510;
                                 toggleInfoFlag = true;
                             } else {
                                 me.overhead("     Info ÿc1OFF");

@@ -191,6 +191,17 @@ var Config = {
 	PauseFlag: false,
 	PickitTries: 0,
 	WalkIfManaLessThan: 0,
+	RogerThatTelegram: {
+		Active: false,
+		Notify: {
+			Trade: false,
+			DiabloClone: false,
+			HotIP: false,
+		},
+		Token: '',
+		Url: '',
+		Port: 3001
+	},
 	RogerThatLeaderList: [],
 	RogerThatFollower1List: [],
 	RogerThatFollower2List: [],
