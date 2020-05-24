@@ -111,11 +111,10 @@ function Rusher() {
 				}
 
 				break;
-			case "quit":
+			case "quitRush":
 				if (nick === master) {
 					say("bye ~");
-					scriptBroadcast("quit");
-					D2Bot.stop(me.profile, true);
+					scriptBroadcast("quitRush");
 				} else {
 					me.overhead("I'm only accepting commands from my master.");
 				}

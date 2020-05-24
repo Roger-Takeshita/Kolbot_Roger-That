@@ -660,18 +660,21 @@ function main() {
 		say("2");
 		delay(1000);
 		say("a5");
+
+		Pickit.pickItems();
+
+		if (!Pather.usePortal(null, me.name)) {
+			Town.goToTown();
+		}
+
+		Town.doChores();
+
 		if (me.gametype > 0) {
 			// say("a5");
 
 			while (!this.playersInAct(5)) {
 				delay(250);
 			}
-		}
-
-		Pickit.pickItems();
-
-		if (!Pather.usePortal(null, me.name)) {
-			Town.goToTown();
 		}
 
 		return true;
@@ -1371,13 +1374,7 @@ MainLoop:
 				if (current >= sequence.length || (Config.Rusher.LastRun && current > sequence.indexOf(Config.Rusher.LastRun))) {
 					delay(3000);
 					say("bye ~");
-
-					while (Misc.getPlayerCount() > 1) {
-						delay(1000);
-					}
-
-					scriptBroadcast("quit");
-					D2Bot.stop(me.profile, true);
+					scriptBroadcast("quitRush");
 					return true;
 				}
 

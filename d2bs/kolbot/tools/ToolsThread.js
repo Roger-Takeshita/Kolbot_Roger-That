@@ -840,6 +840,10 @@ function main() {
 			me.overhead("ToolsThread");
 
 			break;
+		case "quitRush":
+				D2Bot.stop(me.profile, true);
+	
+				break;
 		case "quit":
 			quitFlag = true;
 
