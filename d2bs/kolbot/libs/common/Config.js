@@ -526,10 +526,10 @@ var Config = {
 	},
 	Diablo: {
 		Entrance: false,
-		SealWarning: "Leave the seals alone!",
-		EntranceTP: "Entrance TP up",
-		StarTP: "Star TP up",
-		DiabloMsg: "Diablo",
+		SealWarning: "",
+		EntranceTP: "",
+		StarTP: "",
+		DiabloMsg: "",
 		WalkClear: false,
 		SealOrder: ["vizier", "seis", "infector"]
 	},

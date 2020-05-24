@@ -99,7 +99,7 @@ function Diablo() {
 
 			if (seal.mode) { // for pubbies
 				if (warn) {
-					say(Config.Diablo.SealWarning);
+					// say(Config.Diablo.SealWarning);
 				}
 
 				return true;
@@ -474,7 +474,7 @@ function Diablo() {
 
 		if (Config.PublicMode) {
 			Pather.makePortal();
-			say(Config.Diablo.EntranceTP);
+			// say(Config.Diablo.EntranceTP);
 			Pather.teleport = !Config.Diablo.WalkClear && Pather._teleport;
 		}
 
@@ -499,7 +499,7 @@ function Diablo() {
 	openSeals();
 
 	if (Config.PublicMode) {
-		say(Config.Diablo.DiabloMsg);
+		// say(Config.Diablo.DiabloMsg);
 	}
 
 	try {
