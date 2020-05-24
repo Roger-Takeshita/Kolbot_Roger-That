@@ -989,6 +989,19 @@ function main() {
 				Experience.log();
 			}
 
+			this.togglePause();
+
+			if (!me.inTown) {
+				try {
+					Town.goToTown();
+				} catch (e) {
+				}
+			}
+
+			Town.doChores();
+			Town.stash(true);
+			me.cancel()
+
 			this.checkPing(false); // In case of quitlist triggering first
 			this.exit();
 
