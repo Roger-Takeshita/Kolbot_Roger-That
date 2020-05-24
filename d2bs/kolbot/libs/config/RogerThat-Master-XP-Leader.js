@@ -11,7 +11,7 @@ function LoadConfig() {
       Config.Leader   =  "";
       Config.QuitList = [""];
       Config.QuitListMode = 0;
-      Config.QuitListDelay = [1, 20];
+      Config.QuitListDelay = [0, 0];
    //! ROGER-THAT ----------------------------------------------------------------------
       Config.RogerThatInventoryFlag    = true;           //Set true to use custom inventory configuration
       Config.RogerThatLeaderList       = ["TMFLeader"];
@@ -26,9 +26,9 @@ function LoadConfig() {
       Scripts.Diablo = true;
          Config.Diablo.Entrance = true;
       Scripts.Baal = true;
-         Config.Baal.HotTPMessage = "chegay";
-         Config.Baal.SafeTPMessage = "come";
-         Config.Baal.BaalMessage = "baal";
+         Config.Baal.HotTPMessage = "";                  // Set msg to "hot" so AutoBaal can understand the commands
+         Config.Baal.SafeTPMessage = "";                 // Set msg to "safe" or "come" so AutoBaal can understand the commands
+         Config.Baal.BaalMessage = "";                   // Set msg to "baal" so AutoBaal can understand the commands
          Config.Baal.SoulQuit = false;
          Config.Baal.DollQuit = false;
       Config.Baal.KillBaal = true;

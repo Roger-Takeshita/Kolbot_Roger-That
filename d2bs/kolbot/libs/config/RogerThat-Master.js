@@ -11,7 +11,7 @@ function LoadConfig() {
       Config.Leader   =  "";
       Config.QuitList = [""];
       Config.QuitListMode = 0;
-      Config.QuitListDelay = [1, 20];
+      Config.QuitListDelay = [1, 10];
    //! ROGER-THAT ----------------------------------------------------------------------
       Config.RogerThatInventoryFlag    = true;           //Set true to use custom inventory configuration
       Config.RogerThatLeaderList       = ["TMFLeader"];

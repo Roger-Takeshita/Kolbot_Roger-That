@@ -11,7 +11,7 @@ function LoadConfig() {
       Config.Leader   =  "";
       Config.QuitList = ["TMFLeader"];
       Config.QuitListMode = 0;
-      Config.QuitListDelay = [1, 20];
+      Config.QuitListDelay = [1, 10];
    //! ROGER-THAT ----------------------------------------------------------------------
       Config.RogerThatInventoryFlag    = true;           //Set true to use custom inventory configuration
       Config.RogerThatLeaderList       = ["TMFLeader"];
@@ -261,7 +261,7 @@ function LoadConfig() {
       Config.WaypointMenu = true;
       Config.WalkIfManaLessThan = 10;
    //! NOTIFICATION CONFIG -------------------------------------------------------------
-      Config.RogerThatTelegram.Active = true;
+      Config.RogerThatTelegram.Active = false;
          Config.RogerThatTelegram.Notify.Trade = false;
          Config.RogerThatTelegram.Notify.HotIP = true;
          Config.RogerThatTelegram.Notify.DiabloClone = true;

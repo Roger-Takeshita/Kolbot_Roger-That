@@ -12,7 +12,7 @@ function LoadConfig() {
       Config.QuitList = [""];
       Config.QuitListWaitFlag = false;
       Config.QuitListMode = 0;
-      Config.QuitListDelay = [1, 20];
+      Config.QuitListDelay = [0, 0];
    //! LEADER / HELPER -----------------------------------------------------------------
       Config.MFLeader   = false;
       Scripts.MFHelper  = false;
@@ -33,13 +33,13 @@ function LoadConfig() {
       Scripts.Hephasto = true;
       Scripts.Diablo = true;
          Config.Diablo.Entrance = true;
-      // Scripts.Nihlathak = true;
-      // Scripts.Frozenstein = true;
+      Scripts.Nihlathak = true;
+      Scripts.Frozenstein = true;
       Scripts.Snapchip = true;
       Scripts.Baal = true;
-         Config.Baal.HotTPMessage = "chegay";
-         Config.Baal.SafeTPMessage = "come";
-         Config.Baal.BaalMessage = "baal";
+         Config.Baal.HotTPMessage = "";                  // Set msg to "hot" so AutoBaal can understand the commands
+         Config.Baal.SafeTPMessage = "";                 // Set msg to "safe" or "come" so AutoBaal can understand the commands
+         Config.Baal.BaalMessage = "";                   // Set msg to "baal" so AutoBaal can understand the commands
          Config.Baal.SoulQuit = false;
          Config.Baal.DollQuit = false;
       Config.Baal.KillBaal = true;
@@ -71,7 +71,7 @@ function LoadConfig() {
          Config.OrgTorch.GetFade = false;                // Get fade by standing in a fire. You MUST have Last Wish or Treachery on your character being worn.
          Config.OrgTorch.AntidotesToChug = 0;            // Chug x antidotes before Lilith. Each antidote gives +50 poison res and +10 max poison for 30 seconds. The duration stacks. 4 potions == 2 minutes
       Scripts.Questing = false;                          // solves missing quests (skill/stat+shenk)
-      Scripts.KillDclone = true;                         // Kill Diablo Clone by using Arcane Sanctuary waypoint. Diablo needs to walk the Earth in the game.
+      Scripts.KillDclone = false;                        // Kill Diablo Clone by using Arcane Sanctuary waypoint. Diablo needs to walk the Earth in the game.
       Scripts.ShopBot = false;                           // Shopbot script. Automatically uses shopbot.nip and ignores other pickits.
          Config.ShopBot.ShopNPC = NPC.Anya;
          Config.ShopBot.ScanIDs = [];

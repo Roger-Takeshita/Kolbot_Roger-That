@@ -116,6 +116,11 @@ function LoadConfig() {
       Config.PrimarySlot        = 0;               // Set to use specific weapon slot as primary weapon slot: -1 = disabled, 0 = slot I, 1 = slot II
       Config.WaypointMenu       = true;
       Config.WalkIfManaLessThan = 10;
+   //! NOTIFICATION CONFIG -------------------------------------------------------------
+      Config.RogerThatTelegram.Active = false;
+         Config.RogerThatTelegram.Notify.Trade = false;
+         Config.RogerThatTelegram.Notify.HotIP = true;
+         Config.RogerThatTelegram.Notify.DiabloClone = true;
    //! DIABLO CLONE CONFIG -------------------------------------------------------------
       Config.StopOnDClone       = false;           // Go to town and idle as soon as Diablo walks the Earth
       Config.SoJWaitTime        = 5;               // Time in minutes to wait for another SoJ sale before leaving game. 0 = disabled

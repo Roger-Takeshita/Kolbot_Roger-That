@@ -89,6 +89,11 @@ function LoadConfig() {
       Config.ScanShrines = [15, 2, 3];                   // 15 = XP, 2 = Health, 3 = Mana
       Config.WaypointMenu = true;
       Config.WalkIfManaLessThan = 10;
+   //! NOTIFICATION CONFIG -------------------------------------------------------------
+      Config.RogerThatTelegram.Active = false;
+         Config.RogerThatTelegram.Notify.Trade = false;
+         Config.RogerThatTelegram.Notify.HotIP = true;
+         Config.RogerThatTelegram.Notify.DiabloClone = true;
    //! MONSTER SKIP CONFIG -------------------------------------------------------------
       Config.SkipImmune  = [];
       Config.SkipEnchant = [];

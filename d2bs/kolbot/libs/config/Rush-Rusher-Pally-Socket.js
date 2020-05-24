@@ -12,7 +12,7 @@ function LoadConfig() {
       Config.QuitList = [""];
       Config.QuitListWaitFlag = false;
       Config.QuitListMode = 0;
-      Config.QuitListDelay = [1, 20];
+      Config.QuitListDelay = [1, 10];
    //! LEADER / HELPER -----------------------------------------------------------------
       Config.MFLeader   = false;
       Scripts.MFHelper  = false;
@@ -53,7 +53,7 @@ function LoadConfig() {
          Config.OrgTorch.GetFade = false;                // Get fade by standing in a fire. You MUST have Last Wish or Treachery on your character being worn.
          Config.OrgTorch.AntidotesToChug = 0;            // Chug x antidotes before Lilith. Each antidote gives +50 poison res and +10 max poison for 30 seconds. The duration stacks. 4 potions == 2 minutes
       Scripts.Questing = false;                          // solves missing quests (skill/stat+shenk)
-      Scripts.KillDclone = true;                         // Kill Diablo Clone by using Arcane Sanctuary waypoint. Diablo needs to walk the Earth in the game.
+      Scripts.KillDclone = false;                        // Kill Diablo Clone by using Arcane Sanctuary waypoint. Diablo needs to walk the Earth in the game.
       Scripts.ShopBot = false;                           // Shopbot script. Automatically uses shopbot.nip and ignores other pickits.
          Config.ShopBot.ShopNPC = NPC.Anya;
          Config.ShopBot.ScanIDs = [];
@@ -267,6 +267,11 @@ function LoadConfig() {
       Config.TownOnHostile = false;                      // Go to town instead of quitting when HostileAction is 0 or 1
       Config.RandomPrecast = false;                      // Anti-PK measure, only supported in Baal and BaalHelper and BaalAssisstant at the moment.
       Config.ViperCheck = false;                         // Quit if revived Tomb Vipers are sighted
+   //! NOTIFICATION CONFIG -------------------------------------------------------------
+      Config.RogerThatTelegram.Active = true;
+         Config.RogerThatTelegram.Notify.Trade = false;
+         Config.RogerThatTelegram.Notify.HotIP = true;
+         Config.RogerThatTelegram.Notify.DiabloClone = true;
    //! DIABLO CLONE CONFIG -------------------------------------------------------------
       Config.StopOnDClone = true;                        // Go to town and idle as soon as Diablo walks the Earth
       Config.SoJWaitTime = 5;                            // Time in minutes to wait for another SoJ sale before leaving game. 0 = disabled
