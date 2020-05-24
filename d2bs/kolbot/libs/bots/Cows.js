@@ -86,7 +86,7 @@ function Cows() {
 		}
 
 		Pather.useWaypoint(4);
-		delay(1000);
+		delay(500);
 		Precast.doPrecast(true);
 		Pather.moveToPreset(me.area, 1, 737, 8, 8);
 
