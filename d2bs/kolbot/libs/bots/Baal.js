@@ -193,7 +193,7 @@ function Baal() {
 			string += " Dolls in area.";
 		}
 
-		say(string);
+		// say(string);
 	};
 
 	Town.doChores();
@@ -211,13 +211,13 @@ function Baal() {
 	Pather.moveTo(15095, 5029);
 
 	if (Config.Baal.DollQuit && getUnit(1, 691)) {
-		say("Dolls found! NG.");
+		// say("Dolls found! NG.");
 
 		return true;
 	}
 
 	if (Config.Baal.SoulQuit && getUnit(1, 641)) {
-		say("Souls found! NG.");
+		// say("Souls found! NG.");
 
 		return true;
 	}
@@ -310,7 +310,9 @@ MainLoop:
 
 	if (Config.Baal.KillBaal) {
 		if (Config.PublicMode) {
-			say(Config.Baal.BaalMessage);
+			if (Config.Baal.BaalMessage !== "") {
+				say(Config.Baal.BaalMessage);
+			}
 		}
 
 		Pather.moveTo(15090, 5008);
