@@ -4,7 +4,7 @@ var AutoRogerThat = {
             init: function (notify) {
                 let filename;
 
-                for (let i = 0; i < Config.PickitFiles.length; i += 1) {
+                for (let i = 0; i < Config.PickitFiles.length; i++) {
                     filename = "pickit/" + Config.PickitFiles[i];
                     NTIP.OpenFile(filename, notify);
                 }
@@ -59,7 +59,7 @@ var AutoRogerThat = {
                 }
 
                 if (itemFlag) {
-                    for (let i = 0; i < items.length; i++) {
+                    for (let i = 0 ; i < items.length ; i++) {
                         // print("Type : " + items[i].type + " - iLVL : " + items[i].ilvl + " - Class ID: " + items[i].classid + " - " + items[i].name);
                         items[i].drop();
                         droppedSomethingFlag = true;
@@ -115,7 +115,7 @@ var AutoRogerThat = {
                 }
 
                 if (itemFlag) {
-                    for (let i = 0; i < items.length; i++) {
+                    for (let i = 0 ; i < items.length ; i++) {
                         items[i].drop();
                         droppedSomethingFlag = true;
                     }
@@ -290,21 +290,21 @@ var AutoRogerThat = {
                                 break;
                             case "rune":
                             case "runes":        //All Runes
-                                for (let j = 610 ; j <= 642 ; j += 1) {
+                                for (let j = 610 ; j <= 642 ; j++) {
                                     itemsDropArray.push(j);
                                 }
 
                                 break;
                             case "lr":
                             case "lrs":          //Low Runes
-                                for (let j = 610 ; j <= 634 ; j += 1) {
+                                for (let j = 610 ; j <= 634 ; j++) {
                                     itemsDropArray.push(j);
                                 }
 
                                 break;
                             case "hr":
                             case "hrs":          //Hight Runes
-                                for (let j = 635 ; j <= 642 ; j += 1) {
+                                for (let j = 635 ; j <= 642 ; j++) {
                                     itemsDropArray.push(j);
                                 }
 
@@ -352,7 +352,7 @@ var AutoRogerThat = {
                 //- Drop items
                 if (itemFlag) {
                     //? Drop items from stash and inventory
-                    for (let i = 0; i < items.length; i++) {
+                    for (let i = 0 ; i < items.length ; i++) {
                         for (let j = 0 ; j < itemsDropArray.length ; j++) {
                             if (items[i].classid == itemsDropArray[j] || items[i].name == itemsDropArray[j]) {
                                 if (quant > 0) {
@@ -424,7 +424,7 @@ var AutoRogerThat = {
                 }
 
                 if (quant > 0) {
-                    for (i = 0 ; i < itemsDropArray.length ; i += 1) {
+                    for (let i = 0 ; i < itemsDropArray.length ; i++) {
                         if (quantArray[i] != 0) {
                             return false;
                         }
@@ -486,13 +486,13 @@ var AutoRogerThat = {
 
         //+ Get a list of items from the cube -------------------------------------
             getCubeMuleItems: function () {
-                let item, items, i;
+                let item, items;
 
                 item = me.findItems(-1, 0, 6);
                 items = [];
 
-                for (i = 0 ; i < item.length ; i += 1) {
-                if (Town.ignoredItemTypes.indexOf(item[i].itemType) === -1 &&
+                for (let i = 0 ; i < item.length ; i++) {
+                    if (Town.ignoredItemTypes.indexOf(item[i].itemType) === -1 &&
                         (this.checkItem(item[i]).result > 0 && item[i].location === 6) &&
                         item[i].classid !== 549 &&                            // Don't drop Horadric Cube
                         (item[i].classid !== 603 || item[i].quality !== 7) && // Don't drop Annihilus
@@ -502,7 +502,7 @@ var AutoRogerThat = {
                             if ((!this.cubingIngredient(item[i]) && !this.runewordIngredient(item[i]) && !this.utilityIngredient(item[i]))) { // Don't drop Excluded item or Runeword/Cubing/CraftingSystem ingredients
                                 items.push(copyUnit(item[i]));
                             }
-                        }
+                    }
                 }
                 return items;
             },
@@ -513,7 +513,7 @@ var AutoRogerThat = {
                     items = [], 
                     status;
 
-                for (let i = 0 ; i < item.length ; i += 1) {
+                for (let i = 0 ; i < item.length ; i++) {
                     status = this.checkItem(item[i]);
                     if (Town.ignoredItemTypes.indexOf(item[i].itemType) === -1 &&
                         ((status.result != 1 && status.result != 2  && status.result != 3 && status.result != 4 && status.result != 5) && item[i].location === 6) &&
@@ -538,7 +538,7 @@ var AutoRogerThat = {
 
         //+ Check if an item is a cubing ingredient -------------------------------
             cubingIngredient: function (item) {
-                for (let i = 0; i < Cubing.validIngredients.length; i += 1) {
+                for (let i = 0 ; i < Cubing.validIngredients.length ; i++) {
                     if (item.gid === Cubing.validIngredients[i].gid) {
                         return true;
                     }
@@ -558,7 +558,7 @@ var AutoRogerThat = {
                 if (!this.baseGids) {
                     this.baseGids = [];
 
-                    for (let i = 0; i < Config.Runewords.length; i++) {
+                    for (let i = 0 ; i < Config.Runewords.length ; i++) {
                         base = Runewords.getBase(Config.Runewords[i][0], Config.Runewords[i][1], (Config.Runewords[i][2]||0)) || Runewords.getBase(Config.Runewords[i][0], Config.Runewords[i][1], (Config.Runewords[i][2]||0), true);
 
                         if (base) {
@@ -778,7 +778,7 @@ var AutoRogerThat = {
                     return false;
                 }
 
-                for (i = 0; i < cancelFlags.length; i += 1) {
+                for (let i = 0 ; i < cancelFlags.length ; i++) {
                     if (getUIFlag(cancelFlags[i])) {
                         delay(500);
                         me.cancel(0);
@@ -789,7 +789,7 @@ var AutoRogerThat = {
                 stats = new ItemStats(item);
 
                 MainLoop:
-                    for (i = 0; i < 3; i += 1) {
+                    for (let i = 0 ; i < 3 ; i++) {
                         if (!getUnit(4, -1, -1, gid)) {
                             break MainLoop;
                         }
@@ -977,7 +977,7 @@ var AutoRogerThat = {
                     case 77: // Mana Potion
                     case 78: // Rejuvenation Potion
                         needPots = 0;
-                        for (let i = 0; i < 4; i++) {
+                        for (let i = 0 ; i < 4 ; i++) {
                             if (typeof unit.code === "string" && unit.code.indexOf(Config.BeltColumn[i]) > -1) {
                                 needPots += this.beltSize;
                             }
@@ -996,7 +996,7 @@ var AutoRogerThat = {
                         if (needPots < 1 && this.checkBelt()) {
                             buffers = ["HPBuffer", "MPBuffer", "RejuvBuffer"];
 
-                            for (let i = 0; i < buffers.length; i++) {
+                            for (let i = 0 ; i < buffers.length ; i++) {
                                 if (Config[buffers[i]]) {
                                     switch (buffers[i]) {
                                         case "HPBuffer":
@@ -1041,7 +1041,7 @@ var AutoRogerThat = {
                                     if (potion.itemType === unit.itemType && ((potion.mode === 0 && potion.location === 3) || potion.mode === 2)) {
                                         if (potion.classid < unit.classid) {
                                             potion.interact();
-                                            needPots += 1;
+                                            needPots++;
                                             break;
                                         }
                                     }
@@ -1070,7 +1070,7 @@ var AutoRogerThat = {
                 if (item) {
                     do {
                     if (item.x < 4) {
-                        check += 1;
+                        check++;
                     }
                     } while (item.getNext());
                 }
@@ -1140,7 +1140,7 @@ var AutoRogerThat = {
 
         //+ Update inventory -------------------------------------------------------
             updateInventory: function () {
-                for (let i=0 ; i < Config.RogerThatLeaderList.length; i++) {
+                for (let i = 0 ; i < Config.RogerThatLeaderList.length ; i++) {
                     if (me.name == Config.RogerThatLeaderList[i]) {
                         print("Inventory ÿc4Leaderÿc0");
                         Config.Inventory[0] = Config.InventoryLeader[0];
@@ -1152,7 +1152,7 @@ var AutoRogerThat = {
                     }
                 }
 
-                for (let i=0 ; i < Config.RogerThatFollower1List.length; i++) {
+                for (let i = 0 ; i < Config.RogerThatFollower1List.length ; i++) {
                     if (me.name == Config.RogerThatFollower1List[i]) {
                     print("Inventory ÿc4Followerÿc0 ÿc31ÿc0");
                     Config.Inventory[0] = Config.InventoryFollower1[0];
@@ -1164,7 +1164,7 @@ var AutoRogerThat = {
                     }
                 }
 
-                for (let i=0 ; i < Config.RogerThatFollower2List.length; i++) {
+                for (let i = 0 ; i < Config.RogerThatFollower2List.length ; i++) {
                     if (me.name == Config.RogerThatFollower2List[i]) {
                     print("Inventory ÿc4Followerÿc0 ÿc32ÿc0");
                     Config.Inventory[0] = Config.InventoryFollower2[0];
@@ -1176,7 +1176,7 @@ var AutoRogerThat = {
                     }
                 }
 
-                for (let i=0 ; i < Config.RogerThatFollower3List.length; i++) {
+                for (let i = 0 ; i < Config.RogerThatFollower3List.length ; i++) {
                     if (me.name == Config.RogerThatFollower3List[i]) {
                         print("Inventory ÿc4Followerÿc0 ÿc33ÿc0");
                         Config.Inventory[0] = Config.InventoryFollower3[0];
@@ -1188,7 +1188,7 @@ var AutoRogerThat = {
                     }
                 }
 
-                for (let i=0 ; i < Config.RogerThatFollower4List.length; i++) {
+                for (let i = 0 ; i < Config.RogerThatFollower4List.length ; i++) {
                     if (me.name == Config.RogerThatFollower4List[i]) {
                     print("Inventory ÿc4Followerÿc0 ÿc34ÿc0");
                     Config.Inventory[0] = Config.InventoryFollower4[0];
@@ -1200,7 +1200,7 @@ var AutoRogerThat = {
                     }
                 }
 
-                for (let i=0 ; i < Config.RogerThatFollower5List.length; i++) {
+                for (let i = 0 ; i < Config.RogerThatFollower5List.length ; i++) {
                     if (me.name == Config.RogerThatFollower5List[i]) {
                         print("Inventory ÿc4Followerÿc0 ÿc35ÿc0");
                         Config.Inventory[0] = Config.InventoryFollower5[0];
@@ -1212,7 +1212,7 @@ var AutoRogerThat = {
                     }
                 }
 
-                for (let i=0 ; i < Config.RogerThatFollower6List.length; i++) {
+                for (let i = 0 ; i < Config.RogerThatFollower6List.length; i++) {
                     if (me.name == Config.RogerThatFollower6List[i]) {
                         print("Inventory ÿc4Followerÿc0 ÿc36ÿc0");
                         Config.Inventory[0] = Config.InventoryFollower6[0];
@@ -1223,7 +1223,7 @@ var AutoRogerThat = {
                     }
                 }
 
-                for (let i=0 ; i < Config.RogerThatFollower7List.length; i++) {
+                for (let i = 0 ; i < Config.RogerThatFollower7List.length ; i++) {
                     if (me.name == Config.RogerThatFollower7List[i]) {
                         print("Inventory ÿc4Followerÿc0 ÿc37ÿc0");
                         Config.Inventory[0] = Config.InventoryFollower7[0];
