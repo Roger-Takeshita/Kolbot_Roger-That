@@ -82,7 +82,7 @@ var MuleLogger = {
 			tick = getTickCount() + rand(1500, 1750) * 1000; // trigger anti-idle every ~30 minutes
 
 			while ((getTickCount() - me.gamestarttime) < this.IngameTime * 1000) {
-				me.overhead("ÿc2Log items done. ÿc4Stay in " + "ÿc4game more:ÿc0 " + Math.floor(this.IngameTime - (getTickCount() - me.gamestarttime) / 1000) + " sec");
+				// me.overhead("ÿc2Log items done. ÿc4Stay in " + "ÿc4game more:ÿc0 " + Math.floor(this.IngameTime - (getTickCount() - me.gamestarttime) / 1000) + " sec");
 
 				delay(1000);
 
@@ -402,6 +402,176 @@ var MuleLogger = {
 		// hcl = hardcore class ladder
 		// sen = softcore expan nonladder
 		FileTools.writeText("mules/" + realm + "/" + me.account + "/" + me.name + "." + ( me.playertype ? "h" : "s" ) + (me.gametype ? "e" : "c" ) + ( me.ladder > 0 ? "l" : "n" ) + ".txt", finalString);
+		print("Item logging done.");
+	},
+
+	logCharRogerThat: function (logIlvl, logName, saveImg) {
+		if (!isIncluded("AutoRogerThat.js")) {
+			include("AutoRogerThat.js");
+		}
+
+		while (!me.gameReady) {
+			delay(100);
+		}
+
+		if (logIlvl === undefined) {
+			logIlvl = this.LogItemLevel;
+		}
+
+		if (logName === undefined) {
+			logName = this.LogNames;
+		}
+
+		if (saveImg === undefined) {
+			saveImg = this.SaveScreenShot;
+		}
+
+		let folder,
+			string,
+			parsedItem,
+			items = me.getItems(),
+			realm = me.realm || "Single Player",
+			merc,
+			logFlag = true,
+			notLogItems = [
+				"Super Healing Potion",
+				"Super Mana Potion",
+				"Great Healing Potion",
+				"Great Mana Potion",
+				"Mana Potion",
+				"Healing Potion",
+				"Light Mana Potion",
+				"Light Healing Potion",
+				"Minor Mana Potion",
+				"Minor Healing Potion",
+				"Full Rejuvenation Potion",
+				"Rejuvenation Potion",
+				"Arrows",
+				"Key",
+				"Tome of Town Portal",
+				"Tome of Identify",
+				"Scroll of Identify ",
+				"Scroll of Town Portal",
+				"Hand Axe",
+				"Short Staff",
+				"Short Sword",
+				"Wand",
+				"Katar",
+				"Club",
+				"Javelin",
+				"Buckler"
+			],
+			finalString = "";
+
+		if (!FileTools.exists("mules/" + realm)) {
+			folder = dopen("mules");
+
+			folder.create(realm);
+		}
+
+		if (!FileTools.exists("mules/" + realm + "/" + me.account)) {
+			folder = dopen("mules/" + realm);
+
+			folder.create(me.account);
+		}
+
+		if (!items || !items.length) {
+			return;
+		}
+
+		function itemSort(a, b) {
+			return b.itemType - a.itemType;
+		}
+
+		items.sort(itemSort);
+
+		for (let i = 0; i < items.length; i++) {
+			logFlag = true;
+
+			for (let j = 0 ; j < notLogItems.length ; j++) {
+				if (items[i].classid == 549) {
+					logFlag = false;
+					// print ("Not logged: " + items[i].name);
+					break;
+				}
+
+				if (notLogItems[j] == items[i].name) {
+					logFlag = false;
+					// print ("Not logged: " + items[i].name);
+					break;
+				}
+			}
+
+			if (logFlag) {
+				if (!AutoRogerThat.cubingIngredient(items[i]) && !AutoRogerThat.runewordIngredient(items[i]) && !AutoRogerThat.utilityIngredient(items[i])) {
+					logFlag = true;
+				} else {
+					// print("Not logged: " + items[i].name);
+					logFlag = false;
+				}
+			}
+
+			if (!logFlag) {
+				continue;
+			}
+
+			if ((this.LogEquipped || items[i].mode === 0) && (items[i].quality !== 2 || !Misc.skipItem(items[i].classid))) {
+				parsedItem = this.logItem(items[i], logIlvl);
+
+				// Log names to saved image
+				if (logName) {
+					parsedItem.header = (me.account || "Single Player") + " / " + me.name;
+				}
+
+				if (saveImg) {
+					D2Bot.saveItem(parsedItem);
+				}
+
+				// Always put name on Char Viewer items
+				if (!parsedItem.header) {
+					parsedItem.header = (me.account || "Single Player") + " / " + me.name;
+				}
+
+				// Remove itemtype_ prefix from the name
+				parsedItem.title = parsedItem.title.substr(parsedItem.title.indexOf("_") + 1);
+
+				if (items[i].mode === 1) {
+					parsedItem.title += " (equipped)";
+				}
+
+				string = JSON.stringify(parsedItem);
+				finalString += (string + "\n");
+			}
+		}
+
+		if (this.LogMerc) {
+			for (let i = 0; i < 3; i += 1) {
+				merc = me.getMerc();
+
+				if (merc) {
+					break;
+				}
+
+				delay(50);
+			}
+
+			if (merc) {
+				items = merc.getItems();
+
+				for (let i = 0 ; i < items.length; i++) {
+					parsedItem = this.logItem(items[i]);
+					parsedItem.title += " (merc)";
+					string = JSON.stringify(parsedItem);
+					finalString += (string + "\n");
+
+					if (this.SaveScreenShot) {
+						D2Bot.saveItem(parsedItem);
+					}
+				}
+			}
+		}
+
+		FileTools.writeText("mules/" + realm + "/" + me.account + "/" + me.name + "." + (me.playertype ? "h" : "s") + (me.gametype ? "e" : "c") + (me.ladder > 0 ? "l" : "n") + ".txt", finalString);
 		print("Item logging done.");
 	}
 };
