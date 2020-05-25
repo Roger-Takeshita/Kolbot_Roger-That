@@ -98,12 +98,12 @@ function LoadConfig() {
          Config.TownHP        = 55;                      // Go to town if life is under designated percent.
          Config.TownMP        =  0;                      // Go to town if mana is under designated percent.
    //! PICK LIST -----------------------------------------------------------------------
-      Config.PickitFiles.push("w-bot1.nip");
-      Config.PickitFiles.push("w-bot2.nip");
-      Config.PickitFiles.push("w-bot3.nip");
-      Config.PickitFiles.push("w-bot4.nip");
-      Config.PickitFiles.push("w-potions.nip");
-      Config.PickitFiles.push("w-koltonEarlyLadder.nip");
+      // Config.PickitFiles.push("w-bot1.nip");
+      // Config.PickitFiles.push("w-bot2.nip");
+      // Config.PickitFiles.push("w-bot3.nip");
+      // Config.PickitFiles.push("w-bot4.nip");
+      // Config.PickitFiles.push("w-potions.nip");
+      // Config.PickitFiles.push("w-koltonEarlyLadder.nip");
       Config.PickitFiles.push("w-koltonEndLadder.nip");
       Config.PickitFiles.push("w-kolton.nip");
       Config.PickitFiles.push("w-LLD.nip");
