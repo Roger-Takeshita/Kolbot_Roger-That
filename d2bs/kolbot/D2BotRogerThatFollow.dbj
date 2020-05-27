@@ -6,6 +6,7 @@ var StarterConfig = {
 	JoinRetryDelay: rand(5, 10),   // Time in seconds to wait before next join attempt
 	SwitchKeyDelay: 5,             // Seconds to wait before switching a used/banned key or after realm down
 
+	LoginDelay             : rand(3, 15),    // Seconds to wait before trying to login
 	CrashDelay             : rand(1, 10),    // Seconds to wait after a d2 window crash
 	RealmDownDelay         : rand(10, 15),   // Minutes to wait after getting Realm Down message
 	BnetNotResponding      : 90,             // Minutes to wait after 6 attempts to connect
@@ -142,7 +143,7 @@ function ReceiveCopyData (mode, msg) {
 		break;
 	case 2: // Game info
 		print("Recieved Game Info");
-		delay(rand(1,5)*1000);
+		delay(StarterConfig.LoginDelay * 1e3);
 		gameInfo = JSON.parse(msg);
 
 		break;

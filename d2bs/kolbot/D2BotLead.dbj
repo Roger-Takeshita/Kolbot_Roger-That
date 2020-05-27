@@ -86,7 +86,6 @@ var gameInfo, gameStart, ingame, chatActionsDone, pingQuit,
 	lastGameStatus = "ready",
 	isUp = "no",
 	lastGameFlag = false,
-	newCreateGameDelay = 0,
 	loginCount = 1,
 	chanInfo = {
 		joinChannel: "",
@@ -189,22 +188,16 @@ function updateCount() {
 	ControlAction.click(6, 33, 572, 128, 35);
 }
 
-function updateCreateGameDelay() {
-	if (lastGameFlag) {
-		newCreateGameDelay = 2000;
-	} else {
-		newCreateGameDelay = StarterConfig.CreateGameDelay;
-	}
-}
-
 function ScriptMsgEvent(msg) {
 	switch (msg) {
-        case "lastGameON":
-            lastGameFlag = true;
-            break;
-        case "lastGameOFF":
-            lastGameFlag = false;
-            break;
+	case "lastGameON":
+		lastGameFlag = true;
+
+		break;
+	case "lastGameOFF":
+		lastGameFlag = false;
+
+		break;
 	case "mule":
 		AutoMule.check = true;
 
@@ -574,8 +567,12 @@ MainSwitch:
 			D2Bot.updateRuns();
 		}
 
-		updateCreateGameDelay();
-		ControlAction.createGame(gameInfo.gameName === "?" ? randomString(null, true) : gameInfo.gameName + gameCount, gameInfo.gamePass === "?" ? randomString(null, true) : gameInfo.gamePass, gameInfo.difficulty, newCreateGameDelay * 1000);
+		if (lastGameFlag) {
+			D2Bot.stopSchedule(me.profile);
+			D2Bot.stop(me.profile, true);
+		}
+
+		ControlAction.createGame((gameInfo.gameName === "?" ? randomString(null,true) : gameInfo.gameName + gameCount), (gameInfo.gamePass === "?" ? randomString(null,true) : gameInfo.gamePass), gameInfo.difficulty, StarterConfig.CreateGameDelay * 1000);
 		lastGameStatus = "pending";
 
 		setNextGame();

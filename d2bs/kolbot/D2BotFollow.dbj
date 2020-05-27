@@ -107,6 +107,7 @@ var i, j, gameInfo, joinInfo, gameStart, ingame, handle,
 	firstLogin, chatActionsDone, lastGameTick, connectFail,
 	gameCount = DataFile.getStats().runs + 1,
 	loginRetry = 0,
+	lastGameFlag = false,
 	loginCount = 1,
 	lastGameStatus = "ready",
 	leader = "",
@@ -143,6 +144,14 @@ function updateCount () {
 
 function ScriptMsgEvent (msg) {
 	switch (msg) {
+	case "lastGameON":
+		lastGameFlag = true;
+
+		break;
+	case "lastGameOFF":
+		lastGameFlag = false;
+
+		break;
 	case "mule":
 		AutoMule.check = true;
 
@@ -418,6 +427,11 @@ MainSwitch:
 		break;
 	case 5: // Join Game
 		D2Bot.updateStatus("Join Game");
+
+		if (lastGameFlag) {
+			D2Bot.stopSchedule(me.profile);
+			D2Bot.stop(me.profile, true);
+		}
 
 		if (!leader) {
 			leader = [];
