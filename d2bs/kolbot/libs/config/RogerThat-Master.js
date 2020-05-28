@@ -162,19 +162,19 @@ function LoadConfig() {
          //+ CRAFT ------------------------------------------------------------------
             Config.Recipes.push([Recipe.Caster.Amulet]);                              // Craft Caster Amulet
             Config.Recipes.push([Recipe.Blood.Ring]);                                 // Craft Blood Ring
-            // Config.Recipes.push([Recipe.Caster.Belt,     "Sharkskin Belt"]);       // Craft Caster Sharkskin Belt
-            // Config.Recipes.push([Recipe.Caster.Belt,   "Vampirefang Belt"]);       // Craft Caster Vampirefang Belt
+            Config.Recipes.push([Recipe.Caster.Belt,        "Sharkskin Belt"]);       // Craft Caster Sharkskin Belt
+            Config.Recipes.push([Recipe.Caster.Belt,      "Vampirefang Belt"]);       // Craft Caster Vampirefang Belt
             Config.Recipes.push([Recipe.Blood.Gloves,     "Sharkskin Gloves"]);       // Craft Blood Sharkskin Gloves
             Config.Recipes.push([Recipe.Blood.Gloves,   "Vampirebone Gloves"]);       // Craft Blood Vampirebone Gloves	
-            // Config.Recipes.push([Recipe.HitPower.Gloves,      "Vambraces"]);       // Craft Hit Power Vambraces
-            // Config.Recipes.push([Recipe.HitPower.Gloves,   "Chain Gloves"]);       // Craft Hit Power Chain Gloves
-            // Config.Recipes.push([Recipe.HitPower.Gloves,  "Heavy Bracers"]);       // Craft Hit Power Heavy Bracers
-            // Config.Recipes.push([Recipe.Blood.Helm,               "Armet"]);       // Craft Blood Armet
+            Config.Recipes.push([Recipe.HitPower.Gloves,         "Vambraces"]);       // Craft Hit Power Vambraces
+            Config.Recipes.push([Recipe.HitPower.Gloves,      "Chain Gloves"]);       // Craft Hit Power Chain Gloves
+            Config.Recipes.push([Recipe.HitPower.Gloves,     "Heavy Bracers"]);       // Craft Hit Power Heavy Bracers
+            Config.Recipes.push([Recipe.Blood.Helm,                  "Armet"]);       // Craft Blood Armet
          //+ OTHERS -----------------------------------------------------------------
             Config.Recipes.push([Recipe.Reroll.Magic,          "Grand Charm"]);       // Reroll magic Grand Charm (ilvl 91+)
-            // Config.Recipes.push([Recipe.Reroll.Magic,            "Diadem"]);       // Reroll magic Diadem
-            // Config.Recipes.push([Recipe.Reroll.Rare,             "Diadem"]);       // Reroll rare Diadem
-            // Config.Recipes.push([Recipe.Token]);                                   // Make Token of Absolution
+            Config.Recipes.push([Recipe.Reroll.Magic,               "Diadem"]);       // Reroll magic Diadem
+            Config.Recipes.push([Recipe.Reroll.Rare,                "Diadem"]);       // Reroll rare Diadem
+            Config.Recipes.push([Recipe.Token]);                                      // Make Token of Absolution
          //+ SOCKET -----------------------------------------------------------------
             Config.Recipes.push([Recipe.Socket.Weapon, "Great Poleaxe",        Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",             Roll.Eth]);
@@ -225,8 +225,8 @@ function LoadConfig() {
          Config.Runewords.push([Runeword.Spirit,                        "Protector Shield",  Roll.NonEth]);    // Make Spirit Protector Shield
          Config.Runewords.push([Runeword.Spirit,                        "Heraldic Shield",   Roll.NonEth]);    // Make Spirit Heraldic Shield
          Config.Runewords.push([Runeword.Spirit,                        "Royal Shield",      Roll.NonEth]);    // Make Spirit Royal Shield
-         // Config.Runewords.push([Runeword.Spirit,                     "Sacred Hondache",   Roll.NonEth]);    // Make Spirit Sacred Hondache
-         // Config.Runewords.push([Runeword.Spirit,                     "Hondache",          Roll.NonEth]);    // Make Spirit Hondache
+         Config.Runewords.push([Runeword.Spirit,                        "Sacred Hondache",   Roll.NonEth]);    // Make Spirit Sacred Hondache
+         Config.Runewords.push([Runeword.Spirit,                        "Hondache",          Roll.NonEth]);    // Make Spirit Hondache
          Config.Runewords.push([Runeword.Harmony,                       "Matriarchal Bow",   Roll.NonEth]);    // Make Harmony Matriarchal Bow
          Config.Runewords.push([Runeword.Oath,                          "Ettin Axe",            Roll.Eth]);    // Make Oath Ettin Axe
          Config.Runewords.push([Runeword.Oath,                          "Berserker Axe",        Roll.Eth]);    // Make Oath Beserker Axe
