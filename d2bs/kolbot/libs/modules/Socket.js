@@ -13,7 +13,18 @@
 		typeof Socket.__socketCounter === 'undefined' && (Socket.__socketCounter = 0);
 		this.connected = false;
 		const myEvents = new Events;
-		this.connect = () => (this.socket = buildinSock.open(hostname, port)) && (this.connected = true) && this;
+		// this.connect = () => (this.socket = buildinSock.open(hostname, port)) && (this.connected = true) && this;
+		this.connect = () => {
+			try {
+				if (buildinSock.open(hostname, port)) {
+					this.socket = buildinSock.open(hostname, port);
+					return (this.connected = true) && this
+				}
+				return false;
+			} catch (error) {
+				return false;
+			}
+		}
 
 		this.on = myEvents.on;
 		this.off = myEvents.off;

@@ -29,7 +29,8 @@
 
 		socket.connect();
 		if (!socket.connected) {
-			throw new Error('failed to connect to ' + hostname);
+			// throw new Error('failed to connect to ' + hostname);
+			return false;
 		}
 
 		if (config.data.length) { // in case we send data

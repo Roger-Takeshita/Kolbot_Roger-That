@@ -1642,15 +1642,19 @@ var AutoRogerThat = {
             },
 
     //! SEND NOTIFICATIONS ============================================================
-        notify: function (data) {
-            if (Config.RogerThatTelegram.Active &&
-                (Config.RogerThatTelegram.Notify.Trade || Config.RogerThatTelegram.Notify.HotIP || Config.RogerThatTelegram.Notify.DiabloClone)) {
-                    if (Config.RogerThatTelegram.Url === '' || Config.RogerThatTelegram.Token === '' || Config.RogerThatTelegram.Port === undefined) {
-                        me.overhead("ÿc1ERROR:ÿc0 Headers are not configured.'");
-                    } else {
-                        const HTTP = require('../libs/modules/HTTP');
+    notify: function (data) {
+        let tries = 1;
+        let response;
+        if (Config.RogerThatTelegram.Active &&
+            (Config.RogerThatTelegram.Notify.Trade || Config.RogerThatTelegram.Notify.HotIP || Config.RogerThatTelegram.Notify.DiabloClone)) {
+                if (Config.RogerThatTelegram.Url === '' || Config.RogerThatTelegram.Token === '' || Config.RogerThatTelegram.Port === undefined) {
+                    me.overhead("ÿc1ERROR:ÿc0 Headers are not configured.'");
+                } else {
+                    const HTTP = require('../libs/modules/HTTP');
 
-                        HTTP({
+                    print('ÿc2Sending msg: ÿc0ÿc9' + data.message + 'ÿc0 (code ÿc4' + data.code + 'ÿc0)');
+                    while (tries <= 4) {
+                        response = HTTP({
                             url: Config.RogerThatTelegram.Url + '/api/diablo/notify',
                             port: Config.RogerThatTelegram.Port,
                             method: 'POST',
@@ -1660,8 +1664,25 @@ var AutoRogerThat = {
                             },
                             data: JSON.stringify(data)
                         });
-                    }
 
-            }
+                        if (response) {
+                            break;
+                        }
+
+                        if (tries <= 3) {
+                            print('Send msg retry ÿc1' + tries + 'ÿc0');
+                            tries++;
+                        } else {
+                            break;
+                        }
+                    }
+                    if (!response) {
+                        print('ÿc1Failed to connect to ÿc0ÿc9' + Config.RogerThatTelegram.Url + 'ÿc0');
+                    } else {
+                        print('ÿc2Message delivered to ÿc0ÿc9' + Config.RogerThatTelegram.Url + 'ÿc0');
+                    }
+                }
+
         }
+    }
 };

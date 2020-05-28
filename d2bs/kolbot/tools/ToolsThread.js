@@ -577,20 +577,20 @@ function main() {
 			case 96:  //- Numpad 0 - Test
 				if (pvpTimeFlag) break;
 				//= Send Notification
-					// Config.RogerThatTelegram.Active = true;
-					// 	Config.RogerThatTelegram.Notify.Trade = true;
-					// 	Config.RogerThatTelegram.Notify.HotIP = true;
-					// 	Config.RogerThatTelegram.Notify.DiabloClone = true;
-					// AutoRogerThat.notify({
-					// 	code: 'Test',
-					// 	message: 'Test from Diablo',
-					// 	data: {
-					// 		profile: me.profile,
-					// 		game: me.gamename,
-					// 		password: me.gamepassword,
-					// 		ip: me.gameserverip
-					// 	}
-					// });
+					Config.RogerThatTelegram.Active = true;
+						Config.RogerThatTelegram.Notify.Trade = true;
+						Config.RogerThatTelegram.Notify.HotIP = true;
+						Config.RogerThatTelegram.Notify.DiabloClone = true;
+					AutoRogerThat.notify({
+						code: 'Diablo Clone',
+						message: 'Test from Diablo',
+						data: {
+							profile: me.profile,
+							game: me.gamename,
+							password: me.gamepassword,
+							ip: me.gameserverip
+						}
+					});
 				//= Talk to Cain (act 1)
 					// var target = getUnit(1, 265);
 
@@ -692,10 +692,12 @@ function main() {
 
 				if (lastGameFlag) {
 					Messaging.sendToScript("D2BotLead.dbj", "lastGameON");
+					Messaging.sendToScript("D2BotFollow.dbj", "lastGameON");
 					print("Last Game: " + "ÿc2ONÿc0");
 					me.overhead("Last Game: " + "ÿc2ONÿc0");
 				} else {
 					Messaging.sendToScript("D2BotLead.dbj", "lastGameOFF");
+					Messaging.sendToScript("D2BotFollow.dbj", "lastGameOFF");
 					print("Last Game: " + "ÿc1OFFÿc0");
 					me.overhead("Last Game: " + "ÿc1OFFÿc0");
 				}
@@ -734,6 +736,18 @@ function main() {
 					quitListDelayTime = getTickCount();
 				}
 
+				this.togglePause();
+
+				if (!me.inTown) {
+					try {
+						Town.goToTown();
+					} catch (e) {
+					}
+				}
+
+				Town.doChores();
+				Town.stash(true);
+				me.cancel()
 				quitFlag = true;
 			}
 
@@ -992,19 +1006,6 @@ function main() {
 			if (Config.LogExperience) {
 				Experience.log();
 			}
-
-			this.togglePause();
-
-			if (!me.inTown) {
-				try {
-					Town.goToTown();
-				} catch (e) {
-				}
-			}
-
-			Town.doChores();
-			Town.stash(true);
-			me.cancel()
 
 			this.checkPing(false); // In case of quitlist triggering first
 			this.exit();
