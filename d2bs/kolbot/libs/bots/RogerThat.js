@@ -19,7 +19,7 @@ function RogerThat() {
         messageFlag = false,
         tradeMessage = "",
         pvpFlag = false,
-        accessFlag = false,
+        chatFlag = false,
         attack = true,
         openContainers = true,
         checkLeaderFlag = false,
@@ -223,7 +223,7 @@ function RogerThat() {
                                     break;
                                 }
                             }
-                        } else if (!runFlag) {
+                        } else {
                             print("ÿc1End of the run!ÿc0");
                             me.overhead("ÿc1End of the run!ÿc0");
                             Town.move("stash");
@@ -284,8 +284,8 @@ function RogerThat() {
 
                         break;
                     case "Chat OnOff":
-                        if (!accessFlag) {
-                            accessFlag = true;
+                        if (!chatFlag) {
+                            chatFlag = true;
                             pvpFlag = false;
                             print("ÿc4Chat:ÿc0 ÿc2ONÿc0 ÿc4PVP:ÿc0 ÿc1OFFÿc0");
                             me.overhead("ÿc4Chat:ÿc0 ÿc2ONÿc0 ÿc4PVP:ÿc0 ÿc1OFFÿc0");
@@ -306,7 +306,7 @@ function RogerThat() {
                             }
 
                         } else {
-                            accessFlag = false;
+                            chatFlag = false;
                             print("ÿc4Chat:ÿc0 ÿc1OFFÿc0 ÿc4PVP:ÿc0 ÿc1OFFÿc0");
                             me.overhead("ÿc4Chat:ÿc0 ÿc1OFFÿc0 ÿc4PVP:ÿc0 ÿc1OFFÿc0");
                             hide = true;
@@ -319,7 +319,7 @@ function RogerThat() {
                         if (pvpFlag) {
                             print("ÿc4Chat:ÿc0 ÿc1OFFÿc0 ÿc4PVP:ÿc0 ÿc2ONÿc0");
                             me.overhead("ÿc4Chat:ÿc0 ÿc1OFFÿc0 ÿc4PVP:ÿc0 ÿc2ONÿc0");
-                            accessFlag = false;
+                            chatFlag = false;
                             runFlag = false;
                             messageFlag = false;
                             resfix = me.screensize ? 0 : -120;
@@ -339,7 +339,7 @@ function RogerThat() {
                             }
 
                         } else {
-                            accessFlag = false;
+                            chatFlag = false;
                             print("ÿc4Chat:ÿc0 ÿc1OFFÿc0 ÿc4PVP:ÿc0 ÿc1OFFÿc0");
                             me.overhead("ÿc4Chat:ÿc0 ÿc1OFFÿc0 ÿc4PVP:ÿc0 ÿc1OFFÿc0");
                             hide = true;
@@ -398,39 +398,39 @@ function RogerThat() {
         //+ Talk to a NPC =========================================================
             this.talk = function (name) {
                 let npc,
-                names;
+                    names;
 
                 if (!me.inTown) {
-                return false;
+                    return false;
                 }
 
                 if (typeof name === "string") {
-                name = name.toLowerCase();
+                    name = name.toLowerCase();
                 } else {
-                return false;
+                    return false;
                 }
 
                 switch (me.act) {
-                case 1:
-                    names = [NPC.Gheed, NPC.Charsi, NPC.Akara, NPC.Kashya, NPC.Cain, NPC.Warriv];
+                    case 1:
+                        names = [NPC.Gheed, NPC.Charsi, NPC.Akara, NPC.Kashya, NPC.Cain, NPC.Warriv];
 
-                    break;
-                case 2:
-                    names = [NPC.Fara, NPC.Lysander, NPC.Greiz, NPC.Elzix, NPC.Jerhyn, NPC.Meshif, NPC.Drognan, NPC.Atma, NPC.Cain];
+                        break;
+                    case 2:
+                        names = [NPC.Fara, NPC.Lysander, NPC.Greiz, NPC.Elzix, NPC.Jerhyn, NPC.Meshif, NPC.Drognan, NPC.Atma, NPC.Cain];
 
-                    break;
-                case 3:
-                    names = [NPC.Alkor, NPC.Asheara, NPC.Ormus, NPC.Hratli, NPC.Cain];
+                        break;
+                    case 3:
+                        names = [NPC.Alkor, NPC.Asheara, NPC.Ormus, NPC.Hratli, NPC.Cain];
 
-                    break;
-                case 4:
-                    names = [NPC.Halbu, NPC.Tyrael, NPC.Jamella, NPC.Cain];
+                        break;
+                    case 4:
+                        names = [NPC.Halbu, NPC.Tyrael, NPC.Jamella, NPC.Cain];
 
-                    break;
-                case 5:
-                    names = [NPC.Larzuk, NPC.Malah, NPC.Qual_Kehk, NPC.Anya, NPC.Nihlathak, NPC.Cain];
+                        break;
+                    case 5:
+                        names = [NPC.Larzuk, NPC.Malah, NPC.Qual_Kehk, NPC.Anya, NPC.Nihlathak, NPC.Cain];
 
-                    break;
+                        break;
                 }
 
                 if (names.indexOf(name) === -1) {
@@ -447,14 +447,14 @@ function RogerThat() {
                 npc = getUnit(1);
 
                 if (npc) {
-                do {
-                    if (npc.name.replace(/ /g, "").toLowerCase().indexOf(name) > -1) {
-                        npc.openMenu();
-                        me.cancel();
-                        Town.move("portalspot");
-                        return true;
-                    }
-                } while (npc.getNext());
+                    do {
+                        if (npc.name.replace(/ /g, "").toLowerCase().indexOf(name) > -1) {
+                            npc.openMenu();
+                            me.cancel();
+                            Town.move("portalspot");
+                            return true;
+                        }
+                    } while (npc.getNext());
                 }
 
                 print("NPC not found.");
@@ -590,6 +590,7 @@ function RogerThat() {
                 Town.move("portalspot");
                 return true;
             };
+
         //+ Pick Potions ==========================================================
             this.pickPotions = function (range) {
                 var status, item,
@@ -667,17 +668,14 @@ function RogerThat() {
     //! CHAT EVENT ===================================================================
         this.chatEvent = function (nick, msg) {
             if (!pvpFlag) {
-                let dropReturn,
-                    spaceCount = 0,
-                    quantFlag = false;
-
+                msg = msg.toLowerCase();
                 //- Who is the leader? --------------------------------------------
-                    if (nick === me.name && msg.toLowerCase() === "i am the boss") {
+                    if (nick === me.name && msg === "i am the boss") {
                         Config.Leader = "";
                         FileTools.writeText(filename, nick);
                         checkLeaderFlag = false;
                         checkPartyFlag = false;
-                    } else if (nick !== me.name && msg.toLowerCase() === "i am the boss") {
+                    } else if (nick !== me.name && msg === "i am the boss" && nick === FileTools.readText(filename)) {
                         Config.Leader = nick;
                         leader = this.getLeader(nick);
                         checkLeaderFlag = false;
@@ -685,8 +683,8 @@ function RogerThat() {
                     }
 
                 //- Commands from leader in the party -----------------------------
-                    if (msg.toLowerCase() && nick === Config.Leader) {
-                        switch (msg.toLowerCase()) {
+                    if (Config.Leader != "" && nick === Config.Leader && Misc.inMyParty(Config.Leader)) {
+                        switch (msg) {
                             case "tele":
                             case me.name + " tele":
                                 if (Pather.teleport) {
@@ -743,31 +741,31 @@ function RogerThat() {
                                 }
 
                                 break;
-                            case "#stash":
+                            case "@stash":
                                 if (getUIFlag(0x19)){
                                     me.cancel();
                                     me.overhead("Stash Done!");
-                                    Pather.moveTo(me.x + rand(-6,6),me.y + rand(-6,6));
+                                    Pather.moveTo(me.x + rand(-8,8),me.y + rand(-8,8));
                                 } else {
                                     me.cancel();
-                                    me.overhead("Going to Satsh!");
+                                    me.overhead("Going to Stash!");
                                     Town.openStash();
                                 }
 
                                 break;
-                            case "#quit":
+                            case "@quit":
                                 delay(rand(6,10)*1000);
                                 quit();
 
                                 break;
-                            case "#bye":
+                            case "@bye":
                                 me.overhead("Cya!");
                                 Town.goToTown(1);
                                 delay(rand(3,15)*1000);
                                 D2Bot.stop(me.profile, true);
 
                                 break;
-                            case "#come":
+                            case "@come":
                                 if (Config.Leader !== "") {
                                     if (Misc.inMyParty(Config.Leader)) {
                                         let leaderAct = this.checkLeaderAct(leader);
@@ -834,89 +832,48 @@ function RogerThat() {
                     }
                     
                 //- Drop multiple items and other commands ------------------------
-                    if (msg && nick !== me.name && accessFlag) {
+                    if (nick !== me.name) {
                         //- Drop multiple items ----------------------------------
-                            if (msg.split(" ")[0].toLowerCase() === "drop") {
-                                spaceCount = (msg.split(" ").length - 1);
+                            if (chatFlag &&  msg.split(" ")[0] === "drop") {
+                                let msgArray = msg.split(' ');
+                                let wrongInputFlag = false;
+                                let itemsArray = [];
+                                let qtyArray = [];
+                                let dropReturn;
 
-                                switch (spaceCount) {
-                                    case 1:
-                                        if (isNaN(msg.split(" ")[1])) {
-                                            dropReturn = AutoRogerThat.dropMultipleItems(0, msg.split(" ")[1]);
-                                        }
-
-                                        break;
-                                    case 2:
-                                        if (isNaN(msg.split(" ")[1])) {
-                                            dropReturn = AutoRogerThat.dropMultipleItems(0, msg.split(" ")[1], msg.split(" ")[2]);
+                                if (msgArray[0] === 'drop') {
+                                    for (let i = 1; i < msgArray.length; i++) {
+                                        if (isNaN(parseInt(msgArray[i], 10))) {
+                                            qtyArray.push(-1);
+                                            itemsArray.push(msgArray[i]);
+                                            
                                         } else {
-                                            dropReturn = AutoRogerThat.dropMultipleItems(msg.split(" ")[1], msg.split(" ")[2]);
-                                            quantFlag = true;
+                                            if (isNaN(parseInt(msgArray[i + 1], 10))) {
+                                                qtyArray.push(parseInt(msgArray[i], 10));
+                                                itemsArray.push(msgArray[i + 1]);
+                                                i++;
+                                            } else {
+                                                console.log('Wrong input');
+                                                wrongInputFlag = true;
+                                                break;
+                                            }
                                         }
-
-                                        break;
-                                    case 3:
-                                        if (isNaN(msg.split(" ")[1])) {
-                                            dropReturn = AutoRogerThat.dropMultipleItems(0, msg.split(" ")[1], msg.split(" ")[2], msg.split(" ")[3]);
-                                        } else if (!isNaN(msg.split(" ")[1])) {
-                                            dropReturn = AutoRogerThat.dropMultipleItems(msg.split(" ")[1], msg.split(" ")[2], msg.split(" ")[3]);
-                                            quantFlag = true;
-                                        }
-
-                                        break;
-                                    case 4:
-                                        if (isNaN(msg.split(" ")[1])) {
-                                            dropReturn = AutoRogerThat.dropMultipleItems(0, msg.split(" ")[1], msg.split(" ")[2], msg.split(" ")[3], msg.split(" ")[4]);
-                                        } else if (!isNaN(msg.split(" ")[1])) {
-                                            dropReturn = AutoRogerThat.dropMultipleItems(msg.split(" ")[1], msg.split(" ")[2], msg.split(" ")[3], msg.split(" ")[4]);
-                                            quantFlag = true;
-                                        }
-
-                                        break;
-                                    case 5:
-                                        if (isNaN(msg.split(" ")[1])) {
-                                            dropReturn = AutoRogerThat.dropMultipleItems(0, msg.split(" ")[1], msg.split(" ")[2], msg.split(" ")[3], msg.split(" ")[4], msg.split(" ")[5]);
-                                        } else if (!isNaN(msg.split(" ")[1])) {
-                                            dropReturn = AutoRogerThat.dropMultipleItems(msg.split(" ")[1], msg.split(" ")[2], msg.split(" ")[3], msg.split(" ")[4], msg.split(" ")[5]);
-                                            quantFlag = true;
-                                        }
-
-                                        break;
-                                    case 6:
-                                        if (isNaN(msg.split(" ")[1])) {
-                                            me.cancel();
-                                            me.overhead("Too many items, choose only 5 items per drop command");
-                                            return true;
-                                        } else if (!isNaN(msg.split(" ")[1])) {
-                                            dropReturn = AutoRogerThat.dropMultipleItems(msg.split(" ")[1], msg.split(" ")[2], msg.split(" ")[3], msg.split(" ")[4], msg.split(" ")[5]);
-                                            quantFlag = true;
-                                        }
-
-                                        break;
-                                    default:
-                                        me.cancel();
-                                        me.overhead("Too many items, choose only 5 items per drop command");
-                                        return true;
-                                }
-
-                                Pather.moveTo(me.x + rand(-6, 6), me.y + rand(-6, 6));
-
-                                if (quantFlag) {
-                                    if (dropReturn) {
-                                        me.overhead("Done boss!");
-                                    } else {
-                                        me.overhead("It's all what I got for now!")
                                     }
-                                } else {
-                                    if (dropReturn) {
-                                        me.overhead("Done boss!");
-                                    } else {
-                                        me.overhead("Sorry! I'm poor!");
+
+                                    if (!wrongInputFlag) {
+                                        dropReturn = AutoRogerThat.dropMultipleItems(itemsArray, qtyArray);
+                                        Pather.moveTo(me.x + rand(-6, 6), me.y + rand(-6, 6));
+
+                                        if (dropReturn) {
+                                            me.overhead("Done boss!");
+                                        } else {
+                                            me.overhead("Sorry! I'm poor!");
+                                        }
                                     }
                                 }
                             } else {
                         //- Other commands ---------------------------------------
-                                switch (msg.toLowerCase()) {
+                                switch (msg) {
                                     case "pp":
                                         let player = getParty();
 
@@ -926,44 +883,19 @@ function RogerThat() {
                                         }
 
                                         break;
-                                    case "#stash":
+                                    case "@stash":
                                         if (getUIFlag(0x19)){
                                             me.cancel();
-                                            me.overhead = "Stash Done!";
-                                            Pather.moveTo(me.x + rand(-6,6),me.y + rand(-6,6));
+                                            me.overhead("Stash Done!");
+                                            Pather.moveTo(me.x + rand(-8,8),me.y + rand(-8,8));
                                         } else {
                                             me.cancel();
-                                            me.overhead = "Going to Satsh!";
+                                            me.overhead("Going to Stash!");
                                             Town.openStash();
                                         }
 
                                         break;
-                                    case "#quit":
-                                        delay(rand(6,10)*1000);
-                                        quit();
 
-                                        break;
-                                    case "#bye":
-                                        me.overhead("Cya!");
-                                        Town.goToTown(1);
-                                        delay(rand(3,15)*1000);
-                                        D2Bot.stop(me.profile, true);
-
-                                        break;
-                                    case "#come":
-                                        if (Config.Leader !== "") {
-                                            let leaderAct = this.checkLeaderAct(leader);
-                                            if (me.inTown && leaderAct !== me.act) {
-                                                me.overhead = ("Yes, leader ÿc2" + Config.Leader + "ÿc0");
-                                                Town.goToTown(leaderAct);
-                                            } else if (!me.inTown) {
-                                                Town.goToTown();
-                                            }
-
-                                            Town.move("portalspot");
-                                        }
-
-                                        break;
                                     default:
                                         msg = "";
 
@@ -973,8 +905,8 @@ function RogerThat() {
                     }
 
                 //- Set custom trade message --------------------------------------
-                    if(nick === me.name && msg.split(" ")[0].toLowerCase() === "#set") {
-                        tradeMessage = msg.replace("#set ", "");
+                    if(nick === me.name && msg.split(" ")[0].toLowerCase() === "@set") {
+                        tradeMessage = msg.replace("@set ", "");
                         print("Set Msg: ÿc2" + tradeMessage + "ÿc0");
                         me.overhead("Set Msg: ÿc2" + tradeMessage + "ÿc0");
                     }
@@ -1300,7 +1232,6 @@ function RogerThat() {
                 // }
 
             //- Check leader ------------------------------------------------------
-                // Misc.getPlayerCount()
                 if (!checkLeaderFlag) {
                     delay(rand(100,300)+200);
                     isLeaderHere = FileTools.readText(filename);
@@ -1308,10 +1239,7 @@ function RogerThat() {
                     if (isLeaderHere !== "") {
                         leader = this.getLeader(isLeaderHere);
 
-                        if (!leader) {
-                            // delay(rand(1,500)+1000);
-                            // me.overhead(isLeaderHere + " is not here!");
-                        } else if (leader.name === me.name) {
+                        if (leader && leader.name === me.name) {
                             me.overhead("I'm the boss");
                         } else {
                             Config.Leader = isLeaderHere;
@@ -1343,8 +1271,7 @@ function RogerThat() {
                     if (!me.inTown) {
                         Town.goToTown();
                     }
-                    // leaderUnit = "";
-                    // leader = false;
+
                     leaderLeftPartyFlag = true;
                     checkLeaderFlag = false;
                     checkPartyFlag = false;
@@ -1690,10 +1617,10 @@ function RogerThat() {
                     }
 
                     action = "";
-                    delay(100);
+                    delay(250);
                 }
             //- Hooks menu --------------------------------------------------------
-                if (!accessFlag && !pvpFlag) {
+                if (!chatFlag && !pvpFlag) {
                     switch (activeAction) {
                         case "Info":
                             if (!toggleInfoFlag) {
@@ -1720,6 +1647,6 @@ function RogerThat() {
                     } 
                 }
 
-            delay(100);
+            delay(250);
         }
 }

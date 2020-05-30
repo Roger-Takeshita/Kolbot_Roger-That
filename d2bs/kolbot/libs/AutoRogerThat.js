@@ -152,284 +152,295 @@ var AutoRogerThat = {
             },
 
         //+ Drop specific item and quantity ---------------------------------------
-            dropMultipleItems: function (quant, item1, item2, item3, item4, item5) {
-                let itemFlag,
-                    cube = getUnit(4, 549),
-                    itemsArray = [item1, item2, item3, item4, item5],
-                    quantArray = [quant, quant, quant, quant, quant],
-                    continueFlag = false,
-                    droppedSomethingFlag = false,
-                    itemsDropArray = [],
-                    itemClassArray = [],
-                    items = this.getMuleItems();
-                
-                function drop (itemsArray) {
-                    itemsArray.forEach((item) => itemsDropArray.push(item));
-                };
-
-                if (!Town.openStash()) {
-                    return false;
+            printItemIds: function (items) {
+                for (let i = 0; i<items.length; i++){
+                    print("ÿc9" + items[i].classid + "ÿc0 "+ items[i].name)
                 }
+            },
 
-                if (!items || items.length === 0) {
-                    itemFlag = false;
-                } else {
-                    itemFlag = true;
-                }
+            getItemClassIds: function (itemsArray, qtyArray) {
+                let dropObj = {};
+                let itemCodes = [];
 
-                if (this.check) {
-                    this.check = false;
-                }
-
-                //- Check what is the classid of the items that you want to drop
-                for (let i = 0 ; i < itemsArray.length ; i++) {
-                    if (itemsArray[i] != undefined) {
-                        switch (itemsArray[i].toLowerCase()) {
+                for (let i = 0; i < itemsArray.length; i++) {
+                    if (itemsArray[i] !== undefined) {
+                        switch (itemsArray[i]) {
                             case "h":            //Hate Key
-                                itemsDropArray.push(648);
+                                dropObj[648] = qtyArray[i];
 
                                 break;
                             case "t":            //Terror Key
-                                itemsDropArray.push(647);
+                                dropObj[647] = qtyArray[i];
 
                                 break;
                             case "d":            //Destruction Key
-                                itemsDropArray.push(649);
+                                dropObj[649] = qtyArray[i];
 
                                 break;
                             case "key":
                             case "keys":         //Keys
-                                itemClassArray = [648, 647, 649];
-                                drop(itemClassArray);
+                                itemCodes = [647, 648, 649];
+                                for (let j = 0; j < itemCodes.length; j++) {
+                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                }
 
                                 break;
                             case "horn":         //Horn
-                                itemsDropArray.push(650);
+                                dropObj[650] = qtyArray[i];
                             
                                 break;
                             case "eye":          //Eye
-                                itemsDropArray.push(651);
+                                dropObj[651] = qtyArray[i];
 
                                 break;
                             case "brain":        //Brain
-                                itemsDropArray.push(652);
+                                dropObj[652] = qtyArray[i];
 
                                 break;
                             case "organ":
                             case "organs":       //Organs
-                                itemClassArray = [650, 651, 652];
-                                drop(itemClassArray);
+                                itemCodes = [650, 651, 652];
+                                for (let j = 0; j < itemCodes.length; j++) {
+                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                }
 
                                 break;
                             case "blue":
                             case "b":            //Blue Essence
-                                itemsDropArray.push(654);
+                                dropObj[654] = qtyArray[i];
 
                                 break;
                             case "yellow":
                             case "y":            //Yellow Essence
-                                itemsDropArray.push(655);
+                                dropObj[655] = qtyArray[i];
 
                                 break;
                             case "red":
                             case "r":            //Red Essence
-                                itemsDropArray.push(656);
+                                dropObj[656] = qtyArray[i];
 
                                 break;
                             case "green":
                             case "g":            //Green Essence
-                                itemsDropArray.push(657);
+                                dropObj[657] = qtyArray[i];
 
                                 break;
                             case "essen":
                             case "essence":
                             case "essences":     //Essences
-                                itemClassArray = [654, 655, 656, 657];
-                                drop(itemClassArray);
+                                itemCodes = [654, 655, 656, 657];
+                                for (let j = 0; j < itemCodes.length; j++) {
+                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                }
 
                                 break;
                             case "helm":
                             case "helms":        //Helms
-                                itemClassArray = [308, 309, 310, 349, 356, 395, 399, 400, 404, 405, 406, 407, 418, 419, 426, 468, 474, 476, 493, 495, 306, 307, 403, 312, 358, 401, 402, 472, 475, 311, 357, 496, 497, 352, 353, 354, 355, 422, 423, 424, 425, 417, 428, 465, 427];
-                                drop(itemClassArray);
+                                itemCodes = [306, 307, 308, 309, 310, 311, 312, 349, 352, 353, 354, 355, 356, 357, 358, 358, 395, 399, 400, 401, 402, 403, 404, 405, 406, 407, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 428, 465, 465, 468, 470, 472, 473, 474, 475, 476, 477, 488, 493, 494, 495, 496, 497];
+                                for (let j = 0; j < itemCodes.length; j++) {
+                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                }
 
                                 break;
                             case "glove":
                             case "gloves":       //Gloves
-                                itemClassArray = [334, 335, 336, 380, 381, 451, 337, 338, 383, 384, 453, 454, 382, 452, 450];
-                                drop(itemClassArray);
-
+                                itemCodes = [334, 335, 336, 337, 338, 380, 381, 382, 383, 384, 450, 451, 452, 453, 454];
+                                for (let j = 0; j < itemCodes.length; j++) {
+                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                }
+                                
                                 break;
                             case "shield":
                             case "shields":      //Shields
-                                itemClassArray = [329, 330, 331, 332, 333, 350, 351, 375, 377, 379, 396, 397, 410, 411, 412, 480, 481, 482, 486, 487, 500, 501, 502, 328, 374, 376, 378, 444, 445, 446, 447, 467, 466, 448, 449];
-                                drop(itemClassArray);
+                                itemCodes = [328, 329, 330, 331, 332, 333, 350, 351, 374, 375, 376, 377, 378, 379, 396, 397, 410, 411, 412, 444, 445, 446, 447, 448, 449, 466, 467, 480, 481, 482, 486, 487, 500, 501, 502];
+                                for (let j = 0; j < itemCodes.length; j++) {
+                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                }
 
                                 break;
                             case "armor":
                             case "armors":       //Armors
-                                itemClassArray = [313, 314, 315, 326, 359, 360, 361, 362, 365, 367, 369, 371, 442, 314, 315, 316, 334, 317, 318, 319, 321, 322, 325, 363, 364, 433, 434, 320, 322, 323, 324, 325, 327, 342, 348, 370, 372, 373, 438, 440, 441, 443, 366, 368];
-                                drop(itemClassArray);
+                                itemCodes = [313, 314, 314, 315, 315, 316, 317, 318, 319, 320, 321, 322, 322, 323, 324, 325, 325, 326, 327, 334, 342, 348, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 433, 434, 438, 440, 441, 442, 443];
+                                for (let j = 0; j < itemCodes.length; j++) {
+                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                }
 
                             case "belt":
                             case "belts":        //Belts
-                                itemClassArray = [345, 346, 347, 348, 391, 392, 393, 394, 461, 463, 344, 390, 460, 462, 462, 464,];
-                                drop(itemClassArray);
+                                itemCodes = [344, 345, 346, 347, 348, 390, 391, 392, 393, 394, 460, 461, 462, 462, 463, 464];
+                                for (let j = 0; j < itemCodes.length; j++) {
+                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                }
 
                                 break;
                             case "boot":
                             case "boots":        //Boots
-                                itemClassArray = [339, 340, 341, 342, 385, 386, 387, 388, 389, 455, 456, 457, 458, 343, 459];
-                                drop(itemClassArray);
+                                itemCodes = [339, 340, 341, 342, 343, 385, 386, 387, 388, 389, 455, 456, 457, 458, 459];
+                                for (let j = 0; j < itemCodes.length; j++) {
+                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                }
 
                                 break;
                             case "token":
                             case "tokens":       //Tokens
-                                drop([653]);
+                                dropObj[653] = qtyArray[i];
 
                                 break;
                             case "rune":
                             case "runes":        //All Runes
                                 for (let j = 610 ; j <= 642 ; j++) {
-                                    itemsDropArray.push(j);
+                                    dropObj[j] = qtyArray[i]
                                 }
 
                                 break;
                             case "lr":
                             case "lrs":          //Low Runes
                                 for (let j = 610 ; j <= 634 ; j++) {
-                                    itemsDropArray.push(j);
+                                    dropObj[j] = qtyArray[i]
                                 }
 
                                 break;
                             case "hr":
                             case "hrs":          //Hight Runes
                                 for (let j = 635 ; j <= 642 ; j++) {
-                                    itemsDropArray.push(j);
+                                    dropObj[j] = qtyArray[i]
                                 }
 
                                 break;
                             case "sc":
                             case "scs":          //Small Charms
-                                itemsClassArray = [603, 604];
-                                drop(itemClassArray);
+                                itemCodes = [603, 604];
+                                for (let j = 0; j < itemCodes.length; j++) {
+                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                }
 
                                 break;
                             case "gc":
                             case "gcs":          //Grand Charms
-                                itemsDropArray.push(605);
+                                dropObj[605] = qtyArray[i];
 
                                 break;
                             case "ring":
                             case "rings":        //Rings
-                                itemsDropArray.push(522);
+                                dropObj[522] = qtyArray[i];
 
                                 break;
                             case "amulet":
                             case "amulets":      //Amulets
-                                itemsDropArray.push(520);
+                                dropObj[520] = qtyArray[i];
 
                                 break;
                             case "jewel":
                             case "jewels":       //Jewels
-                                itemsDropArray.push(643);
+                                dropObj[643] = qtyArray[i];
 
                                 break;
                             case "item":
                             case "items":        //Drop all items
-                                if (dropStuff()){
+                                if (this.dropStuff()){
                                     return true;
                                 } else {
                                     return false;
                                 }
                             default:             //Drop Runes
-                                itemsDropArray.push(itemsArray[i].charAt(0).toUpperCase() + itemsArray[i].slice(1) + " Rune");
+                                const rune = {
+                                    el: 610,
+                                    eld: 611,
+                                    tir: 612,
+                                    nef: 613,
+                                    eth: 614,
+                                    ith: 615,
+                                    tal: 616,
+                                    ral: 617,
+                                    ort: 618,
+                                    thul: 619,
+                                    amn: 620,
+                                    sol: 621,
+                                    shael: 622,
+                                    dol: 623,
+                                    hel: 624,
+                                    io: 625,
+                                    lum: 626,
+                                    ko: 627,
+                                    fal: 628,
+                                    lem: 629,
+                                    pul: 630,
+                                    um: 631,
+                                    mal: 632,
+                                    ist: 633,
+                                    gul: 634,
+                                    vex: 635,
+                                    ohm: 636,
+                                    lo: 637,
+                                    sur: 638,
+                                    ber: 639,
+                                    jah: 640,
+                                    cham: 641,
+                                    zod: 642
+                                };
+                                
+                                if (rune[itemsArray[i]]) {
+                                    dropObj[rune[itemsArray[i]]] = qtyArray[i];
+                                }
+
                                 break;
                         }
                     }
                 }
 
-                //- Drop items
-                if (itemFlag) {
-                    //? Drop items from stash and inventory
-                    for (let i = 0 ; i < items.length ; i++) {
-                        for (let j = 0 ; j < itemsDropArray.length ; j++) {
-                            if (items[i].classid == itemsDropArray[j] || items[i].name == itemsDropArray[j]) {
-                                if (quant > 0) {
-                                    if (quantArray[j] > 0) {
-                                        items[i].drop();
-                                        quantArray[j] -= 1;
-                                    }
-                                } else {
-                                    items[i].drop();
-                                }
-
-                                droppedSomethingFlag = true;
-                            }
-                        }
-                    }
-
-                    //? Drop items from cube  - only open cube if necessary
-                    if (quant > 0) {
-                        for (let i = 0 ; i < itemsDropArray.length ; i++) {
-                            if (quantArray[i] != 0) {
-                                continueFlag = true;
-                                break;
-                            }
-                        }
-                    } else {
-                        continueFlag = true;
-                    }
-
-                    if (continueFlag) {
-                        if (cube) {
-                            Cubing.openCube();
-                            items = this.getCubeMuleItems();
+                return dropObj;
+            },
             
-                            if (!items || items.length === 0) {
-                                itemFlag = false;
-                            } else {
-                                itemFlag = true;
-                            }
-                            
-                            if (itemFlag) {
-                                for (let i = 0 ; i < items.length ; i++) {
-                                    for (let j = 0 ; j < itemsDropArray.length ; j++) {
-                                        if (items[i].classid == itemsDropArray[j] || items[i].name == itemsDropArray[j]) {
-                                            if (quant > 0) {
-                                                if (quantArray[j] > 0) {
-                                                items[i].drop();
-                                                quantArray[j] -= 1;
-                                                }
-                                            } else {
-                                                items[i].drop();
-                                            }
+            dropMultipleItems: function (itemsArray, qtyArray) {
+                let dropItems,
+                    cube = getUnit(4, 549),
+                    items = this.getMuleItems();
 
-                                            droppedSomethingFlag = true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                delay(200);
-                me.cancel();
-                delay(200);
-                me.cancel();
-
-                if (!droppedSomethingFlag) {
+                if (!Town.openStash()) {
                     return false;
                 }
 
-                if (quant > 0) {
-                    for (let i = 0 ; i < itemsDropArray.length ; i++) {
-                        if (quantArray[i] != 0) {
-                            return false;
+                if (!items || items.length === 0) {
+                    return false;
+                }
+
+                dropItems = this.getItemClassIds(itemsArray, qtyArray);
+
+                for (let i=0; i < items.length; i++) {
+                    if (dropItems[items[i].classid] && dropItems[items[i].classid] >= 0) {
+                        if (dropItems[items[i].classid] >= 0) {
+                            items[i].drop();
+                            dropItems[items[i].classid] -= 1;
+                        }
+                    } else if (dropItems[items[i].classid] && dropItems[items[i].classid] === -1) {
+                        items[i].drop();
+                    }
+                }
+
+                if (cube) {
+                    Cubing.openCube();
+                    items = this.getCubeMuleItems();
+    
+                    if (!items || items.length === 0) {
+                        return false;
+                    }
+                    
+                    for (let i = 0; i < items.length; i++) {
+                        if (dropItems[items[i].classid] && dropItems[items[i].classid] >= 0) {
+                            if (dropItems[items[i].classid] >= 0) {
+                                items[i].drop();
+                                dropItems[items[i].classid] -= 1;
+                            }
+                        } else if (dropItems[items[i].classid] && dropItems[items[i].classid] === -1) {
+                            items[i].drop();
                         }
                     }
                 }
+
+                delay(200);
+                me.cancel();
+                delay(200);
+                me.cancel();
 
                 return true;
             },
@@ -437,7 +448,7 @@ var AutoRogerThat = {
         //+ Get a list of items to mule -------------------------------------------
             getMuleItems: function () {
                 let item = me.getItem(-1, 0),
-                    items = []
+                    items = [];
 
                 if (item) {
                     do {
@@ -448,7 +459,7 @@ var AutoRogerThat = {
                             (item.classid !== 604 || item.quality !== 7) && // Don't drop Hellfire Torch
                             (item.location === 7 || (item.location === 3 && !Storage.Inventory.IsLocked(item, Config.Inventory))) &&    // Don't drop items in locked slots
                             ((!TorchSystem.getFarmers() && !TorchSystem.isFarmer()) || [647, 648, 649].indexOf(item.classid) === -1)) { // Don't drop Keys if part of TorchSystem
-                            if ((!this.cubingIngredient(item) && !this.runewordIngredient(item) && !this.utilityIngredient(item))) {        // Don't drop Excluded items or Runeword/Cubing/CraftingSystem ingredients
+                            if ((!this.cubingIngredient(item) && !this.runewordIngredient(item) && !this.utilityIngredient(item))) {    // Don't drop Excluded items or Runeword/Cubing/CraftingSystem ingredients
                                 items.push(copyUnit(item));
                             }
                         }
