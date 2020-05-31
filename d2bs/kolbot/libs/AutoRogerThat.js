@@ -34,64 +34,22 @@ var AutoRogerThat = {
             },
 
     //! DROP ITEMS ====================================================================
-        //+ Drop whole inventory --------------------------------------------------
+        //+ Drop whole everything -------------------------------------------------
             dropStuff: function () {
-                let cube = getUnit(4, 549),
-                    items,
-                    itemFlag = true,
-                    droppedSomethingFlag = false;
+                let items = this.getProfileItems();
+
+                items = items.concat(this.getProfileTrashItems());
 
                 if (!Town.openStash()) {
                     return false;
                 }
 
-                Config.CainID.MinGold = 2000;
-                Config.CainID.MinUnids = 0;
-                Town.identify();
-
-                items = this.getMuleItems();
-                items = items.concat(this.getTrashMuleItems());
-
                 if (!items || items.length === 0) {
-                    itemFlag = false;
-                } else {
-                    itemFlag = true;
-                }
-
-                if (itemFlag) {
-                    for (let i = 0 ; i < items.length ; i++) {
-                        // print("Type : " + items[i].type + " - iLVL : " + items[i].ilvl + " - Class ID: " + items[i].classid + " - " + items[i].name);
-                        items[i].drop();
-                        droppedSomethingFlag = true;
-                    }
-                }
-                
-                if (cube) {
-                    Cubing.openCube();
-                    items = this.getCubeMuleItems();
-                    items = items.concat(this.getTrashCubeMuleItems());
-
-                    if (!items || items.length === 0) {
-                        itemFlag = false;
-                    } else {
-                        itemFlag = true;
-                    }
-
-                    if (itemFlag) {
-                        for (let i = 0 ; i < items.length ; i++) {
-                            items[i].drop();
-                            droppedSomethingFlag = true;
-                        }
-                    }
-                }
-
-                delay(200);
-                me.cancel();
-                delay(200);
-                me.cancel();
-
-                if (!droppedSomethingFlag) {
                     return false;
+                }
+
+                for (let i = 0; i < items.length; i++) {
+                    items[i].drop();
                 }
 
                 return true;
@@ -99,62 +57,27 @@ var AutoRogerThat = {
 
         //+ Drop trash items ------------------------------------------------------
             dropTrash: function () {
-                let cube = getUnit(4, 549),
-                    itemFlag = true,
-                    droppedSomethingFlag = false,
-                    items = this.getTrashMuleItems();
+                let items = this.getProfileTrashItems();
                 
                 if (!Town.openStash()) {
                     return false;
                 }
 
                 if (!items || items.length === 0) {
-                    itemFlag = false;
-                } else {
-                    itemFlag = true;
+                    return false;
                 }
 
-                if (itemFlag) {
-                    for (let i = 0 ; i < items.length ; i++) {
-                        items[i].drop();
-                        droppedSomethingFlag = true;
-                    }
+                for (let i = 0; i < items.length; i++) {
+                    items[i].drop();
                 }
 
-                if (cube) {
-                    Cubing.openCube();
-                    items = this.getTrashCubeMuleItems();
-                
-                    if (!items || items.length === 0) {
-                        itemFlag = false;
-                    } else {
-                        itemFlag = true;
-                    }
-
-                    if (itemFlag) {
-                        for (let i = 0 ; i < items.length ; i++) {
-                            items[i].drop();
-                            droppedSomethingFlag = true;
-                        }
-                    }
-                }
-
-                delay(200);
-                me.cancel();
-                delay(200);
-                me.cancel();
-
-                if (droppedSomethingFlag) {
-                    return true;
-                }
-
-                return false;
+                return true;
             },
 
         //+ Drop specific item and quantity ---------------------------------------
             printItemIds: function (items) {
-                for (let i = 0; i<items.length; i++){
-                    print("ÿc9" + items[i].classid + "ÿc0 "+ items[i].name)
+                for (let i = 0; i < items.length; i++){
+                    print("ÿc9" + items[i].classid + "ÿc0 "+ items[i].name + " - " + items[i].quality + " - "+ items[i].location + " " + items[i].itemType)
                 }
             },
 
@@ -393,8 +316,7 @@ var AutoRogerThat = {
             
             dropMultipleItems: function (itemsArray, qtyArray) {
                 let dropItems,
-                    cube = getUnit(4, 549),
-                    items = this.getMuleItems();
+                    items = this.getProfileItems();
 
                 if (!Town.openStash()) {
                     return false;
@@ -417,126 +339,48 @@ var AutoRogerThat = {
                     }
                 }
 
-                if (cube) {
-                    Cubing.openCube();
-                    items = this.getCubeMuleItems();
-    
-                    if (!items || items.length === 0) {
-                        return false;
-                    }
-                    
-                    for (let i = 0; i < items.length; i++) {
-                        if (dropItems[items[i].classid] && dropItems[items[i].classid] >= 0) {
-                            if (dropItems[items[i].classid] >= 0) {
-                                items[i].drop();
-                                dropItems[items[i].classid] -= 1;
-                            }
-                        } else if (dropItems[items[i].classid] && dropItems[items[i].classid] === -1) {
-                            items[i].drop();
-                        }
-                    }
-                }
-
-                delay(200);
-                me.cancel();
-                delay(200);
-                me.cancel();
-
                 return true;
             },
 
-        //+ Get a list of items to mule -------------------------------------------
-            getMuleItems: function () {
-                let item = me.getItem(-1, 0),
+        //+ Get a list of items ---------------------------------------------------
+            getProfileItems: function () {
+                let item = me.findItems(-1, 0),
                     items = [];
 
-                if (item) {
-                    do {
-                        if (Town.ignoredItemTypes.indexOf(item.itemType) === -1 &&
-                            (this.checkItem(item).result > 0 || item.location === 7) &&
-                            item.classid !== 549 &&                         // Don't drop Horadric Cube
-                            (item.classid !== 603 || item.quality !== 7) && // Don't drop Annihilus
-                            (item.classid !== 604 || item.quality !== 7) && // Don't drop Hellfire Torch
-                            (item.location === 7 || (item.location === 3 && !Storage.Inventory.IsLocked(item, Config.Inventory))) &&    // Don't drop items in locked slots
-                            ((!TorchSystem.getFarmers() && !TorchSystem.isFarmer()) || [647, 648, 649].indexOf(item.classid) === -1)) { // Don't drop Keys if part of TorchSystem
-                            if ((!this.cubingIngredient(item) && !this.runewordIngredient(item) && !this.utilityIngredient(item))) {    // Don't drop Excluded items or Runeword/Cubing/CraftingSystem ingredients
-                                items.push(copyUnit(item));
-                            }
-                        }
-                    } while (item.getNext());
-                }
-
-                return items;
-            },
-
-        //+ Get a list of items to be dropped (trash) -----------------------------
-            getTrashMuleItems: function () {
-                let item = me.getItem(-1, 0),
-                    items = [],
-                    status;
-
-                if (item) {
-                    do {
-                        status = this.checkItem(item);
-                        if (Town.ignoredItemTypes.indexOf(item.itemType) === -1 &&
-                            ((status.result != 1 && status.result != 2  && status.result != 3 && status.result != 4 && status.result != 5) && (item.location === 7 || item.location === 3)) &&
-                            item.classid !== 549 &&                         // Don't drop Horadric Cube
-                            (item.classid !== 603 || item.quality !== 7) && // Don't drop Annihilus
-                            (item.classid !== 604 || item.quality !== 7) && // Don't drop Hellfire Torch
-                            (item.location === 7 || (item.location === 3 && !Storage.Inventory.IsLocked(item, Config.Inventory))) &&    // Don't drop items in locked slots
-                            ((!TorchSystem.getFarmers() && !TorchSystem.isFarmer()) || [647, 648, 649].indexOf(item.classid) === -1)) { // Don't drop Keys if part of TorchSystem
-                            if ((!this.cubingIngredient(item) && !this.runewordIngredient(item) && !this.utilityIngredient(item))) {    // Don't drop Excluded items or Runeword/Cubing/CraftingSystem ingredients
-                                items.push(copyUnit(item));
-                            }
-                        }
-                    } while (item.getNext());
-                }
-
-                return items;
-            },
-
-        //+ Get a list of items from the cube -------------------------------------
-            getCubeMuleItems: function () {
-                let item, items;
-
-                item = me.findItems(-1, 0, 6);
-                items = [];
-
-                for (let i = 0 ; i < item.length ; i++) {
-                    if (Town.ignoredItemTypes.indexOf(item[i].itemType) === -1 &&
-                        (this.checkItem(item[i]).result > 0 && item[i].location === 6) &&
+                for (let i = 0; i < item.length; i++) {
+                    if (item[i].itemType && Town.ignoredItemTypes.indexOf(item[i].itemType) === -1 &&
+                        (this.checkItem(item[i]).result > 0) &&
                         item[i].classid !== 549 &&                            // Don't drop Horadric Cube
                         (item[i].classid !== 603 || item[i].quality !== 7) && // Don't drop Annihilus
                         (item[i].classid !== 604 || item[i].quality !== 7) && // Don't drop Hellfire Torch
-                        (item[i].location === 6 && !Storage.Inventory.IsLocked(item[i], Config.Inventory)) &&                                // Don't drop item in locked slots
-                        ((!TorchSystem.getFarmers() && !TorchSystem.isFarmer()) || [647, 648, 649].indexOf(item[i].classid) === -1)) {       // Don't drop Keys if part of TorchSystem
+                        !Storage.Inventory.IsLocked(item[i], Config.Inventory) && // Don't drop item in locked slots
+                        ((!TorchSystem.getFarmers() && !TorchSystem.isFarmer()) || [647, 648, 649].indexOf(item[i].classid) === -1)) { // Don't drop Keys if part of TorchSystem
                             if ((!this.cubingIngredient(item[i]) && !this.runewordIngredient(item[i]) && !this.utilityIngredient(item[i]))) { // Don't drop Excluded item or Runeword/Cubing/CraftingSystem ingredients
                                 items.push(copyUnit(item[i]));
                             }
                     }
                 }
+
                 return items;
             },
 
-        //+ Get a list of items from the cube to be dropped (trash) ---------------
-            getTrashCubeMuleItems: function () {
-                var item = me.findItems(-1, 0, 6),
-                    items = [], 
-                    status;
+        //+ Get a list of trash items ---------------------------------------------
+            getProfileTrashItems: function () {
+                let item = me.findItems(-1, 0),
+                    items = [];
 
-                for (let i = 0 ; i < item.length ; i++) {
-                    status = this.checkItem(item[i]);
+                for (let i = 0; i < item.length; i++) {
                     if (Town.ignoredItemTypes.indexOf(item[i].itemType) === -1 &&
-                        ((status.result != 1 && status.result != 2  && status.result != 3 && status.result != 4 && status.result != 5) && item[i].location === 6) &&
+                        ([1, 2, 3, 4, 5].indexOf(this.checkItem(item[i]).result) === -1) &&
                         item[i].classid !== 549 &&                            // Don't drop Horadric Cube
                         (item[i].classid !== 603 || item[i].quality !== 7) && // Don't drop Annihilus
                         (item[i].classid !== 604 || item[i].quality !== 7) && // Don't drop Hellfire Torch
-                        (item[i].location === 6 && !Storage.Inventory.IsLocked(item[i], Config.Inventory)) &&                                // Don't drop item in locked slots
-                        ((!TorchSystem.getFarmers() && !TorchSystem.isFarmer()) || [647, 648, 649].indexOf(item[i].classid) === -1)) {       // Don't drop Keys if part of TorchSystem
+                        !Storage.Inventory.IsLocked(item[i], Config.Inventory) && // Don't drop item in locked slots
+                        ((!TorchSystem.getFarmers() && !TorchSystem.isFarmer()) || [647, 648, 649].indexOf(item[i].classid) === -1)) { // Don't drop Keys if part of TorchSystem
                             if ((!this.cubingIngredient(item[i]) && !this.runewordIngredient(item[i]) && !this.utilityIngredient(item[i]))) { // Don't drop Excluded item or Runeword/Cubing/CraftingSystem ingredients
                                 items.push(copyUnit(item[i]));
                             }
-                        }
+                    }
                 }
 
                 return items;
@@ -1653,47 +1497,47 @@ var AutoRogerThat = {
             },
 
     //! SEND NOTIFICATIONS ============================================================
-    notify: function (data) {
-        let tries = 1;
-        let response;
-        if (Config.RogerThatTelegram.Active &&
-            (Config.RogerThatTelegram.Notify.Trade || Config.RogerThatTelegram.Notify.HotIP || Config.RogerThatTelegram.Notify.DiabloClone)) {
-                if (Config.RogerThatTelegram.Url === '' || Config.RogerThatTelegram.Token === '' || Config.RogerThatTelegram.Port === undefined) {
-                    me.overhead("ÿc1ERROR:ÿc0 Headers are not configured.'");
-                } else {
-                    const HTTP = require('../libs/modules/HTTP');
-
-                    print('ÿc2Sending msg: ÿc0ÿc9' + data.message + 'ÿc0 (code ÿc4' + data.code + 'ÿc0)');
-                    while (tries <= 4) {
-                        response = HTTP({
-                            url: Config.RogerThatTelegram.Url + '/api/diablo/notify',
-                            port: Config.RogerThatTelegram.Port,
-                            method: 'POST',
-                            headers: {
-                                'Authorization': 'Bearer ' + Config.RogerThatTelegram.Token,
-                                'Content-Type': 'application/json'
-                            },
-                            data: JSON.stringify(data)
-                        });
-
-                        if (response) {
-                            break;
-                        }
-
-                        if (tries <= 3) {
-                            print('Send msg retry ÿc1' + tries + 'ÿc0');
-                            tries++;
-                        } else {
-                            break;
-                        }
-                    }
-                    if (!response) {
-                        print('ÿc1Failed to connect to ÿc0ÿc9' + Config.RogerThatTelegram.Url + 'ÿc0');
+        notify: function (data) {
+            let tries = 1;
+            let response;
+            if (Config.RogerThatTelegram.Active &&
+                (Config.RogerThatTelegram.Notify.Trade || Config.RogerThatTelegram.Notify.HotIP || Config.RogerThatTelegram.Notify.DiabloClone)) {
+                    if (Config.RogerThatTelegram.Url === '' || Config.RogerThatTelegram.Token === '' || Config.RogerThatTelegram.Port === undefined) {
+                        me.overhead("ÿc1ERROR:ÿc0 Headers are not configured.'");
                     } else {
-                        print('ÿc2Message delivered to ÿc0ÿc9' + Config.RogerThatTelegram.Url + 'ÿc0');
-                    }
-                }
+                        const HTTP = require('../libs/modules/HTTP');
 
+                        print('ÿc2Sending msg: ÿc0ÿc9' + data.message + 'ÿc0 (code ÿc4' + data.code + 'ÿc0)');
+                        while (tries <= 4) {
+                            response = HTTP({
+                                url: Config.RogerThatTelegram.Url + '/api/diablo/notify',
+                                port: Config.RogerThatTelegram.Port,
+                                method: 'POST',
+                                headers: {
+                                    'Authorization': 'Bearer ' + Config.RogerThatTelegram.Token,
+                                    'Content-Type': 'application/json'
+                                },
+                                data: JSON.stringify(data)
+                            });
+
+                            if (response) {
+                                break;
+                            }
+
+                            if (tries <= 3) {
+                                print('Send msg retry ÿc1' + tries + 'ÿc0');
+                                tries++;
+                            } else {
+                                break;
+                            }
+                        }
+                        if (!response) {
+                            print('ÿc1Failed to connect to ÿc0ÿc9' + Config.RogerThatTelegram.Url + 'ÿc0');
+                        } else {
+                            print('ÿc2Message delivered to ÿc0ÿc9' + Config.RogerThatTelegram.Url + 'ÿc0');
+                        }
+                    }
+
+            }
         }
-    }
 };

@@ -468,7 +468,7 @@ function main() {
 					me.overhead("Sorry! I'm poor!");
 				}
 
-				Pather.moveTo(me.x + rand(-6, 6), me.y + rand(-6, 6));
+				Pather.moveTo(me.x + rand(-8, 8), me.y + rand(-8, 8));
 
 				break;
 			case 221: //- ]        - Pick Everything
@@ -477,7 +477,7 @@ function main() {
 				me.cancel();
 				Config.PickitTries = 0;
 				pickStatus = AutoRogerThat.pickItems();
-				Pather.moveTo(me.x + rand(-6, 6), me.y + rand(-6, 6));
+				Pather.moveTo(me.x + rand(-8, 8), me.y + rand(-8, 8));
 
 				if (pickStatus === "full") {
 					me.overhead("I'm full");
@@ -542,7 +542,33 @@ function main() {
 				scriptBroadcast("PVP Time");
 
 				break;
-			case 35:  //- End      - Pause
+			case 46:  //- Delete   - Mule Log
+				MuleLogger.LogEquipped = true;
+				MuleLogger.LogMerc = true;
+				MuleLogger.logCharRogerThat();
+				delay(150);
+				print("Logged char: ÿc2" + me.name + "ÿc0");
+				me.overhead("Logged char: ÿc2" + me.name + "ÿc0");
+
+				break;
+			case 35:  //- End      - Last Game
+				if (pvpTimeFlag) break;
+				lastGameFlag = !lastGameFlag;
+
+				if (lastGameFlag) {
+					Messaging.sendToScript("D2BotLead.dbj", "lastGameON");
+					Messaging.sendToScript("D2BotFollow.dbj", "lastGameON");
+					print("Last Game: " + "ÿc2ONÿc0");
+					me.overhead("Last Game: " + "ÿc2ONÿc0");
+				} else {
+					Messaging.sendToScript("D2BotLead.dbj", "lastGameOFF");
+					Messaging.sendToScript("D2BotFollow.dbj", "lastGameOFF");
+					print("Last Game: " + "ÿc1OFFÿc0");
+					me.overhead("Last Game: " + "ÿc1OFFÿc0");
+				}
+
+				break;
+			case 19:  //- Pause    - Pause
 				if (pvpTimeFlag) break;
 
 				if (!Config.PauseFlag) {
@@ -644,39 +670,13 @@ function main() {
 				}
 
 				break;
-			case 101: //- Numpad 5 - Auto Mule
+			case 101: //- Numpad 5 - Pause/Break
 				if (pvpTimeFlag) break;
-
-				if (AutoMule.getInfo() && AutoMule.getInfo().hasOwnProperty("muleInfo")) {
-					if (AutoMule.getMuleItems().length > 0) {
-						print("ÿc2Mule triggered");
-						scriptBroadcast("mule");
-						this.exit();
-					} else {
-						me.overhead("No items to mule.");
-					}
-				} else {
-					me.overhead("Profile not enabled for muling.");
-				}
+				this.togglePause();
 
 				break;
-			case 46:  //- Delete   - Mule Log
-				MuleLogger.LogEquipped = true;
-				MuleLogger.LogMerc = true;
-				MuleLogger.logCharRogerThat();
-				delay(150);
-				print("Logged char: ÿc2" + me.name + "ÿc0");
-				me.overhead("Logged char: ÿc2" + me.name + "ÿc0");
-
-				break;
-			case 102: //- Numpad 6 - Mule Log
-				if (pvpTimeFlag) break;
-				MuleLogger.LogEquipped = true;
-				MuleLogger.LogMerc = true;
-				MuleLogger.logCharRogerThat();
-				delay(150);
-				print("Logged char: ÿc2" + me.name + "ÿc0");
-				me.overhead("Logged char: ÿc2" + me.name + "ÿc0");
+			case 102: //- Numpad 6 - 
+				me.overhead("Numpad 6 available");
 
 				break;
 			case 103: //- Numpad 7 - I Am The Boss
@@ -686,21 +686,8 @@ function main() {
 				say("I am the boss");
 
 				break;
-			case 104: //- Numpad 8 - Last Game Button
-				if (pvpTimeFlag) break;
-				lastGameFlag = !lastGameFlag;
-
-				if (lastGameFlag) {
-					Messaging.sendToScript("D2BotLead.dbj", "lastGameON");
-					Messaging.sendToScript("D2BotFollow.dbj", "lastGameON");
-					print("Last Game: " + "ÿc2ONÿc0");
-					me.overhead("Last Game: " + "ÿc2ONÿc0");
-				} else {
-					Messaging.sendToScript("D2BotLead.dbj", "lastGameOFF");
-					Messaging.sendToScript("D2BotFollow.dbj", "lastGameOFF");
-					print("Last Game: " + "ÿc1OFFÿc0");
-					me.overhead("Last Game: " + "ÿc1OFFÿc0");
-				}
+			case 104: //- Numpad 8 - 
+				me.overhead("Numpad 8 available");
 
 				break;
 			case 105: //- Numpad 9 - Disable Mule Chat
@@ -710,11 +697,6 @@ function main() {
 				break;
 			case 110: //- .        - MH
 				if (!pvpTimeFlag) load("tools/mapthread.js");
-
-				break;
-			case 32:  //- Space    - Pause/Break
-				if (pvpTimeFlag) break;
-				this.togglePause();
 
 				break;
 		}

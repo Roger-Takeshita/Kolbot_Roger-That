@@ -39,15 +39,15 @@ function RogerThat() {
         //+ Get leader's party unit ===============================================
             this.getLeader = function (name) {
                 if (me.ingame) {
-                let player = getParty();
+                    let player = getParty();
 
-                if (player) {
-                    do {
-                        if (player.name === name) {
-                            return player;
-                        }
-                    } while (player.getNext());
-                }
+                    if (player) {
+                        do {
+                            if (player.name === name) {
+                                return player;
+                            }
+                        } while (player.getNext());
+                    }
                 }
 
                 return false;
@@ -58,11 +58,11 @@ function RogerThat() {
                 let player = getUnit(0, name);
 
                 if (player) {
-                do {
-                    if (!player.dead) {
-                        return player;
-                    }
-                } while (player.getNext());
+                    do {
+                        if (!player.dead) {
+                            return player;
+                        }
+                    } while (player.getNext());
                 }
 
                 return false;
@@ -741,7 +741,7 @@ function RogerThat() {
                                 }
 
                                 break;
-                            case "@stash":
+                            case "#stash":
                                 if (getUIFlag(0x19)){
                                     me.cancel();
                                     me.overhead("Stash Done!");
@@ -753,19 +753,19 @@ function RogerThat() {
                                 }
 
                                 break;
-                            case "@quit":
+                            case "#quit":
                                 delay(rand(6,10)*1000);
                                 quit();
 
                                 break;
-                            case "@bye":
+                            case "#bye":
                                 me.overhead("Cya!");
                                 Town.goToTown(1);
                                 delay(rand(3,15)*1000);
                                 D2Bot.stop(me.profile, true);
 
                                 break;
-                            case "@come":
+                            case "#come":
                                 if (Config.Leader !== "") {
                                     if (Misc.inMyParty(Config.Leader)) {
                                         let leaderAct = this.checkLeaderAct(leader);
@@ -883,7 +883,7 @@ function RogerThat() {
                                         }
 
                                         break;
-                                    case "@stash":
+                                    case "#stash":
                                         if (getUIFlag(0x19)){
                                             me.cancel();
                                             me.overhead("Stash Done!");
@@ -905,8 +905,8 @@ function RogerThat() {
                     }
 
                 //- Set custom trade message --------------------------------------
-                    if(nick === me.name && msg.split(" ")[0].toLowerCase() === "@set") {
-                        tradeMessage = msg.replace("@set ", "");
+                    if(nick === me.name && msg.split(" ")[0].toLowerCase() === "#set") {
+                        tradeMessage = msg.replace("#set ", "");
                         print("Set Msg: ÿc2" + tradeMessage + "ÿc0");
                         me.overhead("Set Msg: ÿc2" + tradeMessage + "ÿc0");
                     }
