@@ -458,11 +458,11 @@ function main() {
 				}
 
 				break;
-			case 219: //- [        - Drop Everything
+			case 221: //- ]        - Drop Everything
 				if (pvpTimeFlag) break;
 				me.cancel();
 
-				if (AutoRogerThat.dropStuff()) {
+				if (AutoRogerThat.dropProfileItems()) {
 					me.overhead("Done boos!");
 				} else {
 					me.overhead("Sorry! I'm poor!");
@@ -471,7 +471,7 @@ function main() {
 				Pather.moveTo(me.x + rand(-8, 8), me.y + rand(-8, 8));
 
 				break;
-			case 221: //- ]        - Pick Everything
+			case 219: //- [        - Pick Everything
 				if (pvpTimeFlag) break;
 				var pickStatus;
 				me.cancel();
@@ -584,7 +584,7 @@ function main() {
 						Town.goToTown();
 						Town.openStash();
 					} catch (e) { }
-					
+
 					Config.PauseFlag = true;
 				} else {
 					me.cancel();
@@ -648,7 +648,7 @@ function main() {
 				if (pvpTimeFlag) break;
 				me.cancel();
 
-				if (AutoRogerThat.dropTrash()) {
+				if (AutoRogerThat.dropProfileItems("trash")) {
 					me.overhead("Dropped some trash!");
 				} else {
 					me.overhead("All Good!");
@@ -675,7 +675,7 @@ function main() {
 				this.togglePause();
 
 				break;
-			case 102: //- Numpad 6 - 
+			case 102: //- Numpad 6 -
 				me.overhead("Numpad 6 available");
 
 				break;
@@ -686,7 +686,7 @@ function main() {
 				say("I am the boss");
 
 				break;
-			case 104: //- Numpad 8 - 
+			case 104: //- Numpad 8 -
 				me.overhead("Numpad 8 available");
 
 				break;
@@ -718,8 +718,6 @@ function main() {
 					quitListDelayTime = getTickCount();
 				}
 
-				this.togglePause();
-
 				if (!me.inTown) {
 					try {
 						Town.goToTown();
@@ -727,9 +725,11 @@ function main() {
 					}
 				}
 
+				this.togglePause();
 				Town.doChores();
 				Town.stash(true);
 				me.cancel()
+				delay(1000);
 				quitFlag = true;
 			}
 
@@ -759,7 +759,7 @@ function main() {
 				}
 			});
 
-			if (Config.DCloneQuit === 2) {				
+			if (Config.DCloneQuit === 2) {
 				D2Bot.printToConsole("SoJ sold in game. Leaving.");
 
 				quitFlag = true;
@@ -838,7 +838,7 @@ function main() {
 			break;
 		case "quitRush":
 				D2Bot.stop(me.profile, true);
-	
+
 				break;
 		case "quit":
 			quitFlag = true;
@@ -987,6 +987,20 @@ function main() {
 
 			if (Config.LogExperience) {
 				Experience.log();
+			}
+			if (Config.QuitListDelay.length > 0 && Config.QuitListDelay[0] === 0 && Config.QuitListDelay[1] === 0) {
+				if (!me.inTown) {
+					try {
+						Town.goToTown();
+					} catch (e) {
+					}
+				}
+
+				this.togglePause();
+				Town.doChores();
+				Town.stash(true);
+				me.cancel()
+				delay(1000);
 			}
 
 			this.checkPing(false); // In case of quitlist triggering first

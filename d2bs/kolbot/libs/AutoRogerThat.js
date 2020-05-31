@@ -8,7 +8,7 @@ var AutoRogerThat = {
                     filename = "pickit/" + Config.PickitFiles[i];
                     NTIP.OpenFile(filename, notify);
                 }
-        
+
                 this.beltSize = Storage.BeltSize();
             },
 
@@ -34,69 +34,29 @@ var AutoRogerThat = {
             },
 
     //! DROP ITEMS ====================================================================
-        //+ Drop whole everything -------------------------------------------------
-            dropStuff: function () {
-                let items = this.getProfileItems();
-
-                items = items.concat(this.getProfileTrashItems());
-
-                if (!Town.openStash()) {
-                    return false;
-                }
-
-                if (!items || items.length === 0) {
-                    return false;
-                }
-
-                for (let i = 0; i < items.length; i++) {
-                    items[i].drop();
-                }
-
-                return true;
-            },
-
-        //+ Drop trash items ------------------------------------------------------
-            dropTrash: function () {
-                let items = this.getProfileTrashItems();
-                
-                if (!Town.openStash()) {
-                    return false;
-                }
-
-                if (!items || items.length === 0) {
-                    return false;
-                }
-
-                for (let i = 0; i < items.length; i++) {
-                    items[i].drop();
-                }
-
-                return true;
-            },
-
-        //+ Drop specific item and quantity ---------------------------------------
-            printItemIds: function (items) {
+        //+ Drop items ------------------------------------------------------------
+            printItems: function (items) {
                 for (let i = 0; i < items.length; i++){
-                    print("ÿc9" + items[i].classid + "ÿc0 "+ items[i].name + " - " + items[i].quality + " - "+ items[i].location + " " + items[i].itemType)
+                    print("ÿc9" + items[i].classid + "ÿc0 "+ items[i].name + "ÿc9 Quality: ÿc0" + items[i].quality + "ÿc9 Location: ÿc0"+ items[i].location + "ÿc9 Item Type: ÿc0" + items[i].itemType)
                 }
             },
 
-            getItemClassIds: function (itemsArray, qtyArray) {
+            getItemsClassId: function (itemsArray, qtyArray) {
                 let dropObj = {};
                 let itemCodes = [];
 
                 for (let i = 0; i < itemsArray.length; i++) {
                     if (itemsArray[i] !== undefined) {
                         switch (itemsArray[i]) {
-                            case "h":            //Hate Key
+                            case "h":            //Hate key
                                 dropObj[648] = qtyArray[i];
 
                                 break;
-                            case "t":            //Terror Key
+                            case "t":            //Terror key
                                 dropObj[647] = qtyArray[i];
 
                                 break;
-                            case "d":            //Destruction Key
+                            case "d":            //Destruction key
                                 dropObj[649] = qtyArray[i];
 
                                 break;
@@ -110,7 +70,7 @@ var AutoRogerThat = {
                                 break;
                             case "horn":         //Horn
                                 dropObj[650] = qtyArray[i];
-                            
+
                                 break;
                             case "eye":          //Eye
                                 dropObj[651] = qtyArray[i];
@@ -129,22 +89,22 @@ var AutoRogerThat = {
 
                                 break;
                             case "blue":
-                            case "b":            //Blue Essence
+                            case "b":            //Blue essence
                                 dropObj[654] = qtyArray[i];
 
                                 break;
                             case "yellow":
-                            case "y":            //Yellow Essence
+                            case "y":            //Yellow essence
                                 dropObj[655] = qtyArray[i];
 
                                 break;
                             case "red":
-                            case "r":            //Red Essence
+                            case "r":            //Red essence
                                 dropObj[656] = qtyArray[i];
 
                                 break;
                             case "green":
-                            case "g":            //Green Essence
+                            case "g":            //Green essence
                                 dropObj[657] = qtyArray[i];
 
                                 break;
@@ -171,7 +131,7 @@ var AutoRogerThat = {
                                 for (let j = 0; j < itemCodes.length; j++) {
                                     dropObj[itemCodes[j]] = qtyArray[i]
                                 }
-                                
+
                                 break;
                             case "shield":
                             case "shields":      //Shields
@@ -210,28 +170,28 @@ var AutoRogerThat = {
 
                                 break;
                             case "rune":
-                            case "runes":        //All Runes
+                            case "runes":        //All runes
                                 for (let j = 610 ; j <= 642 ; j++) {
                                     dropObj[j] = qtyArray[i]
                                 }
 
                                 break;
                             case "lr":
-                            case "lrs":          //Low Runes
+                            case "lrs":          //Low runes
                                 for (let j = 610 ; j <= 634 ; j++) {
                                     dropObj[j] = qtyArray[i]
                                 }
 
                                 break;
                             case "hr":
-                            case "hrs":          //Hight Runes
+                            case "hrs":          //Hight runes
                                 for (let j = 635 ; j <= 642 ; j++) {
                                     dropObj[j] = qtyArray[i]
                                 }
 
                                 break;
                             case "sc":
-                            case "scs":          //Small Charms
+                            case "scs":          //Small charms and large charms
                                 itemCodes = [603, 604];
                                 for (let j = 0; j < itemCodes.length; j++) {
                                     dropObj[itemCodes[j]] = qtyArray[i]
@@ -239,7 +199,7 @@ var AutoRogerThat = {
 
                                 break;
                             case "gc":
-                            case "gcs":          //Grand Charms
+                            case "gcs":          //Grand charms
                                 dropObj[605] = qtyArray[i];
 
                                 break;
@@ -260,12 +220,13 @@ var AutoRogerThat = {
                                 break;
                             case "item":
                             case "items":        //Drop all items
-                                if (this.dropStuff()){
-                                    return true;
-                                } else {
-                                    return false;
-                                }
-                            default:             //Drop Runes
+                                return this.dropProfileItems();
+
+                            case "socket":
+                            case "sockets":     //Drop socket items
+                                return this.dropProfileItems("socket");
+
+                            default:             //Drop runes
                                 const rune = {
                                     el: 610,
                                     eld: 611,
@@ -301,7 +262,7 @@ var AutoRogerThat = {
                                     cham: 641,
                                     zod: 642
                                 };
-                                
+
                                 if (rune[itemsArray[i]]) {
                                     dropObj[rune[itemsArray[i]]] = qtyArray[i];
                                 }
@@ -313,7 +274,41 @@ var AutoRogerThat = {
 
                 return dropObj;
             },
-            
+
+            dropProfileItems: function (mode) {
+                let items;
+
+                switch (mode) {
+                    case 'trash':
+                        items = this.getProfileItems('trash');
+
+                        break;
+                    case 'socket':
+                        items = this.getProfileItems('socket');
+
+                        break;
+                    default:
+                        items = this.getProfileItems();
+                        items = items.concat(this.getProfileItems('trash'));
+
+                        break;
+                }
+
+                if (!Town.openStash()) {
+                    return false;
+                }
+
+                if (!items || items.length === 0) {
+                    return false;
+                }
+
+                for (let i = 0; i < items.length; i++) {
+                    items[i].drop();
+                }
+
+                return true;
+            },
+
             dropMultipleItems: function (itemsArray, qtyArray) {
                 let dropItems,
                     items = this.getProfileItems();
@@ -326,7 +321,7 @@ var AutoRogerThat = {
                     return false;
                 }
 
-                dropItems = this.getItemClassIds(itemsArray, qtyArray);
+                dropItems = this.getItemsClassId(itemsArray, qtyArray);
 
                 for (let i=0; i < items.length; i++) {
                     if (dropItems[items[i].classid] && dropItems[items[i].classid] >= 0) {
@@ -342,21 +337,39 @@ var AutoRogerThat = {
                 return true;
             },
 
-        //+ Get a list of items ---------------------------------------------------
-            getProfileItems: function () {
+        //+ Get profile items -----------------------------------------------------
+            getProfileItems: function (mode) {
                 let item = me.findItems(-1, 0),
                     items = [];
 
                 for (let i = 0; i < item.length; i++) {
-                    if (item[i].itemType && Town.ignoredItemTypes.indexOf(item[i].itemType) === -1 &&
-                        (this.checkItem(item[i]).result > 0) &&
-                        item[i].classid !== 549 &&                            // Don't drop Horadric Cube
+                    if (item[i].classid !== 549 &&                            // Don't drop Horadric Cube
                         (item[i].classid !== 603 || item[i].quality !== 7) && // Don't drop Annihilus
                         (item[i].classid !== 604 || item[i].quality !== 7) && // Don't drop Hellfire Torch
                         !Storage.Inventory.IsLocked(item[i], Config.Inventory) && // Don't drop item in locked slots
                         ((!TorchSystem.getFarmers() && !TorchSystem.isFarmer()) || [647, 648, 649].indexOf(item[i].classid) === -1)) { // Don't drop Keys if part of TorchSystem
                             if ((!this.cubingIngredient(item[i]) && !this.runewordIngredient(item[i]) && !this.utilityIngredient(item[i]))) { // Don't drop Excluded item or Runeword/Cubing/CraftingSystem ingredients
-                                items.push(copyUnit(item[i]));
+                                switch (mode) {
+                                    case 'trash':
+                                        if ([1, 2, 3, 4, 5].indexOf(this.checkItem(item[i]).result) === -1) {
+                                            items.push(copyUnit(item[i]));
+                                        }
+
+                                        break;
+                                    case 'socket':
+                                        if (item[i].itemType && Town.ignoredItemTypes.indexOf(item[i].itemType) === -1 && [2, 3].indexOf(item[i].quality) >= 0) {
+                                            items.push(copyUnit(item[i]));
+                                        }
+
+                                        break;
+                                    default:
+                                        if (item[i].itemType && Town.ignoredItemTypes.indexOf(item[i].itemType) === -1 && this.checkItem(item[i]).result > 0) {
+                                            items.push(copyUnit(item[i]));
+                                        }
+
+                                        break;
+                                }
+
                             }
                     }
                 }
@@ -364,29 +377,7 @@ var AutoRogerThat = {
                 return items;
             },
 
-        //+ Get a list of trash items ---------------------------------------------
-            getProfileTrashItems: function () {
-                let item = me.findItems(-1, 0),
-                    items = [];
-
-                for (let i = 0; i < item.length; i++) {
-                    if (Town.ignoredItemTypes.indexOf(item[i].itemType) === -1 &&
-                        ([1, 2, 3, 4, 5].indexOf(this.checkItem(item[i]).result) === -1) &&
-                        item[i].classid !== 549 &&                            // Don't drop Horadric Cube
-                        (item[i].classid !== 603 || item[i].quality !== 7) && // Don't drop Annihilus
-                        (item[i].classid !== 604 || item[i].quality !== 7) && // Don't drop Hellfire Torch
-                        !Storage.Inventory.IsLocked(item[i], Config.Inventory) && // Don't drop item in locked slots
-                        ((!TorchSystem.getFarmers() && !TorchSystem.isFarmer()) || [647, 648, 649].indexOf(item[i].classid) === -1)) { // Don't drop Keys if part of TorchSystem
-                            if ((!this.cubingIngredient(item[i]) && !this.runewordIngredient(item[i]) && !this.utilityIngredient(item[i]))) { // Don't drop Excluded item or Runeword/Cubing/CraftingSystem ingredients
-                                items.push(copyUnit(item[i]));
-                            }
-                    }
-                }
-
-                return items;
-            },
-
-        //+ Cube Ingredients ------------------------------------------------------
+        //+ Cube ingredients ------------------------------------------------------
             utilityIngredient: function (item) {
                 return CraftingSystem.validGids.indexOf(item.gid) > -1;
             },
@@ -428,8 +419,8 @@ var AutoRogerThat = {
 
                 return false;
             },
-        
-        //+ Drop Anni/Torch -------------------------------------------------------
+
+        //+ Drop anni/torch -------------------------------------------------------
             dropCharm: function (dropAnni) {
                 let item;
 
@@ -470,7 +461,7 @@ var AutoRogerThat = {
         gidList: [],
         beltSize: 1,
         ignoreLog: [4, 5, 6, 22, 41, 76, 77, 78, 79, 80, 81], // Ignored item types for item logging
-      
+
         //+ Check items with pickit list ------------------------------------------
             checkItem: function (unit) {
                 let rval = NTIP.CheckItem(unit, false, true);
@@ -558,7 +549,7 @@ var AutoRogerThat = {
                     }
 
                     pickList.sort(this.sortItems);
-                    
+
                     //- Check if the item unit is still valid and if it's on ground or being dropped
                     if (copyUnit(pickList[0]).x !== undefined && (pickList[0].mode === 3 || pickList[0].mode === 5) &&
                         (Pather.useTeleport() || me.inTown || !checkCollision(me, pickList[0], 0x1))) { // Don't pick items behind walls/obstacles when walking
@@ -1478,7 +1469,7 @@ var AutoRogerThat = {
                         print("Auto ÿc4" + charClass + " attackÿc0");
 
                         break;
-                    case "assassin": 
+                    case "assassin":
                         Config.SkipImmune   = [];
                         Config.AttackSkill  = Config.AttackSinSkill;
                         Config.LowManaSkill = Config.LowManaSinSkill;
