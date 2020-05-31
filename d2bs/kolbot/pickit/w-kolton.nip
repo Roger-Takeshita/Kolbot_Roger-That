@@ -436,8 +436,8 @@
             // [name] == demonhead        && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 0 || [itemmaxdurabilitypercent] == 15) && [sockets] == 3
             // [name] == bonevisage       && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 0 || [itemmaxdurabilitypercent] == 15) && [sockets] == 3
             // [name] == diadem           && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 0 || [itemmaxdurabilitypercent] == 15) && [sockets] == 3
-            // [name] == demonhead        && [quality] == normal && [flag] == ethereal # [sockets] == 0 
-            // [name] == bonevisage       && [quality] == normal && [flag] == ethereal # [sockets] == 0 
+            // [name] == demonhead        && [quality] == normal && [flag] == ethereal # [sockets] == 0
+            // [name] == bonevisage       && [quality] == normal && [flag] == ethereal # [sockets] == 0
         //- Unique ------------------------------------------------------------------------
             [name] == totemicmask         && [quality] == unique # [enhanceddefense] == 200 // jalal's mane
             [name] == bloodspirit         && [quality] == unique && [flag] == identified # [defense] == 477 || [defense] == 714 // jalal's mane x1
@@ -595,7 +595,7 @@
             [type] == orb                 && [quality] == magic # ([coldskilltab]+[skillfrozenorb] >= 6 || [coldskilltab]+[skillblizzard] >=6) && (([fcr] >= 20 && [skillcoldmastery] >= 1) || [skillcoldmastery] >= 3)
             [type] == orb                 && [quality] == magic # [sorceressskills]+[skillfireball] >= 5 && (([fcr] >= 20 && [skillfiremastery] >= 1) || [skillfiremastery] >= 3)
             [type] == orb                 && [quality] == magic # ([fireskilltab]+[skillenchant] >= 6 || [fireskilltab]+[skillfireball] >= 6) && (([fcr] >= 20 && [skillfiremastery] >= 1) || [skillfiremastery] >= 3)
-            [type] == orb                 && [quality] == magic # [fireskilltab]+[skillhydra] >= 6 && [skillfiremastery] >= 2		
+            [type] == orb                 && [quality] == magic # [fireskilltab]+[skillhydra] >= 6 && [skillfiremastery] >= 2
     //+ POLEARMS =============================================================================
         //- White -------------------------------------------------------------------------
             // [type] == polearm          && [quality] <= superior &&  [flag] == ethereal && [class] == elite # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4)   // insight/infinity
@@ -673,18 +673,18 @@
         //- White -------------------------------------------------------------------------
             // [name] == monarch          && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 4) && [enhanceddefense] == 15 // spirit 15% ed
             // [name] == monarch          && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 4)                            // spirit
-            // [name] == towershield      && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && [sockets] == 2                     // Rhyme (Shael + Eth)
-            // [name] == grimshield       && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && [sockets] == 2                     // Rhyme (Shael + Eth)
-            // [name] == hyperion         && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && [sockets] == 2                     // Rhyme (Shael + Eth)
-            [name] == hyperion            && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && [sockets] == 3                     // sanctuary
-            [name] == towershield         && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && [sockets] == 3                     // sanctuary
+            [name] == towershield         && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && [itemmaxdurabilitypercent] == 15 && [sockets] == 2 // Rhyme (Shael + Eth)
+            [name] == grimshield          && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && [itemmaxdurabilitypercent] == 15 && [sockets] == 2 // Rhyme (Shael + Eth)
+            [name] == hyperion            && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && [itemmaxdurabilitypercent] == 15 && [sockets] == 2 // Rhyme (Shael + Eth)
+            [name] == hyperion            && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && [itemmaxdurabilitypercent] == 15 && ([sockets] == 0 || [sockets] == 3) // sanctuary
+            [name] == towershield         && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && [itemmaxdurabilitypercent] == 15 && ([sockets] == 0 || [sockets] == 3) // sanctuary
             [type] == voodooheads         && [quality] <= superior && [flag] != ethereal # [skillbonespirit]+[skillbonespear] == 6
             [type] == voodooheads         && [quality] <= superior && [quality] != set # [necromancerskills]+[skillbonespear] >= 5
             [type] == voodooheads         && [quality] <= superior && [quality] != set # [necromancerskills]+[skillbonespear] >= 5 && ([fbr] == 30 || [fcr] == 20)
             [type] == voodooheads         && [quality] <= superior && [quality] != set # [necromancerskills]+[skillbonespirit] >= 5 && ([fbr] == 30 || [fcr] == 20)
             [type] == voodooheads         && [quality] <= superior && [quality] != set # [necromancerskills]+[skillpoisonnova] >= 5 && ([fbr] == 30 || [fcr] == 20)
             [type] == auricshields        && [quality] <= superior && [class] == elite && [flag] == ethereal # ([enhanceddamage] == 65 && [tohit] == 121 || [fireresist] >= 45) && ([sockets] == 0 || [sockets] == 4) // exile
-            [type] == auricshields        && [quality] <= superior && [class] == elite && [flag] != ethereal # ([enhanceddamage] == 65 && [tohit] == 121 || [fireresist] >= 45) && ([sockets] == 0 || [sockets] == 3 || [sockets] == 4) // sanctuary/spirit
+            [type] == auricshields        && [quality] <= superior && [class] == elite && [flag] != ethereal # ([enhanceddamage] == 65 && [tohit] == 121 || [fireresist] >= 45) && [sockets] == 3 // sanctuary
         //- Unique ------------------------------------------------------------------------
             // [name] == defender         && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 150 // visceratuant
             // [name] == roundshield      && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 220 // moser
@@ -829,7 +829,7 @@
             [type] == scepter             && [quality] == rare # [skillfistoftheheavens]+[skillconviction]+[palicombatskilltab]+[paladinskills] >= 8
             [type] == scepter             && [quality] == rare # [skillholyshield]+[paladinskills]+[palicombatskilltab] >= 5
             [type] == scepter             && [quality] == rare # ([palicombatskilltab] >= 3 || [paladinskills] >= 2) && ([skillblessedhammer]+[skillconcentration] >= 6 || [skillfistoftheheavens]+[skillconviction] >= 6 || [skillholyshield] == 3)
-            [name] == scepter             && [quality] == rare # ([skillconcentration]+[skillblessedhammer] >= 6 || [skillfistoftheheavens]+[skillconviction] >= 6) && [sockets] >= 4     
+            [name] == scepter             && [quality] == rare # ([skillconcentration]+[skillblessedhammer] >= 6 || [skillfistoftheheavens]+[skillconviction] >= 6) && [sockets] >= 4
             [name] == caduceus            && [quality] == rare # ([skillconcentration]+[skillblessedhammer] >= 6 || [skillfistoftheheavens]+[skillconviction] >= 6) && [sockets] >= 4
             [name] == divinescepter       && [quality] == rare # ([skillconcentration]+[skillblessedhammer] >= 6 || [skillfistoftheheavens]+[skillconviction] >= 6) && [sockets] >= 4
             [name] == warscepter          && [quality] == rare # ([skillconcentration]+[skillblessedhammer] >= 6 || [skillfistoftheheavens]+[skillconviction] >= 6) && [sockets] >= 4
@@ -839,7 +839,7 @@
             [type] == scepter             && [quality] == magic # [skillfistoftheheavens]+[skillconviction]+[palicombatskilltab]+[paladinskills] >= 8
             [type] == scepter             && [quality] == magic # [skillholyshield]+[paladinskills]+[palicombatskilltab] >= 5
             [type] == scepter             && [quality] == magic # ([palicombatskilltab] >= 3 || [paladinskills] >= 2) && ([skillblessedhammer]+[skillconcentration] >= 6 || [skillfistoftheheavens]+[skillconviction] >= 6 || [skillholyshield] == 3)
-            [name] == scepter             && [quality] == magic # ([skillconcentration]+[skillblessedhammer] >= 6 || [skillfistoftheheavens]+[skillconviction] >= 6) && [sockets] >= 4     
+            [name] == scepter             && [quality] == magic # ([skillconcentration]+[skillblessedhammer] >= 6 || [skillfistoftheheavens]+[skillconviction] >= 6) && [sockets] >= 4
             [name] == caduceus            && [quality] == magic # ([skillconcentration]+[skillblessedhammer] >= 6 || [skillfistoftheheavens]+[skillconviction] >= 6) && [sockets] >= 4
             [name] == divinescepter       && [quality] == magic # ([skillconcentration]+[skillblessedhammer] >= 6 || [skillfistoftheheavens]+[skillconviction] >= 6) && [sockets] >= 4
             [name] == warscepter          && [quality] == magic # ([skillconcentration]+[skillblessedhammer] >= 6 || [skillfistoftheheavens]+[skillconviction] >= 6) && [sockets] >= 4
