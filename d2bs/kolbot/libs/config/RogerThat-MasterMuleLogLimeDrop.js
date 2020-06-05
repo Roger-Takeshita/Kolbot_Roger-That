@@ -59,11 +59,12 @@ function LoadConfig() {
       Config.ManualPlayPick = false;
    //! ADDITION CONFIG -----------------------------------------------------------------
       //+ Print to console ----------------------------------------------------------
-         Config.D2BotPrintGameTime = false;              // Game time in the end of each game
-         Config.D2BotPrintChicken  = false;              // Chicken location
-         Config.D2BotPrintCrash    = false;              // Crash location
-         Config.D2BotPrintDie      = false;              // When you die
-         Config.D2BotPrintLostXp   = false;              // When you lose experience
+         Config.D2BotPrintGameTime    = false;           // Game time in the end of each game
+         Config.D2BotPrintChicken     =  true;           // Chicken location
+         Config.D2BotPrintCrash       = false;           // Crash location
+         Config.D2BotPrintScriptError = false;           // Script error
+         Config.D2BotPrintDie         =  true;           // When you die
+         Config.D2BotPrintLostXp      = false;           // When you lose experience
       //+ Additional item info log settings. All info goes to \logs\ItemLog.txt -----
          Config.ItemInfo = false;                        // Log stashed, skipped (due to no space) or sold items.
          Config.ItemInfoQuality = [];                    // The quality of sold items to log. See NTItemAlias.dbl for values. Example: Config.ItemInfoQuality = [6, 7, 8];

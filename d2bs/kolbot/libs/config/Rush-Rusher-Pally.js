@@ -102,18 +102,19 @@ function LoadConfig() {
       Config.PickitFiles.push("w-LLD.nip");
       Config.PickRange = 40;
       Config.FastPick  = true;
-	   Config.ManualPlayPick = false;                     // If set to true and D2BotMap entry script is used, will enable picking in manual play.
+      Config.ManualPlayPick = false;                     // If set to true and D2BotMap entry script is used, will enable picking in manual play.
    //! AUTO MULE -----------------------------------------------------------------------
       Config.AutoMule.Trigger = [];
       Config.AutoMule.Force   = [];
       Config.AutoMule.Exclude = [];
    //! ADDITION CONFIG -----------------------------------------------------------------
       //+ Print to console ----------------------------------------------------------
-         Config.D2BotPrintGameTime = false;              // Game time in the end of each game
-         Config.D2BotPrintChicken  =  true;              // Chicken location
-         Config.D2BotPrintCrash    =  true;              // Crash location
-         Config.D2BotPrintDie      =  true;              // When you die
-         Config.D2BotPrintLostXp   = false;              // When you lose experience
+         Config.D2BotPrintGameTime    = false;           // Game time in the end of each game
+         Config.D2BotPrintChicken     =  true;           // Chicken location
+         Config.D2BotPrintCrash       = false;           // Crash location
+         Config.D2BotPrintScriptError = false;           // Script error
+         Config.D2BotPrintDie         =  true;           // When you die
+         Config.D2BotPrintLostXp      = false;           // When you lose experience
       //+ Additional item info log settings. All info goes to \logs\ItemLog.txt -----
          Config.ItemInfo = false;                        // Log stashed, skipped (due to no space) or sold items.
          Config.ItemInfoQuality = [];                    // The quality of sold items to log. See NTItemAlias.dbl for values. Example: Config.ItemInfoQuality = [6, 7, 8];
@@ -124,7 +125,7 @@ function LoadConfig() {
          Config.FieldID = false;                         // Identify items in the field instead of going to town.
          Config.DroppedItemsAnnounce.Enable = false;     // Announce Dropped Items to in-game newbs
          Config.DroppedItemsAnnounce.Quality = [];       // Quality of item to announce. See NTItemAlias.dbl for values. Example: Config.DroppedItemsAnnounce.Quality = [6, 7, 8];
-      //+ Manager Item Log Screen ---------------------------------------------------
+      //+ Manager item log screen ---------------------------------------------------
          Config.LogKeys = false;                         // Log keys on item viewer
          Config.LogOrgans = false;                       // Log organs on item viewer
          Config.LogLowRunes = false;                     // Log low runes (El - Dol) on item viewer

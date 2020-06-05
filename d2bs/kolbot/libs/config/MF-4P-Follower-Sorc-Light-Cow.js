@@ -1,46 +1,47 @@
-//! Paladin config file
-//? ██████╗ ██╗   ██╗███████╗██╗  ██╗███████╗██████╗ 
-//? ██╔══██╗██║   ██║██╔════╝██║  ██║██╔════╝██╔══██╗
-//? ██████╔╝██║   ██║███████╗███████║█████╗  ██████╔╝
-//? ██╔══██╗██║   ██║╚════██║██╔══██║██╔══╝  ██╔══██╗
-//? ██║  ██║╚██████╔╝███████║██║  ██║███████╗██║  ██║
-//? ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+//! Sorceress Config File
+//? ███╗   ███╗███████╗    ███████╗ ██████╗ ██╗     ██╗      ██████╗ ██╗    ██╗███████╗██████╗               ██╗     ██╗ ██████╗ ██╗  ██╗████████╗
+//? ████╗ ████║██╔════╝    ██╔════╝██╔═══██╗██║     ██║     ██╔═══██╗██║    ██║██╔════╝██╔══██╗              ██║     ██║██╔════╝ ██║  ██║╚══██╔══╝
+//? ██╔████╔██║█████╗      █████╗  ██║   ██║██║     ██║     ██║   ██║██║ █╗ ██║█████╗  ██████╔╝    █████╗    ██║     ██║██║  ███╗███████║   ██║
+//? ██║╚██╔╝██║██╔══╝      ██╔══╝  ██║   ██║██║     ██║     ██║   ██║██║███╗██║██╔══╝  ██╔══██╗    ╚════╝    ██║     ██║██║   ██║██╔══██║   ██║
+//? ██║ ╚═╝ ██║██║         ██║     ╚██████╔╝███████╗███████╗╚██████╔╝╚███╔███╔╝███████╗██║  ██║              ███████╗██║╚██████╔╝██║  ██║   ██║
+//? ╚═╝     ╚═╝╚═╝         ╚═╝      ╚═════╝ ╚══════╝╚══════╝ ╚═════╝  ╚══╝╚══╝ ╚══════╝╚═╝  ╚═╝              ╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝
 
 function LoadConfig() {
    //! FOLLOW LEADER -------------------------------------------------------------------
       Config.Leader   =  "";
-      Config.QuitList = [""];
-      Config.QuitListWaitFlag = false;
+      Config.QuitList = ["TMFLeader"];
       Config.QuitListMode = 0;
       Config.QuitListDelay = [1, 10];
    //! LEADER / HELPER -----------------------------------------------------------------
       Config.MFLeader   = false;
       Scripts.MFHelper  = false;
    //! SCRIPTS -------------------------------------------------------------------------
-      Scripts.Rusher = true;
-         Config.Rusher.WaitPlayerCount = 8;
-         Config.Rusher.Radament = false;
-         Config.Rusher.LamEsen = false;
-         Config.Rusher.Izual = false;
-         Config.Rusher.Shenk = true;
-         Config.Rusher.Anya = false;
-         Config.Rusher.LastRun = "shenk";
+      Scripts.Tombs = true;
+      Scripts.Cows = true;
+      Scripts.BaalHelper = true;
+         Config.BaalHelper.Wait = 300;
+         Config.BaalHelper.KillNihlathak = false;
+         Config.BaalHelper.FastChaos = false;
+         Config.BaalHelper.DollQuit = false;
+         Config.BaalHelper.KillBaal = true;
+         Config.BaalHelper.SkipTP = false;
+      Scripts.Follower = false;
    //! INVENTORY SETTINGS --------------------------------------------------------------
       Config.Inventory[0] = [1,1,1,1,1,1,0,0,0,0];
       Config.Inventory[1] = [1,1,1,1,1,1,0,0,0,0];
       Config.Inventory[2] = [1,1,1,1,1,1,0,0,0,0];
-      Config.Inventory[3] = [1,1,1,1,1,0,0,0,0,0];
+      Config.Inventory[3] = [1,1,1,1,1,1,0,0,0,0];
 
       Config.StashGold = 500000;
 
       Config.BeltColumn[0] = "hp";
       Config.BeltColumn[1] = "mp";
-      Config.BeltColumn[2] = "rv";
+      Config.BeltColumn[2] = "mp";
       Config.BeltColumn[3] = "rv";
 
       Config.MinColumn[0] = 3;
       Config.MinColumn[1] = 3;
-      Config.MinColumn[2] = 0;
+      Config.MinColumn[2] = 3;
       Config.MinColumn[3] = 0;
    //! SPECIAL SCRIPTS -----------------------------------------------------------------
       Scripts.WPGetter = false;                          // Get missing waypoints
@@ -77,7 +78,7 @@ function LoadConfig() {
       //+ Potion settings -----------------------------------------------------------
          Config.UseHP         = 85;                      // Drink a healing potion if life is under designated percent.
          Config.UseRejuvHP    = 65;                      // Drink a rejuvenation potion if life is under designated percent.
-         Config.UseMP         = 40;                      // Drink a mana potion if mana is under designated percent.
+         Config.UseMP         = 60;                      // Drink a mana potion if mana is under designated percent.
          Config.UseRejuvMP    = 10;                      // Drink a rejuvenation potion if mana is under designated percent.
          Config.UseMercHP     = 85;                      // Give a healing potion to your merc if his/her life is under designated percent.
          Config.UseMercRejuv  = 40;                      // Give a rejuvenation potion to your merc if his/her life is under designated percent.
@@ -89,19 +90,19 @@ function LoadConfig() {
          Config.ManaChicken   =  0;                      // Exit game if mana is less or equal to designated percent.
          Config.MercChicken   =  0;                      // Exit game if merc's life is less or equal to designated percent.
          Config.TownHP        = 55;                      // Go to town if life is under designated percent.
-         Config.TownMP        =  0;                      // Go to town if mana is under designated percent.
+         Config.TownMP        = 10;                      // Go to town if mana is under designated percent.
    //! PICK LIST -----------------------------------------------------------------------
-      Config.PickitFiles.push("w-bot1.nip");
+      // Config.PickitFiles.push("w-bot1.nip");
       // Config.PickitFiles.push("w-bot2.nip");
       // Config.PickitFiles.push("w-bot3.nip");
-      // Config.PickitFiles.push("w-bot4.nip");
+      Config.PickitFiles.push("w-bot4.nip");
       // Config.PickitFiles.push("w-potions.nip");
       // Config.PickitFiles.push("w-koltonEarlyLadder.nip");
-      Config.PickitFiles.push("w-koltonEndLadder.nip");
+      // Config.PickitFiles.push("w-koltonEndLadder.nip");
       Config.PickitFiles.push("w-kolton.nip");
       Config.PickitFiles.push("w-LLD.nip");
       Config.PickRange = 40;
-      Config.FastPick  = true;
+      Config.FastPick  = false;
       Config.ManualPlayPick = false;                     // If set to true and D2BotMap entry script is used, will enable picking in manual play.
    //! AUTO MULE -----------------------------------------------------------------------
       Config.AutoMule.Trigger = [];
@@ -139,7 +140,7 @@ function LoadConfig() {
          Config.CubeRepair = false;                      // Repair weapons with Ort and armor with Ral rune. Don't use it if you don't understand the risk of losing items.
          Config.RepairPercent = 40;                      // Durability percent of any equipped item that will trigger repairs.
       //+ Gambling config -----------------------------------------------------------
-         Config.Gamble = false;
+         Config.Gamble = true;
          Config.GambleGoldStart = 2000000;
          Config.GambleGoldStop  =  500000;
          Config.GambleItems.push("Amulet");
@@ -160,18 +161,18 @@ function LoadConfig() {
          //+ CRAFT ------------------------------------------------------------------
             Config.Recipes.push([Recipe.Caster.Amulet]);                              // Craft Caster Amulet
             Config.Recipes.push([Recipe.Blood.Ring]);                                 // Craft Blood Ring
-            // Config.Recipes.push([Recipe.Caster.Belt,     "Sharkskin Belt"]);       // Craft Caster Sharkskin Belt
-            // Config.Recipes.push([Recipe.Caster.Belt,   "Vampirefang Belt"]);       // Craft Caster Vampirefang Belt
-            Config.Recipes.push([Recipe.Blood.Gloves,     "Sharkskin Gloves"]);       // Craft Blood Sharkskin Gloves
-            Config.Recipes.push([Recipe.Blood.Gloves,   "Vampirebone Gloves"]);       // Craft Blood Vampirebone Gloves	
+            Config.Recipes.push([Recipe.Caster.Belt,        "Sharkskin Belt"]);       // Craft Caster Sharkskin Belt
+            Config.Recipes.push([Recipe.Caster.Belt,      "Vampirefang Belt"]);       // Craft Caster Vampirefang Belt
+            // Config.Recipes.push([Recipe.Blood.Gloves,  "Sharkskin Gloves"]);       // Craft Blood Sharkskin Gloves
+            // Config.Recipes.push([Recipe.Blood.Gloves,"Vampirebone Gloves"]);       // Craft Blood Vampirebone Gloves
             // Config.Recipes.push([Recipe.HitPower.Gloves,      "Vambraces"]);       // Craft Hit Power Vambraces
             // Config.Recipes.push([Recipe.HitPower.Gloves,   "Chain Gloves"]);       // Craft Hit Power Chain Gloves
             // Config.Recipes.push([Recipe.HitPower.Gloves,  "Heavy Bracers"]);       // Craft Hit Power Heavy Bracers
-            // Config.Recipes.push([Recipe.Blood.Helm,               "Armet"]);       // Craft Blood Armet
+            Config.Recipes.push([Recipe.Blood.Helm,                  "Armet"]);       // Craft Blood Armet
          //+ OTHERS -----------------------------------------------------------------
             Config.Recipes.push([Recipe.Reroll.Magic,          "Grand Charm"]);       // Reroll magic Grand Charm (ilvl 91+)
-            // Config.Recipes.push([Recipe.Reroll.Magic,            "Diadem"]);       // Reroll magic Diadem
-            // Config.Recipes.push([Recipe.Reroll.Rare,             "Diadem"]);       // Reroll rare Diadem
+            Config.Recipes.push([Recipe.Reroll.Magic,               "Diadem"]);       // Reroll magic Diadem
+            Config.Recipes.push([Recipe.Reroll.Rare,                "Diadem"]);       // Reroll rare Diadem
             // Config.Recipes.push([Recipe.Token]);                                   // Make Token of Absolution
          //+ SOCKET -----------------------------------------------------------------
             Config.Recipes.push([Recipe.Socket.Weapon, "Great Poleaxe",        Roll.Eth]);
@@ -238,7 +239,7 @@ function LoadConfig() {
       Config.LocalChat.Enabled = true;                   // enable the LocalChat system
       Config.LocalChat.Toggle = false;                   // optional, set to KEY value to toggle through modes 0, 1, 2
       Config.LocalChat.Mode = 1;                         // 0 = disabled, 1 = chat from 'say' (recommended), 2 = all chat (for manual play)
-      Config.PublicMode = 3;                             // 1 = invite and accept, 2 = accept only, 3 = invite only, 0 = disable
+      Config.PublicMode = 2;                             // 1 = invite and accept, 2 = accept only, 3 = invite only, 0 = disable
       Config.Greetings = [];                             // Example: ["Hello, $name (level $level $class)"]
       Config.DeathMessages = [];                         // Example: ["Watch out for that $killer, $name!"]
       Config.Congratulations = [];                       // Example: ["Congrats on level $level, $name!"]
@@ -247,8 +248,8 @@ function LoadConfig() {
    //! GENERAL CONFIG ------------------------------------------------------------------
       Config.AutoMap = false;                            // Set to true to open automap at the beginning of the game.
       Config.LastMessage = "";                           // Message or array of messages to say at the end of the run. Use $nextgame to say next game - "Next game: $nextgame" (works with lead entry point)
-      Config.MinGameTime = 900;                          // Min game time in seconds. Bot will TP to town and stay in game if the run is completed before.
-      Config.MaxGameTime = 1380;                         // Maximum game time in seconds. Quit game when limit is reached.
+      Config.MinGameTime = 300;                          // Min game time in seconds. Bot will TP to town and stay in game if the run is completed before.
+      Config.MaxGameTime = 1080;                         // Maximum game time in seconds. Quit game when limit is reached.
       Config.TeleSwitch = false;                         // Switch to secondary (non-primary) slot when teleporting more than 5 nodes.
       Config.OpenChests = false;                         // Open chests. Controls key buying.
       Config.MiniShopBot = true;                         // Scan items in NPC shops.
@@ -269,7 +270,7 @@ function LoadConfig() {
       Config.RandomPrecast = false;                      // Anti-PK measure, only supported in Baal and BaalHelper and BaalAssisstant at the moment.
       Config.ViperCheck = false;                         // Quit if revived Tomb Vipers are sighted
    //! NOTIFICATION CONFIG -------------------------------------------------------------
-      Config.RogerThatTelegram.Active = true;
+      Config.RogerThatTelegram.Active = false;
          Config.RogerThatTelegram.Notify.Trade = false;
          Config.RogerThatTelegram.Notify.HotIP = true;
          Config.RogerThatTelegram.Notify.DiabloClone = true;
@@ -279,30 +280,33 @@ function LoadConfig() {
       Config.KillDclone = true;                          // Go to Palace Cellar 3 and try to kill Diablo Clone. Pointless if you already have Annihilus.
       Config.DCloneQuit = false;                         // 1 = quit when Diablo walks, 2 = quit on soj sales, 0 = disabled
    //! MONSTER SKIP CONFIG -------------------------------------------------------------
-      Config.SkipImmune  = ["magic"];
+      Config.SkipImmune  = ["lightning"];
       Config.SkipEnchant = [];
       Config.SkipAura    = [];
       //Config.SkipException = [getLocaleString(2851), getLocaleString(2852), getLocaleString(2853)]; // vizier, de seis, infector
    //! ATTACK CONFIG -------------------------------------------------------------------
       Config.AttackSkill[0]  = -1;                       // Preattack skill.
-      Config.AttackSkill[1]  = 112;                      // Primary skill to bosses.
-      Config.AttackSkill[2]  = 113;                      // Primary aura to bosses
-      Config.AttackSkill[3]  = 112;                      // Primary skill to others.
-      Config.AttackSkill[4]  = 113;                      // Primary aura to others.
-      Config.AttackSkill[5]  =  97;                      // Secondary skill if monster is immune to primary.
-      Config.AttackSkill[6]  = 122;                      // Secondary aura.
+      Config.AttackSkill[1]  = 49;                       // Primary skill to bosses.
+      Config.AttackSkill[2]  = 49;                       // Primary untimed skill to bosses. Keep at -1 if Config.AttackSkill[1] is untimed skill.
+      Config.AttackSkill[3]  = 53;                       // Primary skill to others.
+      Config.AttackSkill[4]  = 53;                       // Primary untimed skill to others. Keep at -1 if Config.AttackSkill[3] is untimed skill.
+      Config.AttackSkill[5]  = -1;                       // Secondary skill if monster is immune to primary.
+      Config.AttackSkill[6]  = -1;                       // Secondary untimed skill if monster is immune to primary untimed.
 
-      Config.LowManaSkill[0] = 112;                      // Low mana skill.
-      Config.LowManaSkill[1] = 124;                      // Low mana aura.
+      Config.LowManaSkill[0] = -1;                       // Timed low mana skill.
+      Config.LowManaSkill[1] = -1;                       // Untimed low mana skill.
 
       Config.CustomAttack = {
          //"Monster Name": [-1, -1]
       };
 
-      Config.BossPriority = true;                        // Set to true to attack Unique/SuperUnique monsters first when clearing
+      Config.NoTele       = false;                       // Restrict char from teleporting. Useful for low level/low mana chars
+      Config.Dodge        = true;                        // Move away from monsters that get too close. Don't use with short-ranged attacks like Poison Dagger.
+      Config.DodgeRange   = 10;                          // Distance to keep from monsters.
+      Config.DodgeHP      = 100;                         // Dodge only if HP percent is less than or equal to Config.DodgeHP. 100 = always dodge.
+      Config.BossPriority = false;                       // Set to true to attack Unique/SuperUnique monsters first when clearing
       Config.ClearType    = 0xF;                         // Monster spectype to kill in level clear scripts (ie. Mausoleum). 0xF = skip normal, 0x7 = champions/bosses, 0 = all
-      Config.AvoidDolls   = true;                        // Try to attack dolls from a greater distance with hammerdins.
-      Config.Vigor        = true;                        // Swith to Vigor when running
-      Config.Charge       = false;                       // Use Charge when running
-      Config.Redemption   = [50, 50];                    // Switch to Redemption after clearing an area if under designated life or mana. Format: [lifepercent, manapercent]
+      Config.TeleStomp    = true;                        // Use merc to attack bosses if they're immune to attacks, but not to physical damage
+      Config.CastStatic   = 65;                          // Cast static until the target is at designated life percent. 100 = disabled.
+      Config.StaticList   = ["bloodraven", "griswold", "andariel", "summoner", "duriel", "mephisto", "diablo", "izual", "baal"];
 }

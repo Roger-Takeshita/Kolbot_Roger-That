@@ -120,18 +120,19 @@ function LoadConfig() {
       Config.PickitFiles.push("w-LLD.nip");
       Config.PickRange = 40;
       Config.FastPick  = true;
-	   Config.ManualPlayPick = false;                     // If set to true and D2BotMap entry script is used, will enable picking in manual play.
+      Config.ManualPlayPick = false;                     // If set to true and D2BotMap entry script is used, will enable picking in manual play.
    //! AUTO MULE -----------------------------------------------------------------------
       Config.AutoMule.Trigger = [];
       Config.AutoMule.Force   = [];
       Config.AutoMule.Exclude = [];
    //! ADDITION CONFIG -----------------------------------------------------------------
       //+ Print to console ----------------------------------------------------------
-         Config.D2BotPrintGameTime = false;              // Game time in the end of each game
-         Config.D2BotPrintChicken  =  true;              // Chicken location
-         Config.D2BotPrintCrash    =  true;              // Crash location
-         Config.D2BotPrintDie      =  true;              // When you die
-         Config.D2BotPrintLostXp   = false;              // When you lose experience
+         Config.D2BotPrintGameTime    = false;           // Game time in the end of each game
+         Config.D2BotPrintChicken     =  true;           // Chicken location
+         Config.D2BotPrintCrash       = false;           // Crash location
+         Config.D2BotPrintScriptError = false;           // Script error
+         Config.D2BotPrintDie         =  true;           // When you die
+         Config.D2BotPrintLostXp      = false;           // When you lose experience
       //+ Additional item info log settings. All info goes to \logs\ItemLog.txt -----
          Config.ItemInfo = false;                        // Log stashed, skipped (due to no space) or sold items.
          Config.ItemInfoQuality = [];                    // The quality of sold items to log. See NTItemAlias.dbl for values. Example: Config.ItemInfoQuality = [6, 7, 8];
@@ -180,7 +181,7 @@ function LoadConfig() {
             // Config.Recipes.push([Recipe.Caster.Belt,     "Sharkskin Belt"]);       // Craft Caster Sharkskin Belt
             // Config.Recipes.push([Recipe.Caster.Belt,   "Vampirefang Belt"]);       // Craft Caster Vampirefang Belt
             Config.Recipes.push([Recipe.Blood.Gloves,     "Sharkskin Gloves"]);       // Craft Blood Sharkskin Gloves
-            Config.Recipes.push([Recipe.Blood.Gloves,   "Vampirebone Gloves"]);       // Craft Blood Vampirebone Gloves	
+            Config.Recipes.push([Recipe.Blood.Gloves,   "Vampirebone Gloves"]);       // Craft Blood Vampirebone Gloves
             // Config.Recipes.push([Recipe.HitPower.Gloves,      "Vambraces"]);       // Craft Hit Power Vambraces
             // Config.Recipes.push([Recipe.HitPower.Gloves,   "Chain Gloves"]);       // Craft Hit Power Chain Gloves
             // Config.Recipes.push([Recipe.HitPower.Gloves,  "Heavy Bracers"]);       // Craft Hit Power Heavy Bracers
