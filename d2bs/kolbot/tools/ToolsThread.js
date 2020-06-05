@@ -603,20 +603,21 @@ function main() {
 			case 96:  //- Numpad 0 - Test
 				if (pvpTimeFlag) break;
 				//= Send Notification
-					Config.RogerThatTelegram.Active = true;
-						Config.RogerThatTelegram.Notify.Trade = true;
-						Config.RogerThatTelegram.Notify.HotIP = true;
-						Config.RogerThatTelegram.Notify.DiabloClone = true;
-					AutoRogerThat.notify({
-						code: 'Diablo Clone',
-						message: 'Test from Diablo',
-						data: {
-							profile: me.profile,
-							game: me.gamename,
-							password: me.gamepassword,
-							ip: me.gameserverip
-						}
-					});
+				showConsole();
+				Config.RogerThatTelegram.Active = true;
+					Config.RogerThatTelegram.Notify.Trade = true;
+					Config.RogerThatTelegram.Notify.HotIP = true;
+					Config.RogerThatTelegram.Notify.DiabloClone = true;
+				AutoRogerThat.notify({
+					code: 'Trade',
+					message: 'Trade Test',
+					data: {
+						profile: me.profile,
+						game: me.gamename,
+						password: me.gamepassword,
+						ip: me.gameserverip
+					}
+				});
 				//= Talk to Cain (act 1)
 					// var target = getUnit(1, 265);
 
@@ -900,7 +901,7 @@ function main() {
 				}
 
 				if (Config.LifeChicken > 0 && me.hp <= Math.floor(me.hpmax * Config.LifeChicken / 100)) {
-					D2Bot.printToConsole("Life Chicken (" + me.hp + "/" + me.hpmax + ")" + this.getNearestMonster() + " in " + Pather.getAreaName(me.area) + ". Ping: " + me.ping, 9);
+					D2Bot.printToConsole("Life Chicken (" + me.hp + "/" + me.hpmax + ")" + this.getNearestMonster() + " in " + Pather.getAreaName(me.area) + ". Ping: " + me.ping, 8);
 					D2Bot.updateChickens();
 					this.exit();
 
