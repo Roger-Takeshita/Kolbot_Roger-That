@@ -1919,11 +1919,15 @@ MainLoop:
 		}
 
 		if (this.errorConsolePrint) {
-			D2Bot.printToConsole(oogmsg, 10);
+			if (Config.D2BotPrintScriptError) {
+				D2Bot.printToConsole(oogmsg, 10);
+			}
 		}
 
-		showConsole();
-		print(msg);
+		if (Config.D2BotPrintScriptError) {
+			showConsole();
+			print(msg);
+		}
 		this.fileAction("logs/ScriptErrorLog.txt", 2, filemsg);
 
 		if (this.screenshotErrors) {

@@ -1017,7 +1017,7 @@ ModeLoop:
 		if (me.area === targetArea) {
 			return true;
 		}
-
+		if (!Config.D2BotPrintScriptError) return false;
 		throw new Error("useWaypoint: Failed to use waypoint");
 	},
 

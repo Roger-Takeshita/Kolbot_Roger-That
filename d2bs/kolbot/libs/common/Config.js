@@ -185,6 +185,7 @@ var Config = {
 	D2BotPrintGameTime: false,
 	D2BotPrintChicken: false,
 	D2BotPrintCrash: false,
+	D2BotPrintScriptError: false,
 	D2BotPrintDie: false,
 	D2BotPrintLostXp: false,
 	MessageLogFlag: false,

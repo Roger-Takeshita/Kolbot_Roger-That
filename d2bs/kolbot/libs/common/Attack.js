@@ -229,6 +229,7 @@ var Attack = {
 		}
 
 		if (!target) {
+			if (!Config.D2BotPrintScriptError) return false;
 			throw new Error("Attack.kill: Target not found");
 		}
 
@@ -298,6 +299,7 @@ var Attack = {
 		}
 
 		if (target.hp > 0 && target.mode !== 0 && target.mode !== 12) {
+			if (!Config.D2BotPrintScriptError) return false;
 			throw new Error("Failed to kill " + target.name + errorInfo);
 		}
 
@@ -435,6 +437,7 @@ var Attack = {
 			}
 
 			if (!boss) {
+				if (!Config.D2BotPrintScriptError) return false;
 				throw new Error("Attack.clear: " + bossId + " not found");
 			}
 
