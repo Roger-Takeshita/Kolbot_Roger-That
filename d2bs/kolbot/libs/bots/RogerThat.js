@@ -665,78 +665,455 @@ function RogerThat() {
                 return true;
             };
 
-        this.getQuestItem = function (classid, chestid) {
-            let chest = getUnit(2, chestid),
-                item;
+            this.getPortal = function (targetArea, owner) {
+                let portal = getUnit(2, "portal");
 
-            if (me.getItem(classid)) {
-                return true;
-            }
+                if (portal) {
+                    do {
+                        if (typeof targetArea !== "number" || portal.objtype === targetArea) {
+                            switch (owner) {
+                                case undefined: // Pather.usePortal(area) - red portal
+                                    if (!portal.getParent()) {
+                                        return copyUnit(portal);
+                                    }
 
-            if (me.inTown) {
-                return false;
-            }
+                                    break;
+                                case null: // Pather.usePortal(area, null) - any blue portal leading to area
+                                    if (portal.getParent() === me.name || Misc.inMyParty(portal.getParent())) {
+                                        return copyUnit(portal);
+                                    }
 
-            if (!chest) {
-                return false;
-            }
+                                    break;
+                                default: // Pather.usePortal(null, owner) - any blue portal belonging to owner OR Pather.usePortal(area, owner) - blue portal matching area and owner
+                                    if (portal.getParent() === owner && (owner === me.name || Misc.inMyParty(owner))) {
+                                        return copyUnit(portal);
+                                    }
 
-            Misc.openChest(chest);
-            item = getUnit(4, classid);
+                                    break;
+                            }
+                        }
+                    } while (portal.getNext());
+                }
 
-            try {
-                Pickit.pickItem(item);
-            } catch (error) {
-                me.overhead("Something went wrong!");
                 return false;
             };
 
-            return true;
-        };
+            this.getQuestItem = function (classid, chestid) {
+                let chest = getUnit(2, chestid),
+                    item;
 
-        this.goToTownTomeBook = function () {
-            if (!me.inTown) {
-                delay(150);
-
-                if (!Pather.getPortal(null, leader.name)) {
-                    if (!me.findItem("tbk", 0, 3)) {
-                        me.overhead("ÿc1Sorry, I don't have tp!ÿc0");
-                        return false;
-                    }
-                    Town.goToTown();
-                } else {
-                    Pather.usePortal(null, leader.name);
+                if (me.getItem(classid)) {
+                    return true;
                 }
-            }
-            return true;
-        }
 
-        this.cubeStaff = function () {
-            let staff = me.getItem("vip"),
-                amulet = me.getItem("msf");
+                if (me.inTown) {
+                    return false;
+                }
 
-            if (!staff || !amulet) {
-                return false;
-            }
+                if (!chest) {
+                    return false;
+                }
 
-            Storage.Cube.MoveTo(amulet);
-            Storage.Cube.MoveTo(staff);
-            Cubing.openCube();
-            print("making staff");
-            transmute();
-            delay(750 + me.ping);
+                Misc.openChest(chest);
+                item = getUnit(4, classid);
 
-            staff = me.getItem(91);
+                try {
+                    Pickit.pickItem(item);
+                } catch (error) {
+                    me.overhead("Something went wrong!");
+                    return false;
+                };
 
-            if (!staff) {
-                return false;
-            }
+                return true;
+            };
 
-            Storage.Inventory.MoveTo(staff);
-            me.cancel();
+            this.msgQuest = function (quest) {
+                if (quest) {
+                    me.overhead("ÿc2I've already got this quest!ÿc0");
+                    return
+                } else {
+                    me.overhead("ÿc9I need this quest!ÿc0");
+                }
+            };
 
-            return true;
-        };
+            this.talkToDrognan = function () {
+                if (!this.cubeStaff()) return;
+                Town.move(NPC.Drognan);
+
+                let target = getUnit(1, NPC.Drognan);
+
+                if (target && target.openMenu()) {
+                    me.cancel();
+                }
+
+                Town.move("portalspot");
+            };
+
+            this.checkQuest = function () {
+                let target, item, itemClassId, quest, localNPC;
+
+                switch (me.area) {
+                    case 4:     // Stone field
+                        itemClassId = 525;
+
+                        if (me.getItem(itemClassId)) {
+                            const stones = [getUnit(2, 17), getUnit(2, 18), getUnit(2, 19), getUnit(2, 20), getUnit(2, 21)];
+                            while (!me.getQuest(4, 4)) {
+                                stones.forEach(function (stone) {
+                                    if (!stone.mode) {
+                                        Attack.securePosition(stone.x, stone.y, 10, me.ping * 2);
+                                        Misc.click(0, 0, stone);
+                                    }
+                                });
+                            }
+                        }
+
+                        break;
+                    case 5:     // Scroll tree
+                        target = getUnit(2, 30);
+                        itemClassId = 524;
+
+                        if (target) {
+                            Misc.openChest(target);
+                            delay(300);
+                            item = getUnit(4, itemClassId);
+                            Pickit.pickItem(item);
+                        }
+
+                        if (!me.getItem(itemClassId)) {
+                            me.overhead("I'm full! Help me pls!");
+                        } else {
+                            this.goToTownTomeBook();
+                            if (me.getItem(itemClassId)) {
+                                Town.move(NPC.Akara);
+                                localNPC = getUnit(1, NPC.Akara);
+                                localNPC.openMenu();
+                                me.cancel();
+                                Town.move("portalspot");
+                            }
+                        }
+
+                        break;
+                    case 38:    // Rescue Cain
+                        quest = me.getQuest(4, 0);
+
+                        if (!quest) {
+                            target = getUnit(2, 26);
+
+                            if (target) {
+                                Misc.openChest(target);
+                            }
+                        }
+
+                        break;
+                    case 28:    // Smith
+                        itemClassId = 89;
+
+                        if (me.getQuest(3, 3) || me.getQuest(3, 0)) {
+                            me.overhead("I've already got this quest!");
+                            break;
+                        }
+
+                        this.getQuestItem(itemClassId,108);
+                        delay(350);
+
+                        if (!me.getItem(itemClassId)) {
+                            me.overhead("I'm full! Help me pls!");
+                        } else {
+                            this.goToTownTomeBook();
+                            if (me.getItem(itemClassId)) {
+                                Town.move(NPC.Charsi);
+                                localNPC = getUnit(1, NPC.Charsi);
+                                localNPC.openMenu();
+                                me.cancel();
+                                Town.move("portalspot");
+                            }
+                        }
+
+                        break;
+                    case 49:    // Pick book of skill
+                        if (me.getQuest(9, 0)) {
+                            me.overhead("I've already got this quest!");
+                            delay(5000);
+                            this.goToTownTomeBook();
+                            break;
+                        }
+
+                        target = getUnit(4, 552);
+
+                        if (!target) {
+                            break;
+                        }
+
+                        Pickit.pickItem(target);
+                        delay(500);
+
+                        if (me.getItem(552)) {
+                            print("Using book of skill");
+                            clickItem(1, me.getItem(552));
+                            delay(150);
+                            this.goToTownTomeBook();
+                            Town.move(NPC.Atma);
+                            localNPC = getUnit(1, NPC.Atma);
+                            localNPC.openMenu();
+                            me.cancel();
+                            Town.move("portalspot");
+                            break;
+                        } else {
+                            me.overhead("I'm full! Help me pls!");
+                        }
+
+                        break;
+                    case 60:    // Halls of the dead lvl 3
+                        if (me.getItem(549)) {
+                            me.overhead("I already got the cube!");
+                            delay(5000);
+                            this.goToTownTomeBook();
+                            break;
+                        }
+
+                        this.getQuestItem(549, 354);
+                        delay(350);
+
+                        if (!me.getItem(549)) {
+                            me.overhead("I'm full! Help me pls!");
+                            break;
+                        }
+
+                        if (!this.goToTownTomeBook()) break;
+                        delay(500);
+
+                        this.talkToDrognan();
+
+                        break;
+                    case 61:    // Claw viper temple lvl 2
+                        if (me.getQuest(11, 0)) {
+                            me.overhead("I've already completed this quest!");
+                            delay(5000);
+                            this.goToTownTomeBook();
+                            break;
+                        }
+
+                        if (me.getItem(521)) {
+                            me.overhead("I already got the amulet!");
+                            break;
+                        }
+
+                        this.getQuestItem(521, 149);
+                        delay(500);
+
+                        if (!me.getItem(521)) {
+                            me.overhead("I'm full! Help me pls!");
+                            break;
+                        }
+
+                        if (!this.goToTownTomeBook()) break;
+                        delay(500);
+
+                        this.talkToDrognan();
+
+                        break;
+                    case 64:    // Maggot lair lvl 3
+                        if (me.getQuest(10, 0)) {
+                            me.overhead("I've already completed this quest!");
+                            delay(5000);
+                            this.goToTownTomeBook();
+                            break;
+                        }
+
+                        if (me.getItem(92)) {
+                            me.overhead("I already got the staff!");
+                            break;
+                        }
+
+                        this.getQuestItem(92, 356);
+                        delay(350);
+
+                        if (!me.getItem(92)) {
+                            me.overhead("I'm full! Help me pls!");
+                            break;
+                        }
+
+                        if (!this.goToTownTomeBook()) break;
+                        delay(500);
+
+                        this.talkToDrognan();
+
+                        break;
+                    case 66:    // Tal rasha's tomb
+                    case 67:
+                    case 68:
+                    case 69:
+                    case 70:
+                    case 71:
+                    case 72:
+                        this.placeStaff();
+                        break;
+                    case 73:    // Tal rasha's chamber
+                        this.talkToTyrael();
+                        Pather.usePortal(null);
+                        break;
+                    case 94:    // Ruined temple - Lam Esen's Tome
+                        if (me.getQuest(17, 0)) {
+                            me.overhead("I've already completed this quest!");
+                            delay(5000);
+                            this.goToTownTomeBook();
+                            break;
+                        }
+
+                        if (me.getItem(4)) {
+                            me.overhead("I already got the book!");
+                            break;
+                        }
+
+                        target = getUnit(2, 193);
+                        Misc.openChest(target);
+                        delay(300);
+                        target = getUnit(4, 548);
+
+                        if (!target) {
+                            me.overhead("Boook not found! Someone already got!");
+                            break
+                        }
+
+                        Pickit.pickItem(target);
+                        delay(150);
+
+                        if (!me.getItem(548)) {
+                            me.overhead("I'm full! Help me pls!");
+                            break;
+                        }
+
+                        if (!this.goToTownTomeBook()) break;
+                        delay(1000);
+                        Town.move(NPC.Alkor);
+                        target = getUnit(1, NPC.Alkor);
+
+                        if (target && target.openMenu()) {
+                            me.cancel();
+                        }
+
+                        Town.move("portalspot");
+
+                        break;
+                    case 102:
+                        Pather.moveTo(17590, 8068);
+                        let tick = getTickCount(),  time = 0;
+
+                        while (getCollision(me.area, 17601, 8070, 17590, 8068) !== 0 && (time = getTickCount() - tick) < 2000) {
+                            Pather.moveTo(17590, 8068);  // Activate it
+                            delay(3);
+                        }
+
+                        if (time < 2000 && Pather.moveTo(17601, 8070)) {
+                            Pather.usePortal(null);
+                        }
+
+                        break;
+                    default:
+                        me.overhead("Picking items.");
+                        Pickit.pickItems();
+
+                        if (!me.inTown && openContainers) {
+                            this.openContainers(20);
+                        }
+
+                        me.overhead("Done picking.");
+
+                        break;
+                }
+            };
+
+            this.goToTownTomeBook = function () {
+                if (!me.inTown) {
+                    delay(150);
+
+                    if (!Pather.getPortal(null, leader.name)) {
+                        if (!me.findItem("tbk", 0, 3)) {
+                            me.overhead("ÿc1Sorry, I don't have tp!ÿc0");
+                            return false;
+                        }
+                        Town.goToTown();
+                    } else {
+                        Pather.usePortal(null, leader.name);
+
+                    }
+                }
+
+                delay(250);
+
+                if (me.inTown) {
+                    return true;
+                } else {
+                    return false;
+                }
+            };
+
+            this.cubeStaff = function () {
+                let staff = me.getItem("vip"),
+                    amulet = me.getItem("msf");
+
+                if (me.getItem(91)) return true;
+
+                if (!staff || !amulet || !me.getItem(549)) {
+                    me.overhead("Something is missing Cube/Ammy/Staff");
+                    return false;
+                }
+
+                Storage.Cube.MoveTo(amulet);
+                Storage.Cube.MoveTo(staff);
+                Cubing.openCube();
+                print("making staff");
+                transmute();
+                delay(750 + me.ping);
+
+                staff = me.getItem(91);
+
+                if (!staff) {
+                    return false;
+                }
+
+                Storage.Inventory.MoveTo(staff);
+                me.cancel();
+
+                return true;
+            };
+
+            this.placeStaff = function() {
+                let item = me.getItem(91);
+                let orifice = getUnit(2, 152);
+
+                if (item && !me.getQuest(10, 0)) {
+                    Misc.openChest(orifice);
+                    item.toCursor();
+                    submitItem();
+                    delay(1000);
+                    item = me.findItem(-1, 0, 3);
+
+                    if (item && item.toCursor()) {
+                        Storage.Inventory.MoveTo(item);
+                    }
+                }
+                Pather.teleport = !Pather.teleport;
+            };
+
+            this.talkToTyrael = function() {
+                let NPC = getUnit(1, "Tyrael");
+
+                if (!NPC) {
+                    me.overhead("Tyrael not found!")
+                }
+
+                for (let i = 0; i < 3; i++) {
+                    if (getDistance(me, NPC) > 3) {
+                        Pather.moveToUnit(NPC);
+                    }
+                    NPC.interact();
+                    delay(2000);
+                    me.cancel();
+                    Pather.teleport = !Pather.teleport;
+                }
+            };
 
     //! CHAT EVENT ===================================================================
         this.chatEvent = function (nick, msg) {
@@ -1515,146 +1892,7 @@ function RogerThat() {
 
                             break;
                         case "p":
-                            let target;
-
-                            switch (me.area) {
-                                case 49:    // Pick book of skill
-                                    target = getUnit(4, 552);
-
-                                    if (!target) {
-                                        break;
-                                    }
-
-                                    Pickit.pickItem(target);
-                                    delay(500);
-
-                                    if (me.getItem(552)) {
-                                        print("Using book of skill");
-                                        clickItem(1, me.getItem(552));
-                                        delay(150);
-                                        this.goToTownTomeBook();
-                                        break;
-                                    } else {
-                                        say("!I'm full! Help me pls!");
-                                        me.overhead("I'm full! Help me pls!");
-                                    }
-
-                                    break;
-                                case 60:    // Halls of the dead lvl 3
-                                    if (me.getItem(549)) {
-                                        me.overhead("I alredy got the cube!");
-                                        break;
-                                    }
-
-                                    this.getQuestItem(549, 354);
-                                    delay(350);
-
-                                    if (!me.getItem(549)) {
-                                        me.overhead("I'm full! Help me pls!");
-                                    } else {
-                                        this.goToTownTomeBook();
-                                    }
-
-                                    break;
-                                case 61:    // Claw viper temple lvl 2
-                                    if (me.getItem(521)) {
-                                        me.overhead("I alredy got the amulet!");
-                                        break;
-                                    }
-
-                                    this.getQuestItem(521, 149);
-                                    delay(500);
-
-                                    if (!me.getItem(521)) {
-                                        me.overhead("I'm full! Help me pls!");
-                                        break;
-                                    }
-
-                                    if (!this.goToTownTomeBook()) break;
-                                    delay(500);
-                                    this.cubeStaff();
-
-                                    Town.move(NPC.Drognan);
-
-                                    target = getUnit(1, NPC.Drognan);
-
-                                    if (target && target.openMenu()) {
-                                        me.cancel();
-                                    }
-
-                                    Town.move("portalspot");
-
-                                    break;
-                                case 64:    // Maggot lair lvl 3
-                                    if (me.getItem(92)) {
-                                        me.overhead("I alredy got the staff!");
-                                        break;
-                                    }
-
-                                    this.getQuestItem(92, 356);
-                                    delay(350);
-
-                                    if (!me.getItem(92)) {
-                                        me.overhead("I'm full! Help me pls!");
-                                        break;
-                                    } else {
-                                        this.goToTownTomeBook();
-                                    }
-
-                                    delay(500);
-                                    this.cubeStaff();
-
-                                    break;
-                                case 94:    // Ruined temple
-                                    if (me.getItem(4)) {
-                                        me.overhead("I alredy got the book!");
-                                        break;
-                                    }
-
-                                    target = getUnit(2, 193);
-                                    Misc.openChest(target);
-                                    delay(300);
-                                    target = getUnit(4, 548);
-
-                                    if (!target) {
-                                        me.overhead("Boook not found!");
-                                        break
-                                    }
-
-                                    Pickit.pickItem(target);
-                                    delay(150);
-                                    // this.getQuestItem(2, 193);
-                                    // this.getQuestItem(4, 548);
-
-                                    if (!me.getItem(548)) {
-                                        me.overhead("I'm full! Help me pls!");
-                                        break;
-                                    }
-
-                                    if (!this.goToTownTomeBook()) break;
-                                    delay(1000);
-                                    Town.move(NPC.Alkor);
-                                    target = getUnit(1, NPC.Alkor);
-
-                                    if (target && target.openMenu()) {
-                                        me.cancel();
-                                    }
-
-                                    Town.move("portalspot");
-
-                                    break;
-                                default:
-                                    me.overhead("Picking items.");
-                                    Pickit.pickItems();
-
-                                    if (!me.inTown && openContainers) {
-                                        this.openContainers(20);
-                                    }
-
-                                    me.overhead("Done picking.");
-
-                                    break;
-                            }
+                            this.checkQuest();
 
                             break;
                         case "1wp":
@@ -1749,13 +1987,25 @@ function RogerThat() {
                                 Town.move("portalspot");
                                 delay(200);
 
-                                if (!Pather.usePortal(null, leader.name)) {
-                                    break;
+                                let portal = this.getPortal(null, leader.name);
+                                Misc.click(0, 0, portal);
+                                delay(500);
+
+                                if (me.area !== leader.area) {
+                                    Town.move(NPC.Cain);
+                                    let localNPC = getUnit(1, NPC.Cain);
+                                    localNPC.openMenu();
+                                    me.cancel();
+                                    Town.move("portalspot");
+                                    Misc.click(0, 0, portal);
+                                    delay(500);
                                 }
 
-                                while (!this.getLeaderUnit(Config.Leader) && !me.dead) {
-                                    Attack.clear(10);
-                                    delay(200);
+                                if (me.area === leader.area) {
+                                    while (!this.getLeaderUnit(Config.Leader) && !me.dead) {
+                                        Attack.clear(10);
+                                        delay(200);
+                                    }
                                 }
                             } else if (!me.inTown && leader.area !== me.area) {
                                 if (!Pather.getPortal(null, leader.name)){
@@ -1792,12 +2042,28 @@ function RogerThat() {
                             Precast.doPrecast(true);
 
                             break;
+                        case "a4":
+                            if (me.area === 102) {
+                                Pather.moveTo(17590, 8068);
+                                let tick = getTickCount(), time = 0;
+
+                                while (getCollision(me.area, 17601, 8070, 17590, 8068) !== 0 && (time = getTickCount() - tick) < 2000) {
+                                    Pather.moveTo(17590, 8068);  // Activate it
+                                    delay(3);
+                                }
+
+                                if (time < 2000 && Pather.moveTo(17601, 8070)) {
+                                    Pather.usePortal(null);
+                                }
+                                break;
+                            }
                         case "a1":
                         case "a2":
                         case "a3":
-                        case "a4":
                         case "a5":
-                            this.changeAct(parseInt(action[1], 10));
+                            if (this.goToTownTomeBook()) {
+                                this.changeAct(parseInt(action[1], 10));
+                            }
 
                             break;
                         case me.name + " tp":
