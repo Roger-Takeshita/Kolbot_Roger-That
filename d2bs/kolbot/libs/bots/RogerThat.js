@@ -229,7 +229,7 @@ function RogerThat() {
                             Town.move("stash");
                             // scriptBroadcast("broadcastToToolsThread");
                         }
-                            
+
                         msg = "";
 
                         break;
@@ -348,7 +348,7 @@ function RogerThat() {
                         break;
                     }
                 }
-            }  
+            }
         }
 
         addEventListener('scriptmsg', ScriptMsgEvent);
@@ -363,7 +363,7 @@ function RogerThat() {
                     if (!Misc.inMyParty(Config.Leader)) {
                         leaderLeftPartyFlag = false;
                         checkLeaderFlag = false;
-                    
+
                     }
 
                     if (messageFlag) {
@@ -378,7 +378,7 @@ function RogerThat() {
 
                         messageFlag = false;
                         Town.move("stash");
-                        
+
                         if (tradeMessage !== "") {
                             me.cancel();
                             delay(1200);
@@ -607,7 +607,7 @@ function RogerThat() {
                 }
 
                 item = getUnit(4);
-            
+
                 if (item) {
                     do {
                         if ((item.mode === 3 || item.mode === 5) && item.itemType >= 76 && item.itemType <= 78 && getDistance(me, item) <= range) {
@@ -615,7 +615,7 @@ function RogerThat() {
                         }
                     } while (item.getNext());
                 }
-            
+
                 pickList.sort(Pickit.sortItems);
 
                 while (pickList.length > 0) {
@@ -664,6 +664,79 @@ function RogerThat() {
 
                 return true;
             };
+
+        this.getQuestItem = function (classid, chestid) {
+            let chest = getUnit(2, chestid),
+                item;
+
+            if (me.getItem(classid)) {
+                return true;
+            }
+
+            if (me.inTown) {
+                return false;
+            }
+
+            if (!chest) {
+                return false;
+            }
+
+            Misc.openChest(chest);
+            item = getUnit(4, classid);
+
+            try {
+                Pickit.pickItem(item);
+            } catch (error) {
+                me.overhead("Something went wrong!");
+                return false;
+            };
+
+            return true;
+        };
+
+        this.goToTownTomeBook = function () {
+            if (!me.inTown) {
+                delay(150);
+
+                if (!Pather.getPortal(null, leader.name)) {
+                    if (!me.findItem("tbk", 0, 3)) {
+                        me.overhead("ÿc1Sorry, I don't have tp!ÿc0");
+                        return false;
+                    }
+                    Town.goToTown();
+                } else {
+                    Pather.usePortal(null, leader.name);
+                }
+            }
+            return true;
+        }
+
+        this.cubeStaff = function () {
+            let staff = me.getItem("vip"),
+                amulet = me.getItem("msf");
+
+            if (!staff || !amulet) {
+                return false;
+            }
+
+            Storage.Cube.MoveTo(amulet);
+            Storage.Cube.MoveTo(staff);
+            Cubing.openCube();
+            print("making staff");
+            transmute();
+            delay(750 + me.ping);
+
+            staff = me.getItem(91);
+
+            if (!staff) {
+                return false;
+            }
+
+            Storage.Inventory.MoveTo(staff);
+            me.cancel();
+
+            return true;
+        };
 
     //! CHAT EVENT ===================================================================
         this.chatEvent = function (nick, msg) {
@@ -774,7 +847,7 @@ function RogerThat() {
                                             me.overhead = ("Yes, leader ÿc2" + Config.Leader + "ÿc0");
                                             Town.goToTown(leaderAct);
                                         } else if (!me.inTown) {
-                                            Town.goToTown();
+                                            this.goToTownTomeBook();
                                         }
 
                                         Town.move("portalspot");
@@ -830,7 +903,7 @@ function RogerThat() {
                                 break;
                         }
                     }
-                    
+
                 //- Drop multiple items and other commands ------------------------
                     if (nick !== me.name) {
                         //- Drop multiple items ----------------------------------
@@ -846,7 +919,7 @@ function RogerThat() {
                                         if (isNaN(parseInt(msgArray[i], 10))) {
                                             qtyArray.push(-1);
                                             itemsArray.push(msgArray[i]);
-                                            
+
                                         } else {
                                             if (isNaN(parseInt(msgArray[i + 1], 10))) {
                                                 qtyArray.push(parseInt(msgArray[i], 10));
@@ -1056,7 +1129,7 @@ function RogerThat() {
                     this.hooks.push(new Text("Magic resist: ÿc0" + unit.getStat(37), this.x, this.y + 105, 4, 13, 2));
 
                     this.cleared = false;
-                    
+
                     this.hooks.push(new Box(this.x + 2, this.y - 15, 136 + 85, frameYsize, 0x0, 1, 2));
                     this.hooks.push(new Frame(this.x, this.y - 15, 140 + 85, frameYsize, 2));
 
@@ -1102,10 +1175,10 @@ function RogerThat() {
                     if (unit.quality === 4 && unit.getFlag(0x10)) {
                         this.hooks.push(new Text("Prefix: ÿc0" + unit.prefixnum, this.x, this.y + frameYsize - 5, 4, 13, 2));
                         this.hooks.push(new Text("Suffix: ÿc0" + unit.suffixnum, this.x, this.y + frameYsize + 10, 4, 13, 2));
-            
+
                         frameYsize += 30;
                     }
-                    
+
                     // Get prefixes and suffixes from rare items
                     if (unit.quality === 6) {
                         let prefixes = unit.prefixes,
@@ -1117,7 +1190,7 @@ function RogerThat() {
                             frameYsize += 15;
                             n += 1
                         }
-                        
+
 
                         n = 0;
 
@@ -1127,18 +1200,18 @@ function RogerThat() {
                             n += 1
                         }
                     }
-            
+
                     this.hooks.push(new Box(this.x + 2, this.y - 15, 116 + 105, frameYsize, 0x0, 1, 2));
                     this.hooks.push(new Frame(this.x, this.y - 15, 120 + 105, frameYsize, 2));
-            
+
                     this.hooks[this.hooks.length - 2].zorder = 0;
                 };
-        
+
                 this.remove = function () {
                     while (this.hooks.length > 0) {
                         this.hooks.shift().remove();
                     }
-            
+
                     this.cleared = true;
                 };
             }
@@ -1147,7 +1220,7 @@ function RogerThat() {
             function hookHandler (click, x, y) {
                 // Get the hook closest to the clicked location
                 function sortHooks(h1, h2) {
-                    return Math.abs(h1.y - y) - Math.abs(h2.y - y);  
+                    return Math.abs(h1.y - y) - Math.abs(h2.y - y);
                 }
                 // Left click
                 if (click === 0) {
@@ -1164,7 +1237,7 @@ function RogerThat() {
                     return true;
                 }
 
-                return false; 
+                return false;
             }
 
             function showHooks () {
@@ -1198,7 +1271,7 @@ function RogerThat() {
                 }
 
                 for (let i = commands.length ; i ; i--) {
-                    addHook (commands[i-1]);  
+                    addHook (commands[i-1]);
                 }
 
                 hide = false;
@@ -1259,7 +1332,7 @@ function RogerThat() {
 
                     checkLeaderFlag = true;
                 }
-                
+
                 if (checkLeaderFlag && Config.Leader !== "" && Misc.inMyParty(Config.Leader) && !checkPartyFlag) {
                     leaderUnit = this.getLeaderUnit(leader.name);
                     print("Partied leader ÿc2" + leader.name + "ÿc0");
@@ -1269,7 +1342,7 @@ function RogerThat() {
                 } else if (checkLeaderFlag &&  Config.Leader !== "" && !Misc.inMyParty(Config.Leader) && checkPartyFlag) {
                     // me.overhead("Oh no! " + leader.name + " left the party");
                     if (!me.inTown) {
-                        Town.goToTown();
+                        this.goToTownTomeBook();
                     }
 
                     leaderLeftPartyFlag = true;
@@ -1424,21 +1497,164 @@ function RogerThat() {
 
                             break;
                         case "c":
-                            if (!me.inTown) {
-                                Town.getCorpse();
-                                Town.move("portalspot");
+                            if (me.mode === 17) {
+                                me.revive();
+                            }
+
+                            let corpse = getUnit(0, me.name, 17);
+
+                            if (corpse) {
+                                do {
+                                    if (getDistance(me, corpse) <= 15) {
+                                        Pather.moveToUnit(corpse);
+                                        corpse.interact();
+                                        delay(500);
+                                    }
+                                } while (corpse.getNext());
                             }
 
                             break;
                         case "p":
-                            me.overhead("Picking items.");
-                            Pickit.pickItems();
+                            let target;
 
-                            if (openContainers) {
-                                this.openContainers(20);
+                            switch (me.area) {
+                                case 49:    // Pick book of skill
+                                    target = getUnit(4, 552);
+
+                                    if (!target) {
+                                        break;
+                                    }
+
+                                    Pickit.pickItem(target);
+                                    delay(500);
+
+                                    if (me.getItem(552)) {
+                                        print("Using book of skill");
+                                        clickItem(1, me.getItem(552));
+                                        delay(150);
+                                        this.goToTownTomeBook();
+                                        break;
+                                    } else {
+                                        say("!I'm full! Help me pls!");
+                                        me.overhead("I'm full! Help me pls!");
+                                    }
+
+                                    break;
+                                case 60:    // Halls of the dead lvl 3
+                                    if (me.getItem(549)) {
+                                        me.overhead("I alredy got the cube!");
+                                        break;
+                                    }
+
+                                    this.getQuestItem(549, 354);
+                                    delay(350);
+
+                                    if (!me.getItem(549)) {
+                                        me.overhead("I'm full! Help me pls!");
+                                    } else {
+                                        this.goToTownTomeBook();
+                                    }
+
+                                    break;
+                                case 61:    // Claw viper temple lvl 2
+                                    if (me.getItem(521)) {
+                                        me.overhead("I alredy got the amulet!");
+                                        break;
+                                    }
+
+                                    this.getQuestItem(521, 149);
+                                    delay(500);
+
+                                    if (!me.getItem(521)) {
+                                        me.overhead("I'm full! Help me pls!");
+                                        break;
+                                    }
+
+                                    if (!this.goToTownTomeBook()) break;
+                                    delay(500);
+                                    this.cubeStaff();
+
+                                    Town.move(NPC.Drognan);
+
+                                    target = getUnit(1, NPC.Drognan);
+
+                                    if (target && target.openMenu()) {
+                                        me.cancel();
+                                    }
+
+                                    Town.move("portalspot");
+
+                                    break;
+                                case 64:    // Maggot lair lvl 3
+                                    if (me.getItem(92)) {
+                                        me.overhead("I alredy got the staff!");
+                                        break;
+                                    }
+
+                                    this.getQuestItem(92, 356);
+                                    delay(350);
+
+                                    if (!me.getItem(92)) {
+                                        me.overhead("I'm full! Help me pls!");
+                                        break;
+                                    } else {
+                                        this.goToTownTomeBook();
+                                    }
+
+                                    delay(500);
+                                    this.cubeStaff();
+
+                                    break;
+                                case 94:    // Ruined temple
+                                    if (me.getItem(4)) {
+                                        me.overhead("I alredy got the book!");
+                                        break;
+                                    }
+
+                                    target = getUnit(2, 193);
+                                    Misc.openChest(target);
+                                    delay(300);
+                                    target = getUnit(4, 548);
+
+                                    if (!target) {
+                                        me.overhead("Boook not found!");
+                                        break
+                                    }
+
+                                    Pickit.pickItem(target);
+                                    delay(150);
+                                    // this.getQuestItem(2, 193);
+                                    // this.getQuestItem(4, 548);
+
+                                    if (!me.getItem(548)) {
+                                        me.overhead("I'm full! Help me pls!");
+                                        break;
+                                    }
+
+                                    if (!this.goToTownTomeBook()) break;
+                                    delay(1000);
+                                    Town.move(NPC.Alkor);
+                                    target = getUnit(1, NPC.Alkor);
+
+                                    if (target && target.openMenu()) {
+                                        me.cancel();
+                                    }
+
+                                    Town.move("portalspot");
+
+                                    break;
+                                default:
+                                    me.overhead("Picking items.");
+                                    Pickit.pickItems();
+
+                                    if (!me.inTown && openContainers) {
+                                        this.openContainers(20);
+                                    }
+
+                                    me.overhead("Done picking.");
+
+                                    break;
                             }
-
-                            me.overhead("Done picking.");
 
                             break;
                         case "1wp":
@@ -1458,7 +1674,9 @@ function RogerThat() {
                                 delay(200);
                             } else if (!me.inTown && leader.area !== me.area) {
                                 if (!Pather.getPortal(null, leader.name)){
-                                    Town.goToTown();
+                                    if (!this.goToTownTomeBook()){
+                                        break;
+                                    }
                                 } else {
                                     if (!Pather.usePortal(null, leader.name)) {
                                         break;
@@ -1516,7 +1734,7 @@ function RogerThat() {
                             delay(1000);
 
                             if (!Pather.getPortal(null, leader.name)){
-                                Town.goToTown();
+                                this.goToTownTomeBook();
                             } else {
                                 Pather.usePortal(null, leader.name);
                             }
@@ -1541,7 +1759,9 @@ function RogerThat() {
                                 }
                             } else if (!me.inTown && leader.area !== me.area) {
                                 if (!Pather.getPortal(null, leader.name)){
-                                    Town.goToTown();
+                                    if (!this.goToTownTomeBook()) {
+                                        break;
+                                    }
                                 } else {
                                     Pather.usePortal(null, leader.name);
                                 }
@@ -1557,19 +1777,7 @@ function RogerThat() {
 
                             break;
                         case "2":
-                            if (!me.inTown) {
-                                delay(150);
-
-                                if (!Pather.getPortal(null, leader.name)) {
-                                    if (!me.findItem("tbk", 0, 3)) {
-                                        me.overhead("ÿc1Sorry, I don't have tp!ÿc0");
-                                        break;
-                                    }
-                                    Town.goToTown();
-                                } else {
-                                    Pather.usePortal(null, leader.name);
-                                }
-                            }
+                            this.goToTownTomeBook();
 
                             break;
                         case "3":
@@ -1644,7 +1852,7 @@ function RogerThat() {
                             }
 
                             break;
-                    } 
+                    }
                 }
 
             delay(250);
