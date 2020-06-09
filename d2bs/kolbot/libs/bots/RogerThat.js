@@ -10,11 +10,9 @@ function RogerThat() {
         isLeaderHere,
         leaderUnit,
         charClass,
-        piece,
-        skill,
         result,
         player,
-        coord,
+        coords,
         runFlag = false,
         messageFlag = false,
         tradeMessage = "",
@@ -23,14 +21,15 @@ function RogerThat() {
         attack = true,
         openContainers = true,
         checkLeaderFlag = false,
-        filename = "logs/leader.txt",
-        checkLeaderFlag = false,
         checkPartyFlag = false,
         leaderLeftPartyFlag = false,
         lastLvl = 1,
-        classes = ["amazon", "sorceress", "necromancer", "paladin", "barbarian", "druid", "assassin"],
-        action = "",
-        leaderAct;
+        actions = [],
+        leaderAct,
+        target,
+        foundMatch = false;
+    const filename = "logs/leader.txt";
+    const classes = ["amazon", "sorceress", "necromancer", "paladin", "barbarian", "druid", "assassin"];
 
     //! INIT =========================================================================
         charClass = classes[me.classid];
@@ -88,8 +87,7 @@ function RogerThat() {
 
         //+ Change areas to where leader is =======================================
             this.checkExit = function (unit, area) {
-                let target,
-                    exits = getArea().exits;
+                let exits = getArea().exits;
 
                 if (unit.inTown) {
                     return false;
@@ -407,6 +405,10 @@ function RogerThat() {
 
                 if (typeof name === "string") {
                     name = name.toLowerCase();
+
+                    if (name === "cain") {
+                        name = "deckard cain";
+                    }
                 } else {
                     return false;
                 }
@@ -435,14 +437,22 @@ function RogerThat() {
                 }
 
                 if (names.indexOf(name) === -1) {
-                me.overhead("Invalid NPC.");
-                return false;
+                    me.overhead("Invalid NPC.");
+                    return false;
                 }
 
                 if (!Town.move(name === NPC.Jerhyn ? "palace" : name)) {
-                Town.move("portalspot");
-                me.overhead("Failed to move to town spot.");
-                return false;
+                    Town.move("portalspot");
+                    me.overhead("Failed to move to town spot.");
+                    return false;
+                }
+
+                if (name === NPC.Cain) {
+                    let localNPC = getUnit(1, NPC.Cain);
+                    localNPC.openMenu();
+                    me.cancel();
+                    Town.move("portalspot");
+                    return true;
                 }
 
                 npc = getUnit(1);
@@ -458,8 +468,9 @@ function RogerThat() {
                     } while (npc.getNext());
                 }
 
-                print("NPC not found.");
+                me.overhead(name + " ÿc1not found!ÿc0");
                 Town.move("portalspot");
+
                 return false;
             };
 
@@ -666,6 +677,7 @@ function RogerThat() {
                 return true;
             };
 
+        //+ Open Get Portal =======================================================
             this.getPortal = function (targetArea, owner) {
                 let portal = getUnit(2, "portal");
 
@@ -699,65 +711,24 @@ function RogerThat() {
                 return false;
             };
 
-            this.getQuestItem = function (classid, chestid) {
-                let chest = getUnit(2, chestid),
-                    item;
-
-                if (me.getItem(classid)) {
-                    return true;
-                }
-
-                if (me.inTown) {
-                    return false;
-                }
-
-                if (!chest) {
-                    return false;
-                }
-
-                Misc.openChest(chest);
-                item = getUnit(4, classid);
-
-                try {
-                    Pickit.pickItem(item);
-                } catch (error) {
-                    me.overhead("Something went wrong!");
-                    return false;
-                };
-
-                return true;
-            };
-
-            this.msgQuest = function (quest) {
-                if (quest) {
-                    me.overhead("ÿc2I've already got this quest!ÿc0");
-                    return
-                } else {
-                    me.overhead("ÿc9I need this quest!ÿc0");
-                }
-            };
-
-            this.talkToDrognan = function () {
-                if (!this.cubeStaff()) return;
-                Town.move(NPC.Drognan);
-
-                let target = getUnit(1, NPC.Drognan);
-
-                if (target && target.openMenu()) {
-                    me.cancel();
-                }
-
-                Town.move("portalspot");
-            };
-
+        //+ Check Quest ===========================================================
             this.checkQuest = function () {
-                let target, item, itemClassId, quest, localNPC, count;
+                let item, itemClassId, quest, localNPC, count;
 
                 switch (me.area) {
                     case 4:     // Stone field - stones
                         itemClassId = 525;
 
-                        if (me.getItem(itemClassId)) {
+                        if (!me.getItem(itemClassId)) {
+                            break;
+                        }
+
+                        if (!getDistance(me, getUnit(2, 17))) {
+                            me.overhead("I'm too far from the stones");
+                            break;
+                        }
+
+                        if (me.getItem(itemClassId) && getDistance(me, getUnit(2, 17))) {
                             const stones = [getUnit(2, 17), getUnit(2, 18), getUnit(2, 19), getUnit(2, 20), getUnit(2, 21)];
                             while (!me.getQuest(4, 4)) {
                                 stones.forEach(function (stone) {
@@ -770,13 +741,16 @@ function RogerThat() {
                         }
 
                         break;
-                    case 5:     // Scroll tree
+                    case 5:     // Dark wood - scroll tree
                         itemClassId = 524;
                         count = 0;
 
                         target = getUnit(2, 30);
 
-                        if (target) {
+                        if (!getDistance(me, target)) {
+                            me.overhead("I'm too far from the tree");
+                            break;
+                        } else {
                             Misc.openChest(target);
                             delay(300);
                         }
@@ -794,10 +768,11 @@ function RogerThat() {
                             delay(500);
 
                             if (me.getItem(itemClassId)) {
-                                this.goToTownTomeBook();
-                                Town.move(NPC.Akara);
-                                localNPC = getUnit(1, NPC.Akara);
-                                localNPC.openMenu();
+                                if (!this.goToTownTomeBook()) {
+                                    break;
+                                }
+
+                                this.talkTo(NPC.Akara);
                                 me.cancel();
                                 Town.move("portalspot");
                             }
@@ -811,30 +786,36 @@ function RogerThat() {
                         }
 
                         break;
-                    case 38:    // Rescue Cain
+                    case 38:    // Tristam - rescue Cain
                         quest = me.getQuest(4, 0);
 
                         if (!quest) {
                             target = getUnit(2, 26);
 
-                            if (target) {
+                            if (!getDistance(me, target)) {
+                                me.overhead("I'm too far from Cain");
+                                break;
+                            } else {
                                 Misc.openChest(target);
                             }
                         }
 
                         break;
-                    case 28:    // Smith
+                    case 28:    // Barraks - smith
                         itemClassId = 89;
                         count = 0;
 
-                        if (me.getQuest(3, 3) || me.getQuest(3, 0)) {
-                            me.overhead("I've already got this quest!");
+                        if (me.getQuest(3, 0)) {
+                            me.overhead("I've already done this quest!");
                             break;
                         }
 
                         target = getUnit(2, 108);
 
-                        if (target) {
+                        if (!getDistance(me, target)) {
+                            me.overhead("I'm too far from the tool");
+                            break;
+                        } else {
                             Misc.openChest(target);
                             delay(300);
                         }
@@ -844,12 +825,13 @@ function RogerThat() {
 
                             if (!item) {
                                 me.overhead("Someone already took the tool!");
-                                this.goToTownTomeBook();
-                                delay(1000);
-                                Town.move(NPC.Charsi);
-                                localNPC = getUnit(1, NPC.Charsi);
-                                localNPC.openMenu();
-                                me.cancel();
+
+                                if (!this.goToTownTomeBook()) {
+                                    break;
+                                }
+
+                                delay(500);
+                                this.talkTo(NPC.Charsi);
                                 Town.move("portalspot");
                                 break;
                             }
@@ -858,11 +840,11 @@ function RogerThat() {
                             delay(500);
 
                             if (me.getItem(itemClassId)) {
-                                this.goToTownTomeBook();
-                                Town.move(NPC.Charsi);
-                                localNPC = getUnit(1, NPC.Charsi);
-                                localNPC.openMenu();
-                                me.cancel();
+                                if (!this.goToTownTomeBook()) {
+                                    break;
+                                }
+
+                                this.talkTo(NPC.Charsi);
                                 Town.move("portalspot");
                                 break;
                             }
@@ -876,15 +858,20 @@ function RogerThat() {
                         }
 
                         break;
-                    case 49:    // Pick book of skill
+                    case 49:    // Swers lvl 3 - book of skill
                         itemClassId = 552;
                         count = 0;
+
+                        if (!getDistance(me, getUnit(4, itemClassId))) {
+                            me.overhead("I'm too far from the book");
+                            break;
+                        }
 
                         while (true) {
                             item = getUnit(4, itemClassId);
 
                             if (!item) {
-                                me.overhead("Done boos!");
+                                me.overhead("Where is my book?");
                                 break;
                             }
 
@@ -893,7 +880,11 @@ function RogerThat() {
 
                             if (me.getItem(itemClassId)) {
                                 clickItem(1, me.getItem(itemClassId));
-                                this.goToTownTomeBook();
+
+                                if (!this.goToTownTomeBook()) {
+                                    break;
+                                }
+
                                 Town.move(NPC.Atma);
                                 localNPC = getUnit(1, NPC.Atma);
                                 localNPC.openMenu();
@@ -923,7 +914,10 @@ function RogerThat() {
 
                         target = getUnit(2, 354);
 
-                        if (target) {
+                        if (!getDistance(me, target)) {
+                            me.overhead("I'm too far from the cube");
+                            break;
+                        } else  {
                             Misc.openChest(target);
                             delay(300);
                         }
@@ -940,9 +934,16 @@ function RogerThat() {
                             delay(500);
 
                             if (me.getItem(itemClassId)) {
-                                this.goToTownTomeBook();
+                                if (!this.goToTownTomeBook()) {
+                                    break;
+                                }
+
                                 delay(250);
-                                this.talkToDrognan();
+
+                                if (this.cubeStaff()) {
+                                    this.talkTo(NPC.Drognan);
+                                }
+
                                 break;
                             }
 
@@ -973,7 +974,10 @@ function RogerThat() {
 
                         target = getUnit(2, 149);
 
-                        if (target) {
+                        if (!getDistance(me, target)) {
+                            me.overhead("I'm too far from the amulet");
+                            break;
+                        } else {
                             Misc.openChest(target);
                             delay(300);
                         }
@@ -990,9 +994,16 @@ function RogerThat() {
                             delay(500);
 
                             if (me.getItem(itemClassId)) {
-                                this.goToTownTomeBook();
+                                if (!this.goToTownTomeBook()) {
+                                    break;
+                                }
+
                                 delay(250);
-                                this.talkToDrognan();
+
+                                if (this.cubeStaff()) {
+                                    this.talkTo(NPC.Drognan);
+                                }
+
                                 break;
                             }
 
@@ -1023,13 +1034,15 @@ function RogerThat() {
 
                         target = getUnit(2, 356);
 
-                        if (target) {
+                        if (!getDistance(me, target)) {
+                            me.overhead("I'm too far from the amulet");
+                            break;
+                        } else {
                             Misc.openChest(target);
                             delay(300);
                         }
 
                         while (true) {
-
                             item = getUnit(4, itemClassId);
 
                             if (!item) {
@@ -1041,9 +1054,16 @@ function RogerThat() {
                             delay(500);
 
                             if (me.getItem(itemClassId)) {
-                                this.goToTownTomeBook();
+                                if (!this.goToTownTomeBook()) {
+                                    break;
+                                }
+
                                 delay(250);
-                                this.talkToDrognan();
+
+                                if (this.cubeStaff()) {
+                                    this.talkTo(NPC.Drognan);
+                                }
+
                                 break;
                             }
 
@@ -1063,19 +1083,90 @@ function RogerThat() {
                     case 70:
                     case 71:
                     case 72:
-                        delay(rand(1, 5) * 1000);
+                        delay(rand(0, 6) * 1000);
                         this.placeStaff();
+
                         break;
                     case 73:    // Tal rasha's chamber - talk to Tyrael
                         this.talkToTyrael();
                         Pather.usePortal(null);
 
                         break;
-                    case 94:    // Ruined temple - Lam Esen's Tome
+                    case 78:    // Flayer jungle - gidbinn
+                        itemClassId = 87;
+                        count = 0;
+
+
+
+                        if (me.getQuest(19, 0)) {
+                            me.overhead("I already done the quest!");
+                            break;
+                        }
+
+                        if (me.getItem(itemClassId)) {
+                            me.overhead("I already got the blade!");
+                            this.goToTownTomeBook();
+                            Town.doChores();
+                            me.cancel();
+                            Town.move("portalspot");
+                            break;
+                        }
+
+                        target = getUnit(2, 86);
+
+                        if (!getDistance(me, target)) {
+                            me.overhead("I'm too far from the fire");
+                            break;
+                        } else {
+                            Misc.openChest(target);
+                            delay(300);
+                        }
+
+                        while (true) {
+                            item = getUnit(4, itemClassId);
+
+                            if (!item) {
+                                me.overhead("Someone already took the blade!");
+                                if (!this.goToTownTomeBook()) {
+                                    break;
+                                }
+
+                                delay(250);
+                                Town.doChores();
+                                me.cancel();
+                                Town.move("portalspot");
+                                break;
+                            }
+
+                            Pickit.pickItem(item);
+                            delay(500);
+
+                            if (me.getItem(itemClassId)) {
+                                if (!this.goToTownTomeBook()) {
+                                    break;
+                                }
+
+                                delay(250);
+                                Town.doChores();
+                                me.cancel();
+                                Town.move("portalspot");
+                                break;
+                            }
+
+                            count++;
+
+                            if (count === 5) {
+                                say("!I'm full, help me pls!");
+                                break;
+                            }
+                        }
+
+                        break;
+                    case 94:    // Kurast Bazaar - Ruined temple - Lam Esen's Tome
                         itemClassId = 548;
 
                         if (me.getQuest(17, 0)) {
-                            me.overhead("I've already completed this quest!");
+                            me.overhead("I've already done this quest!");
                             this.goToTownTomeBook();
                             break;
                         }
@@ -1087,7 +1178,10 @@ function RogerThat() {
 
                         target = getUnit(2, 193);
 
-                        if (target) {
+                        if (!getDistance(me, target)) {
+                            me.overhead("I'm too far from the book");
+                            break;
+                        } else {
                             Misc.openChest(target);
                             delay(300);
                         }
@@ -1105,11 +1199,12 @@ function RogerThat() {
                             delay(500);
 
                             if (me.getItem(itemClassId)) {
-                                this.goToTownTomeBook();
+                                if (!this.goToTownTomeBook()) {
+                                    break;
+                                }
+
                                 delay(250);
-                                Town.move(NPC.Alkor);
-                                target = getUnit(1, NPC.Alkor);
-                                me.cancel();
+                                this.talkTo(NPC.Alkor);
                                 Town.move("portalspot");
                                 break;
                             }
@@ -1125,7 +1220,8 @@ function RogerThat() {
                         break;
                     case 102:   // Durance of hate lvl 3 - red portal
                         Pather.moveTo(17590, 8068);
-                        let tick = getTickCount(),  time = 0;
+                        let tick = getTickCount(),
+                            time = 0;
 
                         while (getCollision(me.area, 17601, 8070, 17590, 8068) !== 0 && (time = getTickCount() - tick) < 2000) {
                             Pather.moveTo(17590, 8068);  // Activate it
@@ -1137,20 +1233,128 @@ function RogerThat() {
                         }
 
                         break;
-                    default:
-                        me.overhead("Picking items.");
-                        Pickit.pickItems();
+                    case 114:   // Frozen river - rescue Anya
+                        target = getUnit(2, 558);   // Anya
 
-                        if (!me.inTown && openContainers) {
-                            this.openContainers(20);
+                        if (!getDistance(me, target)) {
+                            me.overhead("I'm too far from Anya");
+                            break;
                         }
 
-                        me.overhead("Done picking.");
+                        this.talkToAnya();
+
+                        if (!this.goToTownTomeBook()) {
+                            break;
+                        }
+
+                        this.talkTo(NPC.Malah);
+                        itemClassId = 644;  // Potion
+
+                        if (me.getItem(itemClassId)) {
+                            Town.move("portalspot");
+
+                            if (!Pather.usePortal(null, leader.name)) {
+                                break;
+                            }
+
+                            this.talkToAnya();
+
+                            if (!this.goToTownTomeBook()) {
+                                break;
+                            }
+                        } else {
+                            delay(15000);
+                        }
+
+                        this.talkTo(NPC.Malah);
+
+                        if (me.getItem(646)) {
+                            clickItem(1, me.getItem(646));
+                        }
+
+                        Town.move("portalspot");
+
+                        break;
+                    default:
+                        itemClassId = 546;  // Jade figurine
+                        item = getUnit(4, itemClassId);
+
+                        if (item) {
+                            if (me.getQuest(20, 0)) {
+                                me.overhead("I've already done this quest!");
+                                this.goToTownTomeBook();
+                                break;
+                            }
+
+                            while (true) {
+                                item = getUnit(4, itemClassId);
+
+                                if (!item) {
+                                    if (!this.goToTownTomeBook()) {
+                                        break;
+                                    }
+
+                                    me.overhead("Someone already took the jade figurine");
+                                    delay(15000);
+                                    Town.move(NPC.Alkor);
+                                    target = getUnit(1, NPC.Alkor);
+                                    target.openMenu();
+                                    me.cancel();
+                                    clickItem(1, me.getItem(545));
+                                    Town.move("portalspot");
+                                    break;
+                                }
+
+                                Pickit.pickItem(item);
+                                delay(500);
+
+                                if (me.getItem(itemClassId)) {
+                                    if (!this.goToTownTomeBook()) {
+                                        break;
+                                    }
+
+                                    delay(250);
+                                    Town.move(NPC.Cain);
+                                    target = getUnit(1, NPC.Cain);
+                                    target.openMenu();
+                                    Town.move(NPC.Meshif);
+                                    target = getUnit(1, NPC.Meshif);
+                                    target.openMenu();
+                                    Town.move(NPC.Cain);
+                                    target = getUnit(1, NPC.Cain);
+                                    target.openMenu();
+                                    Town.move(NPC.Alkor);
+                                    target = getUnit(1, NPC.Alkor);
+                                    target.openMenu();
+                                    me.cancel();
+                                    clickItem(1, me.getItem(545));
+                                    Town.move("portalspot");
+                                    break;
+                                }
+
+                                count++;
+
+                                if (count === 5) {
+                                    say("!I'm full, help me pls!");
+                                    break;
+                                }
+                            }
+                        } else {
+                            me.overhead("Picking items.");
+                            Pickit.pickItems();
+
+                            if (!me.inTown && openContainers) {
+                                this.openContainers(20);
+                            }
+
+                            me.overhead("Done picking.");
+                        }
 
                         break;
                 }
             };
 
+        //+ Go To Town Tome Book ==================================================
             this.goToTownTomeBook = function () {
                 if (!me.inTown) {
                     delay(150);
@@ -1176,6 +1380,7 @@ function RogerThat() {
                 }
             };
 
+        //+ Cube Staff ============================================================
             this.cubeStaff = function () {
                 let staff = me.getItem("vip"),
                     amulet = me.getItem("msf");
@@ -1205,7 +1410,8 @@ function RogerThat() {
                 return true;
             };
 
-            this.placeStaff = function() {
+        //+ Place Staff ===========================================================
+            this.placeStaff = function () {
                 let item = me.getItem(91);
                 let orifice = getUnit(2, 152);
 
@@ -1223,7 +1429,8 @@ function RogerThat() {
                 Pather.teleport = !Pather.teleport;
             };
 
-            this.talkToTyrael = function() {
+        //+ Talk To Tyrael ========================================================
+            this.talkToTyrael = function () {
                 let NPC = getUnit(1, "Tyrael");
 
                 if (!NPC) {
@@ -1241,8 +1448,38 @@ function RogerThat() {
                 }
             };
 
+        //+ Talk To Anya ==========================================================
+            this.talkToAnya = function () {
+                target = getUnit(2, 558);
+
+                if (!target) {
+                    return false;
+                }
+
+                Pather.moveToUnit(target);
+                target.interact();
+                delay(250);
+                me.cancel();
+                Pather.moveToUnit(target);
+                target.interact();
+                delay(250);
+                me.cancel();
+
+                return true;
+            };
+
+        //+ Talk To ... ===========================================================
+            this.talkTo = function (NPC) {
+                Town.move(NPC);
+                target = getUnit(1, NPC);
+                target.openMenu();
+                me.cancel();
+            };
+
     //! CHAT EVENT ===================================================================
         this.chatEvent = function (nick, msg) {
+            foundMatch = false;;
+
             if (!pvpFlag) {
                 msg = msg.toLowerCase();
                 //- Who is the leader? --------------------------------------------
@@ -1251,37 +1488,31 @@ function RogerThat() {
                         FileTools.writeText(filename, nick);
                         checkLeaderFlag = false;
                         checkPartyFlag = false;
+                        return true;
                     } else if (nick !== me.name && msg === "i am the boss" && nick === FileTools.readText(filename)) {
                         Config.Leader = nick;
                         leader = this.getLeader(nick);
                         checkLeaderFlag = false;
                         checkPartyFlag = false;
+                        return true;
                     }
 
                 //- Commands from leader in the party -----------------------------
                     if (Config.Leader != "" && nick === Config.Leader && Misc.inMyParty(Config.Leader)) {
                         switch (msg) {
-                            case "tele":
-                            case me.name + " tele":
-                                if (Pather.teleport) {
-                                    Pather.teleport = false;
-                                    me.overhead("Teleport ÿc1OFFÿc0.");
-                                } else {
-                                    Pather.teleport = true;
-                                    me.overhead("Teleport ÿc2ONÿc0.");
-                                }
+                            case "1":
+                                actions.push("1");
+                                foundMatch = true;
 
                                 break;
-                            case "tele off":
-                            case me.name + " tele off":
-                                Pather.teleport = false;
-                                me.overhead("Teleport ÿc1OFFÿc0.");
+                            case "2":
+                                actions.push("2");
+                                foundMatch = true;
 
                                 break;
-                            case "tele on":
-                            case me.name + " tele on":
-                                Pather.teleport = true;
-                                me.overhead("Teleport ÿc2ONÿc0.");
+                            case "3":
+                                actions.push("3");
+                                foundMatch = true;
 
                                 break;
                             case "a":
@@ -1294,14 +1525,60 @@ function RogerThat() {
                                     me.overhead("Attack ÿc2ONÿc0.");
                                 }
 
+                                foundMatch = true;
+
                                 break;
-                            case "quit":
-                            case me.name + " quit":
-                                quit();
+                            case "bo":
+                                actions.push("bo");
+                                foundMatch = true;
+
+                                break;
+                            case "c":
+                                actions.push("c");
+                                foundMatch = true;
+
+                                break;
+                            case "cow":
+                                actions.push("cow");
+                                foundMatch = true;
+
+                                break;
+                            case "a1":
+                                actions.push("a1");
+                                foundMatch = true;
+
+                                break;
+                            case "a2":
+                                actions.push("a2");
+                                foundMatch = true;
+
+                                break;
+                            case "a3":
+                                actions.push("a3");
+                                foundMatch = true;
+
+                                break;
+                            case "a4":
+                                actions.push("a4");
+                                foundMatch = true;
+
+                                break;
+                            case "a5":
+                                actions.push("a5");
+                                foundMatch = true;
+
+                                break;
+                            case "move":
+                                actions.push("move");
+                                foundMatch = true;
+
+                                break;
+                            case "p":
+                                actions.push("p");
+                                foundMatch = true;
 
                                 break;
                             case "s":
-                            case me.name + " s":
                                 if (stop) {
                                     stop = false;
                                     me.overhead("Resuming.");
@@ -1310,100 +1587,66 @@ function RogerThat() {
                                     me.overhead("Stopping.");
                                 }
 
-                                break;
-                            case "r":
-                                if (me.mode === 17) {
-                                    me.revive();
-                                }
+                                foundMatch = true;
 
                                 break;
-                            case "#stash":
-                                if (getUIFlag(0x19)){
-                                    me.cancel();
-                                    me.overhead("Stash Done!");
-                                    Pather.moveTo(me.x + rand(-8,8),me.y + rand(-8,8));
+                            case "wp":
+                                actions.push("wp");
+                                foundMatch = true;
+
+                                break;
+                            case "1wp":
+                                actions.push("1wp");
+                                foundMatch = true;
+
+                                break;
+                            case "tele":
+                            case me.name + " tele":
+                                Pather.teleport = !Pather.teleport;
+                                if (Pather.teleport) {
+                                    me.overhead("Teleport ÿc2ONÿc0.");
                                 } else {
-                                    me.cancel();
-                                    me.overhead("Going to Stash!");
-                                    Town.openStash();
+                                    me.overhead("Teleport ÿc1OFFÿc0.");
                                 }
 
-                                break;
-                            case "#quit":
-                                delay(rand(6,10)*1000);
-                                quit();
+                                foundMatch = true;
 
                                 break;
                             case "#bye":
-                                me.overhead("Cya!");
-                                Town.goToTown(1);
-                                delay(rand(3,15)*1000);
-                                D2Bot.stop(me.profile, true);
+                                actions.push("#bye");
+                                foundMatch = true;
+
+                                break;
+                            case "#cancel":
+                                actions = [];
+                                foundMatch = true;
 
                                 break;
                             case "#come":
-                                if (Config.Leader !== "") {
-                                    if (Misc.inMyParty(Config.Leader)) {
-                                        let leaderAct = this.checkLeaderAct(leader);
+                                actions.push("#come");
+                                foundMatch = true;
 
-                                        if (me.inTown && leaderAct !== me.act) {
-                                            me.overhead = ("Yes, leader ÿc2" + Config.Leader + "ÿc0");
-                                            Town.goToTown(leaderAct);
-                                        } else if (!me.inTown) {
-                                            this.goToTownTomeBook();
-                                        }
+                                break;
+                            case "#quit":
+                                actions.push("#quit");
+                                foundMatch = true;
 
-                                        Town.move("portalspot");
-                                    } else {
-                                        Town.goToTown(1);
-                                        Town.move("stash");
-                                    }
-                                }
+                                break;
+                            case "#stash":
+                                actions.push("#stash");
+                                foundMatch = true;
 
                                 break;
                             default:
-                                if (me.classid === 3 && msg.indexOf("aura ") > -1) {
-                                    piece = msg.split(" ")[0];
-
-                                    if (piece === me.name || piece === "all") {
-                                        skill = parseInt(msg.split(" ")[2], 10);
-
-                                        if (me.getSkill(skill, 1)) {
-                                            me.overhead("Active aura is: " + skill);
-                                            Config.AttackSkill[2] = skill;
-                                            Config.AttackSkill[4] = skill;
-                                            Skill.setSkill(skill, 0);
-                                            //Attack.init();
-                                        } else {
-                                            me.overhead("I don't have that aura.");
-                                        }
-                                    }
-
-                                    break;
+                                if (this.goToTownTomeBook() && msg.split(" ")[0] === 'talk') {
+                                    this.talk(msg.split(" ")[1]);
                                 }
 
-                                if (msg.indexOf("skill ") > -1) {
-                                    piece = msg.split(" ")[0];
+                                break
+                        }
 
-                                    if (charClass.indexOf(piece) > -1 || piece === me.name || piece === "all") {
-                                        skill = parseInt(msg.split(" ")[2], 10);
-
-                                        if (me.getSkill(skill, 1)) {
-                                            me.overhead("Attack skill is: " + skill);
-                                            Config.AttackSkill[1] = skill;
-                                            Config.AttackSkill[3] = skill;
-                                            //Attack.init();
-                                        } else {
-                                            me.overhead("I don't have that skill.");
-                                        }
-                                    }
-
-                                    break;
-                                }
-
-                                action = msg;
-
-                                break;
+                        if (foundMatch) {
+                            return true;
                         }
                     }
 
@@ -1447,6 +1690,8 @@ function RogerThat() {
                                         }
                                     }
                                 }
+
+                                return true;
                             } else {
                         //- Other commands ---------------------------------------
                                 switch (msg) {
@@ -1457,6 +1702,8 @@ function RogerThat() {
                                             clickParty(player, 2);
                                             delay(100);
                                         }
+
+                                        foundMatch = true;
 
                                         break;
                                     case "#stash":
@@ -1470,12 +1717,13 @@ function RogerThat() {
                                             Town.openStash();
                                         }
 
-                                        break;
-
-                                    default:
-                                        msg = "";
+                                        foundMatch = true;
 
                                         break;
+                                }
+
+                                if (foundMatch) {
+                                    return true;
                                 }
                             }
                     }
@@ -1493,7 +1741,7 @@ function RogerThat() {
 
         addEventListener("chatmsg", this.chatEvent);
 
-    //! SHOW HOOKS====================================================================
+    //! SHOW HOOKS ===================================================================
         let hooks = [],
             decor = [],
             activeAction,
@@ -1790,7 +2038,7 @@ function RogerThat() {
                 }
             }
 
-    //! LOOP==========================================================================
+    //! LOOP =========================================================================
         while(true){
             //- Toggle info -------------------------------------------------------
                 if (toggleInfoFlag) {
@@ -1941,141 +2189,157 @@ function RogerThat() {
                         }
                     }
 
-                    switch (action) {
-                        case "cow":
-                            if (me.area !== 1) {
-                                Town.goToTown(1);
-                            }
+                    if (actions.length > 0) {
+                        switch (actions[0]) {
+                            case "1":
+                                leaderAct = this.checkLeaderAct(leader);
 
-                            Pather.usePortal(39);
-
-                            break;
-                        case "move":
-                            coord = CollMap.getRandCoordinate(me.x, -10, 10, me.y, -10, 10);
-                            Pather.moveTo(coord.x, coord.y);
-
-                            break;
-                        case "wp":
-                        case me.name + "wp":
-                            if (me.inTown) {
-                                break;
-                            }
-
-                            delay(rand(1, 3) * 500);
-                            unit = getUnit(2, "waypoint");
-
-                            if (unit) {
-                                WPLoop:
-                                    for (let i = 0 ; i < 3 ; i++) {
-                                        if (getDistance(me, unit) > 3) {
-                                            Pather.moveToUnit(unit);
-                                        }
-
-                                        unit.interact();
-
-                                        for (let j = 0 ; j < 100 ; j++) {
-                                            if (j % 20 === 0) {
-                                                me.cancel();
-                                                delay(300);
-                                                unit.interact();
-                                            }
-
-                                            if (getUIFlag(0x14)) {
-                                                break WPLoop;
-                                            }
-
-                                            delay(10);
-                                        }
-                                    }
-                            }
-
-                            if (getUIFlag(0x14)) {
-                                me.overhead("ÿc2Got wp.ÿc0");
-                            } else {
-                                me.overhead("ÿc1Failed to get wp.ÿc0");
-                            }
-
-                            me.cancel();
-
-                            break;
-                        case "c":
-                            if (me.mode === 17) {
-                                me.revive();
-                            }
-
-                            let corpse = getUnit(0, me.name, 17);
-
-                            if (corpse) {
-                                do {
-                                    if (getDistance(me, corpse) <= 15) {
-                                        Pather.moveToUnit(corpse);
-                                        corpse.interact();
-                                        delay(500);
-                                    }
-                                } while (corpse.getNext());
-                            }
-
-                            break;
-                        case "p":
-                            this.checkQuest();
-
-                            break;
-                        case "1wp":
-                            leaderAct = this.checkLeaderAct(leader);
-
-                            if (me.inTown && leaderAct !== me.act) {
-                                Town.goToTown(leaderAct);
-                                Town.move("portalspot");
-                                delay(250);
-
-                                if (!Pather.usePortal(null, leader.name)) {
-                                    return false;
-                                }
-                            } else if (me.inTown) {
-                                Town.goToTown(leaderAct);
-                                Town.move("portalspot");
-                                delay(250);
-
-                                if (me.inTown && (me.act === 2 || me.act === 3) && [66, 67, 68, 69, 70, 71, 72, 73, 74, 100, 101, 102].indexOf(leader.area) >= 0 ) {
-                                    Town.move(NPC.Cain);
-                                    let localNPC = getUnit(1, NPC.Cain);
-                                    localNPC.openMenu();
-                                    me.cancel();
+                                if (me.inTown && leaderAct !== me.act) {
+                                    Town.goToTown(leaderAct);
                                     Town.move("portalspot");
                                     delay(250);
+
+                                    if (!Pather.usePortal(null, leader.name)) {
+                                        return false;
+                                    }
+                                } else if (me.inTown) {
+                                    Town.goToTown(leaderAct);
+                                    Town.move("portalspot");
+                                    delay(250);
+
+                                    if (me.inTown && (me.act === 2 || me.act === 3) && [66, 67, 68, 69, 70, 71, 72, 73, 74, 100, 101, 102].indexOf(leader.area) >= 0) {
+                                        Town.move(NPC.Cain);
+                                        let localNPC = getUnit(1, NPC.Cain);
+                                        localNPC.openMenu();
+                                        me.cancel();
+                                        Town.move("portalspot");
+                                        delay(250);
+                                    }
+
+                                    if (!Pather.usePortal(null, leader.name)) {
+                                        break;
+                                    }
+
+                                    while (!this.getLeaderUnit(Config.Leader) && !me.dead) {
+                                        Attack.clear(10);
+                                        delay(200);
+                                    }
+                                } else if (!me.inTown && leader.area !== me.area) {
+                                    if (!this.goToTownTomeBook()) {
+                                        break;
+                                    }
+
+                                    if (leaderAct !== me.act) {
+                                        Town.goToTown(this.checkLeaderAct(leader));
+                                        Town.move("portalspot");
+                                    }
+
+                                    delay(250);
+                                    Pather.usePortal(null, leader.name);
                                 }
 
-                                if (!Pather.usePortal(null, leader.name)) {
-                                    break;
-                                }
+                                actions.shift();
 
-                                while (!this.getLeaderUnit(Config.Leader) && !me.dead) {
-                                    Attack.clear(10);
-                                    delay(200);
-                                }
-                            } else if (!me.inTown && leader.area !== me.area) {
-                                if (!this.goToTownTomeBook()) {
-                                    break;
-                                }
+                                break;
+                            case "2":
+                                this.goToTownTomeBook();
+                                actions.shift();
 
-                                if (leaderAct !== me.act) {
-                                    Town.goToTown(this.checkLeaderAct(leader));
+                                break;
+                            case "3":
+                                if (me.inTown) {
+                                    Town.doChores();
                                     Town.move("portalspot");
                                 }
 
-                                delay(250);
-                                Pather.usePortal(null, leader.name);
-                            }
+                                actions.shift();
 
-                            if (me.inTown) {
                                 break;
-                            }
+                            case "a4":
+                                if (me.area === 102) {
+                                    Pather.moveTo(17590, 8068);
+                                    let tick = getTickCount(), time = 0;
 
-                            delay(rand(1, 3) * 500);
-                            unit = getUnit(2, "waypoint");
+                                    while (getCollision(me.area, 17601, 8070, 17590, 8068) !== 0 && (time = getTickCount() - tick) < 2000) {
+                                        Pather.moveTo(17590, 8068);  // Activate it
+                                        delay(3);
+                                    }
 
-                            if (unit) {
-                                WPLoop:
+                                    if (time < 2000 && Pather.moveTo(17601, 8070)) {
+                                        Pather.usePortal(null);
+                                    }
+
+                                    actions.shift();
+
+                                    break;
+                                }
+                            case "a1":
+                            case "a2":
+                            case "a3":
+                            case "a5":
+                                if (this.goToTownTomeBook()) {
+                                    const act = actions[0];
+                                    this.changeAct(parseInt(act[1], 10));
+                                }
+
+                                actions.shift();
+
+                                break;
+                            case "bo":
+                                Precast.doPrecast(true);
+                                actions.shift();
+
+                                break;
+                            case "c":
+                                if (me.mode === 17) {
+                                    me.revive();
+                                }
+
+                                let corpse = getUnit(0, me.name, 17);
+
+                                if (corpse) {
+                                    do {
+                                        if (getDistance(me, corpse) <= 15) {
+                                            Pather.moveToUnit(corpse);
+                                            corpse.interact();
+                                            delay(500);
+                                        }
+                                    } while (corpse.getNext());
+                                }
+
+                                actions.shift();
+
+                                break;
+                            case "cow":
+                                if (me.area !== 1) {
+                                    Town.goToTown(1);
+                                }
+
+                                Pather.usePortal(39);
+                                actions.shift();
+
+                                break;
+                            case "move":
+                                coords = CollMap.getRandCoordinate(me.x, -10, 10, me.y, -10, 10);
+                                Pather.moveTo(coords.x, coords.y);
+                                actions.shift();
+
+                                break;
+                            case "p":
+                                this.checkQuest();
+                                actions.shift();
+
+                                break;
+                            case "wp":
+                                if (me.inTown) {
+                                    break;
+                                }
+
+                                delay(rand(1, 3) * 500);
+                                unit = getUnit(2, "waypoint");
+
+                                if (unit) {
+                                    WPLoop:
                                     for (let i = 0; i < 3; i++) {
                                         if (getDistance(me, unit) > 3) {
                                             Pather.moveToUnit(unit);
@@ -2083,7 +2347,7 @@ function RogerThat() {
 
                                         unit.interact();
 
-                                        for (let j = 0 ; j < 100 ; j++) {
+                                        for (let j = 0; j < 100; j++) {
                                             if (j % 20 === 0) {
                                                 me.cancel();
                                                 delay(300);
@@ -2097,135 +2361,172 @@ function RogerThat() {
                                             delay(10);
                                         }
                                     }
-                            }
-
-                            if (getUIFlag(0x14)) {
-                                me.overhead("ÿc2Got wp!ÿc0");
-                            } else {
-                                me.overhead("ÿc1Failed to Get wp!ÿc0");
-                            }
-
-                            me.cancel();
-                            delay(1000);
-
-                            this.goToTownTomeBook();
-
-                            break;
-                        case "1":
-                            leaderAct = this.checkLeaderAct(leader);
-
-                            if (me.inTown && leaderAct !== me.act) {
-                                Town.goToTown(leaderAct);
-                                Town.move("portalspot");
-                                delay(250);
-
-                                if (!Pather.usePortal(null, leader.name)) {
-                                    return false;
                                 }
-                            } else if (me.inTown) {
-                                Town.goToTown(leaderAct);
-                                Town.move("portalspot");
-                                delay(250);
 
-                                if (me.inTown && (me.act === 2 || me.act === 3) && [66, 67, 68, 69, 70, 71, 72, 73, 74, 100, 101, 102].indexOf(leader.area) >= 0 ) {
-                                    Town.move(NPC.Cain);
-                                    let localNPC = getUnit(1, NPC.Cain);
-                                    localNPC.openMenu();
-                                    me.cancel();
+                                if (getUIFlag(0x14)) {
+                                    me.overhead("ÿc2Got wp.ÿc0");
+                                } else {
+                                    me.overhead("ÿc1Failed to get wp.ÿc0");
+                                }
+
+                                me.cancel();
+                                actions.shift();
+
+                                break;
+
+
+                            case "1wp":
+                                leaderAct = this.checkLeaderAct(leader);
+
+                                if (me.inTown && leaderAct !== me.act) {
+                                    Town.goToTown(leaderAct);
                                     Town.move("portalspot");
                                     delay(250);
-                                }
 
-                                if (!Pather.usePortal(null, leader.name)) {
-                                    break;
-                                }
-
-                                while (!this.getLeaderUnit(Config.Leader) && !me.dead) {
-                                    Attack.clear(10);
-                                    delay(200);
-                                }
-                            } else if (!me.inTown && leader.area !== me.area) {
-                                if (!this.goToTownTomeBook()) {
-                                    break;
-                                }
-
-                                if (leaderAct !== me.act) {
-                                    Town.goToTown(this.checkLeaderAct(leader));
+                                    if (!Pather.usePortal(null, leader.name)) {
+                                        return false;
+                                    }
+                                } else if (me.inTown) {
+                                    Town.goToTown(leaderAct);
                                     Town.move("portalspot");
+                                    delay(250);
+
+                                    if (me.inTown && (me.act === 2 || me.act === 3) && [66, 67, 68, 69, 70, 71, 72, 73, 74, 100, 101, 102].indexOf(leader.area) >= 0) {
+                                        Town.move(NPC.Cain);
+                                        let localNPC = getUnit(1, NPC.Cain);
+                                        localNPC.openMenu();
+                                        me.cancel();
+                                        Town.move("portalspot");
+                                        delay(250);
+                                    }
+
+                                    if (!Pather.usePortal(null, leader.name)) {
+                                        break;
+                                    }
+
+                                    while (!this.getLeaderUnit(Config.Leader) && !me.dead) {
+                                        Attack.clear(10);
+                                        delay(200);
+                                    }
+                                } else if (!me.inTown && leader.area !== me.area) {
+                                    if (!this.goToTownTomeBook()) {
+                                        break;
+                                    }
+
+                                    if (leaderAct !== me.act) {
+                                        Town.goToTown(this.checkLeaderAct(leader));
+                                        Town.move("portalspot");
+                                    }
+
+                                    delay(250);
+                                    Pather.usePortal(null, leader.name);
                                 }
 
-                                delay(250);
-                                Pather.usePortal(null, leader.name);
-                            }
-
-                            break;
-                        case "2":
-                            this.goToTownTomeBook();
-
-                            break;
-                        case "3":
-                            if (me.inTown) {
-                                Town.doChores();
-                                Town.move("portalspot");
-                            }
-
-                            break;
-                        case "bo":
-                        case me.name + " bo":
-                            Precast.doPrecast(true);
-
-                            break;
-                        case "a4":
-                            if (me.area === 102) {
-                                Pather.moveTo(17590, 8068);
-                                let tick = getTickCount(), time = 0;
-
-                                while (getCollision(me.area, 17601, 8070, 17590, 8068) !== 0 && (time = getTickCount() - tick) < 2000) {
-                                    Pather.moveTo(17590, 8068);  // Activate it
-                                    delay(3);
+                                if (me.inTown) {
+                                    break;
                                 }
 
-                                if (time < 2000 && Pather.moveTo(17601, 8070)) {
-                                    Pather.usePortal(null);
+                                delay(rand(1, 3) * 500);
+                                unit = getUnit(2, "waypoint");
+
+                                if (unit) {
+                                    WPLoop:
+                                    for (let i = 0; i < 3; i++) {
+                                        if (getDistance(me, unit) > 3) {
+                                            Pather.moveToUnit(unit);
+                                        }
+
+                                        unit.interact();
+
+                                        for (let j = 0; j < 100; j++) {
+                                            if (j % 20 === 0) {
+                                                me.cancel();
+                                                delay(300);
+                                                unit.interact();
+                                            }
+
+                                            if (getUIFlag(0x14)) {
+                                                break WPLoop;
+                                            }
+
+                                            delay(10);
+                                        }
+                                    }
                                 }
+
+                                if (getUIFlag(0x14)) {
+                                    me.overhead("ÿc2Got wp!ÿc0");
+                                } else {
+                                    me.overhead("ÿc1Failed to Get wp!ÿc0");
+                                }
+
+                                me.cancel();
+                                delay(1000);
+
+                                this.goToTownTomeBook();
+                                actions.shift();
+
                                 break;
-                            }
-                        case "a1":
-                        case "a2":
-                        case "a3":
-                        case "a5":
-                            if (this.goToTownTomeBook()) {
-                                this.changeAct(parseInt(action[1], 10));
-                            }
+                            case "#bye":
+                                if (this.goToTownTomeBook()) {
+                                    Town.goToTown(1);
+                                }
 
-                            break;
-                        case me.name + " tp":
-                            unit = me.findItem("tbk", 0, 3);
+                                me.overhead("Cya!");
+                                delay(rand(3,15)*1000);
+                                D2Bot.stop(me.profile, true);
 
-                            if (unit && unit.getStat(70)) {
-                                unit.interact();
                                 break;
-                            }
+                            case "#come":
+                                if (Config.Leader !== "") {
+                                    if (Misc.inMyParty(Config.Leader)) {
+                                        let leaderAct = this.checkLeaderAct(leader);
 
-                            unit = me.findItem("tsc", 0, 3);
+                                        if (me.inTown && leaderAct !== me.act) {
+                                            me.overhead = ("Yes, leader ÿc2" + Config.Leader + "ÿc0");
+                                            Town.goToTown(leaderAct);
+                                        } else if (!me.inTown) {
+                                            if (!this.goToTownTomeBook()) {
+                                                break;
+                                            }
+                                        }
 
-                            if (unit) {
-                                unit.interact();
+                                        Town.move("portalspot");
+                                    } else {
+                                        Town.goToTown(1);
+                                        Town.move("stash");
+                                    }
+                                }
+
+                                actions.shift();
+
                                 break;
-                            }
+                            case "#quit":
+                                this.goToTownTomeBook();
+                                delay(rand(6, 10) * 1000);
+                                quit();
 
-                            me.overhead("No TP scrolls or tomes.");
+                                break;
+                            case "#stash":
+                                if (me.inTown) {
+                                    if (getUIFlag(0x19)) {
+                                        me.cancel();
+                                        me.overhead("Stash Done!");
+                                        Pather.moveTo(me.x + rand(-8, 8), me.y + rand(-8, 8));
+                                    } else {
+                                        me.cancel();
+                                        me.overhead("Going to Stash!");
+                                        Town.openStash();
+                                    }
+                                }
 
-                            break;
+                                actions.shift();
+
+                                break;
+                        }
                     }
-
-                    if (action.indexOf("talk") > -1) {
-                        this.talk(action.split(" ")[1]);
-                    }
-
-                    action = "";
-                    delay(250);
                 }
+
             //- Hooks menu --------------------------------------------------------
                 if (!chatFlag && !pvpFlag) {
                     switch (activeAction) {
@@ -2254,6 +2555,6 @@ function RogerThat() {
                     }
                 }
 
-            delay(250);
+            delay(150);
         }
 }
