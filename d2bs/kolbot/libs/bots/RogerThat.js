@@ -9,7 +9,6 @@ function RogerThat() {
         leader,
         isLeaderHere,
         leaderUnit,
-        charClass,
         result,
         player,
         coords,
@@ -23,17 +22,13 @@ function RogerThat() {
         checkLeaderFlag = false,
         checkPartyFlag = false,
         leaderLeftPartyFlag = false,
-        lastLvl = 1,
+        lastLvl = me.getStat(12),
         actions = [],
         leaderAct,
         target,
         foundMatch = false;
-    const filename = "logs/leader.txt";
     const classes = ["amazon", "sorceress", "necromancer", "paladin", "barbarian", "druid", "assassin"];
-
-    //! INIT =========================================================================
-        charClass = classes[me.classid];
-        // lastLvl = me.getStat(12);
+    const filename = "logs/leader.txt";
 
     //! PARTY ========================================================================
         //+ Get leader's party unit ===============================================
@@ -140,6 +135,95 @@ function RogerThat() {
                 }
 
                 return false;
+            };
+
+        //+ Got to leader act / area ==============================================
+            this.goToLeader = function (leader, justWp) {
+                leaderAct = this.checkLeaderAct(leader);
+
+                if (me.inTown && leaderAct !== me.act) {
+                    Town.goToTown(leaderAct);
+                    Town.move("portalspot");
+                    delay(250);
+
+                    if (!Pather.usePortal(null, leader.name)) {
+                        return false;
+                    }
+                } else if (me.inTown && leaderAct === me.act) {
+                    Town.move("portalspot");
+                    delay(250);
+
+                    if (me.inTown && (me.act === 2 || me.act === 3) && [66, 67, 68, 69, 70, 71, 72, 73, 74, 100, 101, 102].indexOf(leader.area) >= 0) {
+                        this.talkTo(NPC.Cain);
+                        delay(250);
+                    }
+
+                    if (!Pather.usePortal(null, leader.name)) {
+                        return false;
+                    }
+
+                    if (!justWp) {
+                        while (!this.getLeaderUnit(leader.name) && !me.dead) {
+                            Attack.clear(10);
+                            delay(150);
+                        }
+                    }
+                } else if (!me.inTown && leaderAct !== me.act) {
+                    if (!this.goToTownTomeBook()) {
+                        return false;
+                    }
+
+                    Town.goToTown(this.checkLeaderAct(leader));
+                    Town.move("portalspot");
+                    delay(250);
+                    Pather.usePortal(null, leader.name);
+                }
+
+                return true;
+            };
+
+        //+ Get WP ================================================================
+            this.getWp = function () {
+                if (me.inTown) {
+                    return false;
+                }
+
+                unit = getUnit(2, "waypoint");
+
+                print(JSON.stringify(unit, undefined, 3))
+                if (unit) {
+                    WPLoop:
+                    for (let i = 0; i < 3; i++) {
+                        if (getDistance(me, unit) > 3) {
+                            Pather.moveToUnit(unit);
+                        }
+
+                        unit.interact();
+
+                        for (let j = 0; j < 100; j++) {
+                            if (j % 20 === 0) {
+                                me.cancel();
+                                delay(300);
+                                unit.interact();
+                            }
+
+                            if (getUIFlag(0x14)) {
+                                break WPLoop;
+                            }
+
+                            delay(10);
+                        }
+                    }
+                }
+
+                if (getUIFlag(0x14)) {
+                    me.overhead("ÿc2Got wp.ÿc0");
+                    me.cancel();
+                    return true;
+                } else {
+                    me.overhead("ÿc1Failed to get wp.ÿc0");
+                    return false;
+                }
             };
 
     //! SCRIPT BROADCAST EVENT =======================================================
@@ -448,10 +532,7 @@ function RogerThat() {
                 }
 
                 if (name === NPC.Cain) {
-                    let localNPC = getUnit(1, NPC.Cain);
-                    localNPC.openMenu();
-                    me.cancel();
-                    Town.move("portalspot");
+                    this.talkTo(NPC.Cain);
                     return true;
                 }
 
@@ -713,7 +794,7 @@ function RogerThat() {
 
         //+ Check Quest ===========================================================
             this.checkQuest = function () {
-                let item, itemClassId, quest, localNPC, count;
+                let item, itemClassId, quest, count;
 
                 switch (me.area) {
                     case 4:     // Stone field - stones
@@ -885,11 +966,7 @@ function RogerThat() {
                                     break;
                                 }
 
-                                Town.move(NPC.Atma);
-                                localNPC = getUnit(1, NPC.Atma);
-                                localNPC.openMenu();
-                                me.cancel();
-                                Town.move("portalspot");
+                                this.talkTo(NPC.Atma);
                                 break;
                             }
 
@@ -1603,6 +1680,7 @@ function RogerThat() {
                             case "tele":
                             case me.name + " tele":
                                 Pather.teleport = !Pather.teleport;
+
                                 if (Pather.teleport) {
                                     me.overhead("Teleport ÿc2ONÿc0.");
                                 } else {
@@ -2090,7 +2168,6 @@ function RogerThat() {
                     checkPartyFlag = true;
                     leaderLeftPartyFlag = false;
                 } else if (checkLeaderFlag &&  Config.Leader !== "" && !Misc.inMyParty(Config.Leader) && checkPartyFlag) {
-                    // me.overhead("Oh no! " + leader.name + " left the party");
                     if (!me.inTown) {
                         this.goToTownTomeBook();
                     }
@@ -2192,66 +2269,26 @@ function RogerThat() {
                     if (actions.length > 0) {
                         switch (actions[0]) {
                             case "1":
-                                leaderAct = this.checkLeaderAct(leader);
-
-                                if (me.inTown && leaderAct !== me.act) {
-                                    Town.goToTown(leaderAct);
-                                    Town.move("portalspot");
-                                    delay(250);
-
-                                    if (!Pather.usePortal(null, leader.name)) {
-                                        return false;
-                                    }
-                                } else if (me.inTown) {
-                                    Town.goToTown(leaderAct);
-                                    Town.move("portalspot");
-                                    delay(250);
-
-                                    if (me.inTown && (me.act === 2 || me.act === 3) && [66, 67, 68, 69, 70, 71, 72, 73, 74, 100, 101, 102].indexOf(leader.area) >= 0) {
-                                        Town.move(NPC.Cain);
-                                        let localNPC = getUnit(1, NPC.Cain);
-                                        localNPC.openMenu();
-                                        me.cancel();
-                                        Town.move("portalspot");
-                                        delay(250);
-                                    }
-
-                                    if (!Pather.usePortal(null, leader.name)) {
-                                        break;
-                                    }
-
-                                    while (!this.getLeaderUnit(Config.Leader) && !me.dead) {
-                                        Attack.clear(10);
-                                        delay(200);
-                                    }
-                                } else if (!me.inTown && leader.area !== me.area) {
-                                    if (!this.goToTownTomeBook()) {
-                                        break;
-                                    }
-
-                                    if (leaderAct !== me.act) {
-                                        Town.goToTown(this.checkLeaderAct(leader));
-                                        Town.move("portalspot");
-                                    }
-
-                                    delay(250);
-                                    Pather.usePortal(null, leader.name);
-                                }
-
+                                this.goToLeader(leader);
                                 actions.shift();
 
                                 break;
                             case "2":
-                                this.goToTownTomeBook();
+                                if (!me.inTown) {
+                                    this.goToTownTomeBook();
+                                }
+
                                 actions.shift();
 
                                 break;
                             case "3":
-                                if (me.inTown) {
-                                    Town.doChores();
-                                    Town.move("portalspot");
+                                if (!me.inTown && !this.goToTownTomeBook()) {
+                                    actions.shift();
+                                    break;
                                 }
 
+                                Town.doChores();
+                                Town.move("portalspot");
                                 actions.shift();
 
                                 break;
@@ -2286,31 +2323,37 @@ function RogerThat() {
 
                                 break;
                             case "bo":
-                                Precast.doPrecast(true);
+                                if (!me.inTown) {
+                                    Precast.doPrecast(true);
+                                }
+
                                 actions.shift();
 
                                 break;
                             case "c":
-                                if (me.mode === 17) {
-                                    me.revive();
-                                }
-
                                 let corpse = getUnit(0, me.name, 17);
 
                                 if (corpse) {
-                                    do {
-                                        if (getDistance(me, corpse) <= 15) {
-                                            Pather.moveToUnit(corpse);
-                                            corpse.interact();
-                                            delay(500);
-                                        }
-                                    } while (corpse.getNext());
+                                    for (let i = 0; i < 3; i++) {
+                                        do {
+                                            if (getDistance(me, corpse) <= 15) {
+                                                Pather.moveToUnit(corpse);
+                                                corpse.interact();
+                                                delay(500);
+                                            }
+                                        } while (corpse.getNext());
+                                    }
                                 }
 
                                 actions.shift();
 
                                 break;
                             case "cow":
+                                if (!this.goToTownTomeBook()) {
+                                    actions.shift();
+                                    break
+                                }
+
                                 if (me.area !== 1) {
                                     Town.goToTown(1);
                                 }
@@ -2326,143 +2369,23 @@ function RogerThat() {
 
                                 break;
                             case "p":
-                                this.checkQuest();
+                                if (!me.inTown) {
+                                    this.checkQuest();
+                                }
+
                                 actions.shift();
 
                                 break;
                             case "wp":
-                                if (me.inTown) {
-                                    break;
-                                }
-
-                                delay(rand(1, 3) * 500);
-                                unit = getUnit(2, "waypoint");
-
-                                if (unit) {
-                                    WPLoop:
-                                    for (let i = 0; i < 3; i++) {
-                                        if (getDistance(me, unit) > 3) {
-                                            Pather.moveToUnit(unit);
-                                        }
-
-                                        unit.interact();
-
-                                        for (let j = 0; j < 100; j++) {
-                                            if (j % 20 === 0) {
-                                                me.cancel();
-                                                delay(300);
-                                                unit.interact();
-                                            }
-
-                                            if (getUIFlag(0x14)) {
-                                                break WPLoop;
-                                            }
-
-                                            delay(10);
-                                        }
-                                    }
-                                }
-
-                                if (getUIFlag(0x14)) {
-                                    me.overhead("ÿc2Got wp.ÿc0");
-                                } else {
-                                    me.overhead("ÿc1Failed to get wp.ÿc0");
-                                }
-
-                                me.cancel();
+                                this.getWp();
                                 actions.shift();
 
                                 break;
-
-
                             case "1wp":
-                                leaderAct = this.checkLeaderAct(leader);
-
-                                if (me.inTown && leaderAct !== me.act) {
-                                    Town.goToTown(leaderAct);
-                                    Town.move("portalspot");
-                                    delay(250);
-
-                                    if (!Pather.usePortal(null, leader.name)) {
-                                        return false;
-                                    }
-                                } else if (me.inTown) {
-                                    Town.goToTown(leaderAct);
-                                    Town.move("portalspot");
-                                    delay(250);
-
-                                    if (me.inTown && (me.act === 2 || me.act === 3) && [66, 67, 68, 69, 70, 71, 72, 73, 74, 100, 101, 102].indexOf(leader.area) >= 0) {
-                                        Town.move(NPC.Cain);
-                                        let localNPC = getUnit(1, NPC.Cain);
-                                        localNPC.openMenu();
-                                        me.cancel();
-                                        Town.move("portalspot");
-                                        delay(250);
-                                    }
-
-                                    if (!Pather.usePortal(null, leader.name)) {
-                                        break;
-                                    }
-
-                                    while (!this.getLeaderUnit(Config.Leader) && !me.dead) {
-                                        Attack.clear(10);
-                                        delay(200);
-                                    }
-                                } else if (!me.inTown && leader.area !== me.area) {
-                                    if (!this.goToTownTomeBook()) {
-                                        break;
-                                    }
-
-                                    if (leaderAct !== me.act) {
-                                        Town.goToTown(this.checkLeaderAct(leader));
-                                        Town.move("portalspot");
-                                    }
-
-                                    delay(250);
-                                    Pather.usePortal(null, leader.name);
-                                }
-
-                                if (me.inTown) {
-                                    break;
-                                }
-
-                                delay(rand(1, 3) * 500);
-                                unit = getUnit(2, "waypoint");
-
-                                if (unit) {
-                                    WPLoop:
-                                    for (let i = 0; i < 3; i++) {
-                                        if (getDistance(me, unit) > 3) {
-                                            Pather.moveToUnit(unit);
-                                        }
-
-                                        unit.interact();
-
-                                        for (let j = 0; j < 100; j++) {
-                                            if (j % 20 === 0) {
-                                                me.cancel();
-                                                delay(300);
-                                                unit.interact();
-                                            }
-
-                                            if (getUIFlag(0x14)) {
-                                                break WPLoop;
-                                            }
-
-                                            delay(10);
-                                        }
-                                    }
-                                }
-
-                                if (getUIFlag(0x14)) {
-                                    me.overhead("ÿc2Got wp!ÿc0");
-                                } else {
-                                    me.overhead("ÿc1Failed to Get wp!ÿc0");
-                                }
-
-                                me.cancel();
+                                this.goToLeader(leader, true);
+                                delay(250);
+                                this.getWp();
                                 delay(1000);
-
                                 this.goToTownTomeBook();
                                 actions.shift();
 
@@ -2555,6 +2478,6 @@ function RogerThat() {
                     }
                 }
 
-            delay(150);
+            delay(200);
         }
 }
