@@ -35,13 +35,16 @@ function main() {
 	var i, mercHP, ironGolem, tick, merc,
 		preArea,
 		preAct,
-		debugInfo = {area: 0, currScript: "no entry"},
+		debugInfo = { area: 0, currScript: "no entry" },
 		pingTimer = [],
 		quitFlag = false,
 		lastGameFlag = false,
 		pvpTimeFlag = false,
+		customHotkeys = false,
+		isScriptPaused = false,
 		quitListDelayTime,
 		cloneWalked = false,
+		mapHack,
 		canQuit = true,
 		timerLastDrink = [];
 
@@ -158,19 +161,23 @@ function main() {
 			if (script) {
 				if (script.running) {
 					if (i === 0) { // default.dbj
-						print("ÿc1Pausing.");
+						// print("ÿc1Pausing.");
+						// me.overhead("ÿc1Pausing.ÿc0");
 					}
 
 					// don't pause townchicken during clone walk
 					if (scripts[i] !== "tools/townchicken.js" || !cloneWalked) {
 						script.pause();
+						isScriptPaused = true;
 					}
 				} else {
 					if (i === 0) { // default.dbj
-						print("ÿc2Resuming.");
+						// print("ÿc2Resuming.");
+						// me.overhead("ÿc2Resuming.ÿc0");
 					}
 
 					script.resume();
+					isScriptPaused = false;
 				}
 			}
 		}
@@ -442,8 +449,10 @@ function main() {
 
 				break;
 			case 187: //- Equal    - Go To Shenk
+				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
-				var target;
+				if (!me.inTown) break;
+				let target;
 
 				if (me.act !== 5) {
 					me.cancel();
@@ -459,7 +468,9 @@ function main() {
 
 				break;
 			case 221: //- ]        - Drop Everything
+				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
+				if (!me.inTown) break;
 				me.cancel();
 
 				if (AutoRogerThat.dropProfileItems()) {
@@ -472,8 +483,9 @@ function main() {
 
 				break;
 			case 219: //- [        - Pick Everything
+				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
-				var pickStatus;
+				let pickStatus;
 				me.cancel();
 				Config.PickitTries = 0;
 				pickStatus = AutoRogerThat.pickItems();
@@ -492,6 +504,13 @@ function main() {
 				pvpTimeFlag = !pvpTimeFlag;
 
 				if (pvpTimeFlag) {
+					mapHack = getScript("tools/mapthread.js");
+
+					if (mapHack) {
+						mapHack.stop();
+						delay(1000);
+					}
+
 					//* Town settings
 						Config.HealHP = 0;
 						Config.HealMP = 0;
@@ -540,9 +559,11 @@ function main() {
 				}
 
 				scriptBroadcast("PVP Time");
+				customHotkeys = false;
 
 				break;
 			case 46:  //- Delete   - Mule Log
+				if (!customHotkeys) break;
 				MuleLogger.LogEquipped = true;
 				MuleLogger.LogMerc = true;
 				MuleLogger.logCharRogerThat();
@@ -552,6 +573,7 @@ function main() {
 
 				break;
 			case 35:  //- End      - Last Game
+				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
 				lastGameFlag = !lastGameFlag;
 
@@ -569,6 +591,7 @@ function main() {
 
 				break;
 			case 19:  //- Pause    - Pause
+				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
 
 				if (!Config.PauseFlag) {
@@ -600,53 +623,76 @@ function main() {
 				}
 
 				break;
-			case 96:  //- Numpad 0 - Test
-				if (pvpTimeFlag) break;
-				//= Send Notification
-				showConsole();
-				Config.RogerThatTelegram.Active = true;
-					Config.RogerThatTelegram.Notify.Trade = true;
-					Config.RogerThatTelegram.Notify.HotIP = true;
-					Config.RogerThatTelegram.Notify.DiabloClone = true;
-				AutoRogerThat.notify({
-					code: 'Trade',
-					message: 'Trade Test',
-					data: {
-						profile: me.profile,
-						game: me.gamename,
-						password: me.gamepassword,
-						ip: me.gameserverip
-					}
-				});
-				//= Talk to Cain (act 1)
-					// var target = getUnit(1, 265);
+			case 45:  //- Insert   - Active Custom Hotkeys
+				customHotkeys = !customHotkeys;
+				pvpTimeFlag = false;
 
-					// if (target && target.openMenu()) {
-					// 	delay(300);
-					// 	me.cancel();
-					// }
-				//= Town Inventory
-					// Town.clearInventory();
-					// Cubing.emptyCube();
-				//= Move
-					// me.overhead(me.x + " x " + me.y);
-					// Pather.walkTo(4401 + rand(-5,5),4550 + rand(-5,5));
-					// Pather.moveTo(4393,4548);        //initial position
-					// Pather.moveTo(4393 + rand(-8,8), 4548 + rand(-8,8));
+				if (customHotkeys) {
+					me.overhead("ÿc4Custom HotKeys:ÿc0 ÿc0ÿc2ONÿc0       ÿc4MH:ÿc0 ÿc1OFFÿc0");
+					mapHack = getScript("tools/mapthread.js");
+
+					if (mapHack) {
+						mapHack.stop();
+						delay(1000);
+					}
+				} else {
+					me.overhead("ÿc4Custom HotKeys:ÿc0 ÿc1OFFÿc0       ÿc4MH:ÿc0 ÿc1OFFÿc0");
+					if (isScriptPaused) {
+						this.togglePause();
+					}
+				}
+
+				break;
+			case 96:  //- Numpad 0 - Test
+				if (!customHotkeys) break;
+				if (pvpTimeFlag) break;
+				me.overhead("Test Key!");
+				//= Send Notification
+				// showConsole();
+				// Config.RogerThatTelegram.Active = true;
+				// 	Config.RogerThatTelegram.Notify.Trade = true;
+				// 	Config.RogerThatTelegram.Notify.HotIP = true;
+				// 	Config.RogerThatTelegram.Notify.DiabloClone = true;
+				// AutoRogerThat.notify({
+				// 	code: 'Trade',
+				// 	message: 'Trade Test',
+				// 	data: {
+				// 		profile: me.profile,
+				// 		game: me.gamename,
+				// 		password: me.gamepassword,
+				// 		ip: me.gameserverip
+				// 	}
+				// });
+
 				break;
 			case 97:  //- Numpad 1 - Run Bitch
+				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
+				if (!me.inTown) {
+					me.overhead("I need to be in town to run!");
+					break;
+				}
 				scriptBroadcast("Run Bitch");
 
 				break;
 			case 98:  //- Numpad 2 - Message Log
+				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
+				if (!me.inTown) {
+					me.overhead("I need to be in town to trade!");
+					break;
+				};
 				Config.MessageLogFlag = !Config.MessageLogFlag;
 				scriptBroadcast("Message Log");
 
 				break;
 			case 99:  //- Numpad 3 - Drop Drop Trash
+				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
+				if (!me.inTown) {
+					me.overhead("I need to be in town to drop some trash!");
+					break;
+				}
 				me.cancel();
 
 				if (AutoRogerThat.dropProfileItems("trash")) {
@@ -659,6 +705,7 @@ function main() {
 
 				break
 			case 100: //- Numpad 4 - Open Stash
+				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
 				if (!me.inTown) Town.goToTown();
 
@@ -672,15 +719,31 @@ function main() {
 
 				break;
 			case 101: //- Numpad 5 - Pause/Break
+				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
+				if (me.inTown) break;
+
+				this.togglePause();
+
+				if (isScriptPaused && !me.inTown) {
+					try {
+						Town.goToTown();
+					} catch (e) {
+						me.overhead("Failed to go to town!");
+					}
+				}
+
+				delay(250);
 				this.togglePause();
 
 				break;
 			case 102: //- Numpad 6 -
+				if (!customHotkeys) break;
 				me.overhead("Numpad 6 available");
 
 				break;
 			case 103: //- Numpad 7 - I Am The Boss
+				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
 				FileTools.writeText("logs/leader.txt", me.name);
 				Config.Leader = "";
@@ -688,16 +751,37 @@ function main() {
 
 				break;
 			case 104: //- Numpad 8 -
+				if (!customHotkeys) break;
 				me.overhead("Numpad 8 available");
 
 				break;
 			case 105: //- Numpad 9 - Disable Mule Chat
+				if (!customHotkeys) break;
 				pvpTimeFlag = false;
+
 				scriptBroadcast("Chat OnOff");
 
 				break;
 			case 110: //- .        - MH
-				if (!pvpTimeFlag) load("tools/mapthread.js");
+				if (pvpTimeFlag) {
+					scriptBroadcast("PVP Time");
+				}
+
+				mapHack = getScript("tools/mapthread.js");
+
+				if (mapHack) {
+					mapHack.stop();
+					me.overhead("ÿc4Custom HotKeys:ÿc0 ÿc1OFFÿc0       ÿc4MH:ÿc0 ÿc1OFFÿc0");
+					delay(1000);
+				} else {
+					load("tools/mapthread.js");
+					scriptBroadcast("mapHack ON");
+					me.overhead("ÿc4Custom HotKeys:ÿc0 ÿc1OFFÿc0       ÿc4MH:ÿc0 ÿc0ÿc2ONÿc0");
+					delay(4000);
+				}
+
+				customHotkeys = false;
+
 
 				break;
 		}

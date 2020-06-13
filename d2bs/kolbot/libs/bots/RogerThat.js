@@ -153,7 +153,7 @@ function RogerThat() {
                     Town.move("portalspot");
                     delay(250);
 
-                    if (me.inTown && (me.act === 2 || me.act === 3) && [66, 67, 68, 69, 70, 71, 72, 73, 74, 100, 101, 102].indexOf(leader.area) >= 0) {
+                    if ((me.act === 2 || me.act === 3) && [66, 67, 68, 69, 70, 71, 72, 73, 74, 100, 101, 102].indexOf(leader.area) >= 0) {
                         this.talkTo(NPC.Cain);
                         delay(250);
                     }
@@ -235,6 +235,12 @@ function RogerThat() {
 
             if (me.ingame) {
                 switch (msg) {
+                    case "mapHack ON":
+                        chatFlag = false;
+                        runFlag = false;
+                        messageFlag = false;
+
+                        break;
                     case "Run Bitch":
                         runFlag = !runFlag;
 
@@ -370,8 +376,8 @@ function RogerThat() {
                         if (!chatFlag) {
                             chatFlag = true;
                             pvpFlag = false;
-                            print("ÿc4Chat:ÿc0 ÿc2ONÿc0 ÿc4PVP:ÿc0 ÿc1OFFÿc0");
-                            me.overhead("ÿc4Chat:ÿc0 ÿc2ONÿc0 ÿc4PVP:ÿc0 ÿc1OFFÿc0");
+                            print("ÿc4Chat:ÿc0ÿc2ONÿc0                             ÿc4PVP:ÿc0ÿc1OFFÿc0                            ÿc4MH:ÿc0ÿc1OFFÿc0");
+                            me.overhead("ÿc4Chat:ÿc0ÿc2ONÿc0                             ÿc4PVP:ÿc0ÿc1OFFÿc0                            ÿc4MH:ÿc0ÿc1OFFÿc0");
                             resfix = me.screensize ? 0 : -120;
 
                             if (hooks.length) {
@@ -390,8 +396,8 @@ function RogerThat() {
 
                         } else {
                             chatFlag = false;
-                            print("ÿc4Chat:ÿc0 ÿc1OFFÿc0 ÿc4PVP:ÿc0 ÿc1OFFÿc0");
-                            me.overhead("ÿc4Chat:ÿc0 ÿc1OFFÿc0 ÿc4PVP:ÿc0 ÿc1OFFÿc0");
+                            print("ÿc4Chat:ÿc0ÿc1OFFÿc0                             ÿc4PVP:ÿc0ÿc1OFFÿc0                            ÿc4MH:ÿc0ÿc1OFFÿc0");
+                            me.overhead("ÿc4Chat:ÿc0ÿc1OFFÿc0                             ÿc4PVP:ÿc0ÿc1OFFÿc0                            ÿc4MH:ÿc0ÿc1OFFÿc0");
                             hide = true;
                         }
 
@@ -400,8 +406,8 @@ function RogerThat() {
                         pvpFlag = !pvpFlag;
 
                         if (pvpFlag) {
-                            print("ÿc4Chat:ÿc0 ÿc1OFFÿc0 ÿc4PVP:ÿc0 ÿc2ONÿc0");
-                            me.overhead("ÿc4Chat:ÿc0 ÿc1OFFÿc0 ÿc4PVP:ÿc0 ÿc2ONÿc0");
+                            print("ÿc4Chat:ÿc0 ÿc1OFFÿc0                             ÿc4PVP:ÿc0ÿc2ONÿc0                            ÿc4MH:ÿc0ÿc1OFFÿc0");
+                            me.overhead("ÿc4Chat:ÿc0ÿc1OFFÿc0                             ÿc4PVP:ÿc0ÿc2ONÿc0                            ÿc4MH:ÿc0ÿc1OFFÿc0");
                             chatFlag = false;
                             runFlag = false;
                             messageFlag = false;
@@ -423,8 +429,8 @@ function RogerThat() {
 
                         } else {
                             chatFlag = false;
-                            print("ÿc4Chat:ÿc0 ÿc1OFFÿc0 ÿc4PVP:ÿc0 ÿc1OFFÿc0");
-                            me.overhead("ÿc4Chat:ÿc0 ÿc1OFFÿc0 ÿc4PVP:ÿc0 ÿc1OFFÿc0");
+                            print("ÿc4Chat:ÿc0 ÿc1OFFÿc0                             ÿc4PVP:ÿc0ÿc1OFFÿc0                            ÿc4MH:ÿc0 ÿc1OFFÿc0");
+                            me.overhead("ÿc4Chat:ÿc0ÿc1OFFÿc0                             ÿc4PVP:ÿc0ÿc1OFFÿc0                            ÿc4MH:ÿc0ÿc1OFFÿc0");
                             hide = true;
                         }
 
@@ -2136,6 +2142,7 @@ function RogerThat() {
             //- Check leader ------------------------------------------------------
                 if (!checkLeaderFlag) {
                     isLeaderHere = FileTools.readText(filename);
+                    delay(200);
 
                     if (isLeaderHere !== "") {
                         leader = this.getLeader(isLeaderHere);
