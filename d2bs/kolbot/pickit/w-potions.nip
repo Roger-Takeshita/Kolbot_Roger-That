@@ -1,7 +1,13 @@
-[name] == gold # [gold] >= 5
-[name] == lightmanapotion
-[name] == minormanapotion
-[name] == manapotion
+[name] == gold # [gold] >= 50
 [name] == lighthealingpotion
 [name] == minorhealingpotion
 [name] == healingpotion
+[name] == greaterhealingpotion
+[name] == superhealingpotion
+[name] == lightmanapotion
+[name] == minormanapotion
+[name] == manapotion
+[name] == greatermanapotion
+[name] == supermanapotion
+[name] == rejuvenationpotion
+[name] == fullrejuvenationpotion

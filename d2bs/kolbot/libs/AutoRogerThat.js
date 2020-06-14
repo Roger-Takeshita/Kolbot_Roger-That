@@ -190,6 +190,17 @@ var AutoRogerThat = {
                                 }
 
                                 break;
+                            case "gem":
+                            case "gems":         //Gems
+                                for (let j = 557 ; j <= 586 ; j++) {
+                                    dropObj[j] = qtyArray[i]
+                                }
+
+                                for (let j = 599 ; j <= 601 ; j++) {
+                                    dropObj[j] = qtyArray[i]
+                                }
+
+                                break;
                             case "sc":
                             case "scs":          //Small charms and large charms
                                 itemCodes = [603, 604];

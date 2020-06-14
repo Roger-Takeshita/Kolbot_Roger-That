@@ -40,7 +40,7 @@ function main() {
 		quitFlag = false,
 		lastGameFlag = false,
 		pvpTimeFlag = false,
-		customHotkeys = false,
+		customHotkeys = true,
 		isScriptPaused = false,
 		quitListDelayTime,
 		cloneWalked = false,
@@ -449,7 +449,6 @@ function main() {
 
 				break;
 			case 187: //- Equal    - Go To Shenk
-				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
 				if (!me.inTown) break;
 				let target;
@@ -468,7 +467,6 @@ function main() {
 
 				break;
 			case 221: //- ]        - Drop Everything
-				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
 				if (!me.inTown) break;
 				me.cancel();
@@ -483,7 +481,6 @@ function main() {
 
 				break;
 			case 219: //- [        - Pick Everything
-				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
 				let pickStatus;
 				me.cancel();
@@ -563,7 +560,6 @@ function main() {
 
 				break;
 			case 46:  //- Delete   - Mule Log
-				if (!customHotkeys) break;
 				MuleLogger.LogEquipped = true;
 				MuleLogger.LogMerc = true;
 				MuleLogger.logCharRogerThat();
@@ -573,7 +569,6 @@ function main() {
 
 				break;
 			case 35:  //- End      - Last Game
-				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
 				lastGameFlag = !lastGameFlag;
 
@@ -591,7 +586,6 @@ function main() {
 
 				break;
 			case 19:  //- Pause    - Pause
-				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
 
 				if (!Config.PauseFlag) {
@@ -623,24 +617,26 @@ function main() {
 				}
 
 				break;
-			case 45:  //- Insert   - Active Custom Hotkeys
-				customHotkeys = !customHotkeys;
-				pvpTimeFlag = false;
+			case 45:  //- Insert   -
+				if (!customHotkeys) break;
+				me.overhead("Insert key available");
+				// customHotkeys = !customHotkeys;
+				// pvpTimeFlag = false;
 
-				if (customHotkeys) {
-					me.overhead("ÿc4Custom HotKeys:ÿc0 ÿc0ÿc2ONÿc0       ÿc4MH:ÿc0 ÿc1OFFÿc0");
-					mapHack = getScript("tools/mapthread.js");
+				// if (customHotkeys) {
+				// 	me.overhead("ÿc4Custom HotKeys:ÿc0 ÿc2ONÿc0       ÿc4MH:ÿc0 ÿc1OFFÿc0");
+				// 	mapHack = getScript("tools/mapthread.js");
 
-					if (mapHack) {
-						mapHack.stop();
-						delay(1000);
-					}
-				} else {
-					me.overhead("ÿc4Custom HotKeys:ÿc0 ÿc1OFFÿc0       ÿc4MH:ÿc0 ÿc1OFFÿc0");
-					if (isScriptPaused) {
-						this.togglePause();
-					}
-				}
+				// 	if (mapHack) {
+				// 		mapHack.stop();
+				// 		delay(1000);
+				// 	}
+				// } else {
+				// 	me.overhead("ÿc4Custom HotKeys:ÿc0 ÿc1OFFÿc0       ÿc4MH:ÿc0 ÿc1OFFÿc0");
+				// 	if (isScriptPaused) {
+				// 		this.togglePause();
+				// 	}
+				// }
 
 				break;
 			case 96:  //- Numpad 0 - Test
@@ -771,17 +767,16 @@ function main() {
 
 				if (mapHack) {
 					mapHack.stop();
-					me.overhead("ÿc4Custom HotKeys:ÿc0 ÿc1OFFÿc0       ÿc4MH:ÿc0 ÿc1OFFÿc0");
+					me.overhead("ÿc4Custom HotKeys:ÿc0 ÿc2ONÿc0       ÿc4MH:ÿc0 ÿc1OFFÿc0");
+					customHotkeys = true;
 					delay(1000);
 				} else {
 					load("tools/mapthread.js");
 					scriptBroadcast("mapHack ON");
-					me.overhead("ÿc4Custom HotKeys:ÿc0 ÿc1OFFÿc0       ÿc4MH:ÿc0 ÿc0ÿc2ONÿc0");
+					me.overhead("ÿc4Custom HotKeys:ÿc0 ÿc1OFFÿc0       ÿc4MH:ÿc0 ÿc2ONÿc0");
+					customHotkeys = false;
 					delay(4000);
 				}
-
-				customHotkeys = false;
-
 
 				break;
 		}
