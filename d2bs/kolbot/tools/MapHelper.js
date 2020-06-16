@@ -43,8 +43,9 @@ function main() {
 			}
 		} else {
 			if (!mapThread.running) {
-				print("resume mapthread");
-				mapThread.resume();
+				break;
+				// print("resume mapthread");
+				// mapThread.resume();
 			}
 		}
 

@@ -44,7 +44,8 @@ function main() {
 		isScriptPaused = false,
 		quitListDelayTime,
 		cloneWalked = false,
-		mapHack,
+		pickThread,
+		mapThread,
 		canQuit = true,
 		timerLastDrink = [];
 
@@ -501,10 +502,10 @@ function main() {
 				pvpTimeFlag = !pvpTimeFlag;
 
 				if (pvpTimeFlag) {
-					mapHack = getScript("tools/mapthread.js");
+					mapThread = getScript("tools/mapthread.js");
 
-					if (mapHack) {
-						mapHack.stop();
+					if (mapThread) {
+						mapThread.stop();
 						delay(1000);
 					}
 
@@ -620,23 +621,6 @@ function main() {
 			case 45:  //- Insert   -
 				if (!customHotkeys) break;
 				me.overhead("Insert key available");
-				// customHotkeys = !customHotkeys;
-				// pvpTimeFlag = false;
-
-				// if (customHotkeys) {
-				// 	me.overhead("ÿc4Custom HotKeys:ÿc0 ÿc2ONÿc0       ÿc4MH:ÿc0 ÿc1OFFÿc0");
-				// 	mapHack = getScript("tools/mapthread.js");
-
-				// 	if (mapHack) {
-				// 		mapHack.stop();
-				// 		delay(1000);
-				// 	}
-				// } else {
-				// 	me.overhead("ÿc4Custom HotKeys:ÿc0 ÿc1OFFÿc0       ÿc4MH:ÿc0 ÿc1OFFÿc0");
-				// 	if (isScriptPaused) {
-				// 		this.togglePause();
-				// 	}
-				// }
 
 				break;
 			case 96:  //- Numpad 0 - Test
@@ -763,17 +747,31 @@ function main() {
 					scriptBroadcast("PVP Time");
 				}
 
-				mapHack = getScript("tools/mapthread.js");
+				mapThread = getScript("tools/mapthread.js")
+				pickThread = getScript("tools/pickthread.js");
 
-				if (mapHack) {
-					mapHack.stop();
-					me.overhead("ÿc4Custom HotKeys:ÿc0 ÿc2ONÿc0       ÿc4MH:ÿc0 ÿc1OFFÿc0");
+
+				if (mapThread) {
+					mapThread.stop();
+
+					if (pickThread) {
+						pickThread.stop();
+					}
+
+					me.overhead("ÿc4HotKeys:ÿc2ONÿc0             ÿc4MH:ÿc1OFFÿc0 ÿc4Pickit:ÿc1OFFÿc0");
 					customHotkeys = true;
 					delay(1000);
 				} else {
 					load("tools/mapthread.js");
 					scriptBroadcast("mapHack ON");
-					me.overhead("ÿc4Custom HotKeys:ÿc0 ÿc1OFFÿc0       ÿc4MH:ÿc0 ÿc2ONÿc0");
+
+					if (Config.ManualPlayPick) {
+						load("tools/pickthread.js");
+						me.overhead("ÿc4HotKeys:ÿc1OFFÿc0             ÿc4MH:ÿc2ONÿc0 ÿc4Pickit:ÿc2ONÿc0");
+					} else {
+						me.overhead("ÿc4HotKeys:ÿc1OFFÿc0             ÿc4MH:ÿc2ONÿc0 ÿc4Pickit:ÿc1OFFÿc0");
+					}
+
 					customHotkeys = false;
 					delay(4000);
 				}
