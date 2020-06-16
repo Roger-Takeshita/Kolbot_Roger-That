@@ -17,29 +17,9 @@ var StarterConfig = {
 include("json2.js");
 include("OOG.js");
 include("GameAction.js");
-include("Gambling.js");
-include("common/Misc.js");
-include("NTItemParser.dbl");
-include("AutoMule.js");
-include("AutoRogerThat.js");
-include("CraftingSystem.js");
-include("TorchSystem.js");
 include("MuleLogger.js");
 include("common/misc.js");
 include("common/util.js");
-include("GameAction.js");
-include("common/Attack.js");
-include("common/Cubing.js");
-include("common/CollMap.js");
-include("common/Config.js");
-include("common/Loader.js");
-include("common/Pickit.js");
-include("common/Pather.js");
-include("common/Precast.js");
-include("common/Prototypes.js");
-include("common/Runewords.js");
-include("common/Storage.js");
-include("common/Town.js");
 
 if (!FileTools.exists("data/" + me.profile + ".json")) {
 	DataFile.create();
@@ -85,14 +65,14 @@ function keyEvent(key) {
 	if (me.ingame) {
 		switch (key) {
 			case 46: // delete
-			case 102: // Numpad 6
-			MuleLogger.LogEquipped = true;
-			MuleLogger.LogMerc = true;
-			MuleLogger.logCharRogerThat();
-			delay(150);
-			print("Logged char: ÿc2" + me.name + "ÿc0");
-			me.overhead("Logged char: ÿc2" + me.name + "ÿc0");
-			break;
+				MuleLogger.LogEquipped = true;
+				MuleLogger.LogMerc = true;
+				MuleLogger.logCharRogerThat();
+				delay(150);
+				print("Logged char: ÿc2" + me.name + "ÿc0");
+				me.overhead("Logged char: ÿc2" + me.name + "ÿc0");
+
+				break;
 		}
 	}
 }
@@ -215,6 +195,17 @@ MainSwitch:
 		}
 
 		if (GameAction.gameInfo() !== null) { // a game name was specified
+
+			if (++ftj > 5) {
+				GameAction.update("done", "GameAction failed to join game!");
+				D2Bot.stop(me.profile,true);
+				break;
+			}
+
+			if (!ControlAction.click(6, 533, 469, 120, 20)) { // Create screen to check if character is dead or not
+				break;
+			}
+
 			if (getControl(6, 533, 469, 120, 20) && getControl(6, 533, 469, 120, 20).disabled === 4) { // dead HC character
 				ControlAction.click(6, 693, 490, 80, 20); // Quit from Lobby
 				break;
@@ -233,32 +224,24 @@ MainSwitch:
 					break;
 				}
 			}
-
-			if (!locationTimeout(5000, location)) { // in case join button gets bugged
-				if (!ControlAction.click(6, 533, 469, 120, 20)) { // Create
-					break;
-				}
-
-				if (!ControlAction.click(6, 652, 469, 120, 20)) { // Join
-					break;
-				}
-			}
 		} else {
-			if (!ControlAction.click(6, 533, 469, 120, 20)) { // Create
+
+			if (++ftj > 5) {
+				GameAction.update("done", "GameAction failed to create game!");
+				D2Bot.stop(me.profile,true);
 				break;
 			}
 
-			if (getControl(6, 533, 469, 120, 20) && getControl(6, 533, 469, 120, 20).disabled === 4) { // dead HC character
-				ControlAction.click(6, 693, 490, 80, 20); // Quit from Lobby
+			if (!ControlAction.click(6, 652, 469, 120, 20)) { // Join
 				break;
 			}
 
 			if (!locationTimeout(5000, location)) { // in case join button gets bugged
-				if (!ControlAction.click(6, 652, 469, 120, 20)) { // Join
+				if (!ControlAction.click(6, 533, 469, 120, 20)) { // Create
 					break;
 				}
 
-				if (!ControlAction.click(6, 533, 469, 120, 20)) { // Create
+				if (!ControlAction.click(6, 652, 469, 120, 20)) { // Join
 					break;
 				}
 			}
@@ -272,6 +255,12 @@ MainSwitch:
 
 		break;
 	case 4: // Create Game
+		if (creatingActions.indexOf(JSON.parse(tag).action) < 0) {
+			GameAction.update("done", "GameAction failed to create game!");
+			D2Bot.stop(me.profile,true);
+			break;
+		}
+
 		D2Bot.updateStatus("Creating Game");
 
 		control = getControl(1, 657, 342, 27, 20);
@@ -284,18 +273,22 @@ MainSwitch:
 			D2Bot.printToConsole("Failed to create game");
 		}
 
-		timeoutDelay("Make Game Delay", StarterConfig.CreateGameDelay * 1e3);
-      		ControlAction.createGame(gameInfo.gameName, gameInfo.gamePass, gameInfo.difficulty);
+		ControlAction.timeoutDelay('Make Game Delay', StarterConfig.CreateGameDelay * 1e3);
+		ControlAction.createGame(gameInfo.gameName, gameInfo.gamePass, gameInfo.difficulty);
 		locationTimeout(5000, location);
 
 		lastGameStatus = "pending";
-		
+
 		break;
 	case 5: // Join Game
 		D2Bot.updateStatus("Join Game");
 		var joinInfo = GameAction.gameInfo();
 
-		joinGame(joinInfo.gameName, joinInfo.gamePass);
+		if (joinInfo) {
+			joinGame(joinInfo.gameName, joinInfo.gamePass);
+		} else {
+			joinGame(gameInfo.gameName, gameInfo.gamePass);
+		}
 		locationTimeout(5000, location);
 
 		break;
@@ -438,7 +431,7 @@ MainSwitch:
 	case 12: // Character Select
 		// Reset ftj counter
 		ftj = 0;
-		
+
 		// Single Player screen fix
 		if (getLocation() === 12 && !getControl(4, 626, 100, 151, 44)) {
 			ControlAction.click(6, 33, 572, 128, 35);
@@ -588,14 +581,15 @@ MainSwitch:
 
 		break;
 	case 26: // Lobby - Game Name Exists
-		ControlAction.click(6, 533, 469, 120, 20);
+		GameAction.update("done", "GameAction failed to create game!");
+		D2Bot.stop(me.profile,true);
 
 		break;
 	case 27: // Gateway Select
 		ControlAction.click(6, 436, 538, 96, 32);
 
 		break;
-	case 28: // Lobby - Game Does Not Exist		
+	case 28: // Lobby - Game Does Not Exist
 		if (++ftj > 5) {
 			GameAction.update("done", "GameAction failed to join game!");
 			D2Bot.stop(me.profile,true);
@@ -603,6 +597,25 @@ MainSwitch:
 		}
 		ControlAction.timeoutDelay("Game Doesn't Exist", 5e3);
 		ControlAction.click(6, 652, 469, 120, 20);
+
+		if (!ControlAction.click(6, 533, 469, 120, 20)) { // Create
+			break;
+		}
+
+		if (getControl(6, 533, 469, 120, 20) && getControl(6, 533, 469, 120, 20).disabled === 4) { // dead HC character
+			ControlAction.click(6, 693, 490, 80, 20); // Quit from Lobby
+			break;
+		}
+
+		if (!locationTimeout(5000, location)) { // in case join button gets bugged
+			if (!ControlAction.click(6, 652, 469, 120, 20)) { // Join
+				break;
+			}
+
+			if (!ControlAction.click(6, 533, 469, 120, 20)) { // Create
+				break;
+			}
+		}
 
 		break;
 	case 38: // Game is full

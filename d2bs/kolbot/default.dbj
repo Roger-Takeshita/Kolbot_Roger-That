@@ -62,6 +62,10 @@ function main() {
 		}
 	}
 
+	if (getScript("D2BotRogerThatGameAction.dbj")) {
+		load("tools/toolsthread.js");
+	}
+
 	// don't load default for mules
 	if (getScript("D2BotMule.dbj")) {
 		return true;
@@ -204,7 +208,7 @@ function main() {
 			Town.clearBelt();
 			Town.clearInventory();
 		}
-		
+
 		//Pickit.pickItems();
 	}
 

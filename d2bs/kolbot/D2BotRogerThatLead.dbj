@@ -568,7 +568,6 @@ MainSwitch:
 
 		if (lastGameFlag) {
 			D2Bot.stopSchedule(me.profile);
-			D2Bot.stop(me.profile, true);
 		}
 
 		ControlAction.createGame((gameInfo.gameName === "?" ? randomString(null,true) : gameInfo.gameName + gameCount), (gameInfo.gamePass === "?" ? randomString(null,true) : gameInfo.gamePass), gameInfo.difficulty, StarterConfig.CreateGameDelay * 1000);

@@ -1,5 +1,5 @@
 //! Generic
-//? ██████╗  ██████╗  ██████╗ ███████╗██████╗       ████████╗██╗  ██╗ █████╗ ████████╗    ███╗   ███╗██╗   ██╗██╗     ███████╗    ██╗      ██████╗  ██████╗ ███████╗██████╗ 
+//? ██████╗  ██████╗  ██████╗ ███████╗██████╗       ████████╗██╗  ██╗ █████╗ ████████╗    ███╗   ███╗██╗   ██╗██╗     ███████╗    ██╗      ██████╗  ██████╗ ███████╗██████╗
 //? ██╔══██╗██╔═══██╗██╔════╝ ██╔════╝██╔══██╗      ╚══██╔══╝██║  ██║██╔══██╗╚══██╔══╝    ████╗ ████║██║   ██║██║     ██╔════╝    ██║     ██╔═══██╗██╔════╝ ██╔════╝██╔══██╗
 //? ██████╔╝██║   ██║██║  ███╗█████╗  ██████╔╝█████╗   ██║   ███████║███████║   ██║       ██╔████╔██║██║   ██║██║     █████╗      ██║     ██║   ██║██║  ███╗█████╗  ██████╔╝
 //? ██╔══██╗██║   ██║██║   ██║██╔══╝  ██╔══██╗╚════╝   ██║   ██╔══██║██╔══██║   ██║       ██║╚██╔╝██║██║   ██║██║     ██╔══╝      ██║     ██║   ██║██║   ██║██╔══╝  ██╔══██╗
@@ -45,15 +45,15 @@ function LoadConfig() {
          Config.TownHP        = 55;                      // Go to town if life is under designated percent.
          Config.TownMP        =  0;                      // Go to town if mana is under designated percent.
    //! PICK LIST -----------------------------------------------------------------------
-      Config.PickitFiles.push("w-bot1.nip");
-      Config.PickitFiles.push("w-bot2.nip");
-      Config.PickitFiles.push("w-bot3.nip");
-      Config.PickitFiles.push("w-bot4.nip");
-      Config.PickitFiles.push("w-potions.nip");
-      Config.PickitFiles.push("w-koltonEarlyLadder.nip");
-      Config.PickitFiles.push("w-koltonEndLadder.nip");
-      Config.PickitFiles.push("w-kolton.nip");
-      Config.PickitFiles.push("w-LLD.nip");
+      // Config.PickitFiles.push("w-bot1.nip");
+      // Config.PickitFiles.push("w-bot2.nip");
+      // Config.PickitFiles.push("w-bot3.nip");
+      // Config.PickitFiles.push("w-bot4.nip");
+      // Config.PickitFiles.push("w-potions.nip");
+      // Config.PickitFiles.push("w-koltonEarlyLadder.nip");
+      // Config.PickitFiles.push("w-koltonEndLadder.nip");
+      // Config.PickitFiles.push("w-kolton.nip");
+      // Config.PickitFiles.push("w-LLD.nip");
       Config.PickRange = 40;
       Config.FastPick  = true;
       Config.ManualPlayPick = false;
@@ -135,31 +135,31 @@ function LoadConfig() {
    //! ATTACK CONFIG -------------------------------------------------------------------
       //+ SORCERESS -----------------------------------------------------------------
          //- Cold ---------------------------------------------------------------
-            Config.AttackSorcColdSkill  = [55, 59, 45, 59, 55, -1, -1]; 
+            Config.AttackSorcColdSkill  = [55, 59, 45, 59, 55, -1, -1];
             Config.LowManaSorcColdSkill = [-1, -1];
          //- Light --------------------------------------------------------------
-            Config.AttackSorcLightSkill  = [53, 49, 49, 53, 53, -1, -1]; 
+            Config.AttackSorcLightSkill  = [53, 49, 49, 53, 53, -1, -1];
             Config.LowManaSorcLightSkill = [-1, -1];
          //- Fire ---------------------------------------------------------------
-            Config.AttackSorcFireSkill  = [47, 56, 47, 47, 47, -1, -1]; 
+            Config.AttackSorcFireSkill  = [47, 56, 47, 47, 47, -1, -1];
             Config.LowManaSorcFireSkill = [-1, -1];
       //+ PALADIN -------------------------------------------------------------------
-         Config.AttackPallySkill  = [112, 112, 113, 112, 113, 97, 122]; 
+         Config.AttackPallySkill  = [112, 112, 113, 112, 113, 97, 122];
          Config.LowManaPallySkill = [112, 124];
       //+ BARBARIAN -----------------------------------------------------------------
-         Config.AttackBarbSkill   = [126, 126, 126, 126, 126, -1, -1]; 
+         Config.AttackBarbSkill   = [126, 126, 126, 126, 126, -1, -1];
          Config.LowManaBarbSkill  = [-1, -1];
       //+ AMAZON --------------------------------------------------------------------
-         Config.AttackZonSkill    = [10, 10, 10, 10, 10, -1, -1]; 
+         Config.AttackZonSkill    = [10, 10, 10, 10, 10, -1, -1];
          Config.LowManaZonSkill   = [-1, -1];
       //+ DRUID ---------------------------------------------------------------------
-         Config.AttackDruidSkill  = [245, 245, 245, 245, 245, -1, -1]; 
+         Config.AttackDruidSkill  = [245, 245, 245, 245, 245, -1, -1];
          Config.LowManaDruidSkill = [-1, -1];
       //+ NECROMANCER ---------------------------------------------------------------
-         Config.AttackNecSkill    = [88, 84, 84, 84, 84, 88, 88]; 
+         Config.AttackNecSkill    = [88, 84, 84, 84, 84, 88, 88];
          Config.LowManaNecSkill   = [-1, -1];
       //+ ASSASSIN ------------------------------------------------------------------
-         Config.AttackSinSkill    = [271, 271, 271, 271, 271, -1, -1]; 
+         Config.AttackSinSkill    = [271, 271, 271, 271, 271, -1, -1];
          Config.LowManaSinSkill   = [-1, -1];
 
       Config.CustomAttack = {

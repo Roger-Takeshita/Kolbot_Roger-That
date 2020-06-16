@@ -430,7 +430,6 @@ MainSwitch:
 
 		if (lastGameFlag) {
 			D2Bot.stopSchedule(me.profile);
-			D2Bot.stop(me.profile, true);
 		}
 
 		if (!leader) {

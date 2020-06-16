@@ -1722,7 +1722,7 @@ function RogerThat() {
 
                                 break;
                             default:
-                                if (this.goToTownTomeBook() && msg.split(" ")[0] === 'talk') {
+                                if (msg.split(" ")[0] === 'talk' && this.goToTownTomeBook()) {
                                     this.talk(msg.split(" ")[1]);
                                 }
 
