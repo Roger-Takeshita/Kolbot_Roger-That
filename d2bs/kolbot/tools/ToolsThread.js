@@ -67,6 +67,12 @@ function main() {
 		load("tools/mapthread.js");
 		customHotkeys = false;
 	}
+
+	if (Config.ManualPlayPick) {
+		load("tools/pickthread.js");
+		customHotkeys = false;
+	}
+
 	// Reset core chicken
 	me.chickenhp = -1;
 	me.chickenmp = -1;
