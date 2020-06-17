@@ -163,7 +163,7 @@ function RogerThat() {
                     }
 
                     if (!justWp) {
-                        while (!this.getLeaderUnit(leader.name) && !me.dead) {
+                        while (!this.getLeaderUnit(leader.name) && !me.dead && !me.inTown) {
                             Attack.clear(10);
                             delay(150);
                         }

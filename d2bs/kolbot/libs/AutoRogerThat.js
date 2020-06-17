@@ -48,40 +48,40 @@ var AutoRogerThat = {
                 for (let i = 0; i < itemsArray.length; i++) {
                     if (itemsArray[i] !== undefined) {
                         switch (itemsArray[i]) {
-                            case "h":            //Hate key
+                            case "h":            // Hate key
                                 dropObj[648] = qtyArray[i];
 
                                 break;
-                            case "t":            //Terror key
+                            case "t":            // Terror key
                                 dropObj[647] = qtyArray[i];
 
                                 break;
-                            case "d":            //Destruction key
+                            case "d":            // Destruction key
                                 dropObj[649] = qtyArray[i];
 
                                 break;
                             case "key":
-                            case "keys":         //Keys
+                            case "keys":         // Keys
                                 itemCodes = [647, 648, 649];
                                 for (let j = 0; j < itemCodes.length; j++) {
                                     dropObj[itemCodes[j]] = qtyArray[i]
                                 }
 
                                 break;
-                            case "horn":         //Horn
+                            case "horn":         // Horn
                                 dropObj[650] = qtyArray[i];
 
                                 break;
-                            case "eye":          //Eye
+                            case "eye":          // Eye
                                 dropObj[651] = qtyArray[i];
 
                                 break;
-                            case "brain":        //Brain
+                            case "brain":        // Brain
                                 dropObj[652] = qtyArray[i];
 
                                 break;
                             case "organ":
-                            case "organs":       //Organs
+                            case "organs":       // Organs
                                 itemCodes = [650, 651, 652];
                                 for (let j = 0; j < itemCodes.length; j++) {
                                     dropObj[itemCodes[j]] = qtyArray[i]
@@ -89,28 +89,28 @@ var AutoRogerThat = {
 
                                 break;
                             case "blue":
-                            case "b":            //Blue essence
+                            case "b":            // Blue essence
                                 dropObj[654] = qtyArray[i];
 
                                 break;
                             case "yellow":
-                            case "y":            //Yellow essence
+                            case "y":            // Yellow essence
                                 dropObj[655] = qtyArray[i];
 
                                 break;
                             case "red":
-                            case "r":            //Red essence
+                            case "r":            // Red essence
                                 dropObj[656] = qtyArray[i];
 
                                 break;
                             case "green":
-                            case "g":            //Green essence
+                            case "g":            // Green essence
                                 dropObj[657] = qtyArray[i];
 
                                 break;
                             case "essen":
                             case "essence":
-                            case "essences":     //Essences
+                            case "essences":     // Essences
                                 itemCodes = [654, 655, 656, 657];
                                 for (let j = 0; j < itemCodes.length; j++) {
                                     dropObj[itemCodes[j]] = qtyArray[i]
@@ -118,7 +118,7 @@ var AutoRogerThat = {
 
                                 break;
                             case "helm":
-                            case "helms":        //Helms
+                            case "helms":        // Helms
                                 itemCodes = [306, 307, 308, 309, 310, 311, 312, 349, 352, 353, 354, 355, 356, 357, 358, 358, 395, 399, 400, 401, 402, 403, 404, 405, 406, 407, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 428, 465, 465, 468, 470, 472, 473, 474, 475, 476, 477, 488, 493, 494, 495, 496, 497];
                                 for (let j = 0; j < itemCodes.length; j++) {
                                     dropObj[itemCodes[j]] = qtyArray[i]
@@ -126,7 +126,7 @@ var AutoRogerThat = {
 
                                 break;
                             case "glove":
-                            case "gloves":       //Gloves
+                            case "gloves":       // Gloves
                                 itemCodes = [334, 335, 336, 337, 338, 380, 381, 382, 383, 384, 450, 451, 452, 453, 454];
                                 for (let j = 0; j < itemCodes.length; j++) {
                                     dropObj[itemCodes[j]] = qtyArray[i]
@@ -134,7 +134,7 @@ var AutoRogerThat = {
 
                                 break;
                             case "shield":
-                            case "shields":      //Shields
+                            case "shields":      // Shields
                                 itemCodes = [328, 329, 330, 331, 332, 333, 350, 351, 374, 375, 376, 377, 378, 379, 396, 397, 410, 411, 412, 444, 445, 446, 447, 448, 449, 466, 467, 480, 481, 482, 486, 487, 500, 501, 502];
                                 for (let j = 0; j < itemCodes.length; j++) {
                                     dropObj[itemCodes[j]] = qtyArray[i]
@@ -142,14 +142,15 @@ var AutoRogerThat = {
 
                                 break;
                             case "armor":
-                            case "armors":       //Armors
+                            case "armors":       // Armors
                                 itemCodes = [313, 314, 314, 315, 315, 316, 317, 318, 319, 320, 321, 322, 322, 323, 324, 325, 325, 326, 327, 334, 342, 348, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 433, 434, 438, 440, 441, 442, 443];
                                 for (let j = 0; j < itemCodes.length; j++) {
                                     dropObj[itemCodes[j]] = qtyArray[i]
                                 }
 
+                                break;
                             case "belt":
-                            case "belts":        //Belts
+                            case "belts":        // Belts
                                 itemCodes = [344, 345, 346, 347, 348, 390, 391, 392, 393, 394, 460, 461, 462, 462, 463, 464];
                                 for (let j = 0; j < itemCodes.length; j++) {
                                     dropObj[itemCodes[j]] = qtyArray[i]
@@ -157,7 +158,7 @@ var AutoRogerThat = {
 
                                 break;
                             case "boot":
-                            case "boots":        //Boots
+                            case "boots":        // Boots
                                 itemCodes = [339, 340, 341, 342, 343, 385, 386, 387, 388, 389, 455, 456, 457, 458, 459];
                                 for (let j = 0; j < itemCodes.length; j++) {
                                     dropObj[itemCodes[j]] = qtyArray[i]
@@ -165,33 +166,33 @@ var AutoRogerThat = {
 
                                 break;
                             case "token":
-                            case "tokens":       //Tokens
+                            case "tokens":       // Tokens
                                 dropObj[653] = qtyArray[i];
 
                                 break;
                             case "rune":
-                            case "runes":        //All runes
+                            case "runes":        // All runes
                                 for (let j = 610 ; j <= 642 ; j++) {
                                     dropObj[j] = qtyArray[i]
                                 }
 
                                 break;
                             case "lr":
-                            case "lrs":          //Low runes
+                            case "lrs":          // Low runes
                                 for (let j = 610 ; j <= 634 ; j++) {
                                     dropObj[j] = qtyArray[i]
                                 }
 
                                 break;
                             case "hr":
-                            case "hrs":          //Hight runes
+                            case "hrs":          // Hight runes
                                 for (let j = 635 ; j <= 642 ; j++) {
                                     dropObj[j] = qtyArray[i]
                                 }
 
                                 break;
                             case "gem":
-                            case "gems":         //Gems
+                            case "gems":         // Gems
                                 for (let j = 557 ; j <= 586 ; j++) {
                                     dropObj[j] = qtyArray[i]
                                 }
@@ -202,7 +203,7 @@ var AutoRogerThat = {
 
                                 break;
                             case "sc":
-                            case "scs":          //Small charms and large charms
+                            case "scs":          // Small charms and large charms
                                 itemCodes = [603, 604];
                                 for (let j = 0; j < itemCodes.length; j++) {
                                     dropObj[itemCodes[j]] = qtyArray[i]
@@ -210,34 +211,34 @@ var AutoRogerThat = {
 
                                 break;
                             case "gc":
-                            case "gcs":          //Grand charms
+                            case "gcs":          // Grand charms
                                 dropObj[605] = qtyArray[i];
 
                                 break;
                             case "ring":
-                            case "rings":        //Rings
+                            case "rings":        // Rings
                                 dropObj[522] = qtyArray[i];
 
                                 break;
                             case "amulet":
-                            case "amulets":      //Amulets
+                            case "amulets":      // Amulets
                                 dropObj[520] = qtyArray[i];
 
                                 break;
                             case "jewel":
-                            case "jewels":       //Jewels
+                            case "jewels":       // Jewels
                                 dropObj[643] = qtyArray[i];
 
                                 break;
                             case "item":
-                            case "items":        //Drop all items
+                            case "items":        // Drop all items
                                 return this.dropProfileItems();
 
                             case "socket":
-                            case "sockets":     //Drop socket items
+                            case "sockets":      // Drop socket items
                                 return this.dropProfileItems("socket");
 
-                            default:             //Drop runes
+                            default:             // Drop runes
                                 const rune = {
                                     el: 610,
                                     eld: 611,

@@ -63,6 +63,10 @@ function main() {
 		timerLastDrink[i] = 0;
 	}
 
+	if (Config.AutoMap) {
+		load("tools/mapthread.js");
+		customHotkeys = false;
+	}
 	// Reset core chicken
 	me.chickenhp = -1;
 	me.chickenmp = -1;
@@ -687,14 +691,17 @@ function main() {
 			case 100: //- Numpad 4 - Open Stash
 				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
-				if (!me.inTown) Town.goToTown();
 
-				if (getUIFlag(0x19)) {
-					me.cancel();
-					Pather.moveTo(me.x + rand(-6, 6), me.y + rand(-6, 6));
+				if (me.inTown) {
+					if (getUIFlag(0x19)) {
+						me.cancel();
+						Pather.moveTo(me.x + rand(-6, 6), me.y + rand(-6, 6));
+					} else {
+						me.cancel();
+						Town.openStash();
+					}
 				} else {
-					me.cancel();
-					Town.openStash();
+					me.overhead("I can't go to stash, I'm not in town.");
 				}
 
 				break;
@@ -705,11 +712,12 @@ function main() {
 
 				this.togglePause();
 
-				if (isScriptPaused && !me.inTown) {
+				if (isScriptPaused) {
 					try {
 						Town.goToTown();
 					} catch (e) {
 						me.overhead("Failed to go to town!");
+						break;
 					}
 				}
 
@@ -717,9 +725,18 @@ function main() {
 				this.togglePause();
 
 				break;
-			case 102: //- Numpad 6 -
+			case 102: //- Numpad 6 - Go to Akara
 				if (!customHotkeys) break;
-				me.overhead("Numpad 6 available");
+				if (pvpTimeFlag) break;
+
+				if (me.inTown && me.act === 1) {
+					Town.move(NPC.Akara);
+					target = getUnit(1, NPC.Akara);
+					target.openMenu();
+					Misc.useMenu(0x0D44);
+				} else {
+					me.overhead("Akara is not here");
+				}
 
 				break;
 			case 103: //- Numpad 7 - I Am The Boss
@@ -730,9 +747,16 @@ function main() {
 				say("I am the boss");
 
 				break;
-			case 104: //- Numpad 8 -
+			case 104: //- Numpad 8 - Open tp
 				if (!customHotkeys) break;
-				me.overhead("Numpad 8 available");
+
+				if (!me.inTown) {
+					if (!Pather.makePortal()) {
+						me.overhead("Sorry, I don't have TP");
+					}
+				} else {
+					me.overhead("Sorry, I can't make TP here");
+				}
 
 				break;
 			case 105: //- Numpad 9 - Disable Mule Chat
