@@ -428,7 +428,7 @@ function main() {
 			case 106: //- * key    - Set Hot IP
 				FileTools.writeText("logs/ip.txt", me.gameserverip.split(".")[3]);
 				delay(150);
-				showConsole();
+				// showConsole();
 				print("Hot IP set to: " + "ÿc1" + me.gameserverip.split(".")[3] + "ÿc0");
 				delay(100);
 				me.overhead("Hot IP set to: " + "ÿc1" + me.gameserverip.split(".")[3] + "ÿc0");
@@ -712,23 +712,29 @@ function main() {
 
 				break;
 			case 101: //- Numpad 5 - Pause/Break
-				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
 				if (me.inTown) break;
-
-				this.togglePause();
-
-				if (isScriptPaused) {
+				if (!customHotkeys) {
 					try {
 						Town.goToTown();
 					} catch (e) {
 						me.overhead("Failed to go to town!");
-						break;
 					}
-				}
+				} else {
+					this.togglePause();
 
-				delay(250);
-				this.togglePause();
+					if (isScriptPaused) {
+						try {
+							Town.goToTown();
+						} catch (e) {
+							me.overhead("Failed to go to town!");
+							break;
+						}
+					}
+
+					delay(250);
+					this.togglePause();
+				}
 
 				break;
 			case 102: //- Numpad 6 - Go to Akara
