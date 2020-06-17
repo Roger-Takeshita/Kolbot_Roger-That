@@ -1,10 +1,10 @@
 //! Generic
-//? ██████╗  ██████╗  ██████╗ ███████╗██████╗       ████████╗██╗  ██╗ █████╗ ████████╗    ███╗   ███╗██╗   ██╗██╗     ███████╗    ██╗      ██████╗  ██████╗ ███████╗██████╗
-//? ██╔══██╗██╔═══██╗██╔════╝ ██╔════╝██╔══██╗      ╚══██╔══╝██║  ██║██╔══██╗╚══██╔══╝    ████╗ ████║██║   ██║██║     ██╔════╝    ██║     ██╔═══██╗██╔════╝ ██╔════╝██╔══██╗
-//? ██████╔╝██║   ██║██║  ███╗█████╗  ██████╔╝█████╗   ██║   ███████║███████║   ██║       ██╔████╔██║██║   ██║██║     █████╗      ██║     ██║   ██║██║  ███╗█████╗  ██████╔╝
-//? ██╔══██╗██║   ██║██║   ██║██╔══╝  ██╔══██╗╚════╝   ██║   ██╔══██║██╔══██║   ██║       ██║╚██╔╝██║██║   ██║██║     ██╔══╝      ██║     ██║   ██║██║   ██║██╔══╝  ██╔══██╗
-//? ██║  ██║╚██████╔╝╚██████╔╝███████╗██║  ██║         ██║   ██║  ██║██║  ██║   ██║       ██║ ╚═╝ ██║╚██████╔╝███████╗███████╗    ███████╗╚██████╔╝╚██████╔╝███████╗██║  ██║
-//? ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝         ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝       ╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚══════╝    ╚══════╝ ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝
+//? ██████╗  ██████╗  ██████╗ ███████╗██████╗       ████████╗██╗  ██╗ █████╗ ████████╗    ███╗   ███╗██╗   ██╗██╗     ███████╗
+//? ██╔══██╗██╔═══██╗██╔════╝ ██╔════╝██╔══██╗      ╚══██╔══╝██║  ██║██╔══██╗╚══██╔══╝    ████╗ ████║██║   ██║██║     ██╔════╝
+//? ██████╔╝██║   ██║██║  ███╗█████╗  ██████╔╝█████╗   ██║   ███████║███████║   ██║       ██╔████╔██║██║   ██║██║     █████╗
+//? ██╔══██╗██║   ██║██║   ██║██╔══╝  ██╔══██╗╚════╝   ██║   ██╔══██║██╔══██║   ██║       ██║╚██╔╝██║██║   ██║██║     ██╔══╝
+//? ██║  ██║╚██████╔╝╚██████╔╝███████╗██║  ██║         ██║   ██║  ██║██║  ██║   ██║       ██║ ╚═╝ ██║╚██████╔╝███████╗███████╗
+//? ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝         ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝       ╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚══════╝
 
 function LoadConfig() {
    //! FOLLOW LEADER -------------------------------------------------------------------
@@ -56,7 +56,6 @@ function LoadConfig() {
       // Config.PickitFiles.push("w-LLD.nip");
       Config.PickRange = 40;
       Config.FastPick  = true;
-      Config.ManualPlayPick = false;
    //! ADDITION CONFIG -----------------------------------------------------------------
       //+ Print to console ----------------------------------------------------------
          Config.D2BotPrintGameTime    = false;           // Game time in the end of each game
@@ -70,11 +69,11 @@ function LoadConfig() {
          Config.ItemInfoQuality = [];                    // The quality of sold items to log. See NTItemAlias.dbl for values. Example: Config.ItemInfoQuality = [6, 7, 8];
       //+ Item identification settings ----------------------------------------------
          Config.CainID.Enable = true;                    // Identify items at Cain
-         Config.CainID.MinGold = 500000;                 // Minimum gold (stash + character) to have in order to use Cain.
-         Config.CainID.MinUnids = 3;                     // Minimum number of unid items in order to use Cain.
-         Config.FieldID = false;                         // Identify items in the field instead of going to town.
-         Config.DroppedItemsAnnounce.Enable = false;     // Announce Dropped Items to in-game newbs
-         Config.DroppedItemsAnnounce.Quality = [];       // Quality of item to announce. See NTItemAlias.dbl for values. Example: Config.DroppedItemsAnnounce.Quality = [6, 7, 8];
+            Config.CainID.MinGold = 500000;              // Minimum gold (stash + character) to have in order to use Cain.
+            Config.CainID.MinUnids = 3;                  // Minimum number of unid items in order to use Cain.
+            Config.FieldID = false;                      // Identify items in the field instead of going to town.
+            Config.DroppedItemsAnnounce.Enable = false;  // Announce Dropped Items to in-game newbs
+            Config.DroppedItemsAnnounce.Quality = [];    // Quality of item to announce. See NTItemAlias.dbl for values. Example: Config.DroppedItemsAnnounce.Quality = [6, 7, 8];
       //+ Manager item log screen ---------------------------------------------------
          Config.LogKeys = false;                         // Log keys on item viewer
          Config.LogOrgans = false;                       // Log organs on item viewer
@@ -90,18 +89,18 @@ function LoadConfig() {
          Config.RepairPercent = 40;                      // Durability percent of any equipped item that will trigger repairs.
       //+ Gambling config -----------------------------------------------------------
          Config.Gamble = false;
-         Config.GambleGoldStart = 2000000;
-         Config.GambleGoldStop  =  500000;
-         Config.GambleItems.push("Amulet");
-         Config.GambleItems.push("Ring");
-         Config.GambleItems.push("Circlet");
-         Config.GambleItems.push("Coronet");
-         Config.GambleItems.push("monarch");
+            Config.GambleGoldStart = 2000000;
+            Config.GambleGoldStop  =  500000;
+            Config.GambleItems.push("Amulet");
+            Config.GambleItems.push("Ring");
+            Config.GambleItems.push("Circlet");
+            Config.GambleItems.push("Coronet");
+            Config.GambleItems.push("Monarch");
    //! PUBLIC GAMES OPTIONS ------------------------------------------------------------
       Config.LocalChat.Enabled = true;                   // enable the LocalChat system
-      Config.LocalChat.Toggle = false;                   // optional, set to KEY value to toggle through modes 0, 1, 2
-      Config.LocalChat.Mode = 1;                         // 0 = disabled, 1 = chat from 'say' (recommended), 2 = all chat (for manual play)
-      Config.PublicMode = 2;                             // 1 = invite and accept, 2 = accept only, 3 = invite only, 0 = disable
+         Config.LocalChat.Toggle = false;                // optional, set to KEY value to toggle through modes 0, 1, 2
+         Config.LocalChat.Mode = 1;                      // 0 = disabled, 1 = chat from 'say' (recommended), 2 = all chat (for manual play)
+         Config.PublicMode = 2;                          // 1 = invite and accept, 2 = accept only, 3 = invite only, 0 = disable
    //! GENERAL CONFIG ------------------------------------------------------------------
       Config.AutoMap = false;                            // Set to true to open automap at the beginning of the game.
       Config.LastMessage = "";                           // Message or array of messages to say at the end of the run. Use $nextgame to say next game - "Next game: $nextgame" (works with lead entry point)
@@ -121,8 +120,8 @@ function LoadConfig() {
    //! NOTIFICATION CONFIG -------------------------------------------------------------
       Config.RogerThatTelegram.Active = false;
          Config.RogerThatTelegram.Notify.Trade = false;
-         Config.RogerThatTelegram.Notify.HotIP = false;
-         Config.RogerThatTelegram.Notify.DiabloClone = false;
+         Config.RogerThatTelegram.Notify.HotIP = true;
+         Config.RogerThatTelegram.Notify.DiabloClone = true;
    //! DIABLO CLONE CONFIG -------------------------------------------------------------
       Config.StopOnDClone = false;                       // Go to town and idle as soon as Diablo walks the Earth
       Config.SoJWaitTime = 5;                            // Time in minutes to wait for another SoJ sale before leaving game. 0 = disabled

@@ -26,23 +26,6 @@ function LoadConfig() {
          Config.BaalHelper.KillBaal = true;
          Config.BaalHelper.SkipTP = false;
       Scripts.Follower = false;
-   //! INVENTORY SETTINGS --------------------------------------------------------------
-      Config.Inventory[0] = [1,1,1,1,1,1,0,0,0,0];
-      Config.Inventory[1] = [1,1,1,1,1,1,0,0,0,0];
-      Config.Inventory[2] = [1,1,1,1,1,1,0,0,0,0];
-      Config.Inventory[3] = [1,1,1,1,1,1,0,0,0,0];
-
-      Config.StashGold = 500000;
-
-      Config.BeltColumn[0] = "hp";
-      Config.BeltColumn[1] = "mp";
-      Config.BeltColumn[2] = "mp";
-      Config.BeltColumn[3] = "rv";
-
-      Config.MinColumn[0] = 3;
-      Config.MinColumn[1] = 3;
-      Config.MinColumn[2] = 3;
-      Config.MinColumn[3] = 0;
    //! SPECIAL SCRIPTS -----------------------------------------------------------------
       Scripts.WPGetter = false;                          // Get missing waypoints
       Scripts.GetKeys = false;                           // Hunt for T/H/D keys
@@ -68,6 +51,15 @@ function LoadConfig() {
          Config.ChestMania.Act5 = [115, 116, 119, 125, 126, 127];             // List of act 5 areas to open chests in
       Scripts.ClearAnyArea = false;                      // Clear any area. Uses Config.ClearType to determine which type of monsters to kill.
          Config.ClearAnyArea.AreaList = [128, 129, 130]; // List of area ids to clear. See sdk/areas.txt
+   //! INVENTORY SETTINGS --------------------------------------------------------------
+      Config.Inventory[0] = [1,1,1,1,1,1,0,0,0,0];
+      Config.Inventory[1] = [1,1,1,1,1,1,0,0,0,0];
+      Config.Inventory[2] = [1,1,1,1,1,1,0,0,0,0];
+      Config.Inventory[3] = [1,1,1,1,1,1,0,0,0,0];
+
+      Config.BeltColumn   = ["hp", "mp", "mp", "rv"];
+      Config.MinColumn    = [3, 3, 3, 0];
+      Config.StashGold    = 500000;
    //! TOWN SETTINGS / POTION SETTINGS / CHICKEN SETTINGS ------------------------------
       //+ Town settings -------------------------------------------------------------
          Config.HealHP        = 90;                      // Go to a healer if under designated percent of life.
@@ -78,7 +70,7 @@ function LoadConfig() {
       //+ Potion settings -----------------------------------------------------------
          Config.UseHP         = 85;                      // Drink a healing potion if life is under designated percent.
          Config.UseRejuvHP    = 65;                      // Drink a rejuvenation potion if life is under designated percent.
-         Config.UseMP         = 60;                      // Drink a mana potion if mana is under designated percent.
+         Config.UseMP         = 40;                      // Drink a mana potion if mana is under designated percent.
          Config.UseRejuvMP    = 10;                      // Drink a rejuvenation potion if mana is under designated percent.
          Config.UseMercHP     = 85;                      // Give a healing potion to your merc if his/her life is under designated percent.
          Config.UseMercRejuv  = 40;                      // Give a rejuvenation potion to your merc if his/her life is under designated percent.
@@ -103,11 +95,26 @@ function LoadConfig() {
       Config.PickitFiles.push("w-LLD.nip");
       Config.PickRange = 40;
       Config.FastPick  = false;
-      Config.ManualPlayPick = false;                     // If set to true and D2BotMap entry script is used, will enable picking in manual play.
-   //! AUTO MULE -----------------------------------------------------------------------
-      Config.AutoMule.Trigger = [];
-      Config.AutoMule.Force   = [];
-      Config.AutoMule.Exclude = [];
+   //! IN GAME CONFIG ------------------------------------------------------------------
+      Config.ManualPlayPick = false;
+      Config.OpenChests = false;                         // Open chests. Controls key buying. true = open only chests, 2 = open everything body, rocks...
+      Config.AutoMap = false;                            // Set to true to open automap at the beginning of the game.
+   //! GENERAL CONFIG ------------------------------------------------------------------
+      Config.LastMessage = "";                           // Message or array of messages to say at the end of the run. Use $nextgame to say next game - "Next game: $nextgame" (works with lead entry point)
+      Config.MinGameTime = 300;                          // Min game time in seconds. Bot will TP to town and stay in game if the run is completed before.
+      Config.MaxGameTime = 1080;                         // Maximum game time in seconds. Quit game when limit is reached.
+      Config.TeleSwitch = false;                         // Switch to secondary (non-primary) slot when teleporting more than 5 nodes.
+      Config.MiniShopBot = true;                         // Scan items in NPC shops.
+      Config.PacketShopping = false;                     // Use packets to shop. Improves shopping speed.
+      Config.TownCheck = false;                          // Go to town if out of potions
+      Config.LogExperience = false;                      // Print experience statistics in the manager.
+      Config.PingQuit = [{Ping: 0, Duration: 0}];        // Quit if ping is over the given value for over the given time period in seconds.
+      Config.Silence = false;                            // Make the bot not say a word. Do not use in combination with LocalChat
+      Config.ScanShrines = [15, 2, 3];                   // 15 = XP, 2 = Health, 3 = Mana
+      Config.MFSwitchPercent = 0;                        // Boss life % to switch to non-primary weapon slot. Set to 0 to disable.
+      Config.PrimarySlot = -1;                           // Set to use specific weapon slot as primary weapon slot: -1 = disabled, 0 = slot I, 1 = slot II
+      Config.WaypointMenu = true;
+      Config.WalkIfManaLessThan = 10;
    //! ADDITION CONFIG -----------------------------------------------------------------
       //+ Print to console ----------------------------------------------------------
          Config.D2BotPrintGameTime    = false;           // Game time in the end of each game
@@ -121,11 +128,11 @@ function LoadConfig() {
          Config.ItemInfoQuality = [];                    // The quality of sold items to log. See NTItemAlias.dbl for values. Example: Config.ItemInfoQuality = [6, 7, 8];
       //+ Item identification settings ----------------------------------------------
          Config.CainID.Enable = true;                    // Identify items at Cain
-         Config.CainID.MinGold = 500000;                 // Minimum gold (stash + character) to have in order to use Cain.
-         Config.CainID.MinUnids = 3;                     // Minimum number of unid items in order to use Cain.
-         Config.FieldID = false;                         // Identify items in the field instead of going to town.
-         Config.DroppedItemsAnnounce.Enable = false;     // Announce Dropped Items to in-game newbs
-         Config.DroppedItemsAnnounce.Quality = [];       // Quality of item to announce. See NTItemAlias.dbl for values. Example: Config.DroppedItemsAnnounce.Quality = [6, 7, 8];
+            Config.CainID.MinGold = 500000;              // Minimum gold (stash + character) to have in order to use Cain.
+            Config.CainID.MinUnids = 3;                  // Minimum number of unid items in order to use Cain.
+            Config.FieldID = false;                      // Identify items in the field instead of going to town.
+            Config.DroppedItemsAnnounce.Enable = false;  // Announce Dropped Items to in-game newbs
+            Config.DroppedItemsAnnounce.Quality = [];    // Quality of item to announce. See NTItemAlias.dbl for values. Example: Config.DroppedItemsAnnounce.Quality = [6, 7, 8];
       //+ Manager item log screen ---------------------------------------------------
          Config.LogKeys = false;                         // Log keys on item viewer
          Config.LogOrgans = false;                       // Log organs on item viewer
@@ -141,13 +148,43 @@ function LoadConfig() {
          Config.RepairPercent = 40;                      // Durability percent of any equipped item that will trigger repairs.
       //+ Gambling config -----------------------------------------------------------
          Config.Gamble = true;
-         Config.GambleGoldStart = 2000000;
-         Config.GambleGoldStop  =  500000;
-         Config.GambleItems.push("Amulet");
-         Config.GambleItems.push("Ring");
-         Config.GambleItems.push("Circlet");
-         Config.GambleItems.push("Coronet");
-         Config.GambleItems.push("monarch");
+            Config.GambleGoldStart = 2000000;
+            Config.GambleGoldStop  =  500000;
+            Config.GambleItems.push("Amulet");
+            Config.GambleItems.push("Ring");
+            Config.GambleItems.push("Circlet");
+            Config.GambleItems.push("Coronet");
+            Config.GambleItems.push("Monarch");
+   //! AUTO MULE -----------------------------------------------------------------------
+      Config.AutoMule.Trigger = [];
+      Config.AutoMule.Force   = [];
+      Config.AutoMule.Exclude = [];
+   //! NOTIFICATION CONFIG -------------------------------------------------------------
+      Config.RogerThatTelegram.Active = false;
+         Config.RogerThatTelegram.Notify.Trade = false;
+         Config.RogerThatTelegram.Notify.HotIP = true;
+         Config.RogerThatTelegram.Notify.DiabloClone = true;
+   //! DIABLO CLONE CONFIG -------------------------------------------------------------
+      Config.StopOnDClone = true;                        // Go to town and idle as soon as Diablo walks the Earth
+      Config.SoJWaitTime = 5;                            // Time in minutes to wait for another SoJ sale before leaving game. 0 = disabled
+      Config.KillDclone = true;                          // Go to Palace Cellar 3 and try to kill Diablo Clone. Pointless if you already have Annihilus.
+      Config.DCloneQuit = false;                         // 1 = quit when Diablo walks, 2 = quit on soj sales, 0 = disabled
+   //! PUBLIC GAMES OPTIONS ------------------------------------------------------------
+      Config.LocalChat.Enabled = true;                   // enable the LocalChat system
+         Config.LocalChat.Toggle = false;                // optional, set to KEY value to toggle through modes 0, 1, 2
+         Config.LocalChat.Mode = 1;                      // 0 = disabled, 1 = chat from 'say' (recommended), 2 = all chat (for manual play)
+         Config.PublicMode = 2;                          // 1 = invite and accept, 2 = accept only, 3 = invite only, 0 = disable
+      Config.Greetings = [];                             // Example: ["Hello, $name (level $level $class)"]
+      Config.DeathMessages = [];                         // Example: ["Watch out for that $killer, $name!"]
+      Config.Congratulations = [];                       // Example: ["Congrats on level $level, $name!"]
+      Config.ShitList = false;                           // Blacklist hostile players so they don't get invited to party.
+      Config.UnpartyShitlisted = false;                  // Leave party if someone invited a blacklisted player.
+   //! HOSTILE / VIPER -----------------------------------------------------------------
+      Config.AntiHostile = false;                        // Enable anti-hostile
+      Config.HostileAction = 0;                          // 0 - quit immediately, 1 - quit when hostile player is sighted, 2 - attack hostile
+      Config.TownOnHostile = false;                      // Go to town instead of quitting when HostileAction is 0 or 1
+      Config.RandomPrecast = false;                      // Anti-PK measure, only supported in Baal and BaalHelper and BaalAssisstant at the moment.
+      Config.ViperCheck = false;                         // Quit if revived Tomb Vipers are sighted
    //! CUBING CONFIG -------------------------------------------------------------------
       Config.Cubing        =  true;
          //+ GEMS -------------------------------------------------------------------
@@ -224,8 +261,8 @@ function LoadConfig() {
          Config.Runewords.push([Runeword.Spirit,                        "Protector Shield",  Roll.NonEth]);    // Make Spirit Protector Shield
          Config.Runewords.push([Runeword.Spirit,                        "Heraldic Shield",   Roll.NonEth]);    // Make Spirit Heraldic Shield
          Config.Runewords.push([Runeword.Spirit,                        "Royal Shield",      Roll.NonEth]);    // Make Spirit Royal Shield
-         // Config.Runewords.push([Runeword.Spirit,                     "Sacred Hondache",   Roll.NonEth]);    // Make Spirit Sacred Hondache
-         // Config.Runewords.push([Runeword.Spirit,                     "Hondache",          Roll.NonEth]);    // Make Spirit Hondache
+         Config.Runewords.push([Runeword.Spirit,                        "Sacred Hondache",   Roll.NonEth]);    // Make Spirit Sacred Hondache
+         Config.Runewords.push([Runeword.Spirit,                        "Hondache",          Roll.NonEth]);    // Make Spirit Hondache
          Config.Runewords.push([Runeword.Harmony,                       "Matriarchal Bow",   Roll.NonEth]);    // Make Harmony Matriarchal Bow
          Config.Runewords.push([Runeword.Oath,                          "Ettin Axe",            Roll.Eth]);    // Make Oath Ettin Axe
          Config.Runewords.push([Runeword.Oath,                          "Berserker Axe",        Roll.Eth]);    // Make Oath Beserker Axe
@@ -235,50 +272,6 @@ function LoadConfig() {
          Config.KeepRunewords.push("            [type] == shield || [type] == auricshields # [fcr] == 35");    // 35% Fcr Spirit
          Config.KeepRunewords.push("[type] == bow # ([enhanceddamage] == 275 || [enhanceddamage] == 290)");    // 275% or 290% ed Harmony
          Config.KeepRunewords.push("[type] == axe # ([enhanceddamage] == 340 || [enhanceddamage] == 355)");    // 340% or 355% ed Oath
-   //! PUBLIC GAMES OPTIONS ------------------------------------------------------------
-      Config.LocalChat.Enabled = true;                   // enable the LocalChat system
-      Config.LocalChat.Toggle = false;                   // optional, set to KEY value to toggle through modes 0, 1, 2
-      Config.LocalChat.Mode = 1;                         // 0 = disabled, 1 = chat from 'say' (recommended), 2 = all chat (for manual play)
-      Config.PublicMode = 2;                             // 1 = invite and accept, 2 = accept only, 3 = invite only, 0 = disable
-      Config.Greetings = [];                             // Example: ["Hello, $name (level $level $class)"]
-      Config.DeathMessages = [];                         // Example: ["Watch out for that $killer, $name!"]
-      Config.Congratulations = [];                       // Example: ["Congrats on level $level, $name!"]
-      Config.ShitList = false;                           // Blacklist hostile players so they don't get invited to party.
-      Config.UnpartyShitlisted = false;                  // Leave party if someone invited a blacklisted player.
-   //! GENERAL CONFIG ------------------------------------------------------------------
-      Config.AutoMap = false;                            // Set to true to open automap at the beginning of the game.
-      Config.LastMessage = "";                           // Message or array of messages to say at the end of the run. Use $nextgame to say next game - "Next game: $nextgame" (works with lead entry point)
-      Config.MinGameTime = 300;                          // Min game time in seconds. Bot will TP to town and stay in game if the run is completed before.
-      Config.MaxGameTime = 1080;                         // Maximum game time in seconds. Quit game when limit is reached.
-      Config.TeleSwitch = false;                         // Switch to secondary (non-primary) slot when teleporting more than 5 nodes.
-      Config.OpenChests = false;                         // Open chests. Controls key buying.
-      Config.MiniShopBot = true;                         // Scan items in NPC shops.
-      Config.PacketShopping = false;                     // Use packets to shop. Improves shopping speed.
-      Config.TownCheck = false;                          // Go to town if out of potions
-      Config.LogExperience = false;                      // Print experience statistics in the manager.
-      Config.PingQuit = [{Ping: 0, Duration: 0}];        // Quit if ping is over the given value for over the given time period in seconds.
-      Config.Silence = false;                            // Make the bot not say a word. Do not use in combination with LocalChat
-      Config.ScanShrines = [15, 2, 3];                   // 15 = XP, 2 = Health, 3 = Mana
-      Config.MFSwitchPercent = 0;                        // Boss life % to switch to non-primary weapon slot. Set to 0 to disable.
-      Config.PrimarySlot = -1;                           // Set to use specific weapon slot as primary weapon slot: -1 = disabled, 0 = slot I, 1 = slot II
-      Config.WaypointMenu = true;
-      Config.WalkIfManaLessThan = 10;
-   //! HOSTILE / VIPER -----------------------------------------------------------------
-      Config.AntiHostile = false;                        // Enable anti-hostile
-      Config.HostileAction = 0;                          // 0 - quit immediately, 1 - quit when hostile player is sighted, 2 - attack hostile
-      Config.TownOnHostile = false;                      // Go to town instead of quitting when HostileAction is 0 or 1
-      Config.RandomPrecast = false;                      // Anti-PK measure, only supported in Baal and BaalHelper and BaalAssisstant at the moment.
-      Config.ViperCheck = false;                         // Quit if revived Tomb Vipers are sighted
-   //! NOTIFICATION CONFIG -------------------------------------------------------------
-      Config.RogerThatTelegram.Active = false;
-         Config.RogerThatTelegram.Notify.Trade = false;
-         Config.RogerThatTelegram.Notify.HotIP = true;
-         Config.RogerThatTelegram.Notify.DiabloClone = true;
-   //! DIABLO CLONE CONFIG -------------------------------------------------------------
-      Config.StopOnDClone = true;                        // Go to town and idle as soon as Diablo walks the Earth
-      Config.SoJWaitTime = 5;                            // Time in minutes to wait for another SoJ sale before leaving game. 0 = disabled
-      Config.KillDclone = true;                          // Go to Palace Cellar 3 and try to kill Diablo Clone. Pointless if you already have Annihilus.
-      Config.DCloneQuit = false;                         // 1 = quit when Diablo walks, 2 = quit on soj sales, 0 = disabled
    //! MONSTER SKIP CONFIG -------------------------------------------------------------
       Config.SkipImmune  = ["lightning"];
       Config.SkipEnchant = [];

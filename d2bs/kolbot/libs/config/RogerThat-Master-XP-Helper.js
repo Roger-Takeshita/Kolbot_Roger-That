@@ -1,10 +1,10 @@
 //! Generic
-//? ██████╗  ██████╗  ██████╗ ███████╗██████╗       ████████╗██╗  ██╗ █████╗ ████████╗    ███╗   ███╗ █████╗ ███████╗████████╗███████╗██████╗ 
-//? ██╔══██╗██╔═══██╗██╔════╝ ██╔════╝██╔══██╗      ╚══██╔══╝██║  ██║██╔══██╗╚══██╔══╝    ████╗ ████║██╔══██╗██╔════╝╚══██╔══╝██╔════╝██╔══██╗
-//? ██████╔╝██║   ██║██║  ███╗█████╗  ██████╔╝█████╗   ██║   ███████║███████║   ██║       ██╔████╔██║███████║███████╗   ██║   █████╗  ██████╔╝
-//? ██╔══██╗██║   ██║██║   ██║██╔══╝  ██╔══██╗╚════╝   ██║   ██╔══██║██╔══██║   ██║       ██║╚██╔╝██║██╔══██║╚════██║   ██║   ██╔══╝  ██╔══██╗
-//? ██║  ██║╚██████╔╝╚██████╔╝███████╗██║  ██║         ██║   ██║  ██║██║  ██║   ██║       ██║ ╚═╝ ██║██║  ██║███████║   ██║   ███████╗██║  ██║
-//? ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝         ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝       ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝ 
+//? ██████╗  ██████╗  ██████╗ ███████╗██████╗       ████████╗██╗  ██╗ █████╗ ████████╗    ██╗  ██╗██████╗     ██╗  ██╗███████╗██╗     ██████╗ ███████╗██████╗
+//? ██╔══██╗██╔═══██╗██╔════╝ ██╔════╝██╔══██╗      ╚══██╔══╝██║  ██║██╔══██╗╚══██╔══╝    ╚██╗██╔╝██╔══██╗    ██║  ██║██╔════╝██║     ██╔══██╗██╔════╝██╔══██╗
+//? ██████╔╝██║   ██║██║  ███╗█████╗  ██████╔╝█████╗   ██║   ███████║███████║   ██║        ╚███╔╝ ██████╔╝    ███████║█████╗  ██║     ██████╔╝█████╗  ██████╔╝
+//? ██╔══██╗██║   ██║██║   ██║██╔══╝  ██╔══██╗╚════╝   ██║   ██╔══██║██╔══██║   ██║        ██╔██╗ ██╔═══╝     ██╔══██║██╔══╝  ██║     ██╔═══╝ ██╔══╝  ██╔══██╗
+//? ██║  ██║╚██████╔╝╚██████╔╝███████╗██║  ██║         ██║   ██║  ██║██║  ██║   ██║       ██╔╝ ██╗██║         ██║  ██║███████╗███████╗██║     ███████╗██║  ██║
+//? ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝         ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝       ╚═╝  ╚═╝╚═╝         ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝
 
 function LoadConfig() {
    //! FOLLOW LEADER -------------------------------------------------------------------
@@ -14,14 +14,14 @@ function LoadConfig() {
       Config.QuitListDelay = [1, 10];
    //! ROGER-THAT ----------------------------------------------------------------------
       Config.RogerThatInventoryFlag    = true;           //Set true to use custom inventory configuration
-      Config.RogerThatLeaderList       = ["TMFLeader"];
-      Config.RogerThatFollower1List    = ["TMFSorc-I"];
-      Config.RogerThatFollower2List    = ["TMFSorc-II"];
-      Config.RogerThatFollower3List    = [];
-      Config.RogerThatFollower4List    = [];
-      Config.RogerThatFollower5List    = [];
-      Config.RogerThatFollower6List    = [];
-      Config.RogerThatFollower7List    = [];
+         Config.RogerThatLeaderList    = ["TMFLeader"];
+         Config.RogerThatFollower1List = ["TMFSorc-I"];
+         Config.RogerThatFollower2List = ["TMFSorc-II"];
+         Config.RogerThatFollower3List = ["TMFSorc-III"];
+         Config.RogerThatFollower4List = ["TMFSorc-IV"];
+         Config.RogerThatFollower5List = ["TMFSorc-V"];
+         Config.RogerThatFollower6List = ["TMFSorc-VI"];
+         Config.RogerThatFollower7List = ["TMFSorc-VII"];
    //! SCRIPTS -------------------------------------------------------------------------
       Scripts.DiabloHelper = true;
          Config.DiabloHelper.Wait = 240;
@@ -40,26 +40,26 @@ function LoadConfig() {
          Config.BaalHelper.KillBaal = true;
          Config.BaalHelper.SkipTP = false;
    //! INVENTORY SETTINGS --------------------------------------------------------------
-      //+ Leader Inventory Pally ----------------------------------------------------
+      //+ Leader Inventory ----------------------------------------------------------
          Config.InventoryLeader[0]    = [1,1,1,1,1,1,0,0,0,0];
          Config.InventoryLeader[1]    = [1,1,1,1,1,1,0,0,0,0];
          Config.InventoryLeader[2]    = [1,1,1,1,1,1,0,0,0,0];
          Config.InventoryLeader[3]    = [1,1,1,1,1,0,0,0,0,0];
-      //+ Follower 1 Inventory Follower - Sorc Light --------------------------------
+      //+ Follower 1 Inventory Follower ---------------------------------------------
          Config.InventoryFollower1[0] = [1,1,1,1,1,1,0,0,0,0];
          Config.InventoryFollower1[1] = [1,1,1,1,1,1,0,0,0,0];
          Config.InventoryFollower1[2] = [1,1,1,1,1,1,0,0,0,0];
          Config.InventoryFollower1[3] = [1,1,1,1,1,1,0,0,0,0];
-      //+ Follower 2 Inventory Follower - Sorc Cold ---------------------------------
+      //+ Follower 2 Inventory Follower ---------------------------------------------
          Config.InventoryFollower2[0] = [1,1,1,1,1,1,0,0,0,0];
          Config.InventoryFollower2[1] = [1,1,1,1,1,1,0,0,0,0];
          Config.InventoryFollower2[2] = [1,1,1,1,1,1,0,0,0,0];
          Config.InventoryFollower2[3] = [1,1,1,1,1,1,0,0,0,0];
       //+ Follower 3 Inventory Follower ---------------------------------------------
-         Config.InventoryFollower3[0] = [0,0,0,0,0,0,0,0,0,0];
-         Config.InventoryFollower3[1] = [0,0,0,0,0,0,0,0,0,0];
-         Config.InventoryFollower3[2] = [0,0,0,0,0,0,0,0,0,0];
-         Config.InventoryFollower3[3] = [0,0,0,0,0,0,0,0,0,0];
+         Config.InventoryFollower3[0] = [1,1,1,1,1,1,0,0,0,0];
+         Config.InventoryFollower3[1] = [1,1,1,1,1,1,0,0,0,0];
+         Config.InventoryFollower3[2] = [1,1,1,1,1,1,0,0,0,0];
+         Config.InventoryFollower3[3] = [1,1,1,1,1,1,0,0,0,0];
       //+ Follower 4 Inventory Follower ---------------------------------------------
          Config.InventoryFollower4[0] = [0,0,0,0,0,0,0,0,0,0];
          Config.InventoryFollower4[1] = [0,0,0,0,0,0,0,0,0,0];
@@ -117,14 +117,33 @@ function LoadConfig() {
       // Config.PickitFiles.push("w-bot2.nip");
       // Config.PickitFiles.push("w-bot3.nip");
       // Config.PickitFiles.push("w-bot4.nip");
-      Config.PickitFiles.push("w-potions.nip");
+      // Config.PickitFiles.push("w-potions.nip");
       // Config.PickitFiles.push("w-koltonEarlyLadder.nip");
       // Config.PickitFiles.push("w-koltonEndLadder.nip");
       Config.PickitFiles.push("w-kolton.nip");
       Config.PickitFiles.push("w-LLD.nip");
       Config.PickRange = 40;
       Config.FastPick  = true;
+   //! IN GAME CONFIG ------------------------------------------------------------------
       Config.ManualPlayPick = false;
+      Config.OpenChests = false;                         // Open chests. Controls key buying. true = open only chests, 2 = open everything body, rocks...
+      Config.AutoMap = false;                            // Set to true to open automap at the beginning of the game.
+   //! GENERAL CONFIG ------------------------------------------------------------------
+      Config.LastMessage = "";                           // Message or array of messages to say at the end of the run. Use $nextgame to say next game - "Next game: $nextgame" (works with lead entry point)
+      Config.MinGameTime = 0;                            // Min game time in seconds. Bot will TP to town and stay in game if the run is completed before.
+      Config.MaxGameTime = 0;                            // Maximum game time in seconds. Quit game when limit is reached.
+      Config.TeleSwitch = false;                         // Switch to secondary (non-primary) slot when teleporting more than 5 nodes.
+      Config.MiniShopBot = true;                         // Scan items in NPC shops.
+      Config.PacketShopping = false;                     // Use packets to shop. Improves shopping speed.
+      Config.TownCheck = false;                          // Go to town if out of potions
+      Config.LogExperience = false;                      // Print experience statistics in the manager.
+      Config.PingQuit = [{Ping: 0, Duration: 0}];        // Quit if ping is over the given value for over the given time period in seconds.
+      Config.Silence = false;                            // Make the bot not say a word. Do not use in combination with LocalChat
+      Config.ScanShrines = [15, 2, 3];                   // 15 = XP, 2 = Health, 3 = Mana
+      Config.MFSwitchPercent = 0;                        // Boss life % to switch to non-primary weapon slot. Set to 0 to disable.
+      Config.PrimarySlot = -1;                           // Set to use specific weapon slot as primary weapon slot: -1 = disabled, 0 = slot I, 1 = slot II
+      Config.WaypointMenu = true;
+      Config.WalkIfManaLessThan = 10;
    //! ADDITION CONFIG -----------------------------------------------------------------
       //+ Print to console ----------------------------------------------------------
          Config.D2BotPrintGameTime    = false;           // Game time in the end of each game
@@ -138,11 +157,11 @@ function LoadConfig() {
          Config.ItemInfoQuality = [];                    // The quality of sold items to log. See NTItemAlias.dbl for values. Example: Config.ItemInfoQuality = [6, 7, 8];
       //+ Item identification settings ----------------------------------------------
          Config.CainID.Enable = true;                    // Identify items at Cain
-         Config.CainID.MinGold = 500000;                 // Minimum gold (stash + character) to have in order to use Cain.
-         Config.CainID.MinUnids = 3;                     // Minimum number of unid items in order to use Cain.
-         Config.FieldID = false;                         // Identify items in the field instead of going to town.
-         Config.DroppedItemsAnnounce.Enable = false;     // Announce Dropped Items to in-game newbs
-         Config.DroppedItemsAnnounce.Quality = [];       // Quality of item to announce. See NTItemAlias.dbl for values. Example: Config.DroppedItemsAnnounce.Quality = [6, 7, 8];
+            Config.CainID.MinGold = 500000;              // Minimum gold (stash + character) to have in order to use Cain.
+            Config.CainID.MinUnids = 3;                  // Minimum number of unid items in order to use Cain.
+            Config.FieldID = false;                      // Identify items in the field instead of going to town.
+            Config.DroppedItemsAnnounce.Enable = false;  // Announce Dropped Items to in-game newbs
+            Config.DroppedItemsAnnounce.Quality = [];    // Quality of item to announce. See NTItemAlias.dbl for values. Example: Config.DroppedItemsAnnounce.Quality = [6, 7, 8];
       //+ Manager item log screen ---------------------------------------------------
          Config.LogKeys = false;                         // Log keys on item viewer
          Config.LogOrgans = false;                       // Log organs on item viewer
@@ -158,15 +177,30 @@ function LoadConfig() {
          Config.RepairPercent = 40;                      // Durability percent of any equipped item that will trigger repairs.
       //+ Gambling config -----------------------------------------------------------
          Config.Gamble = false;
-         Config.GambleGoldStart = 2000000;
-         Config.GambleGoldStop  =  500000;
-         Config.GambleItems.push("Amulet");
-         Config.GambleItems.push("Ring");
-         Config.GambleItems.push("Circlet");
-         Config.GambleItems.push("Coronet");
-         Config.GambleItems.push("monarch");
+            Config.GambleGoldStart = 2000000;
+            Config.GambleGoldStop  =  500000;
+            Config.GambleItems.push("Amulet");
+            Config.GambleItems.push("Ring");
+            Config.GambleItems.push("Circlet");
+            Config.GambleItems.push("Coronet");
+            Config.GambleItems.push("Monarch");
+   //! NOTIFICATION CONFIG -------------------------------------------------------------
+      Config.RogerThatTelegram.Active = false;
+         Config.RogerThatTelegram.Notify.Trade = false;
+         Config.RogerThatTelegram.Notify.HotIP = true;
+         Config.RogerThatTelegram.Notify.DiabloClone = true;
+   //! DIABLO CLONE CONFIG -------------------------------------------------------------
+      Config.StopOnDClone = false;                       // Go to town and idle as soon as Diablo walks the Earth
+      Config.SoJWaitTime = 5;                            // Time in minutes to wait for another SoJ sale before leaving game. 0 = disabled
+      Config.KillDclone = true;                          // Go to Palace Cellar 3 and try to kill Diablo Clone. Pointless if you already have Annihilus.
+      Config.DCloneQuit = false;                         // 1 = quit when Diablo walks, 2 = quit on soj sales, 0 = disabled
+   //! PUBLIC GAMES OPTIONS ------------------------------------------------------------
+      Config.LocalChat.Enabled = false;                  // enable the LocalChat system
+         Config.LocalChat.Toggle = false;                // optional, set to KEY value to toggle through modes 0, 1, 2
+         Config.LocalChat.Mode = 0;                      // 0 = disabled, 1 = chat from 'say' (recommended), 2 = all chat (for manual play)
+         Config.PublicMode = 3;                          // 1 = invite and accept, 2 = accept only, 3 = invite only, 0 = disable
    //! CUBING CONFIG -------------------------------------------------------------------
-      Config.Cubing        =  true;
+      Config.Cubing        = false;
          //+ GEMS -------------------------------------------------------------------
             // Config.Recipes.push([Recipe.Gem,          "Flawless Amethyst"]);       // Make Perfect Amethyst
             // Config.Recipes.push([Recipe.Gem,              "Flawless Ruby"]);       // Make Perfect Ruby
@@ -178,19 +212,19 @@ function LoadConfig() {
          //+ CRAFT ------------------------------------------------------------------
             Config.Recipes.push([Recipe.Caster.Amulet]);                              // Craft Caster Amulet
             Config.Recipes.push([Recipe.Blood.Ring]);                                 // Craft Blood Ring
-            // Config.Recipes.push([Recipe.Caster.Belt,     "Sharkskin Belt"]);       // Craft Caster Sharkskin Belt
-            // Config.Recipes.push([Recipe.Caster.Belt,   "Vampirefang Belt"]);       // Craft Caster Vampirefang Belt
+            Config.Recipes.push([Recipe.Caster.Belt,        "Sharkskin Belt"]);       // Craft Caster Sharkskin Belt
+            Config.Recipes.push([Recipe.Caster.Belt,      "Vampirefang Belt"]);       // Craft Caster Vampirefang Belt
             Config.Recipes.push([Recipe.Blood.Gloves,     "Sharkskin Gloves"]);       // Craft Blood Sharkskin Gloves
-            Config.Recipes.push([Recipe.Blood.Gloves,   "Vampirebone Gloves"]);       // Craft Blood Vampirebone Gloves	
-            // Config.Recipes.push([Recipe.HitPower.Gloves,      "Vambraces"]);       // Craft Hit Power Vambraces
-            // Config.Recipes.push([Recipe.HitPower.Gloves,   "Chain Gloves"]);       // Craft Hit Power Chain Gloves
-            // Config.Recipes.push([Recipe.HitPower.Gloves,  "Heavy Bracers"]);       // Craft Hit Power Heavy Bracers
-            // Config.Recipes.push([Recipe.Blood.Helm,               "Armet"]);       // Craft Blood Armet
+            Config.Recipes.push([Recipe.Blood.Gloves,   "Vampirebone Gloves"]);       // Craft Blood Vampirebone Gloves
+            Config.Recipes.push([Recipe.HitPower.Gloves,         "Vambraces"]);       // Craft Hit Power Vambraces
+            Config.Recipes.push([Recipe.HitPower.Gloves,      "Chain Gloves"]);       // Craft Hit Power Chain Gloves
+            Config.Recipes.push([Recipe.HitPower.Gloves,     "Heavy Bracers"]);       // Craft Hit Power Heavy Bracers
+            Config.Recipes.push([Recipe.Blood.Helm,                  "Armet"]);       // Craft Blood Armet
          //+ OTHERS -----------------------------------------------------------------
             Config.Recipes.push([Recipe.Reroll.Magic,          "Grand Charm"]);       // Reroll magic Grand Charm (ilvl 91+)
-            // Config.Recipes.push([Recipe.Reroll.Magic,            "Diadem"]);       // Reroll magic Diadem
-            // Config.Recipes.push([Recipe.Reroll.Rare,             "Diadem"]);       // Reroll rare Diadem
-            // Config.Recipes.push([Recipe.Token]);                                   // Make Token of Absolution
+            Config.Recipes.push([Recipe.Reroll.Magic,               "Diadem"]);       // Reroll magic Diadem
+            Config.Recipes.push([Recipe.Reroll.Rare,                "Diadem"]);       // Reroll rare Diadem
+            Config.Recipes.push([Recipe.Token]);                                      // Make Token of Absolution
          //+ SOCKET -----------------------------------------------------------------
             Config.Recipes.push([Recipe.Socket.Weapon, "Great Poleaxe",        Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",             Roll.Eth]);
@@ -241,8 +275,8 @@ function LoadConfig() {
          Config.Runewords.push([Runeword.Spirit,                        "Protector Shield",  Roll.NonEth]);    // Make Spirit Protector Shield
          Config.Runewords.push([Runeword.Spirit,                        "Heraldic Shield",   Roll.NonEth]);    // Make Spirit Heraldic Shield
          Config.Runewords.push([Runeword.Spirit,                        "Royal Shield",      Roll.NonEth]);    // Make Spirit Royal Shield
-         // Config.Runewords.push([Runeword.Spirit,                     "Sacred Hondache",   Roll.NonEth]);    // Make Spirit Sacred Hondache
-         // Config.Runewords.push([Runeword.Spirit,                     "Hondache",          Roll.NonEth]);    // Make Spirit Hondache
+         Config.Runewords.push([Runeword.Spirit,                        "Sacred Hondache",   Roll.NonEth]);    // Make Spirit Sacred Hondache
+         Config.Runewords.push([Runeword.Spirit,                        "Hondache",          Roll.NonEth]);    // Make Spirit Hondache
          Config.Runewords.push([Runeword.Harmony,                       "Matriarchal Bow",   Roll.NonEth]);    // Make Harmony Matriarchal Bow
          Config.Runewords.push([Runeword.Oath,                          "Ettin Axe",            Roll.Eth]);    // Make Oath Ettin Axe
          Config.Runewords.push([Runeword.Oath,                          "Berserker Axe",        Roll.Eth]);    // Make Oath Beserker Axe
@@ -252,69 +286,39 @@ function LoadConfig() {
          Config.KeepRunewords.push("            [type] == shield || [type] == auricshields # [fcr] == 35");    // 35% Fcr Spirit
          Config.KeepRunewords.push("[type] == bow # ([enhanceddamage] == 275 || [enhanceddamage] == 290)");    // 275% or 290% ed Harmony
          Config.KeepRunewords.push("[type] == axe # ([enhanceddamage] == 340 || [enhanceddamage] == 355)");    // 340% or 355% ed Oath
-   //! PUBLIC GAMES OPTIONS ------------------------------------------------------------
-      Config.LocalChat.Enabled = false;                  // enable the LocalChat system
-      Config.LocalChat.Toggle = false;                   // optional, set to KEY value to toggle through modes 0, 1, 2
-      Config.LocalChat.Mode = 0;                         // 0 = disabled, 1 = chat from 'say' (recommended), 2 = all chat (for manual play)
-      Config.PublicMode = 2;                             // 1 = invite and accept, 2 = accept only, 3 = invite only, 0 = disable
-   //! GENERAL CONFIG ------------------------------------------------------------------
-      Config.AutoMap = false;                            // Set to true to open automap at the beginning of the game.
-      Config.LastMessage = "";                           // Message or array of messages to say at the end of the run. Use $nextgame to say next game - "Next game: $nextgame" (works with lead entry point)
-      Config.MinGameTime = 0;                            // Min game time in seconds. Bot will TP to town and stay in game if the run is completed before.
-      Config.MaxGameTime = 0;                            // Maximum game time in seconds. Quit game when limit is reached.
-      Config.TeleSwitch = false;                         // Switch to secondary (non-primary) slot when teleporting more than 5 nodes.
-      Config.OpenChests = false;                         // Open chests. Controls key buying.
-      Config.MiniShopBot = true;                         // Scan items in NPC shops.
-      Config.PacketShopping = false;                     // Use packets to shop. Improves shopping speed.
-      Config.TownCheck = false;                          // Go to town if out of potions
-      Config.LogExperience = false;                      // Print experience statistics in the manager.
-      Config.PingQuit = [{Ping: 0, Duration: 0}];        // Quit if ping is over the given value for over the given time period in seconds.
-      Config.Silence = false;                            // Make the bot not say a word. Do not use in combination with LocalChat
-      Config.ScanShrines = [15, 2, 3];                   // 15 = XP, 2 = Health, 3 = Mana
-      Config.WaypointMenu = true;
-      Config.WalkIfManaLessThan = 10;
-   //! NOTIFICATION CONFIG -------------------------------------------------------------
-      Config.RogerThatTelegram.Active = false;
-         Config.RogerThatTelegram.Notify.Trade = false;
-         Config.RogerThatTelegram.Notify.HotIP = true;
-         Config.RogerThatTelegram.Notify.DiabloClone = true;
-   //! DIABLO CLONE CONFIG -------------------------------------------------------------
-      Config.StopOnDClone = false;                       // Go to town and idle as soon as Diablo walks the Earth
-      Config.SoJWaitTime = 5;                            // Time in minutes to wait for another SoJ sale before leaving game. 0 = disabled
-      Config.KillDclone = false;                         // Go to Palace Cellar 3 and try to kill Diablo Clone. Pointless if you already have Annihilus.
-      Config.DCloneQuit = false;                         // 1 = quit when Diablo walks, 2 = quit on soj sales, 0 = disabled
    //! MONSTER SKIP CONFIG -------------------------------------------------------------
       Config.SkipImmune  = [];
       Config.SkipEnchant = [];
       Config.SkipAura    = [];
+      //Config.SkipException = [getLocaleString(2851), getLocaleString(2852), getLocaleString(2853)]; // vizier, de seis, infector
    //! ATTACK CONFIG -------------------------------------------------------------------
       //+ SORCERESS -----------------------------------------------------------------
          //- Cold ---------------------------------------------------------------
-            Config.AttackSorcColdSkill  = [55, 59, 45, 59, 55, -1, -1]; 
+            Config.AttackSorcColdSkill  = [55, 59, 45, 59, 55, -1, -1];
             Config.LowManaSorcColdSkill = [-1, -1];
          //- Light --------------------------------------------------------------
-            Config.AttackSorcLightSkill  = [53, 49, 49, 53, 53, -1, -1]; 
+            Config.AttackSorcLightSkill  = [53, 49, 49, 53, 53, -1, -1];
             Config.LowManaSorcLightSkill = [-1, -1];
          //- Fire ---------------------------------------------------------------
-            Config.AttackSorcFireSkill  = [47, 56, 47, 47, 47, -1, -1]; 
+            Config.AttackSorcFireSkill  = [47, 56, 47, 47, 47, -1, -1];
             Config.LowManaSorcFireSkill = [-1, -1];
       //+ PALADIN -------------------------------------------------------------------
-         Config.AttackPallySkill  = [112, 112, 113, 112, 113, 97, 122]; 
+         Config.AttackPallySkill  = [112, 112, 113, 112, 113, 97, 122];
          Config.LowManaPallySkill = [112, 124];
       //+ BARBARIAN -----------------------------------------------------------------
-         Config.AttackBarbSkill   = [126, 126, 126, 126, 126, -1, -1]; 
+         Config.AttackBarbSkill   = [126, 126, 126, 126, 126, -1, -1];
          Config.LowManaBarbSkill  = [-1, -1];
       //+ AMAZON --------------------------------------------------------------------
-         Config.AttackZonSkill    = [10, 10, 10, 10, 10, -1, -1]; 
+         Config.AttackZonSkill    = [10, 10, 10, 10, 10, -1, -1];
          Config.LowManaZonSkill   = [-1, -1];
       //+ DRUID ---------------------------------------------------------------------
-         Config.AttackDruidSkill  = [245, 245, 245, 245, 245, -1, -1]; 
+         Config.AttackDruidSkill  = [245, 245, 245, 245, 245, -1, -1];
          Config.LowManaDruidSkill = [-1, -1];
       //+ NECROMANCER ---------------------------------------------------------------
-         Config.AttackNecSkill    = [88, 84, 84, 84, 84, 88, 88]; 
+         Config.AttackNecSkill    = [88, 84, 84, 84, 84, 88, 88];
          Config.LowManaNecSkill   = [-1, -1];
       //+ ASSASSIN ------------------------------------------------------------------
-         Config.AttackSinSkill    = [271, 271, 271, 271, 271, -1, -1]; 
+         Config.AttackSinSkill    = [271, 271, 271, 271, 271, -1, -1];
          Config.LowManaSinSkill   = [-1, -1];
 
       Config.CustomAttack = {
