@@ -215,6 +215,10 @@ function main() {
 		var pottype, potion,
 			tNow = getTickCount();
 
+		if (this.doChoresIfOutOfPotions()) {
+			return true;
+		}
+
 		switch (type) {
 		case 0:
 		case 1:
@@ -421,6 +425,88 @@ function main() {
 
 		return str;
 	};
+
+	this.buyPotions = function () {
+		preArea = me.area;
+		preAct = me.act;
+
+		try {
+			Town.goToTown();
+			this.togglePause();
+		} catch (e) {
+			// print("Fail to go to town... Let's continue");
+			return false;
+		}
+
+		Town.doChores();
+		me.cancel();
+
+		if (me.act !== preAct) {
+			Town.goToTown(preAct);
+		}
+
+		Town.move("portalspot");
+
+		if (!Pather.usePortal(preArea, me.name)) {
+			throw new Error ("Town.visitTown: Failed to go back from town");
+		}
+
+		this.togglePause();
+		return true;
+	};
+
+	this.doChoresIfOutOfPotions = function () {
+		let potion;
+
+		for (let i = 0; i < 4; i += 1) {
+			let needhp = true;
+			let needmp = true;
+
+			if (Config.GoToTownHP &&  Config.BeltColumn[i] === "hp" && Config.MinColumn[i] > 0) {
+				potion = me.getItem(-1, 2); // belt item
+
+				if (potion) {
+					do {
+						if (potion.code.indexOf("hp") > -1) {
+							needhp = false;
+
+							break;
+						}
+					} while (potion.getNext());
+				}
+
+				if (needhp) {
+					// print("I need healing potions");
+					if (this.buyPotions()) {
+						return true;
+					}
+				}
+			}
+
+			if (Config.GoToTownMP && Config.BeltColumn[i] === "mp" && Config.MinColumn[i] > 0) {
+				potion = me.getItem(-1, 2); // belt item
+
+				if (potion) {
+					do {
+						if (potion.code.indexOf("mp") > -1) {
+							needmp = false;
+
+							break;
+						}
+					} while (potion.getNext());
+				}
+
+				if (needmp) {
+					// print("I need mana potions");
+					if (this.buyPotions()) {
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
 
 	// Event functions
 	this.keyEvent = function (key) {

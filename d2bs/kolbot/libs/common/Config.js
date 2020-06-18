@@ -203,14 +203,16 @@ var Config = {
 		Url: '',
 		Port: 3001
 	},
-	RogerThatLeaderList: [],
-	RogerThatFollower1List: [],
-	RogerThatFollower2List: [],
-	RogerThatFollower3List: [],
-	RogerThatFollower4List: [],
-	RogerThatFollower5List: [],
-	RogerThatFollower6List: [],
-	RogerThatFollower7List: [],
+	GoToTownHP: false,
+	GoToTownMP: false,
+	RogerThatInventory1: [],
+	RogerThatInventory2: [],
+	RogerThatInventory3: [],
+	RogerThatInventory4: [],
+	RogerThatInventory5: [],
+	RogerThatInventory6: [],
+	RogerThatInventory7: [],
+	RogerThatInventory8: [],
 	RogerThatInventoryFlag: false,
 	InventoryGeneric: [
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -218,49 +220,49 @@ var Config = {
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 	],
-	InventoryLeader: [
+	Inventory1: [
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 	],
-	InventoryFollower1: [
+	Inventory2: [
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 	],
-	InventoryFollower2: [
+	Inventory3: [
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 	],
-	InventoryFollower3: [
+	Inventory4: [
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 	],
-	InventoryFollower4: [
+	Inventory5: [
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 	],
-	InventoryFollower5: [
+	Inventory6: [
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 	],
-	InventoryFollower6: [
+	Inventory7: [
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 	],
-	InventoryFollower7: [
+	Inventory8: [
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

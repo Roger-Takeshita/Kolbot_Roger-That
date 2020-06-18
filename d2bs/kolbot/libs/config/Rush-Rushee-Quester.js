@@ -10,8 +10,8 @@ function LoadConfig() {
    //! FOLLOW LEADER -------------------------------------------------------------------
       Config.Leader   = "TRusher";
       Config.QuitList = [""];
-      Config.QuitListWaitFlag = false;
       Config.QuitListMode = 0;
+      Config.QuitListDelay = [1, 10];
    //! SCRIPTS -------------------------------------------------------------------------
       Scripts.Rushee    =  true;
          Config.Rushee.Quester =  true;
@@ -29,9 +29,9 @@ function LoadConfig() {
       //+ Town settings -------------------------------------------------------------
          Config.HealHP        = 90;                      // Go to a healer if under designated percent of life.
          Config.HealMP        =  0;                      // Go to a healer if under designated percent of mana.
-         Config.HealStatus    =  true;                   // Go to a healer if poisoned or cursed
-         Config.UseMerc       =  true;                   // Use merc. This is ignored and always false in d2classic.
-         Config.MercWatch     =  true;                   // Instant merc revive during battle.
+         Config.HealStatus    = true;                    // Go to a healer if poisoned or cursed
+         Config.UseMerc       = true;                    // Use merc. This is ignored and always false in d2classic.
+         Config.MercWatch     = true;                    // Instant merc revive during battle.
       //+ Potion settings -----------------------------------------------------------
          Config.UseHP         = 85;                      // Drink a healing potion if life is under designated percent.
          Config.UseRejuvHP    = 65;                      // Drink a rejuvenation potion if life is under designated percent.
@@ -48,6 +48,8 @@ function LoadConfig() {
          Config.MercChicken   =  0;                      // Exit game if merc's life is less or equal to designated percent.
          Config.TownHP        = 55;                      // Go to town if life is under designated percent.
          Config.TownMP        =  0;                      // Go to town if mana is under designated percent.
+         Config.GoToTownHP    = false;                   // Go to town if out of healing potions
+         Config.GoToTownMP    =  true;                   // Go to town if out of mana potions
    //! PICK LIST -----------------------------------------------------------------------
       // Config.PickitFiles.push("w-bot1.nip");
       // Config.PickitFiles.push("w-bot2.nip");

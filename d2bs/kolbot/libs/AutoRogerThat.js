@@ -12,27 +12,6 @@ var AutoRogerThat = {
                 this.beltSize = Storage.BeltSize();
             },
 
-    //! GET ONE LEADER ================================================================
-        //+ RogerThat.js use a txt file to store the last leader "i am the boss"----
-            getOneLeader: function () {
-                let player = getParty();
-
-                if (player) {
-                    while (player.getNext()) {
-                        for (let i = 0 ; i < Config.RogerThatLeaderList.length ; i++) {
-                            if (player.name == Config.RogerThatLeaderList[i] && me.name !== Config.RogerThatLeaderList[i]) {
-                                if (Misc.inMyParty(player.name)) {
-                                    Config.Leader = player.name;
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                return false;
-            },
-
     //! DROP ITEMS ====================================================================
         //+ Drop items ------------------------------------------------------------
             printItems: function (items) {
@@ -998,96 +977,96 @@ var AutoRogerThat = {
 
         //+ Update inventory -------------------------------------------------------
             updateInventory: function () {
-                for (let i = 0 ; i < Config.RogerThatLeaderList.length ; i++) {
-                    if (me.name == Config.RogerThatLeaderList[i]) {
-                        print("Inventory ÿc4Leaderÿc0");
-                        Config.Inventory[0] = Config.InventoryLeader[0];
-                        Config.Inventory[1] = Config.InventoryLeader[1];
-                        Config.Inventory[2] = Config.InventoryLeader[2];
-                        Config.Inventory[3] = Config.InventoryLeader[3];
+                for (let i = 0 ; i < Config.RogerThatInventory1.length ; i++) {
+                    if (me.name === Config.RogerThatInventory1[i]) {
+                        print("Inventory ÿc9Oneÿc0");
+                        Config.Inventory[0] = Config.Inventory1[0];
+                        Config.Inventory[1] = Config.Inventory1[1];
+                        Config.Inventory[2] = Config.Inventory1[2];
+                        Config.Inventory[3] = Config.Inventory1[3];
                         this.printInventory();
                         return true;
                     }
                 }
 
-                for (let i = 0 ; i < Config.RogerThatFollower1List.length ; i++) {
-                    if (me.name == Config.RogerThatFollower1List[i]) {
-                    print("Inventory ÿc4Followerÿc0 ÿc31ÿc0");
-                    Config.Inventory[0] = Config.InventoryFollower1[0];
-                    Config.Inventory[1] = Config.InventoryFollower1[1];
-                    Config.Inventory[2] = Config.InventoryFollower1[2];
-                    Config.Inventory[3] = Config.InventoryFollower1[3];
+                for (let i = 0 ; i < Config.RogerThatInventory2.length ; i++) {
+                    if (me.name === Config.RogerThatInventory2[i]) {
+                    print("Inventory ÿc9Twoÿc0");
+                    Config.Inventory[0] = Config.Inventory2[0];
+                    Config.Inventory[1] = Config.Inventory2[1];
+                    Config.Inventory[2] = Config.Inventory2[2];
+                    Config.Inventory[3] = Config.Inventory2[3];
                     this.printInventory();
                     return true;
                     }
                 }
 
-                for (let i = 0 ; i < Config.RogerThatFollower2List.length ; i++) {
-                    if (me.name == Config.RogerThatFollower2List[i]) {
-                    print("Inventory ÿc4Followerÿc0 ÿc32ÿc0");
-                    Config.Inventory[0] = Config.InventoryFollower2[0];
-                    Config.Inventory[1] = Config.InventoryFollower2[1];
-                    Config.Inventory[2] = Config.InventoryFollower2[2];
-                    Config.Inventory[3] = Config.InventoryFollower2[3];
+                for (let i = 0 ; i < Config.RogerThatInventory3.length ; i++) {
+                    if (me.name === Config.RogerThatInventory3[i]) {
+                    print("Inventory ÿc9Threeÿc0");
+                    Config.Inventory[0] = Config.Inventory3[0];
+                    Config.Inventory[1] = Config.Inventory3[1];
+                    Config.Inventory[2] = Config.Inventory3[2];
+                    Config.Inventory[3] = Config.Inventory3[3];
                     this.printInventory();
                     return true;
                     }
                 }
 
-                for (let i = 0 ; i < Config.RogerThatFollower3List.length ; i++) {
-                    if (me.name == Config.RogerThatFollower3List[i]) {
-                        print("Inventory ÿc4Followerÿc0 ÿc33ÿc0");
-                        Config.Inventory[0] = Config.InventoryFollower3[0];
-                        Config.Inventory[1] = Config.InventoryFollower3[1];
-                        Config.Inventory[2] = Config.InventoryFollower3[2];
-                        Config.Inventory[3] = Config.InventoryFollower3[3];
+                for (let i = 0 ; i < Config.RogerThatInventory4.length ; i++) {
+                    if (me.name === Config.RogerThatInventory4[i]) {
+                        print("Inventory ÿc9Fourÿc0");
+                        Config.Inventory[0] = Config.Inventory4[0];
+                        Config.Inventory[1] = Config.Inventory4[1];
+                        Config.Inventory[2] = Config.Inventory4[2];
+                        Config.Inventory[3] = Config.Inventory4[3];
                         this.printInventory();
                         return true;
                     }
                 }
 
-                for (let i = 0 ; i < Config.RogerThatFollower4List.length ; i++) {
-                    if (me.name == Config.RogerThatFollower4List[i]) {
-                    print("Inventory ÿc4Followerÿc0 ÿc34ÿc0");
-                    Config.Inventory[0] = Config.InventoryFollower4[0];
-                    Config.Inventory[1] = Config.InventoryFollower4[1];
-                    Config.Inventory[2] = Config.InventoryFollower4[2];
-                    Config.Inventory[3] = Config.InventoryFollower4[3];
+                for (let i = 0 ; i < Config.RogerThatInventory5.length ; i++) {
+                    if (me.name == Config.RogerThatInventory5[i]) {
+                    print("Inventory ÿc9Fiveÿc0");
+                    Config.Inventory[0] = Config.Inventory5[0];
+                    Config.Inventory[1] = Config.Inventory5[1];
+                    Config.Inventory[2] = Config.Inventory5[2];
+                    Config.Inventory[3] = Config.Inventory5[3];
                     this.printInventory();
                     return true;
                     }
                 }
 
-                for (let i = 0 ; i < Config.RogerThatFollower5List.length ; i++) {
-                    if (me.name == Config.RogerThatFollower5List[i]) {
-                        print("Inventory ÿc4Followerÿc0 ÿc35ÿc0");
-                        Config.Inventory[0] = Config.InventoryFollower5[0];
-                        Config.Inventory[1] = Config.InventoryFollower5[1];
-                        Config.Inventory[2] = Config.InventoryFollower5[2];
-                        Config.Inventory[3] = Config.InventoryFollower5[3];
+                for (let i = 0 ; i < Config.RogerThatInventory6.length ; i++) {
+                    if (me.name == Config.RogerThatInventory6[i]) {
+                        print("Inventory ÿc9Sixÿc0");
+                        Config.Inventory[0] = Config.Inventory6[0];
+                        Config.Inventory[1] = Config.Inventory6[1];
+                        Config.Inventory[2] = Config.Inventory6[2];
+                        Config.Inventory[3] = Config.Inventory6[3];
                         this.printInventory();
                         return true;
                     }
                 }
 
-                for (let i = 0 ; i < Config.RogerThatFollower6List.length; i++) {
-                    if (me.name == Config.RogerThatFollower6List[i]) {
-                        print("Inventory ÿc4Followerÿc0 ÿc36ÿc0");
-                        Config.Inventory[0] = Config.InventoryFollower6[0];
-                        Config.Inventory[1] = Config.InventoryFollower6[1];
-                        Config.Inventory[2] = Config.InventoryFollower6[2];
-                        Config.Inventory[3] = Config.InventoryFollower6[3];
+                for (let i = 0 ; i < Config.RogerThatInventory7.length; i++) {
+                    if (me.name == Config.RogerThatInventory7[i]) {
+                        print("Inventory ÿc9Sevenÿc0");
+                        Config.Inventory[0] = Config.Inventory7[0];
+                        Config.Inventory[1] = Config.Inventory7[1];
+                        Config.Inventory[2] = Config.Inventory7[2];
+                        Config.Inventory[3] = Config.Inventory7[3];
                         return true;
                     }
                 }
 
-                for (let i = 0 ; i < Config.RogerThatFollower7List.length ; i++) {
-                    if (me.name == Config.RogerThatFollower7List[i]) {
-                        print("Inventory ÿc4Followerÿc0 ÿc37ÿc0");
-                        Config.Inventory[0] = Config.InventoryFollower7[0];
-                        Config.Inventory[1] = Config.InventoryFollower7[1];
-                        Config.Inventory[2] = Config.InventoryFollower7[2];
-                        Config.Inventory[3] = Config.InventoryFollower7[3];
+                for (let i = 0 ; i < Config.RogerThatInventory8.length ; i++) {
+                    if (me.name == Config.RogerThatInventory8[i]) {
+                        print("Inventory ÿc9Eightÿc0");
+                        Config.Inventory[0] = Config.Inventory8[0];
+                        Config.Inventory[1] = Config.Inventory8[1];
+                        Config.Inventory[2] = Config.Inventory8[2];
+                        Config.Inventory[3] = Config.Inventory8[3];
                         this.printInventory();
                         return true;
                     }

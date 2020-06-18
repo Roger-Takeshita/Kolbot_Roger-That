@@ -13,63 +13,63 @@ function LoadConfig() {
       Config.QuitListMode = 0;
       Config.QuitListDelay = [1, 10];
    //! ROGER-THAT ----------------------------------------------------------------------
-      Config.RogerThatInventoryFlag    = true;           //Set true to use custom inventory configuration
-         Config.RogerThatLeaderList    = ["TMFLeader"];
-         Config.RogerThatFollower1List = ["TMFSorc-I"];
-         Config.RogerThatFollower2List = ["TMFSorc-II"];
-         Config.RogerThatFollower3List = ["TMFSorc-III"];
-         Config.RogerThatFollower4List = ["TMFSorc-IV"];
-         Config.RogerThatFollower5List = ["TMFSorc-V"];
-         Config.RogerThatFollower6List = ["TMFSorc-VI"];
-         Config.RogerThatFollower7List = ["TMFSorc-VII"];
+      Config.RogerThatInventoryFlag = true;
+         Config.RogerThatInventory1 = ["TMFLeader"];
+         Config.RogerThatInventory2 = ["TMFSorc-I"];
+         Config.RogerThatInventory3 = ["TMFSorc-II"];
+         Config.RogerThatInventory4 = ["TMFSorc-III"];
+         Config.RogerThatInventory5 = ["TMFSorc-IV"];
+         Config.RogerThatInventory6 = ["TMFSorc-V"];
+         Config.RogerThatInventory7 = ["TMFSorc-VI"];
+         Config.RogerThatInventory8 = ["TMFSorc-VII"];
    //! SCRIPTS -------------------------------------------------------------------------
-      Scripts.RogerThat                = true;          // RogerThat Master Script
+      Scripts.RogerThat = true;
    //! INVENTORY SETTINGS --------------------------------------------------------------
-      //+ Leader Inventory ----------------------------------------------------------
-         Config.InventoryLeader[0]    = [1,1,1,1,1,1,0,0,0,0];
-         Config.InventoryLeader[1]    = [1,1,1,1,1,1,0,0,0,0];
-         Config.InventoryLeader[2]    = [1,1,1,1,1,1,0,0,0,0];
-         Config.InventoryLeader[3]    = [1,1,1,1,1,0,0,0,0,0];
-      //+ Follower 1 Inventory Follower ---------------------------------------------
-         Config.InventoryFollower1[0] = [1,1,1,1,1,1,0,0,0,0];
-         Config.InventoryFollower1[1] = [1,1,1,1,1,1,0,0,0,0];
-         Config.InventoryFollower1[2] = [1,1,1,1,1,1,0,0,0,0];
-         Config.InventoryFollower1[3] = [1,1,1,1,1,1,0,0,0,0];
-      //+ Follower 2 Inventory Follower ---------------------------------------------
-         Config.InventoryFollower2[0] = [1,1,1,1,1,1,0,0,0,0];
-         Config.InventoryFollower2[1] = [1,1,1,1,1,1,0,0,0,0];
-         Config.InventoryFollower2[2] = [1,1,1,1,1,1,0,0,0,0];
-         Config.InventoryFollower2[3] = [1,1,1,1,1,1,0,0,0,0];
-      //+ Follower 3 Inventory Follower ---------------------------------------------
-         Config.InventoryFollower3[0] = [1,1,1,1,1,1,0,0,0,0];
-         Config.InventoryFollower3[1] = [1,1,1,1,1,1,0,0,0,0];
-         Config.InventoryFollower3[2] = [1,1,1,1,1,1,0,0,0,0];
-         Config.InventoryFollower3[3] = [1,1,1,1,1,1,0,0,0,0];
-      //+ Follower 4 Inventory Follower ---------------------------------------------
-         Config.InventoryFollower4[0] = [0,0,0,0,0,0,0,0,0,0];
-         Config.InventoryFollower4[1] = [0,0,0,0,0,0,0,0,0,0];
-         Config.InventoryFollower4[2] = [0,0,0,0,0,0,0,0,0,0];
-         Config.InventoryFollower4[3] = [0,0,0,0,0,0,0,0,0,0];
-      //+ Follower 5 Inventory Follower ---------------------------------------------
-         Config.InventoryFollower5[0] = [0,0,0,0,0,0,0,0,0,0];
-         Config.InventoryFollower5[1] = [0,0,0,0,0,0,0,0,0,0];
-         Config.InventoryFollower5[2] = [0,0,0,0,0,0,0,0,0,0];
-         Config.InventoryFollower5[3] = [0,0,0,0,0,0,0,0,0,0];
-      //+ Follower 6 Inventory Follower ---------------------------------------------
-         Config.InventoryFollower6[0] = [0,0,0,0,0,0,0,0,0,0];
-         Config.InventoryFollower6[1] = [0,0,0,0,0,0,0,0,0,0];
-         Config.InventoryFollower6[2] = [0,0,0,0,0,0,0,0,0,0];
-         Config.InventoryFollower6[3] = [0,0,0,0,0,0,0,0,0,0];
-      //+ Follower 7 Inventory Follower ---------------------------------------------
-         Config.InventoryFollower7[0] = [0,0,0,0,0,0,0,0,0,0];
-         Config.InventoryFollower7[1] = [0,0,0,0,0,0,0,0,0,0];
-         Config.InventoryFollower7[2] = [0,0,0,0,0,0,0,0,0,0];
-         Config.InventoryFollower7[3] = [0,0,0,0,0,0,0,0,0,0];
+      //+ Inventory 1 ---------------------------------------------------------------
+         Config.Inventory1[0]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory1[1]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory1[2]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory1[3]       = [1,1,1,1,1,0,0,0,0,0];
+      //+ Inventory 2 ---------------------------------------------------------------
+         Config.Inventory2[0]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory2[1]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory2[2]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory2[3]       = [1,1,1,1,1,1,0,0,0,0];
+      //+ Inventory 3 ---------------------------------------------------------------
+         Config.Inventory3[0]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory3[1]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory3[2]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory3[3]       = [1,1,1,1,1,1,0,0,0,0];
+      //+ Inventory 4 ---------------------------------------------------------------
+         Config.Inventory4[0]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory4[1]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory4[2]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory4[3]       = [1,1,1,1,1,1,0,0,0,0];
+      //+ Inventory 5 ---------------------------------------------------------------
+         Config.Inventory5[0]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory5[1]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory5[2]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory5[3]       = [0,0,0,0,0,0,0,0,0,0];
+      //+ Inventory 6 ---------------------------------------------------------------
+         Config.Inventory6[0]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory6[1]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory6[2]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory6[3]       = [0,0,0,0,0,0,0,0,0,0];
+      //+ Inventory 7 ---------------------------------------------------------------
+         Config.Inventory7[0]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory7[1]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory7[2]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory7[3]       = [0,0,0,0,0,0,0,0,0,0];
+      //+ Inventory 8 ---------------------------------------------------------------
+         Config.Inventory8[0]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory8[1]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory8[2]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory8[3]       = [0,0,0,0,0,0,0,0,0,0];
       //+ Generic Inventory ---------------------------------------------------------
-         Config.InventoryGeneric[0]   = [1,1,1,1,1,1,1,1,1,1];
-         Config.InventoryGeneric[1]   = [1,1,1,1,1,1,1,1,1,1];
-         Config.InventoryGeneric[2]   = [1,1,1,1,1,1,1,1,1,1];
-         Config.InventoryGeneric[3]   = [1,1,1,1,1,1,1,1,1,1];
+         Config.InventoryGeneric[0] = [1,1,1,1,1,1,1,1,1,1];
+         Config.InventoryGeneric[1] = [1,1,1,1,1,1,1,1,1,1];
+         Config.InventoryGeneric[2] = [1,1,1,1,1,1,1,1,1,1];
+         Config.InventoryGeneric[3] = [1,1,1,1,1,1,1,1,1,1];
 
       Config.BeltColumn = ["hp", "mp", "mp", "rv"];
       Config.MinColumn  = [3, 3, 3, 0];
@@ -78,9 +78,9 @@ function LoadConfig() {
       //+ Town settings -------------------------------------------------------------
          Config.HealHP        = 90;                      // Go to a healer if under designated percent of life.
          Config.HealMP        =  0;                      // Go to a healer if under designated percent of mana.
-         Config.HealStatus    =  true;                   // Go to a healer if poisoned or cursed
-         Config.UseMerc       =  true;                   // Use merc. This is ignored and always false in d2classic.
-         Config.MercWatch     =  true;                   // Instant merc revive during battle.
+         Config.HealStatus    = true;                    // Go to a healer if poisoned or cursed
+         Config.UseMerc       = true;                    // Use merc. This is ignored and always false in d2classic.
+         Config.MercWatch     = true;                    // Instant merc revive during battle.
       //+ Potion settings -----------------------------------------------------------
          Config.UseHP         = 85;                      // Drink a healing potion if life is under designated percent.
          Config.UseRejuvHP    = 65;                      // Drink a rejuvenation potion if life is under designated percent.
@@ -97,6 +97,8 @@ function LoadConfig() {
          Config.MercChicken   =  0;                      // Exit game if merc's life is less or equal to designated percent.
          Config.TownHP        = 55;                      // Go to town if life is under designated percent.
          Config.TownMP        =  0;                      // Go to town if mana is under designated percent.
+         Config.GoToTownHP    = false;                   // Go to town if out of healing potions
+         Config.GoToTownMP    =  true;                   // Go to town if out of mana potions
    //! PICK LIST -----------------------------------------------------------------------
       // Config.PickitFiles.push("w-bot1.nip");
       // Config.PickitFiles.push("w-bot2.nip");
@@ -142,7 +144,7 @@ function LoadConfig() {
          Config.ItemInfoQuality = [];                    // The quality of sold items to log. See NTItemAlias.dbl for values. Example: Config.ItemInfoQuality = [6, 7, 8];
       //+ Item identification settings ----------------------------------------------
          Config.CainID.Enable = true;                    // Identify items at Cain
-            Config.CainID.MinGold = 500000;              // Minimum gold (stash + character) to have in order to use Cain.
+            Config.CainID.MinGold = 100000;              // Minimum gold (stash + character) to have in order to use Cain.
             Config.CainID.MinUnids = 3;                  // Minimum number of unid items in order to use Cain.
             Config.FieldID = false;                      // Identify items in the field instead of going to town.
             Config.DroppedItemsAnnounce.Enable = false;  // Announce Dropped Items to in-game newbs
