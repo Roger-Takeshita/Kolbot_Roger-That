@@ -783,6 +783,7 @@ function main() {
 			case 100: //- Numpad 4 - Open Stash
 				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
+				me.cancel();
 
 				if (me.inTown) {
 					if (getUIFlag(0x19)) {

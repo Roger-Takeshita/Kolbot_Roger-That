@@ -118,13 +118,13 @@
 //!                                                                                             //
 //! =========================================================================================== //
     //+ RUNES ================================================================================
-        [name] == talrune              // # # [maxquantity] == 5
-        [name] == thulrune             // # # [maxquantity] == 5
-        [name] == ortrune              // # # [maxquantity] == 5
-        [name] == amnrune              // # # [maxquantity] == 5
-        [name] == ralrune              // # # [maxquantity] == 5
-        [name] == tirrune              // # # [maxquantity] == 5
-        [name] == solrune              // # # [maxquantity] == 5
+        // [name] == talrune              # # [maxquantity] == 5
+        // [name] == thulrune             # # [maxquantity] == 5
+        // [name] == ortrune              # # [maxquantity] == 5
+        // [name] == amnrune              # # [maxquantity] == 5
+        // [name] == ralrune              # # [maxquantity] == 5
+        // [name] == tirrune              # # [maxquantity] == 5
+        // [name] == solrune              # # [maxquantity] == 5
         // [name] == elrune               # # [maxquantity] == 1
         // [name] == eldrune              # # [maxquantity] == 1
         // [name] == nefrune              # # [maxquantity] == 1
