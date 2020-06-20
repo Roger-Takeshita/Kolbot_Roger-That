@@ -685,6 +685,8 @@ function main() {
 			say("Hell rush complete~");
 			delay(500);
 			// quit();
+			say("bye ~");
+			delay(500);
 			D2Bot.stop(me.profile, true);
 
 			return false;
