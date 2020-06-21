@@ -29,7 +29,6 @@ function LoadConfig() {
       Scripts.Hephasto = true;
       Scripts.Diablo = true;
          Config.Diablo.Entrance = true;
-      Scripts.Nihlathak = true;
       Scripts.Baal = true;
          Config.Baal.HotTPMessage = "";                  // Set msg to "hot" so AutoBaal can understand the commands
          Config.Baal.SafeTPMessage = "";                 // Set msg to "safe" or "come" so AutoBaal can understand the commands
@@ -124,7 +123,7 @@ function LoadConfig() {
       Config.PingQuit = [{Ping: 0, Duration: 0}];        // Quit if ping is over the given value for over the given time period in seconds.
       Config.Silence = false;                            // Make the bot not say a word. Do not use in combination with LocalChat
       Config.ScanShrines = [15, 2, 3];                   // 15 = XP, 2 = Health, 3 = Mana
-      Config.MFSwitchPercent = 0;                        // Boss life % to switch to non-primary weapon slot. Set to 0 to disable.
+      Config.MFSwitchPercent = 10;                       // Boss life % to switch to non-primary weapon slot. Set to 0 to disable.
       Config.PrimarySlot = -1;                           // Set to use specific weapon slot as primary weapon slot: -1 = disabled, 0 = slot I, 1 = slot II
       Config.WaypointMenu = true;
       Config.WalkIfManaLessThan = 10;

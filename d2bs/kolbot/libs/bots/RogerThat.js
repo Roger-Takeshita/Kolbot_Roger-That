@@ -22,7 +22,7 @@ function RogerThat() {
         checkLeaderFlag = false,
         checkPartyFlag = false,
         leaderLeftPartyFlag = false,
-        lastLvl = me.getStat(12),
+        unUsedSkill= me.getStat(5),
         actions = [],
         leaderAct,
         target,
@@ -138,6 +138,23 @@ function RogerThat() {
             };
 
         //+ Got to leader act / area ==============================================
+            this.useTP = function (name) {
+                if (!Pather.usePortal(null, name, null, 2)) {
+                    target = getUnit(1, NPC.Cain);
+                    if (target) {
+                        this.talkTo(NPC.Cain);
+                    }
+
+                    delay(250);
+
+                    if (!Pather.usePortal(null, name, null, 2)) {
+                        return false;
+                    }
+                }
+
+                return true;
+            };
+
             this.goToLeader = function (leader, justWp) {
                 leaderAct = this.checkLeaderAct(leader);
 
@@ -145,22 +162,11 @@ function RogerThat() {
                     Town.goToTown(leaderAct);
                     Town.move("portalspot");
                     delay(250);
-
-                    if (!Pather.usePortal(null, leader.name)) {
-                        return false;
-                    }
+                    this.useTP(leader.name);
                 } else if (me.inTown && leaderAct === me.act) {
                     Town.move("portalspot");
                     delay(250);
-
-                    if ((me.act === 2 || me.act === 3) && [66, 67, 68, 69, 70, 71, 72, 73, 74, 100, 101, 102].indexOf(leader.area) >= 0) {
-                        this.talkTo(NPC.Cain);
-                        delay(250);
-                    }
-
-                    if (!Pather.usePortal(null, leader.name)) {
-                        return false;
-                    }
+                    this.useTP(leader.name);
 
                     if (!justWp) {
                         while (!this.getLeaderUnit(leader.name) && !me.dead && !me.inTown) {
@@ -176,7 +182,7 @@ function RogerThat() {
                     Town.goToTown(this.checkLeaderAct(leader));
                     Town.move("portalspot");
                     delay(250);
-                    Pather.usePortal(null, leader.name);
+                    this.useTP(leader.name);
                 }
 
                 return true;
@@ -1025,6 +1031,7 @@ function RogerThat() {
 
                                 if (this.cubeStaff()) {
                                     this.talkTo(NPC.Drognan);
+                                    Town.move("portalspot");
                                 }
 
                                 break;
@@ -1085,6 +1092,7 @@ function RogerThat() {
 
                                 if (this.cubeStaff()) {
                                     this.talkTo(NPC.Drognan);
+                                    Town.move("portalspot");
                                 }
 
                                 break;
@@ -1145,6 +1153,7 @@ function RogerThat() {
 
                                 if (this.cubeStaff()) {
                                     this.talkTo(NPC.Drognan);
+                                    Town.move("portalspot");
                                 }
 
                                 break;
@@ -1336,7 +1345,7 @@ function RogerThat() {
                         if (me.getItem(itemClassId)) {
                             Town.move("portalspot");
 
-                            if (!Pather.usePortal(null, leader.name)) {
+                            if (!Pather.usePortal(null, leader.name, null, 2)) {
                                 break;
                             }
 
@@ -1449,7 +1458,7 @@ function RogerThat() {
                         }
                         Town.goToTown();
                     } else {
-                        Pather.usePortal(null, leader.name);
+                        Pather.usePortal(null, leader.name, null, 2);
 
                     }
                 }
@@ -2132,12 +2141,13 @@ function RogerThat() {
                 }
 
             //- Updated attack when lvl -------------------------------------------
-                // if (me.getStat(12) !== lastLvl && me.getStat(5) === 0) {
-                //    AutoRogerThat.updateAttack();
-                //    lastLvl = me.getStat(12);
-                //    delay(100);
-                //    print("My lvl now is " + lastLvl);
-                // }
+                if (me.getStat(5) !== unUsedSkill) {
+                    if (me.getStat(5) < unUsedSkill) {
+                        AutoRogerThat.updateAttack();
+                        me.overhead("Attack skills have been updated!");
+                    }
+                    unUsedSkill = me.getStat(5);
+                }
 
             //- Check leader ------------------------------------------------------
                 if (!checkLeaderFlag) {
@@ -2289,13 +2299,14 @@ function RogerThat() {
 
                                 break;
                             case "3":
-                                if (!me.inTown && !this.goToTownTomeBook()) {
-                                    actions.shift();
-                                    break;
+                                if (!me.inTown) {
+                                    if (this.goToTownTomeBook()) {
+                                        Town.doChores();
+                                        Town.move("portalspot");
+                                        actions.shift();
+                                    }
                                 }
 
-                                Town.doChores();
-                                Town.move("portalspot");
                                 actions.shift();
 
                                 break;

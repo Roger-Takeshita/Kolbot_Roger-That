@@ -1056,6 +1056,7 @@ var AutoRogerThat = {
                         Config.Inventory[1] = Config.Inventory7[1];
                         Config.Inventory[2] = Config.Inventory7[2];
                         Config.Inventory[3] = Config.Inventory7[3];
+                        this.printInventory();
                         return true;
                     }
                 }
@@ -1082,12 +1083,23 @@ var AutoRogerThat = {
             },
 
         //+ Update attack ----------------------------------------------------------
+            useSkill: function (skillsOrder) {
+                for (let i = 0; i < skillsOrder; i++) {
+                    if (skillsOrder[i] !== undefined && me.getSkill(skillsOrder[i], 0)) {
+                        return skillsOrder[i];
+                    }
+                }
+
+                return 0;
+            },
+
             updateAttack: function () {
                 //- This function is almost like an auto build, as you lvl the attack configuration is updated, the function always checks if you have the skill point, otherwise he uses a lower skill
                 let classes = ["amazon", "sorceress", "necromancer", "paladin", "barbarian", "druid", "assassin"],
                     charClass = classes[me.classid],
-                    skillID,
-                    skillID2;
+                    typeOfSorc,
+                    skill1,
+                    skill2;
 
                 switch (charClass) {
                     case "amazon":
@@ -1100,33 +1112,33 @@ var AutoRogerThat = {
 
                         break;
                     case "sorceress":
-                        let typeOfSorc;
-
                         if (me.getSkill(36, 0) >= 1) {
                             typeOfSorc = "fire";
-                            Config.SkipImmune   = ["fire"];
+                            Config.SkipImmune = ["fire"];
+                            print("Auto ÿc4" + charClass + " ÿc1" + typeOfSorc + " attack");
                         } else if (me.getSkill(39, 0) >= 1) {
                             typeOfSorc = "cold";
                             Config.SkipImmune   = ["cold"];
+                            print("Auto ÿc4" + charClass + "ÿc0 ÿc3" + typeOfSorc + " attackÿc0");
                         } else if (me.getSkill(38, 0) >= 1) {
                             typeOfSorc = "light";
                             Config.SkipImmune   = ["lightning"];
+                            print("Auto ÿc4" + charClass + " ÿc9" + typeOfSorc + " attack");
                         } else {
                             typeOfSorc = "";
+                            print("Auto ÿc4" + charClass + "ÿc1  undefined type of sorc");
                         }
 
                         if (me.charlvl <= 25) {
                             switch (me.charlvl) {
                                 case 1:
-                                    if (me.getSkill(36, 1, false) >= 1) { //fire bolt
-                                        skillID = 36;
+                                    if (me.getSkill(36, 1, false) >= 1) { // fire bolt
+                                        skill1 = 36;
                                     } else {
-                                        skillID = 0;
+                                        skill1 = 0;
                                     }
 
-                                    skillID2 = 0;
-                                    Config.AttackSkill  = [skillID, skillID, skillID, skillID, skillID, 0, 0];
-                                    Config.LowManaSkill = [0, 0];
+                                    skill2 = skill1;
 
                                     break;
                                 case 2:
@@ -1134,22 +1146,22 @@ var AutoRogerThat = {
                                 case 4:
                                 case 5:
                                 case 6:
-                                    if (typeOfSorc === "light") {
-                                        skillID = 38;     // charged bolt
-                                    } else if (typeOfSorc === "fire") {
-                                        skillID = 36;     //fire bolt
-                                    } else if (typeOfSorc === "cold") {
-                                        skillID = 45;     // ice blast
-                                    if (me.getSkill(skillID, 0) < 1) {
-                                        skillID = 39;  // ice bolt
-                                    }
-                                    } else {
-                                        skillID = 0;
+                                    switch (typeOfSorc) {
+                                        case "light":
+                                            skill1 = this.useSkill([38]); // charged bolt
+
+                                            break;
+                                        case "fire":
+                                            skill1 = this.useSkill([36]); //fire bolt
+
+                                            break;
+                                        case "cold":
+                                            skill1 = this.useSkill([45, 39]); // ice blast > ice bolt
+
+                                            break;
                                     }
 
-                                    skillID2 = 0;
-                                    Config.AttackSkill  = [skillID, skillID, skillID, skillID, skillID, 0, 0];
-                                    Config.LowManaSkill = [0, 0];
+                                    skill2 = skill1;
 
                                     break;
                                 case 7:
@@ -1158,31 +1170,22 @@ var AutoRogerThat = {
                                 case 10:
                                 case 11:
                                 case 12:
-                                    if (typeOfSorc === "light") {
-                                        skillID = 49;     // lightning
+                                    switch (typeOfSorc) {
+                                        case "light":
+                                            skill1 = this.useSkill([49, 38]); // lightning > charged bold
 
-                                        if (me.getSkill(skillID, 0) < 1) {
-                                            skillID = 38;  // charged bolt
-                                        }
-                                    } else if (typeOfSorc === "fire") {
-                                        skillID = 47;     // fire ball
+                                            break;
+                                        case "fire":
+                                            skill1 = this.useSkill([47, 36]); // fire ball > fire bolt
 
-                                        if (me.getSkill(skillID, 0) < 1) {
-                                            skillID = 36;  //fire bolt
-                                        }
-                                    } else if (typeOfSorc === "cold") {
-                                        skillID = 45;     // ice blast
+                                            break;
+                                        case "cold":
+                                            skill1 = this.useSkill([45, 39]); // ice blast > ice bolt
 
-                                        if (me.getSkill(skillID, 0) < 1) {
-                                            skillID = 39;  // ice bolt
-                                        }
-                                    } else {
-                                        skillID = 0;
+                                            break;
                                     }
 
-                                    skillID2 = 0;
-                                    Config.AttackSkill  = [skillID, skillID, skillID, skillID, skillID, 0, 0];
-                                    Config.LowManaSkill = [0, 0];
+                                    skill2 = skill1;
 
                                     break;
                                 case 13:
@@ -1198,60 +1201,57 @@ var AutoRogerThat = {
                                 case 23:
                                 case 24:
                                 case 25:
-                                    if (typeOfSorc === "light") {
-                                        skillID = 49;     // lightning
-                                        skillID2 = 18;    // ligthning chain
+                                    switch (typeOfSorc) {
+                                        case "light":
+                                            skill1 = this.useSkill([18, 49, 38]); // chain lightning > lightning > charged bolt
+                                            skill2 = this.useSkill([49, 18, 38]); // lightning > chain lightning > charged bolt
 
-                                        if (me.getSkill(skillID, 0) < 1) {
-                                            skillID = 38; // charged bolt
-                                        }
-                                    } else if (typeOfSorc === "fire") {
-                                        skillID = 56;     // meteor
-                                        skillID2 = 47;    // fire ball
+                                            break;
+                                        case "fire":
+                                            skill1 = this.useSkill([47, 36]); // fire ball > fire bolt
+                                            skill2 = this.useSkill([56, 47, 36]); // meteor > fire ball > fire bolt
 
-                                        if (me.getSkill(skillID, 0) < 1) {
-                                            skillID = skillID2;
-                                        }
-                                    } else if (typeOfSorc === "cold") {
-                                        skillID = 59;     // blizzard
-                                        skillID2 = 45;    // ice blast
+                                            break;
+                                        case "cold":
+                                            skill1 = this.useSkill([55, 45, 39]); // glacial spike > ice blast > ice bolt
+                                            skill2 = this.useSkill([59, 45, 39]); // blizzard > ice blast > ice bolt
 
-                                        if (me.getSkill(skillID, 0) < 1) {
-                                            skillID = skillID2;
-                                        }
-                                    } else {
-                                        skillID = skillID2 = 0;
+                                            break;
                                     }
-
-                                    Config.AttackSkill  = [skillID2, skillID, skillID2, skillID2, skillID2, 0, 0];
-                                    Config.LowManaSkill = [0, 0];
 
                                     break;
                             }
+
+                            Config.AttackSkill  = [skill2, skill2, skill1, skill2, skill1, 0, 0];
+                            Config.LowManaSkill = [0, 0];
+
                         } else {
-                            if (me.getSkill(38, 0) >= 1) {            //charged bolt
-                                Config.AttackSkill  = Config.AttackSorcLightSkill;
-                                Config.LowManaSkill = Config.LowManaSorcLightSkill;
-                                Config.BeltColumn = ["hp", "mp", "mp", "rv"];
-                            } else if (me.getSkill(36, 0) >= 1) {     //fire bolt
-                                Config.AttackSkill  = Config.AttackSorcFireSkill;
-                                Config.LowManaSkill = Config.LowManaSorcFireSkill;
-                            } else if (me.getSkill(39, 0) >= 1) {     //ice bolt
-                                Config.AttackSkill  = Config.AttackSorcColdSkill;
-                                Config.LowManaSkill = Config.LowManaSorcColdSkill;
+                            switch (typeOfSorc) {
+                                case "light":
+                                    Config.AttackSkill  = Config.AttackSorcLightSkill;
+                                    Config.LowManaSkill = Config.LowManaSorcLightSkill;
+
+                                    break;
+                                case "fire":
+                                    Config.AttackSkill  = Config.AttackSorcFireSkill;
+                                    Config.LowManaSkill = Config.LowManaSorcFireSkill;
+
+                                    break;
+                                case "cold":
+                                    Config.AttackSkill  = Config.AttackSorcColdSkill;
+                                    Config.LowManaSkill = Config.LowManaSorcColdSkill;
+
+                                    break;
+                                default:
+                                    Config.AttackSkill  = [0, 0, 0, 0, 0, 0, 0];
+                                    Config.LowManaSkill = [0, 0];
+
+                                    break;
                             }
                         }
 
                         Config.CastStatic = 60;    // Cast static until the target is at designated life percent. 100 = disabled.
                         Config.StaticList = ["bloodraven", "griswold", "andariel", "summoner", "duriel", "mephisto", "diablo", "izual", "baal"];
-
-                        if (typeOfSorc == "light") {
-                            print("Auto ÿc4" + charClass + "ÿc0 ÿc9" + typeOfSorc + " attackÿc0");
-                        } else if (typeOfSorc == "fire") {
-                            print("Auto ÿc4" + charClass + "ÿc0 ÿc1" + typeOfSorc + " attackÿc0");
-                        } else if (typeOfSorc == "cold") {
-                            print("Auto ÿc4" + charClass + "ÿc0 ÿc3" + typeOfSorc + " attackÿc0");
-                        }
 
                         break;
                     case "necromancer":
@@ -1276,24 +1276,11 @@ var AutoRogerThat = {
                         if (me.charlvl <= 25) {
                             switch (me.charlvl) {
                                 case 1:
-                                    skillID = 0;
-                                    skillID2 = 0;
-                                    Config.AttackSkill  = [skillID, skillID, skillID2, skillID, skillID2, 0, 0];
-                                    Config.LowManaSkill = [0, 0];
+                                    skill1 = 0;
+                                    skill2 = 0;
 
                                     break;
                                 case 2:
-                                    skillID = 0;
-                                    skillID2 = 98;    //might
-
-                                    if (me.getSkill(skillID2, 0) < 1) {
-                                        skillID2 = 0;
-                                    }
-
-                                    Config.AttackSkill  = [skillID, skillID, skillID2, skillID, skillID2, 0, 0];
-                                    Config.LowManaSkill = [0, 0];
-
-                                    break;
                                 case 3:
                                 case 4:
                                 case 5:
@@ -1303,40 +1290,14 @@ var AutoRogerThat = {
                                 case 9:
                                 case 10:
                                 case 11:
-                                    skillID = 97;     //smite
-                                    skillID2 = 98;    //might
-
-                                    if (me.getSkill(skillID, 0) < 1) {
-                                        skillID = 0;
-                                    }
-
-                                    if (me.getSkill(skillID2, 0) < 1) {
-                                        skillID2 = 0;
-                                    }
-
-                                    Config.AttackSkill  = [skillID, skillID, skillID2, skillID, skillID2, 0, 0];
-                                    Config.LowManaSkill = [0, 0];
-
-                                    break;
                                 case 12:
                                 case 13:
                                 case 14:
                                 case 15:
                                 case 16:
                                 case 17:
-                                    skillID = 97;      //smite
-                                    skillID2 = 108;    //blessed aim
-
-                                    if (me.getSkill(skillID, 0) < 1) {
-                                        skillID = 0;
-                                    }
-
-                                    if (me.getSkill(skillID2, 0) < 1) {
-                                        skillID2 = 98; //might
-                                    }
-
-                                    Config.AttackSkill  = [skillID, skillID, skillID2, skillID, skillID2, 0, 0];
-                                    Config.LowManaSkill = [0, 0];
+                                    skill1 = this.useSkill([97]); // smite
+                                    skill2 = this.useSkill([98]); // might
 
                                     break;
                                 case 18:
@@ -1347,22 +1308,14 @@ var AutoRogerThat = {
                                 case 23:
                                 case 24:
                                 case 25:
-                                    skillID = 112;       //blessed hammer
-                                    skillID2 = 113;      //concentration
-
-                                    if (me.getSkill(skillID, 0) < 1) {
-                                        skillID = 97;    //smite
-                                    }
-
-                                    if (me.getSkill(skillID2, 0) < 1) {
-                                        skillID2 = 108;  //blessed aim
-                                    }
-
-                                    Config.AttackSkill  = [skillID, skillID, skillID2, skillID, skillID2, 0, 0];
-                                    Config.LowManaSkill = [0, 0];
+                                    skill1 = this.useSkill([112, 97]); // blessed hammer > smite
+                                    skill2 = this.useSkill([113, 98]); // concentration > might
 
                                     break;
                             }
+
+                            Config.AttackSkill  = [skill1, skill1, skill2, skill1, skill2, 0, 0];
+                            Config.LowManaSkill = [0, 0];
                         } else {
                             Config.AttackSkill  = Config.AttackPallySkill;
                             Config.LowManaSkill = Config.LowManaPallySkill;
@@ -1380,6 +1333,10 @@ var AutoRogerThat = {
                         if (me.charlvl <= 25) {
                             switch (me.charlvl) {
                                 case 1:
+                                    skill1 = 0;
+                                    skill2 = 0;
+
+                                    break;
                                 case 2:
                                 case 3:
                                 case 4:
@@ -1390,15 +1347,8 @@ var AutoRogerThat = {
                                 case 9:
                                 case 10:
                                 case 11:
-                                    skillID = 126;       //bash
-                                    skillID2 = 0;
-
-                                    if (me.getSkill(skillID, 0) < 1) {
-                                        skillID = 0;
-                                    }
-
-                                    Config.AttackSkill  = [skillID, skillID, 0, skillID, 0, 0, 0];
-                                    Config.LowManaSkill = [0, 0];
+                                    skill1 = this.useSkill([126]); // bash
+                                    skill2 = this.useSkill([132]); // leap
 
                                     break;
                                 case 12:
@@ -1407,15 +1357,8 @@ var AutoRogerThat = {
                                 case 15:
                                 case 16:
                                 case 17:
-                                    skillID = 139;       //stun
-                                    skillID2 = 0;
-
-                                    if (me.getSkill(skillID, 0) < 1) {
-                                        skillID = 126;   //bash
-                                    }
-
-                                    Config.AttackSkill  = [skillID, skillID, 0, skillID, 0, 0, 0];
-                                    Config.LowManaSkill = [0, 0];
+                                    skill1 = this.useSkill([139, 126]); // stun > bash
+                                    skill2 = this.useSkill([132]); // leap
 
                                     break;
                                 case 18:
@@ -1426,24 +1369,20 @@ var AutoRogerThat = {
                                 case 23:
                                 case 24:
                                 case 25:
-                                    skillID = 144;       //concentrate
-                                    skillID2 = 0;
-
-                                    if (me.getSkill(skillID, 0) < 1) {
-                                        skillID = 126;
-                                    }
-
-                                    Config.AttackSkill  = [skillID, skillID, 0, skillID, 0, 0, 0];
-                                    Config.LowManaSkill = [0, 0];
+                                    skill1 = this.useSkill([144, 139, 126]); // concentrate > stun > bash
+                                    skill2 = this.useSkill([132]); // leap
 
                                     break;
                             }
+
+                            Config.AttackSkill  = [skill1, skill1, skill2, skill1, skill2, 0, 0];
+                            Config.LowManaSkill = [0, 0];
                         } else {
                             Config.AttackSkill  = Config.AttackBarbSkill;
                             Config.LowManaSkill = Config.LowManaBarbSkill;
                         }
 
-                        Config.SkipImmune   = [];
+                        Config.SkipImmune     = ["physical"];
                         Config.FindItem       = false;      // Use Find Item skill on corpses after clearing.
                         Config.FindItemSwitch = false;      // Switch to non-primary slot when using Find Item skills
                         print("Auto ÿc4" + charClass + " attackÿc0");

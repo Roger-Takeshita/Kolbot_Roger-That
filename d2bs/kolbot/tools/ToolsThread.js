@@ -714,9 +714,16 @@ function main() {
 				}
 
 				break;
-			case 45:  //- Insert   -
-				if (!customHotkeys) break;
-				me.overhead("Insert key available");
+			case 45:  //- Insert   - Pause/Break
+				this.togglePause();
+
+				if (isScriptPaused) {
+					print("ÿc1Pausing.");
+					me.overhead("ÿc1Pausing.ÿc0");
+				} else {
+					print("ÿc2Resuming.");
+					me.overhead("ÿc2Resuming.ÿc0");
+				}
 
 				break;
 			case 96:  //- Numpad 0 - Test
@@ -744,20 +751,24 @@ function main() {
 			case 97:  //- Numpad 1 - Run Bitch
 				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
+
 				if (!me.inTown) {
 					me.overhead("I need to be in town to run!");
 					break;
 				}
+
 				scriptBroadcast("Run Bitch");
 
 				break;
 			case 98:  //- Numpad 2 - Message Log
 				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
+
 				if (!me.inTown) {
 					me.overhead("I need to be in town to trade!");
 					break;
 				};
+
 				Config.MessageLogFlag = !Config.MessageLogFlag;
 				scriptBroadcast("Message Log");
 
@@ -765,10 +776,12 @@ function main() {
 			case 99:  //- Numpad 3 - Drop Drop Trash
 				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
+
 				if (!me.inTown) {
 					me.overhead("I need to be in town to drop some trash!");
 					break;
 				}
+
 				me.cancel();
 
 				if (AutoRogerThat.dropProfileItems("trash")) {
@@ -783,7 +796,6 @@ function main() {
 			case 100: //- Numpad 4 - Open Stash
 				if (!customHotkeys) break;
 				if (pvpTimeFlag) break;
-				me.cancel();
 
 				if (me.inTown) {
 					if (getUIFlag(0x19)) {
@@ -798,9 +810,10 @@ function main() {
 				}
 
 				break;
-			case 101: //- Numpad 5 - Pause/Break
+			case 101: //- Numpad 5 - Pause/Break Go To Town
 				if (pvpTimeFlag) break;
 				if (me.inTown) break;
+
 				if (!customHotkeys) {
 					try {
 						Town.goToTown();

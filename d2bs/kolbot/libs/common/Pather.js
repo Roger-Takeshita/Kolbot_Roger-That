@@ -1098,7 +1098,7 @@ MainLoop:
 		owner - name of the portal's owner
 		unit - use existing portal unit
 	*/
-	usePortal: function (targetArea, owner, unit) {
+	usePortal: function (targetArea, owner, unit, tries=10) {
 		if (targetArea && me.area === targetArea) {
 			return true;
 		}
@@ -1108,7 +1108,7 @@ MainLoop:
 		var i, tick, portal,
 			preArea = me.area;
 
-		for (i = 0; i < 10; i += 1) {
+		for (i = 0; i < tries; i += 1) {
 			if (me.dead) {
 				break;
 			}
