@@ -1467,9 +1467,9 @@ function RogerThat() {
 
                 if (me.inTown) {
                     return true;
-                } else {
-                    return false;
                 }
+
+                return false;
             };
 
         //+ Cube Staff ============================================================
@@ -2299,14 +2299,13 @@ function RogerThat() {
 
                                 break;
                             case "3":
-                                if (!me.inTown) {
-                                    if (this.goToTownTomeBook()) {
-                                        Town.doChores();
-                                        Town.move("portalspot");
-                                        actions.shift();
-                                    }
+                                if (!me.inTown && !this.goToTownTomeBook()) {
+                                    actions.shift();
+                                    break;
                                 }
 
+                                Town.doChores();
+                                Town.move("portalspot");
                                 actions.shift();
 
                                 break;
