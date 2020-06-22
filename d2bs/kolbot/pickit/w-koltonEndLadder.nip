@@ -6,8 +6,11 @@
 //! =========================================================================================== //
     //+ AMULETS ==============================================================================
         //- Unique ------------------------------------------------------------------------
+            // [name] == amulet           && [quality] == unique # [fireskilltab] >= 2 // the rising sun
             [name] == amulet              && [quality] == unique # [itemallskills] == 2 && [offensiveaurasskilltab] >= 2 // seraph
             [name] == amulet              && [quality] == unique # [strength] == 5 && [fireresist] >= 20 // mara
+            // [name] == amulet           && [quality] == unique # [lightresist] == 35 // highlord
+            // [name] == amulet           && [quality] == unique # [dexterity] == 25 // cat's eye
     //+ ARMOR ================================================================================
         //- White -------------------------------------------------------------------------
             [type] == armor               && ([quality] != magic && [quality] == normal) && [class] == elite && [flag] == ethereal # [sockets] == 0 && [defense] >= 700 // merc armor
@@ -21,20 +24,16 @@
             [name] == gloriousaxe         && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5)
             [name] == decapitator         && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5)
             [name] == ettinaxe            && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5)
+    //+ BELTS ================================================================================
+        //- Unique ------------------------------------------------------------------------
+            // [name] == sash             && [quality] == unique && [flag] != ethereal # [fireresist] >= 5 // lenymo sash
+            [name] == spiderwebsash       && [quality] == unique && [flag] != ethereal # [enhanceddefense] >= 120 // arachnid mesh
+            [name] == mithrilcoil         && [quality] == unique && [flag] != ethereal # [damageresist] == 15 // && [vitality] == 40 // verdungo's hearty cord
+            [name] == demonhidesash       && [quality] == unique && [flag] != ethereal # [damageresist] == 15 && [magicdamagereduction] == 15 && [lifeleech] == 8 // string of ears
+            [name] == heavybelt           && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 60 && [itemgoldbonus] == 80 // goldwrap
     //+ BOOTS ================================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == lightplatedboots    && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 60 // goblin toe
-            [name] == battleboots         && [quality] == unique && [flag] == identified # [defense] == 90 // goblin toe x1
-            [name] == mirroredboots       && [quality] == unique && [flag] == identified # [defense] == 123 // goblin toe x2
-            [name] == warboots            && [quality] == unique && [flag] != ethereal # [enhanceddefense] >= 200 // gore rider
-            [name] == myrmidongreaves     && [quality] == unique && [flag] == identified # [defense] == 213 // gore rider x1
-            [name] == myrmidongreaves     && [quality] == unique && [flag] != ethereal // shadow dancer
-            [name] == sharkskinboots      && [quality] == unique && [flag] != ethereal # [maxhp] == 65 && [enhanceddefense] == 210 // waterwalk
-            [name] == scarabshellboots    && [quality] == unique && [flag] != ethereal # [maxhp] == 65 && [defense] == 201 // waterwalk x1
-            [name] == battleboots         && [quality] == unique && [flag] != ethereal # [itemmagicbonus] >= 50 // war traveler
-            [name] == boots               && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 20 // hotspur
-            [name] == demonhideboots      && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 20 && [defense] == 48 // hotspur x1
-            [name] == wyrmhideboots       && [quality] == unique && [flag] != ethereal # [defense] == 80 // hotspur x2
     //+ BOWS =================================================================================
         //- White -------------------------------------------------------------------------
             [name] == diamondbow          && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4
@@ -47,24 +46,25 @@
             [name] == grandmatronbow      && [quality] <= superior # [bowandcrossbowskilltab] == 3 && [enhanceddamage] == 15 && [sockets] == 4 // faith
     //+ CHARMS ===============================================================================
         //- Small Charms ------------------------------------------------------------------
-            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 3 # # [maxquantity] == 2
-            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 4 # # [maxquantity] == 2
-            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 5 # # [maxquantity] == 2
-            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 6 # # [maxquantity] == 2
+            // [name] == smallcharm       && [quality] == magic # [itemmagicbonus] == 3 # # [maxquantity] == 2
+            // [name] == smallcharm       && [quality] == magic # [itemmagicbonus] == 4 # # [maxquantity] == 2
+            // [name] == smallcharm       && [quality] == magic # [itemmagicbonus] == 5 # # [maxquantity] == 2
+            // [name] == smallcharm       && [quality] == magic # [itemmagicbonus] == 6 # # [maxquantity] == 2
             [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 7 # # [maxquantity] == 2
             [name] == smallcharm          && [quality] == magic # [itemmagicbonus] >= 3 && ([fireresist] >= 3 && [coldresist] >= 3 || [maxmana] >= 17 || [fireresist] >= 5 || [lightresist] >= 5 || [coldresist] >= 5 || [poisonresist] >= 5 || [fhr] == 5 || [maxhp] >= 15)
         //- Grand Charms ------------------------------------------------------------------
-            [name] == grandcharm          && [quality] == unique # [itemmagicbonus] >= 35
+            [name] == grandcharm          && [quality] == unique # [itemmagicbonus] == 40
+    //+ DAGGERS ==============================================================================
+        //- Unique ------------------------------------------------------------------------
+            // [name] == dagger           && [quality] == unique // gull
+            // [name] == boneknife        && [quality] == unique // wizardspike
     //+ GLOVES ===============================================================================
         //- Unique ------------------------------------------------------------------------
-            [name] == heavygloves         && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 20 // bloodfist
-            [name] == sharkskingloves     && [quality] == unique # [enhanceddefense] == 20  && [defense] == 56 // bloodfist x1
-            [name] == vampirebonegloves   && [quality] == unique # [enhanceddefense] == 20 && [defense] == 88 // bloodfist x2
+            [name] == vampirebonegloves   && [quality] == unique && [flag] != ethereal # [strength] == 15 // dracul's grasp
+            // [name] == heavygloves      && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 20 // bloodfist
             [name] == chaingloves         && [quality] == unique && [flag] != ethereal # [itemmagicbonus] >= 40 // chance guard
             [name] == lightgauntlets      && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 30 // magefist
-            [name] == battlegauntlets     && [quality] == unique # [enhanceddefense] == 30  && [defense] == 71 // magefist x1
-            [name] == crusadergauntlets   && [quality] == unique # [enhanceddefense] == 30 && [defense] == 98 // magefist x2
-            [name] == gauntlets           && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 20 // frostburn
+            // [name] == gauntlets        && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 20 // frostburn
     //+ HELMS ================================================================================
         //- White -------------------------------------------------------------------------
             [name] == demonhead           && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 0 || [itemmaxdurabilitypercent] == 15) && [sockets] == 3
@@ -72,6 +72,9 @@
             [name] == diadem              && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 0 || [itemmaxdurabilitypercent] == 15) && [sockets] == 3
             [name] == demonhead           && [quality] == normal && [flag] == ethereal # [sockets] == 0
             [name] == bonevisage          && [quality] == normal && [flag] == ethereal # [sockets] == 0
+    //+ ORB ==================================================================================
+        //- Unique ------------------------------------------------------------------------
+            [name] == swirlingcrystal     && [quality] == unique && [flag] == ethereal // oculus
     //+ POLEARMS =============================================================================
         //- White -------------------------------------------------------------------------
             [type] == polearm             && [quality] <= superior && [flag] == ethereal && [class] == elite # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4)    // insight/infinity
@@ -83,6 +86,9 @@
             [name] == colossusvoulge      && [quality] <= superior && [flag] == ethereal # ([sockets] == 0 || [sockets] == 4)                                                  // insight/infinity
             [name] == thresher            && [quality] <= superior && [flag] == ethereal # ([sockets] == 0 || [sockets] == 4)                                                  // insight/infinity
             [name] == giantthresher       && [quality] <= superior && [flag] == ethereal # ([sockets] == 0 || [sockets] == 4)                                                  // insight/infinity
+        //- Unique ------------------------------------------------------------------------
+            [name] == ogreaxe             && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 320 // bonehew
+            [name] == thresher            && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 240 && [lifeleech] == 15 // the reaper's toll
     //+ SHIELDS ==============================================================================
         //- White -------------------------------------------------------------------------
             [name] == monarch             && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 4) && [enhanceddefense] == 15 // spirit 15% ed
@@ -100,6 +106,9 @@
             [name] == elderstaff          && [quality] <= superior # ([skillenergyshield] >= 3 || [skillchillingarmor] > 0 || [skillshiverarmor] > 0 || [skillfrozenarmor] >0) && ([skillfireball] >= 3 || [skillfrozenorb] >= 3 || [skillblizzard] >= 3 ||[skilllightning] >= 3 || [skillchainlightning] >= 3) && ([sockets] == 0 || [sockets] == 4) // insight
             [name] == shillelagh          && [quality] <= superior # ([skillenergyshield] >= 3 || [skillchillingarmor] > 0 || [skillshiverarmor] > 0 || [skillfrozenarmor] >0) && ([skillfireball] >= 3 || [skillfrozenorb] >= 3 || [skillblizzard] >= 3 ||[skilllightning] >= 3 || [skillchainlightning] >= 3) && ([sockets] == 0 || [sockets] == 4) // insight
             [name] == archonstaff         && [quality] <= superior # ([skillenergyshield] >= 3 || [skillchillingarmor] > 0 || [skillshiverarmor] > 0 || [skillfrozenarmor] >0) && ([skillfireball] >= 3 || [skillfrozenorb] >= 3 || [skillblizzard] >= 3 ||[skilllightning] >= 3 || [skillchainlightning] >= 3) && [sockets] == 4                     // insight
+        //- Unique ------------------------------------------------------------------------
+            [name] == elderstaff          && [quality] == unique # [itemallskills] == 4 // ondal's wisdom
+            [name] == quarterstaff        && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 300 // ribcracker
     //+ SWORDS ===============================================================================
         //- White -------------------------------------------------------------------------
             [name] == broadsword          && [quality] == superior # [enhanceddamage] == 15 && ([itemmaxdurabilitypercent] == 15 || [tohit] == 3) && ([sockets] == 0 || [sockets] == 4) // spirit
@@ -117,6 +126,42 @@
 //!                                 \_/   |   | |  |_  | \                                      //
 //!                                                                                             //
 //! =========================================================================================== //
+    //+ GEMS =================================================================================
+        // [name] == chippedamethyst      # # [maxquantity] == 3
+        // [name] == chippedruby          # # [maxquantity] == 3
+        // [name] == chippeddiamond       # # [maxquantity] == 3
+        // [name] == chippedemerald       # # [maxquantity] == 5
+        // [name] == chippedtopaz         # # [maxquantity] == 3
+        // [name] == chippedsapphire      # # [maxquantity] == 5
+        // [name] == chippedskull         # # [maxquantity] == 5
+        // [name] == flawedamethyst       # # [maxquantity] == 3
+        // [name] == flawedruby           # # [maxquantity] == 3
+        // [name] == flaweddiamond        # # [maxquantity] == 3
+        // [name] == flawedemerald        # # [maxquantity] == 5
+        // [name] == flawedtopaz          # # [maxquantity] == 3
+        // [name] == flawedsapphire       # # [maxquantity] == 5
+        // [name] == flawedskull          # # [maxquantity] == 5
+        // [name] == amethyst             # # [maxquantity] == 3
+        // [name] == ruby                 # # [maxquantity] == 3
+        // [name] == diamond              # # [maxquantity] == 3
+        // [name] == emerald              # # [maxquantity] == 5
+        // [name] == topaz                # # [maxquantity] == 3
+        // [name] == sapphire             # # [maxquantity] == 5
+        // [name] == skull                # # [maxquantity] == 5
+        // [name] == flawlessamethyst     # # [maxquantity] == 3
+        // [name] == flawlessruby         # # [maxquantity] == 3
+        // [name] == flawlessdiamond      # # [maxquantity] == 3
+        // [name] == flawlessemerald      # # [maxquantity] == 5
+        // [name] == flawlesstopaz        # # [maxquantity] == 3
+        // [name] == flawlesssapphire     # # [maxquantity] == 5
+        // [name] == flawlessskull        # # [maxquantity] == 5
+        // [name] == perfectamethyst      # # [maxquantity] == 3
+        // [name] == perfectruby          # # [maxquantity] == 3
+        // [name] == perfectdiamond       # # [maxquantity] == 3
+        // [name] == perfectemerald       # # [maxquantity] == 5
+        // [name] == perfecttopaz         # # [maxquantity] == 3
+        // [name] == perfectsapphire      # # [maxquantity] == 5
+        // [name] == perfectskull         # # [maxquantity] == 5
     //+ RUNES ================================================================================
         // [name] == talrune              # # [maxquantity] == 5
         // [name] == thulrune             # # [maxquantity] == 5
@@ -148,6 +193,7 @@
         [name] == chargedessenceofhatred          // # # [maxquantity] == 2  // Yellow - Mephisto
         [name] == burningessenceofterror          // # # [maxquantity] == 2  // Red    - Diablo
         [name] == festeringessenceofdestruction   // # # [maxquantity] == 2  // Green  - Baal
+        [name] == tokenofabsolution
     //+ KEYS =================================================================================
         [name] == keyofhate
         [name] == keyofterror

@@ -1,33 +1,33 @@
 General Pf:
-+ Attack Rating                                       [ToHit] >= 
++ Attack Rating                                       [ToHit] >=
 + Attack Rating Based On Character Level              [ItemToHitPercentPerLevel] > 1
 + Cold Damage                                         [coldmindam] >= [coldmaxdam] >=
 + Fire Damage                                         [firemindam] >= [firemaxdam] >=
 + Lightning Damage                                    [lightmindam] >= [lightmaxdam] >=
-+ Poison Damage                                       [PoisonMINDam] >=  [PoisonMAXDam] >= [poisonlength] >= 
-+ %Damage                                             [EnhancedDamage] >= 
++ Poison Damage                                       [PoisonMINDam] >=  [PoisonMAXDam] >= [poisonlength] >=
++ %Damage                                             [EnhancedDamage] >=
 + % Attack Rating (Based On Character Level)          [ItemToHitPercentPerLevel] >= 1
 + Attack Rating/Max Damage (Based On Character Level) [ToHit] >=  && [ItemMaxDamagePerLevel] >= 1
-+ Attack Rating and + Damage [MAXDamage] >=  &&       [ToHit] >= 
++ Attack Rating and + Damage [MAXDamage] >=  &&       [ToHit] >=
 + Attack Rating and + Damage vs Demons                [ToHit] >=  && [itemdemondamagepercent] >=
 + Attack Rating and + Damage vs Undead                [ToHit] >=  && [itemundeaddamagepercent] >=
 + Defense                                             [defense] >=
 + Defense (Based On Character Level)                  [itemarmorperlevel] >=
-+ Mana                                                [mana] >=  
++ Mana                                                [mana] >=
 + Mana (Based On Character Level)                     [itemmanaperlevel] >=
 + Light Radius                                        [itemlightradius] >=
-+ Fire Resist                                         [FireResist] >= 
-+ Cold Resist                                         [ColdResist] >= 
-+ Lightning Resist                                    [LightResist] >= 
-+ Poison Resist                                       [PoisonResist] >= 
-+ Resist all                                          [FireResist] >= 
-+ All Skill Levels                                    [ItemAllSkills] == 
-+ Skill Tab Levels                                    [ItemAddSkillTab] == 
-+ Damage Generates Mana                               [itemdamagetomana] >= 
++ Fire Resist                                         [FireResist] >=
++ Cold Resist                                         [ColdResist] >=
++ Lightning Resist                                    [LightResist] >=
++ Poison Resist                                       [PoisonResist] >=
++ Resist all                                          [FireResist] >=
++ All Skill Levels                                    [ItemAllSkills] ==
++ Skill Tab Levels                                    [ItemAddSkillTab] ==
++ Damage Generates Mana                               [itemdamagetomana] >=
 + Each Kill Regenerates Mana                          [itemmanaafterkill] >=
-+ Better Chance of Getting Magic Items                [ItemMagicBonus] >= 
-+ Max Stamina                                         [maxstamina] >= 
-+ Stamina Regeneration                                [staminarecoverybonus] >= 
++ Better Chance of Getting Magic Items                [ItemMagicBonus] >=
++ Max Stamina                                         [maxstamina] >=
++ Stamina Regeneration                                [staminarecoverybonus] >=
 + Make Monsters Flee When Hit                         (missing)
 + Add Sockets                                         [Sockets] >=
 + Add Quantity To Throwing Weapons                    [quantity] >=
@@ -37,10 +37,10 @@ General Pf:
 
 
 General Sf:
-+ Strength                             [Strength] >= 
++ Strength                             [Strength] >=
 + Dexterity                            [Dexterity] >=
 + Energy                               [energy] >=
-+ Life                                 [MaxHP] >= 
++ Life                                 [MaxHP] >=
 + Light Radius                         [itemlightradius] >=
 + Maximum Damage                       [MAXDamage] >=
 + Fire Damage                          [firemindam] >= [firemaxdam] >=
@@ -48,30 +48,31 @@ General Sf:
 + Lightning Damage                     [lightmindam] >=  [lightmaxdam] >=
 + Poison Damage                        [PoisonMINDam] >=  [PoisonMAXDam] >= [poisonlength] >=
 + Poison Length Reduction              [itempoisonlengthresist] >=
-+ Life Stolen                          [LifeLeech] >= 
-+ Mana Stolen                          [ManaLeech] >= 
-+ Life Regeneration                    [HPRegen] >= 
-+ Weapon Speeds                        [IAS] >=  
-+ Chance to Block                      [fbr] >= 
-+ Faster Hit Recovery                  [FHR] >= 
-+ Damage Reduction                     [DamageResist] >= 
++ Life Stolen                          [LifeLeech] >=
++ Mana Stolen                          [ManaLeech] >=
++ Life Regeneration                    [HPRegen] >=
++ Weapon Speeds                        [IAS] >=
++ Chance to Block                      [fbr] >=
++ Faster Hit Recovery                  [FHR] >=
++ Damage Reduction                     [DamageResist] >=
 + Magic Damage Reduction               [MagicDamageReduction] >=
-+ More Gold                            [ItemGoldBonus] >= 
++ More Gold                            [ItemGoldBonus] >=
 + Better Chance of Getting Magic Items [ItemMagicBonus] >=
-+ Cast Time                            [FCR] >= 
++ Cast Time                            [FCR] >=
 + Attacker Takes Damage                [itemattackertakesdamage] >=
 + -%Item Requirements                  [ItemReqPercent] == -15
-+ Faster Walking/Running Speed         [FRW] >= 
++ Faster Walking/Running Speed         [FRW] >=
 + Monster Knockback                    [ItemKnockBack] >= 1
 + Attack Ignores Target's Defense      [itemignoretargetac] >=
 + Prevent Monster Healing              [itempreventheal] >=
-+ Freeze Length Reduction              [itemhalffreezeduration] >= 
++ Freeze Length Reduction              [itemhalffreezeduration] >=
 + Repair Durability                    [ItemReplenishDurability] >= 1
 + Indestructible                       [itemindestructible] >= 1
 + Replenish Quantity                   [itemreplenishquantity] >= 1
 + Life Per Level                       [itemhpperlevel] >= 1
 + Mana Per Level                       [itemmanaperlevel] >= 1
 + Life and Mana Per Level              [itemhpperlevel] >= 1 && [itemmanaperlevel] >= 1
++ Defense vs. Missiles                 [armorclassvsmissile] >=
 
 
 other:
@@ -96,10 +97,10 @@ other:
 [itemreqpercent] >=
 [itemlightradius] >=
 
-Teleportation (18) 	Orbs(24)[30/6], Staves(24)[30/6], Amulets(48)[20/3], Circlets(48)[20/3] 
-Life Tap (18) 	Head(24)[60/6], Daggers(24)[60/6], Wands(24)[60/6], Axes(48)[20/3] 
+Teleportation (18) 	Orbs(24)[30/6], Staves(24)[30/6], Amulets(48)[20/3], Circlets(48)[20/3]
+Life Tap (18) 	Head(24)[60/6], Daggers(24)[60/6], Wands(24)[60/6], Axes(48)[20/3]
 _NTIPAliasStat["lifetaplevel"]=130;
-Lower Resistance (30) 	Head(36)[60/3], Daggers(36)[60/3], Wands(36)[60/3], Staves(72)[20/1] 
+Lower Resistance (30) 	Head(36)[60/3], Daggers(36)[60/3], Wands(36)[60/3], Staves(72)[20/1]
 
 Chance To Cast Fire Bolt
 Chance To Cast Charged Bolt
@@ -111,7 +112,7 @@ Chance To Cast Hydra
 Chance To Cast Amplify Damage
 
 
-all resist [ColdResist]+[FireResist]+[LightResist] >= 
+all resist [ColdResist]+[FireResist]+[LightResist] >=
 
 &&
 [Quality] == #

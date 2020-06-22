@@ -10,7 +10,6 @@
             [name] == amulet              && [quality] == unique # [itemallskills] == 1 && [itemlightradius] >= 3 // the eye of etlich
             [name] == amulet              && [quality] == unique # [fireskilltab] >= 2 // the rising sun
             [name] == amulet              && [quality] == unique # [itemallskills] == 2 // seraph
-            [name] == amulet              && [quality] == unique # [strength] == 5 && [fireresist] >= 20 // mara
             [name] == amulet              && [quality] == unique # [lightresist] == 35 // highlord
             [name] == amulet              && [quality] == unique # [dexterity] == 25 // cat's eye
         //- Rare --------------------------------------------------------------------------
@@ -55,7 +54,7 @@
     //+ BOOTS ================================================================================
         //- Unique ------------------------------------------------------------------------
             [type] == boots               && [quality] == unique
-            [name] == lightplatedboots    && [quality] == unique && [flag] != ethereal   // goblin toe
+            [name] == lightplatedboots    && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 60 // goblin toe
             [name] == battleboots         && [quality] == unique && [flag] == identified // goblin toe x1
             [name] == mirroredboots       && [quality] == unique && [flag] == identified // goblin toe x2
             [name] == warboots            && [quality] == unique && [flag] != ethereal   // gore rider
@@ -141,11 +140,11 @@
             [name] == furyvisor           && [quality] == unique && [flag] != ethereal # [warcriesskilltab] == 3 && [skillwerewolf]+[skilllycanthropy]+[skillferalrage] == 18 // wolfhowl
             [name] == sallet              && [quality] == unique // rockstopper
             [name] == casque              && [quality] == unique
-            [name] == skullcap            && [quality] == unique
+            [name] == skullcap            && [quality] == unique && [itemmagicbonus] == 50
             [name] == warhat              && [quality] == unique
             [name] == casque              && [quality] == unique
-            [name] == grandcrown          && [quality] == unique // crown of thieves eth
-            [name] == grimhelm            && [quality] == unique // vampgaze eth
+            [name] == grandcrown          && [quality] == unique // crown of thieves
+            [name] == grimhelm            && [quality] == unique // vampgaze
             [name] == shako               && [quality] == unique // harlequin crest
             [name] == spiredhelm          && [quality] == unique # [passivecoldmastery] >= 10 // nightwing's veil
             [name] == demonhead           && [quality] == unique // andariel's visage
@@ -215,7 +214,6 @@
         //- Unique ------------------------------------------------------------------------
             [type] == staff               && [quality] == unique
             [name] == elderstaff          && [quality] == unique // ondal's wisdom
-            [name] == quarterstaff        && [quality] == unique // ribcracker
         //- Rare --------------------------------------------------------------------------
             [type] == staff               && [quality] <= rare # [itemmagicbonus] >= 5
     //+ SWORDS ===============================================================================
@@ -322,9 +320,16 @@
 //!                                 \_/   |   | |  |_  | \                                      //
 //!                                                                                             //
 //! =========================================================================================== //
-    //+ POTIONS & GOLD =======================================================================
+    //+ GOLD =================================================================================
         [name] == gold # [gold] >= 100
-    //+ PERFECT GEMS =========================================================================
+    //+ GEMS =================================================================================
+        // [name] == chippedamethyst      # # [maxquantity] == 3
+        // [name] == chippedruby          # # [maxquantity] == 3
+        // [name] == chippeddiamond       # # [maxquantity] == 3
+        // [name] == chippedemerald       # # [maxquantity] == 5
+        // [name] == chippedtopaz         # # [maxquantity] == 3
+        // [name] == chippedsapphire      # # [maxquantity] == 5
+        // [name] == chippedskull         # # [maxquantity] == 5
         // [name] == flawedamethyst       # # [maxquantity] == 3
         // [name] == flawedruby           # # [maxquantity] == 3
         // [name] == flaweddiamond        # # [maxquantity] == 3
@@ -378,12 +383,3 @@
         [name] == umrune
         [name] == malrune
         [name] == istrune
-    //+ TOKEN ================================================================================
-        [name] == twistedessenceofsuffering       // # # [maxquantity] == 2  // Blue   - Andariel & Duriel
-        [name] == chargedessenceofhatred          // # # [maxquantity] == 2  // Yellow - Mephisto
-        [name] == burningessenceofterror          // # # [maxquantity] == 2  // Red    - Diablo
-        [name] == festeringessenceofdestruction   // # # [maxquantity] == 2  // Green  - Baal
-    //+ KEYS =================================================================================
-        [name] == keyofhate
-        [name] == keyofterror
-        [name] == keyofdestruction
