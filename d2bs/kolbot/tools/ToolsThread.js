@@ -811,29 +811,41 @@ function main() {
 
 				break;
 			case 101: //- Numpad 5 - Pause/Break Go To Town
-				if (pvpTimeFlag) break;
-				if (me.inTown) break;
+				if (getScript("D2BotRogerThatBlank.dbj")) {
+					if (pvpTimeFlag) break;
+					if (me.inTown) break;
 
-				if (!customHotkeys) {
-					try {
-						Town.goToTown();
-					} catch (e) {
-						me.overhead("Failed to go to town!");
+					if (!customHotkeys) {
+						try {
+							Town.goToTown();
+						} catch (e) {
+							me.overhead("Failed to go to town!");
+						}
+					} else {
+						this.togglePause();
+
+						if (isScriptPaused) {
+							try {
+								Town.goToTown();
+							} catch (e) {
+								me.overhead("Failed to go to town!");
+								break;
+							}
+						}
+
+						delay(250);
+						this.togglePause();
 					}
 				} else {
 					this.togglePause();
 
 					if (isScriptPaused) {
-						try {
-							Town.goToTown();
-						} catch (e) {
-							me.overhead("Failed to go to town!");
-							break;
-						}
+						print("ÿc1Pausing.");
+						me.overhead("ÿc1Pausing.ÿc0");
+					} else {
+						print("ÿc2Resuming.");
+						me.overhead("ÿc2Resuming.ÿc0");
 					}
-
-					delay(250);
-					this.togglePause();
 				}
 
 				break;
