@@ -2,18 +2,57 @@
 
 ### Print Colors
 
+#### In Game
+
 ```Bash
-	"ÿc1 red ÿc0"
-	"ÿc4 brown ÿc0"
-	"ÿc3 blue ÿc0"
-	"ÿc9 yellow ÿc0"
-	"ÿc2 green ÿc0"
+	ÿc1 red
+	ÿc4 brown
+	ÿc3 blue
+	ÿc9 yellow
+	ÿc2 green
+	ÿc0 white
 
 	"ÿc1" + red + "ÿc0"
 	"ÿc4" + brown + "ÿc0"
 	"ÿc3" + blue + "ÿc0"
 	"ÿc9" + yellow + "ÿc0"
 	"ÿc2" + green + "ÿc0"
+```
+
+#### Console
+
+```Bash
+	3 - Black
+	4 - Blue
+	5 - Green
+	6 - Yellow
+	7 - Brown
+	8 - Orange
+	9 - Red
+```
+
+### Git Ignore
+
+```Bash
+	*.prettierignore
+	d2bs/kolbot/data/
+	d2bs/kolbot/mules/
+	d2bs/kolbot/logs/
+	d2bs/logs/
+	data/patch.json.old
+	limedrop/
+```
+
+### Untrack Files
+
+```Bash
+	git update-index --assume-unchanged d2bs/d2bs.log
+	git update-index --assume-unchanged d2bs/kolbot/logs/ScriptErrorLog.txt
+	git update-index --assume-unchanged d2bs/kolbot/logs/ip.txt
+	git update-index --assume-unchanged d2bs/kolbot/logs/leader.txt
+	git update-index --assume-unchanged data/patch.json
+	git update-index --assume-unchanged logs/exceptions.log
+	git update-index --assume-unchanged logs/keyinfo.log
 ```
 
 ### Screen Location

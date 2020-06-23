@@ -1084,7 +1084,7 @@ var AutoRogerThat = {
 
         //+ Update attack ----------------------------------------------------------
             useSkill: function (skillsOrder) {
-                for (let i = 0; i < skillsOrder; i++) {
+                for (let i = 0; i < skillsOrder.length; i++) {
                     if (skillsOrder[i] !== undefined && me.getSkill(skillsOrder[i], 0)) {
                         return skillsOrder[i];
                     }
@@ -1415,12 +1415,16 @@ var AutoRogerThat = {
                         print("Auto ÿc4" + charClass + " attackÿc0");
                         break;
                 }
+
+                // print("Attack: " + JSON.stringify(Config.AttackSkill));
+                // print("Low Mana Attack: " + JSON.stringify(Config.LowManaSkill));
             },
 
     //! SEND NOTIFICATIONS ============================================================
         notify: function (data) {
             let tries = 1;
             let response;
+
             if (Config.RogerThatTelegram.Active &&
                 (Config.RogerThatTelegram.Notify.Trade || Config.RogerThatTelegram.Notify.HotIP || Config.RogerThatTelegram.Notify.DiabloClone)) {
                     if (Config.RogerThatTelegram.Url === '' || Config.RogerThatTelegram.Token === '' || Config.RogerThatTelegram.Port === undefined) {
