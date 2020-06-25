@@ -1,63 +1,135 @@
-## RogerThat
+# RogerThat Config
 
-### Print Colors
+<h1 id='summary'>Summary</h1>
 
-#### In Game
+- [D2 Backup](#bkp)
+- [Print Colors](#colors)
+  - [In Game](#ingame)
+  - [Console](#console)
+- [Ignore / Untrack Files](#gitignoreuntrack)
+  - [.gitignore](#gitignore)
+  - [Untrack Files](#untrack)
+- [Screen Location](#screen)
 
-```Bash
-	ÿc1 red
-	ÿc4 brown
-	ÿc3 blue
-	ÿc9 yellow
-	ÿc2 green
-	ÿc0 white
 
-	"ÿc1" + red + "ÿc0"
-	"ÿc4" + brown + "ÿc0"
-	"ÿc3" + blue + "ÿc0"
-	"ÿc9" + yellow + "ÿc0"
-	"ÿc2" + green + "ÿc0"
-```
+<h1 id='bkp'>D2 Backup</h1>
 
-#### Console
+[Go Back to Summary](#summary)
 
-```Bash
-	3 - Black
-	4 - Blue
-	5 - Green
-	6 - Yellow
-	7 - Brown
-	8 - Orange
-	9 - Red
-```
+- Inside the main folder, there are two files `D2_RogerThat_BKP.bat` and `D2_RogerThat_BKP.txt`
+  - The `D2_RogerThat_BKP.bat` is just the executable
+    - **It has to be executed on the main root of the Kolbot's folder**
+  - The `D2_RogerThat_BKP.txt` is where we have to add all the relative paths of the files that we want to create a backup
+  - Once we run the `D2_RogerThat_BKP.bat`, it will create a folder on your desktop with the following format `YYYY-MM-DD_Kolbot_BKP`
 
-### Git Ignore
+  - For example:
+    - We have the following files that we want to backup
+    - Notice that we have 2 folders, we don't need to add `\` in the end of the path
 
-```Bash
-	*.prettierignore
-	d2bs/kolbot/data/
-	d2bs/kolbot/mules/
-	d2bs/kolbot/logs/
-	d2bs/logs/
-	data/patch.json.old
-	limedrop/
-```
+	```Bash
+		d2bs\d2bs.ini
+		d2bs\kolbot\D2BotFollow.dbj
+		d2bs\kolbot\data\secure         <------ Folder
+		d2bs\kolbot\libs\AutoMule.js
+		d2bs\kolbot\libs\common\Config.js
+		d2bs\kolbot\libs\config\MF-4P-Follower-Sorc-Cold-Cow.js
+		d2bs\kolbot\libs\config\MF-4P-Follower-Sorc-Cold.js
+		d2bs\kolbot\libs\config\MF-4P-Follower-Sorc-Light-Cow.js
+		d2bs\kolbot\libs\config\MF-4P-Follower-Sorc-Light.js
+		d2bs\kolbot\libs\config\MF-4P-Leader-Pally.js
+		d2bs\kolbot\libs\config\MF-4S-Follower-Sorc-Cold-Cow.js
+		d2bs\kolbot\libs\config\MF-4S-Follower-Sorc-Cold.js
+		d2bs\kolbot\libs\config\MF-4S-Follower-Sorc-Fire.js
+		d2bs\kolbot\libs\config\MF-4S-Follower-Sorc-Light-Cow.js
+		d2bs\kolbot\libs\config\MF-4S-Follower-Sorc-Light.js
+		d2bs\kolbot\libs\config\MF-4S-Leader-Sorc-Cold.js
+		d2bs\kolbot\libs\config\RogerThat-Master.js
+		d2bs\kolbot\libs\config\Rush-Rushee-Follower.js
+		d2bs\kolbot\libs\config\Rush-Rushee-Quester.js
+		d2bs\kolbot\libs\config\_CustomConfig.js
+		d2bs\kolbot\mules                <------ Folder
+		d2bs\kolbot\pickit\w-koltonEarlyLadder.nip
+		d2bs\kolbot\pickit\w-koltonEndLadder.nip
+		data\cdkeys.json
+		data\profile.json
+		data\server.json
+		.gitignore
+		.prettierignore
+	```
 
-### Untrack Files
+<h1 id='colors'>Print Colors</h1>
 
-```Bash
-	git update-index --assume-unchanged d2bs/d2bs.log
-	git update-index --assume-unchanged d2bs/kolbot/logs/ScriptErrorLog.txt
-	git update-index --assume-unchanged d2bs/kolbot/logs/ip.txt
-	git update-index --assume-unchanged d2bs/kolbot/logs/leader.txt
-	git update-index --assume-unchanged data/patch.json
-	git update-index --assume-unchanged logs/exceptions.log
-	git update-index --assume-unchanged logs/keyinfo.log
-```
+<h3 id='ingame'>In Game</h3>
 
-### Screen Location
+[Go Back to Summary](#summary)
 
-- 800x600
+- `me.overhead("ÿc1 Your red string");`
+- `print("ÿc9 Your yellow ÿc4 brown string");`
+
+	```Bash
+		ÿc1 Red
+		ÿc4 Brown
+		ÿc3 Blue
+		ÿc9 Yellow
+		ÿc2 Green
+		ÿc0 White
+	```
+
+<h3 id='console'>Console</h3>
+
+[Go Back to Summary](#summary)
+
+- `D2Bot.printToConsole("Your string here", n);`
+
+	```Bash
+		3 - Black
+		4 - Blue
+		5 - Green
+		6 - Yellow
+		7 - Brown
+		8 - Orange
+		9 - Red
+	```
+
+<h1 id='gitignoreuntrack'>Ignore / Untrack Files</h1>
+
+<h3 id='gitignore'>.gitignore</h3>
+
+[Go Back to Summary](#summary)
+
+- Add these folder/files to **.gitignore**, to keep clean `git status`
+
+	```Bash
+		*.prettierignore
+		d2bs/kolbot/data/
+		d2bs/kolbot/mules/
+		d2bs/kolbot/logs/
+		d2bs/logs/
+		data/patch.json.old
+		limedrop/
+	```
+
+<h3 id='untrack'>Untrack Files</h3>
+
+[Go Back to Summary](#summary)
+
+- [Untrack](https://github.com/Roger-Takeshita/GitHub#untrack-pushed-files) the following files
+
+	```Bash
+		git update-index --assume-unchanged d2bs/d2bs.log
+		git update-index --assume-unchanged d2bs/kolbot/logs/ScriptErrorLog.txt
+		git update-index --assume-unchanged d2bs/kolbot/logs/ip.txt
+		git update-index --assume-unchanged d2bs/kolbot/logs/leader.txt
+		git update-index --assume-unchanged data/patch.json
+		git update-index --assume-unchanged logs/exceptions.log
+		git update-index --assume-unchanged logs/keyinfo.log
+	```
+
+<h1 id='screen'>Screen Location</h1>
+
+[Go Back to Summary](#summary)
+
+- Screen resolution 800x600
 
 	```Bash
 		-3,0		# D1 - Mule
@@ -70,7 +142,7 @@
 		1897, 543	# D8 - Mule
 	```
 
-- 640x480
+- Screen resolution 640x480
 
 	```Bash
 		-3, 37		# D1 - Mule
@@ -82,6 +154,8 @@
 		1277, 543	# D7 - Mule
 		1907, 543	# D8 - Mule
 	```
+
+-------------
 
 ## Rules
 
