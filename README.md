@@ -48,11 +48,13 @@
 		d2bs\kolbot\libs\config\Rush-Rushee-Quester.js
 		d2bs\kolbot\libs\config\_CustomConfig.js
 		d2bs\kolbot\mules                <------ Folder
-		d2bs\kolbot\pickit\w-koltonEarlyLadder.nip
-		d2bs\kolbot\pickit\w-koltonEndLadder.nip
+		d2bs\kolbot\pickit\w-RogerThatEarlyLadder.nip
+		d2bs\kolbot\pickit\w-RogerThatEndLadder.nip
+		d2bs\kolbot\pickit\w-RogerThatMidLadder.nip
 		data\cdkeys.json
 		data\profile.json
 		data\server.json
+		D2_RogerThat_BKP.txt
 		.gitignore
 		.prettierignore
 	```

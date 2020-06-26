@@ -1428,19 +1428,20 @@ var AutoRogerThat = {
             if (Config.RogerThatTelegram.Active &&
                 (Config.RogerThatTelegram.Notify.Trade || Config.RogerThatTelegram.Notify.HotIP || Config.RogerThatTelegram.Notify.DiabloClone)) {
                     if (Config.RogerThatTelegram.Url === '' || Config.RogerThatTelegram.Token === '' || Config.RogerThatTelegram.Port === undefined) {
-                        me.overhead("ÿc1ERROR:ÿc0 Headers are not configured.'");
+                        me.overhead("ÿc1ERROR:ÿc0 Headers are not configured.");
                     } else {
-                        const HTTP = require('../libs/modules/HTTP');
+                        const HTTP = require("../libs/modules/HTTP");
 
-                        print('ÿc2Sending msg: ÿc0ÿc9' + data.message + 'ÿc0 (code ÿc4' + data.code + 'ÿc0)');
+                        print("ÿc2Sending msg: ÿc0ÿc9" + data.message + "ÿc0 (code ÿc4" + data.code + "ÿc0)");
+
                         while (tries <= 4) {
                             response = HTTP({
-                                url: Config.RogerThatTelegram.Url + '/api/diablo/notify',
+                                url: Config.RogerThatTelegram.Url + "/api/diablo/notify",
                                 port: Config.RogerThatTelegram.Port,
-                                method: 'POST',
+                                method: "POST",
                                 headers: {
-                                    'Authorization': 'Bearer ' + Config.RogerThatTelegram.Token,
-                                    'Content-Type': 'application/json'
+                                    'Authorization': "Bearer " + Config.RogerThatTelegram.Token,
+                                    'Content-Type': "application/json"
                                 },
                                 data: JSON.stringify(data)
                             });
@@ -1450,16 +1451,24 @@ var AutoRogerThat = {
                             }
 
                             if (tries <= 3) {
-                                print('Send msg retry ÿc1' + tries + 'ÿc0');
+                                print("Send msg retry ÿc1" + tries);
                                 tries++;
                             } else {
                                 break;
                             }
                         }
+
                         if (!response) {
-                            print('ÿc1Failed to connect to ÿc0ÿc9' + Config.RogerThatTelegram.Url + 'ÿc0');
+                            print("ÿc1Failed to connect to ÿc9" + Config.RogerThatTelegram.Url);
+                            me.overhead("ÿc1No response from server");
                         } else {
-                            print('ÿc2Message delivered to ÿc0ÿc9' + Config.RogerThatTelegram.Url + 'ÿc0');
+                            print("ÿc2Message delivered to ÿc9" + Config.RogerThatTelegram.Url);
+                            response.then((data) => {
+                                const msgArray = data.split(/\r?\n/);
+
+                                print("ÿc2Server response: ÿc9 " + msgArray[msgArray.length - 1]);
+                                me.overhead("ÿc2" + msgArray[msgArray.length-1]);
+                            })
                         }
                     }
 

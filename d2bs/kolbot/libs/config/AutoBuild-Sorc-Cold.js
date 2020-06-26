@@ -52,8 +52,10 @@ function LoadConfig() {
       Config.MinColumn[2] = 3;
       Config.MinColumn[3] = 3;
    //! PICK LIST -----------------------------------------------------------------------
-      Config.PickitFiles.push("w-kolton.nip");
-      Config.PickitFiles.push("w-potions.nip");
+      Config.PickitFiles.push("w-RogerThatEarlyLadder.nip");
+      Config.PickitFiles.push("w-RogerThatMidLadder.nip");
+      Config.PickitFiles.push("w-RogerThatEndLadder.nip");
+      Config.PickitFiles.push("w-RogerThat.nip");
       Config.PickitFiles.push("w-LLD.nip");
       Config.PickRange = 40;
       Config.FastPick = true;

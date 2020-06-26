@@ -133,8 +133,8 @@
             [name] == ancientarmor        && [quality] == magic && [flag] != ethereal # [sockets] == 4 && [maxhp] >= 100
     //+ AXES =================================================================================
         //- White -------------------------------------------------------------------------
-            [name] == berserkeraxe        && [quality] == superior && [flag] != ethereal # [enhanceddamage] == 15 && ([sockets] == 3 || [sockets] == 4 || [sockets] == 5) // grief
-            [name] == berserkeraxe        && [quality] == superior && [flag] == ethereal # ([sockets] == 0 || [sockets] == 6) && [enhanceddamage] == 15 // botd
+            [name] == berserkeraxe        && [quality] == superior && [flag] != ethereal # [enhanceddamage] == 15 && ([sockets] == 3 || [sockets] == 4 || [sockets] == 5) // grief / beast
+            [name] == berserkeraxe        && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 6) // botd
             [name] == smallcrescent       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4)
             [name] == warspike            && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5)
             [name] == gloriousaxe         && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5)
@@ -259,7 +259,7 @@
             [type] == boots               && [quality] == rare # [frw] >= 30 && [coldresist]*1.2+[lightresist]*0.9+[fireresist]*0.9 >= 100 // ca. [30frw] 100res
             [type] == boots               && [quality] == rare # [frw] >= 30 && [itemmagicbonus]*4+[itemgoldbonus] >= 170 && [coldresist]+[lightresist]+[fireresist] >= 70 // ca. [30frw] 70res 25mf 70eg
         //- Magic -------------------------------------------------------------------------
-            [name] == scarabshellboots 	&& [quality] == magic && [flag] != ethereal # ([frw] >= 40 || [dexterity] >= 15) && ([coldresist] >= 40 || [lightresist] >= 40) && [defense] >= 65
+            [name] == scarabshellboots 	  && [quality] == magic && [flag] != ethereal # ([frw] >= 40 || [dexterity] >= 15) && ([coldresist] >= 40 || [lightresist] >= 40) && [defense] >= 65
             [name] == wyrmhideboots       && [quality] == magic && [flag] != ethereal # ([frw] >= 40 || [dexterity] >= 15) && ([coldresist] >= 40 || [lightresist] >= 40) && [defense] >= 62
             [name] == battleboots         && [quality] == magic && [flag] != ethereal # ([frw] >= 40 || [dexterity] >= 15) && ([coldresist] >= 40 || [lightresist] >= 40) && [defense] >= 47
             [name] == sharkskinboots      && [quality] == magic && [flag] != ethereal # ([frw] >= 40 || [dexterity] >= 15) && ([coldresist] >= 40 || [lightresist] >= 40) && [defense] >= 39
@@ -1111,50 +1111,50 @@
         // [name] == flawedamethyst       # # [maxquantity] == 3
         // [name] == flawedruby           # # [maxquantity] == 3
         // [name] == flaweddiamond        # # [maxquantity] == 3
-        // [name] == flawedemerald        # # [maxquantity] == 5
+        // [name] == flawedemerald        # # [maxquantity] == 3
         // [name] == flawedtopaz          # # [maxquantity] == 3
-        // [name] == flawedsapphire       # # [maxquantity] == 5
-        // [name] == flawedskull          # # [maxquantity] == 5
+        // [name] == flawedsapphire       # # [maxquantity] == 3
+        // [name] == flawedskull          # # [maxquantity] == 3
         // [name] == amethyst             # # [maxquantity] == 3
         // [name] == ruby                 # # [maxquantity] == 3
         // [name] == diamond              # # [maxquantity] == 3
-        // [name] == emerald              # # [maxquantity] == 5
+        // [name] == emerald              # # [maxquantity] == 3
         // [name] == topaz                # # [maxquantity] == 3
-        // [name] == sapphire             # # [maxquantity] == 5
-        // [name] == skull                # # [maxquantity] == 5
+        // [name] == sapphire             # # [maxquantity] == 3
+        // [name] == skull                # # [maxquantity] == 3
         // [name] == flawlessamethyst     # # [maxquantity] == 3
         // [name] == flawlessruby         # # [maxquantity] == 3
         // [name] == flawlessdiamond      # # [maxquantity] == 3
-        // [name] == flawlessemerald      # # [maxquantity] == 5
+        // [name] == flawlessemerald      # # [maxquantity] == 3
         // [name] == flawlesstopaz        # # [maxquantity] == 3
-        // [name] == flawlesssapphire     # # [maxquantity] == 5
-        // [name] == flawlessskull        # # [maxquantity] == 5
+        // [name] == flawlesssapphire     # # [maxquantity] == 3
+        // [name] == flawlessskull        # # [maxquantity] == 3
         // [name] == perfectamethyst      # # [maxquantity] == 3
         // [name] == perfectruby          # # [maxquantity] == 3
         // [name] == perfectdiamond       # # [maxquantity] == 3
-        // [name] == perfectemerald       # # [maxquantity] == 5
+        // [name] == perfectemerald       # # [maxquantity] == 3
         // [name] == perfecttopaz         # # [maxquantity] == 3
-        // [name] == perfectsapphire      # # [maxquantity] == 5
-        // [name] == perfectskull         # # [maxquantity] == 5
+        // [name] == perfectsapphire      # # [maxquantity] == 3
+        // [name] == perfectskull         # # [maxquantity] == 3
     //+ RUNES ================================================================================
-        // [name] == talrune              # # [maxquantity] == 5
-        // [name] == thulrune             # # [maxquantity] == 5
-        // [name] == ortrune              # # [maxquantity] == 5
-        // [name] == amnrune              # # [maxquantity] == 5
-        // [name] == ralrune              # # [maxquantity] == 5
-        // [name] == tirrune              # # [maxquantity] == 5
-        // [name] == solrune              # # [maxquantity] == 5
-        // [name] == elrune               # # [maxquantity] == 1
-        // [name] == eldrune              # # [maxquantity] == 1
-        // [name] == nefrune              # # [maxquantity] == 1
-        // [name] == ethrune              # # [maxquantity] == 1
-        // [name] == ithrune              # # [maxquantity] == 1
-        // [name] == shaelrune            # # [maxquantity] == 1
-        // [name] == dolrune              # # [maxquantity] == 5
-        // [name] == iorune               # # [maxquantity] == 1
-        // [name] == lumrune              # # [maxquantity] == 2
-        // [name] == falrune              # # [maxquantity] == 2
-        // [name] == lemrune              # # [maxquantity] == 2
+        // [name] == talrune              # # [maxquantity] == 3
+        // [name] == thulrune             # # [maxquantity] == 3
+        // [name] == ortrune              # # [maxquantity] == 3
+        // [name] == amnrune              # # [maxquantity] == 3
+        // [name] == ralrune              # # [maxquantity] == 3
+        // [name] == tirrune              # # [maxquantity] == 3
+        // [name] == solrune              # # [maxquantity] == 3
+        // [name] == elrune               # # [maxquantity] == 3
+        // [name] == eldrune              # # [maxquantity] == 3
+        // [name] == nefrune              # # [maxquantity] == 3
+        // [name] == ethrune              # # [maxquantity] == 3
+        // [name] == ithrune              # # [maxquantity] == 3
+        // [name] == shaelrune            # # [maxquantity] == 3
+        // [name] == dolrune              # # [maxquantity] == 3
+        // [name] == iorune               # # [maxquantity] == 3
+        // [name] == lumrune              # # [maxquantity] == 3
+        // [name] == falrune              # # [maxquantity] == 3
+        // [name] == lemrune              # # [maxquantity] == 3
         // [name] == korune
         // [name] == helrune
         // [name] == pulrune
@@ -1163,10 +1163,10 @@
         // [name] == istrune
         [name] > gulrune && [name] <= zodrune
     //+ TOKEN ================================================================================
-        // [name] == twistedessenceofsuffering       # # [maxquantity] == 2  // Blue   - Andariel & Duriel
-        // [name] == chargedessenceofhatred          # # [maxquantity] == 2  // Yellow - Mephisto
-        // [name] == burningessenceofterror          # # [maxquantity] == 2  // Red    - Diablo
-        // [name] == festeringessenceofdestruction   # # [maxquantity] == 2  // Green  - Baal
+        // [name] == twistedessenceofsuffering       # # [maxquantity] == 3  // Blue   - Andariel & Duriel
+        // [name] == chargedessenceofhatred          # # [maxquantity] == 3  // Yellow - Mephisto
+        // [name] == burningessenceofterror          # # [maxquantity] == 3  // Red    - Diablo
+        // [name] == festeringessenceofdestruction   # # [maxquantity] == 3  // Green  - Baal
         // [name] == tokenofabsolution
     //+ KEYS =================================================================================
         // [name] == keyofhate
