@@ -456,7 +456,7 @@
             [name] == skullcap            && [quality] == unique # [defense] == 11 && [itemmagicbonus] == 50
             [name] == grandcrown          && [quality] == unique && [flag] != ethereal # [itemgoldbonus] >= 100 && [enhanceddefense] >= 200 && [lifeleech] >= 12 //crown of thieves
             [name] == grandcrown          && [quality] == unique && [flag] == ethereal # [itemgoldbonus] >= 100 // crown of thieves eth
-            [name] == grimhelm            && [quality] == unique && ([flag] == ethereal || [flag] != ethereal) # [lifeleech] == 8 && [manaleech] == 8 && [magicdamagereduction] == 15 && [damageresist] >= 20 // vampgaze eth
+            [name] == grimhelm            && [quality] == unique # [lifeleech] == 8 && [manaleech] == 8 && [magicdamagereduction] == 15 && [damageresist] >= 20 // vampgaze
             [name] == shako               && [quality] == unique && [flag] == ethereal # [defense] >= 211 // harlequin crest
             [name] == shako               && [quality] == unique && [flag] != ethereal # [defense] >= 141 // harlequin crest
             [name] == spiredhelm          && [quality] == unique # [passivecoldmastery] == 15 // nightwing's veil
