@@ -935,13 +935,13 @@ function Rushee() {
 						break;
 					}
 
-					target = getUnit(1, NPC.Jerhyn);
+					// target = getUnit(1, NPC.Jerhyn);
 
-					if (target) {
-						target.openMenu();
-					}
+					// if (target) {
+					// 	target.openMenu();
+					// }
 
-					me.cancel();
+					// me.cancel();
 					Town.move("portalspot");
 					actions.shift();
 
