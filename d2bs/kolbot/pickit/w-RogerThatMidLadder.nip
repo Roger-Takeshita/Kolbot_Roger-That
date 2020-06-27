@@ -14,6 +14,13 @@
         //- Rare --------------------------------------------------------------------------
             [type] == amulet              && [quality] <= rare # [itemmagicbonus] >= 35
     //+ ARMOR ================================================================================
+        //- White -------------------------------------------------------------------------
+            [name] == duskshroud          && ([quality] != magic && [quality] == superior) && [flag] != ethereal # [enhanceddefense] == 15 && ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == wyrmhide            && ([quality] != magic && [quality] == superior) && [flag] != ethereal # [enhanceddefense] == 15 && ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == scarabhusk          && ([quality] != magic && [quality] == superior) && [flag] != ethereal # [enhanceddefense] == 15 && ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == greathauberk        && ([quality] != magic && [quality] == superior) && [flag] != ethereal # [enhanceddefense] == 15 && ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == archonplate         && ([quality] != magic && [quality] == superior) && [flag] != ethereal # [enhanceddefense] == 15 && ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == mageplate           && ([quality] != magic && [quality] == superior) && [flag] != ethereal # [enhanceddefense] == 15 && ([sockets] == 0 || [sockets] == 3)
         //- Unique ------------------------------------------------------------------------
             [name] == balrogskin          && [quality] == unique // arkaine's valor
             [name] == shadowplate         && [quality] == unique // steel carapace
@@ -83,19 +90,17 @@
     //+ HELMS ================================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == bloodspirit         && [quality] == unique // jalal's mane x1
-            [name] == tiara               && [quality] == unique // kira's guardian
+            [name] == tiara               && [quality] == unique # [fireresist] >= 50 // kira's guardian
             [name] == diadem              && [quality] == unique // griffon's eye
-            [name] == guardiancrown       && [quality] == unique // arreat's face x1
-            [name] == slayerguard         && [quality] == unique // arreat's face
             [name] == furyvisor           && [quality] == unique && [flag] != ethereal # [warcriesskilltab] == 3 && [skillwerewolf]+[skilllycanthropy]+[skillferalrage] == 18 // wolfhowl
-            [name] == casque              && [quality] == unique
-            [name] == skullcap            && [quality] == unique && [itemmagicbonus] == 50
-            [name] == grimhelm            && [quality] == unique // vampgaze
+            [name] == casque              && [quality] == unique # [itemmagicbonus] >= 50 // stealskull
+            [name] == skullcap            && [quality] == unique #[itemmagicbonus] >= 50 // tarnhelm
+            [name] == grimhelm            && [quality] == unique # [damageresist] >= 20 // vampgaze
             [name] == shako               && [quality] == unique // harlequin crest
             [name] == spiredhelm          && [quality] == unique # [passivecoldmastery] >= 10 // nightwing's veil
-            [name] == demonhead           && [quality] == unique // andariel's visage
             [name] == corona              && [quality] == unique // crown of ages
             [name] == bonevisage          && [quality] == unique // giant skull
+            [name] == demonhead           && [quality] == unique # [strength] >= 25 //&& [enhanceddefense] == 150 // andariel's visage
     //+ ORB ==================================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == eldritchorb         && [quality] == unique // eschuta's temper

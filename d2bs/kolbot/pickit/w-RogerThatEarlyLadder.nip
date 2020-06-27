@@ -17,6 +17,12 @@
     //+ ARMOR ================================================================================
         //- White -------------------------------------------------------------------------
             [type] == armor               && [quality] <= superior # [sockets] == 2 // stealth (tal + eth) || smoke (nef + lum)
+            [name] == duskshroud          && [quality] != magic && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == wyrmhide            && [quality] != magic && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == scarabhusk          && [quality] != magic && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == greathauberk        && [quality] != magic && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == archonplate         && [quality] != magic && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == mageplate           && [quality] != magic && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3)
         //- Unique ------------------------------------------------------------------------
             [type] == armor               && [quality] == unique
             [name] == balrogskin          && [quality] == unique // arkaine's valor
