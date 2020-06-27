@@ -469,15 +469,13 @@ function Diablo() {
 	this.initLayout();
 
 	if (Config.Diablo.Entrance) {
-		Attack.clear(30, 0, false, this.sort);
-		Pather.moveTo(7790, 5544);
-
 		if (Config.PublicMode) {
 			Pather.makePortal();
 			// say(Config.Diablo.EntranceTP);
 			Pather.teleport = !Config.Diablo.WalkClear && Pather._teleport;
 		}
 
+		Attack.clear(30, 0, false, this.sort);
 		Pather.moveTo(7790, 5544);
 		Precast.doPrecast(true);
 		Attack.clear(30, 0, false, this.sort);
