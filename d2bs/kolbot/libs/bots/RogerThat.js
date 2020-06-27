@@ -463,11 +463,12 @@ function RogerThat() {
 
                     if (messageFlag) {
                         AutoRogerThat.notify({
-                            code: 'Trade',
-                            message: 'Trade Time',
+                            code: "Trade",
+                            message: "Trade",
                             data: {
                                 profile: me.profile,
-                                game: me.gamename
+                                game: me.gamename,
+                                account: name2
                             }
                         });
 
