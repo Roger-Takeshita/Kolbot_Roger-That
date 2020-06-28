@@ -1576,18 +1576,22 @@ function RogerThat() {
             if (!pvpFlag) {
                 msg = msg.toLowerCase();
                 //- Who is the leader? --------------------------------------------
-                    if (nick === me.name && msg === "i am the boss") {
-                        Config.Leader = "";
-                        FileTools.writeText(filename, nick);
-                        checkLeaderFlag = false;
-                        checkPartyFlag = false;
-                        return true;
-                    } else if (nick !== me.name && msg === "i am the boss" && nick === FileTools.readText(filename)) {
-                        Config.Leader = nick;
-                        leader = this.getLeader(nick);
-                        checkLeaderFlag = false;
-                        checkPartyFlag = false;
-                        return true;
+                    try {
+                        if (nick === me.name && msg === "i am the boss") {
+                            Config.Leader = "";
+                            FileTools.writeText(filename, nick);
+                            checkLeaderFlag = false;
+                            checkPartyFlag = false;
+                            return true;
+                        } else if (nick !== me.name && msg === "i am the boss" && nick === FileTools.readText(filename)) {
+                            Config.Leader = nick;
+                            leader = this.getLeader(nick);
+                            checkLeaderFlag = false;
+                            checkPartyFlag = false;
+                            return true;
+                        }
+                    } catch (error) {
+                        me.overhead("Unable to open the leader.txt. Please try again.");
                     }
 
                 //- Commands from leader in the party -----------------------------
@@ -2142,7 +2146,7 @@ function RogerThat() {
                 }
 
             //- Updated attack when lvl -------------------------------------------
-                if (me.getStat(5) !== unUsedSkill) {
+                if (me.ingame && me.getStat(5) !== unUsedSkill) {
                     if (me.getStat(5) < unUsedSkill) {
                         AutoRogerThat.updateAttack();
                         me.overhead("Attack skills have been updated!");
@@ -2152,7 +2156,11 @@ function RogerThat() {
 
             //- Check leader ------------------------------------------------------
                 if (!checkLeaderFlag) {
-                    isLeaderHere = FileTools.readText(filename);
+                    try {
+                        isLeaderHere = FileTools.readText(filename);
+                    } catch (error) {
+                        isLeaderHere = "";
+                    }
                     delay(200);
 
                     if (isLeaderHere !== "") {
