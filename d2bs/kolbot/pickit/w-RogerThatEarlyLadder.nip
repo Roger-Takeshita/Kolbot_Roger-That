@@ -33,7 +33,7 @@
             [name] == wyrmhide            && [quality] == unique && [flag] != ethereal // skin of the vipermagi x1
             [name] == cuirass             && [quality] == unique // # [enhanceddefense] >= 200 // duriel's shell
             [name] == russetarmor         && [quality] == unique // skullder's
-            [name] == mesharmor           && [quality] == unique // && [flag] == ethereal // shaftstop
+            [name] == mesharmor           && [quality] == unique // shaftstop
             [name] == sacredarmor         && [quality] == unique // tyrael's might
             [name] == duskshroud          && [quality] == unique // ormus
         //- Rare --------------------------------------------------------------------------
@@ -193,6 +193,7 @@
     //+ SHIELDS ==============================================================================
         //- White -------------------------------------------------------------------------
             [type] == shield              && [quality] <= superior && [flag] != ethereal # [sockets] == 2 // rhyme (shael + eth)
+            [name] == monarch             && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 4) // spirit
         //- Unique ------------------------------------------------------------------------
             [type] == shield              && [quality] == unique
             [name] == defender            && [quality] == unique && [flag] != ethereal // visceratuant

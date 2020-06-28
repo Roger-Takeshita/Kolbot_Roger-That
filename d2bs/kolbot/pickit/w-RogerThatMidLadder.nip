@@ -27,7 +27,7 @@
             [name] == sacredarmor         && [quality] == unique // templar's might
             [name] == wirefleece          && [quality] == unique // gladiator's bane
             [name] == wyrmhide            && [quality] == unique && [flag] != ethereal // skin of the vipermagi x1
-            [name] == cuirass             && [quality] == unique # [enhanceddefense] >= 200 // duriel's shell
+            [name] == cuirass             && [quality] == unique && [flag] != ethereal # [enhanceddefense] >= 200 // duriel's shell
             [name] == russetarmor         && [quality] == unique // skullder's
             [name] == mesharmor           && [quality] == unique && [flag] == ethereal // shaftstop
             [name] == sacredarmor         && [quality] == unique // tyrael's might
@@ -47,7 +47,7 @@
             [name] == warboots            && [quality] == unique && [flag] != ethereal // # [enhanceddefense] >= 200 // gore rider
             [name] == myrmidongreaves     && [quality] == unique && [flag] != ethereal // # [enhanceddefense] >= 200 // gore rider x1
             [name] == scarabshellboots    && [quality] == unique && [flag] == identified // sandstorm trek
-            [name] == boneweaveboots      && [quality] == unique && [flag] != ethereal   // marrowwalk
+            [name] == boneweaveboots      && [quality] == unique && [flag] != ethereal // marrowwalk
             [name] == myrmidongreaves     && [quality] == unique && [flag] == identified # [dexterity] >= 15 // shadow dancer
             [name] == sharkskinboots      && [quality] == unique && [flag] != ethereal # [maxhp] == 65 // waterwalk
             [name] == scarabshellboots    && [quality] == unique && [flag] != ethereal # [maxhp] == 65 // waterwalk x1
@@ -64,10 +64,10 @@
             [name] == hydrabow            && [quality] == unique // windforce
     //+ CHARMS ===============================================================================
         //- Small Charms ------------------------------------------------------------------
-            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 3
-            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 4
-            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 5
-            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 6
+            // [name] == smallcharm       && [quality] == magic # [itemmagicbonus] == 3
+            // [name] == smallcharm       && [quality] == magic # [itemmagicbonus] == 4
+            // [name] == smallcharm       && [quality] == magic # [itemmagicbonus] == 5
+            // [name] == smallcharm       && [quality] == magic # [itemmagicbonus] == 6
             [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 7
         //- Large Charms ------------------------------------------------------------------
             [name] == largecharm          && [quality] == magic # [itemmagicbonus] >= 6
@@ -94,7 +94,7 @@
             [name] == diadem              && [quality] == unique // griffon's eye
             [name] == furyvisor           && [quality] == unique && [flag] != ethereal # [warcriesskilltab] == 3 && [skillwerewolf]+[skilllycanthropy]+[skillferalrage] == 18 // wolfhowl
             [name] == casque              && [quality] == unique # [itemmagicbonus] >= 50 // stealskull
-            [name] == skullcap            && [quality] == unique #[itemmagicbonus] >= 50 // tarnhelm
+            [name] == skullcap            && [quality] == unique # [itemmagicbonus] >= 50 // tarnhelm
             [name] == grimhelm            && [quality] == unique # [damageresist] >= 20 // vampgaze
             [name] == shako               && [quality] == unique // harlequin crest
             [name] == spiredhelm          && [quality] == unique # [passivecoldmastery] >= 10 // nightwing's veil
@@ -145,7 +145,14 @@
             [name] == elderstaff          && [quality] == unique // ondal's wisdom
     //+ SWORDS ===============================================================================
         //- White -------------------------------------------------------------------------
-            [name] == crystalsword        && [quality] == superior # [enhanceddamage] == 15 && [tohit] == 3 && [sockets] == 5 // cta
+            [name] == broadsword          && [quality] == superior # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
+            [name] == battlesword         && [quality] == superior # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
+            [name] == conquestsword       && [quality] == superior # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
+            [name] == longsword           && [quality] == superior # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
+            [name] == runesword           && [quality] == superior # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
+            [name] == crypticsword        && [quality] == superior # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
+            [name] == crystalsword        && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4                     // spirit
+            [name] == dimensionalblade    && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4                     // spirit
             [name] == highlandblade       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // passion
             [name] == phaseblade          && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4 // passion
             [name] == zweihander          && [quality] == superior && [flag] != ethereal # [enhanceddamage] == 15 && [sockets] == 5
@@ -166,10 +173,10 @@
             [type] == amulet              && [quality] == set # [lightresist] == 33 // Tal Rasha's Adjucation
             [name] == meshbelt            && [quality] == set # [itemmagicbonus] == 15 // Tal Rasha's Fine-Spun Cloth
         //* Griswold's Legacy =============================================================
-            [name] == ornateplate         && [quality] == set // Griswold's Heart
-            [name] == corona              && [quality] == set // Griswold's Valor
-            [name] == caduceus            && [quality] == set // Griswold's Redemption
-            [name] == vortexshield        && [quality] == set // Griswold's Honor
+            // [name] == ornateplate      && [quality] == set // Griswold's Heart
+            // [name] == corona           && [quality] == set // Griswold's Valor
+            // [name] == caduceus         && [quality] == set // Griswold's Redemption
+            // [name] == vortexshield     && [quality] == set // Griswold's Honor
         //* Cow King's Leathers ===========================================================
             // [name] == warhat           && [quality] == set // Cow King's Horns
             // [name] == studdedleather   && [quality] == set // Cow King's Hide
