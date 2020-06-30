@@ -81,8 +81,8 @@
             [name] == boneknife           && [quality] == unique // wizardspike
     //+ FLAIL & KNOUT ========================================================================
         //- White -------------------------------------------------------------------------
-            // [name] == flail            && [quality] <= superior # ([sockets] == 4 || [sockets] == 5)
-            // [name] == knout            && [quality] <= superior # ([sockets] == 4 || [sockets] == 5)
+            [name] == flail               && [quality] <= superior # ([sockets] == 4 || [sockets] == 5)
+            [name] == knout               && [quality] <= superior # ([sockets] == 4 || [sockets] == 5)
     //+ GLOVES ===============================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == vampirebonegloves   && [quality] == unique && [flag] != ethereal // dracul's grasp
@@ -107,11 +107,11 @@
             [name] == swirlingcrystal     && [quality] == unique // oculus
     //+ POLEARMS =============================================================================
         //- White -------------------------------------------------------------------------
-            [name] == crypticaxe          && [quality] <= superior # [sockets] == 4 // insight/infinity
-            [name] == greatpoleaxe        && [quality] <= superior # [sockets] == 4 // insight/infinity
-            [name] == colossusvoulge      && [quality] <= superior # [sockets] == 4 // insight/infinity
-            [name] == thresher            && [quality] <= superior # [sockets] == 4 // insight/infinity
-            [name] == giantthresher       && [quality] <= superior # [sockets] == 4 // insight/infinity
+            [name] == crypticaxe          && [quality] == normal # [sockets] == 4 // insight/infinity
+            [name] == greatpoleaxe        && [quality] == normal # [sockets] == 4 // insight/infinity
+            [name] == colossusvoulge      && [quality] == normal # [sockets] == 4 // insight/infinity
+            [name] == thresher            && [quality] == normal # [sockets] == 4 // insight/infinity
+            [name] == giantthresher       && [quality] == normal # [sockets] == 4 // insight/infinity
         //- Unique ------------------------------------------------------------------------
             [name] == ogreaxe             && [quality] == unique && [flag] == ethereal // bonehew
             [name] == thresher            && [quality] == unique && [flag] == ethereal // the reaper's toll
@@ -153,11 +153,7 @@
             [name] == crypticsword        && [quality] == superior # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
             [name] == crystalsword        && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4                     // spirit
             [name] == dimensionalblade    && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4                     // spirit
-            [name] == highlandblade       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // passion
-            [name] == phaseblade          && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4 // passion
-            [name] == zweihander          && [quality] == superior && [flag] != ethereal # [enhanceddamage] == 15 && [sockets] == 5
-            [name] == colossusblade       && [quality] == superior && [flag] != ethereal # [enhanceddamage] == 15 && [tohit] == 3 && ([sockets] == 3 || [sockets] == 5)
-            [name] == colossusblade       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 5 || [sockets] == 6)
+            [name] == crystalsword        && [quality] <= superior # [[sockets] == 5 // cta
         //- Unique ------------------------------------------------------------------------
             // [name] == tulwar           && [quality] == unique // blade of ali baba
             // [name] == battlesword      && [quality] == unique && [flag] == ethereal // headstriker
@@ -167,7 +163,7 @@
             [name] == lichwand            && [quality] == unique // boneshade
     //+ SETS =================================================================================
         //* Tal Rasha's Wrappings =========================================================
-            [name] == swirlingcrystal     && [quality] == set // Tal Rasha's Lidless Eye
+            // [name] == swirlingcrystal  && [quality] == set // Tal Rasha's Lidless Eye
             // [name] == deathmask        && [quality] == set // Tal Rasha's Horadric Crest
             [name] == lacqueredplate      && [quality] == set // Tal Rasha's Guardianship
             [type] == amulet              && [quality] == set # [lightresist] == 33 // Tal Rasha's Adjucation

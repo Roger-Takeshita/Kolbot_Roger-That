@@ -6,6 +6,7 @@
 //! =========================================================================================== //
     //+ AMULETS ==============================================================================
         //- Unique ------------------------------------------------------------------------
+            // [name] == amulet           && [quality] == unique # [itemallskills] == 1 && [itemlightradius] == 7 && [itemlightradius] == 5 && [coldmindam] == 2 && [coldmaxdam] >= 5 && [armorclassvsmissile] == 40// the eye of etlich
             // [name] == amulet           && [quality] == unique # [fireskilltab] >= 2 // the rising sun
             [name] == amulet              && [quality] == unique # [itemallskills] == 2 && [offensiveaurasskilltab] >= 2 // seraph
             [name] == amulet              && [quality] == unique # [strength] == 5 && [fireresist] >= 20 // mara

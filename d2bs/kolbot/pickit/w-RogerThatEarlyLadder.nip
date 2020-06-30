@@ -8,15 +8,18 @@
         //- Unique ------------------------------------------------------------------------
             [type] == amulet              && [quality] == unique
             [name] == amulet              && [quality] == unique # [itemallskills] == 1 && [itemlightradius] >= 3 // the eye of etlich
-            [name] == amulet              && [quality] == unique # [fireskilltab] == 2 // the rising sun
-            [name] == amulet              && [quality] == unique # [itemallskills] == 2 // seraph
-            [name] == amulet              && [quality] == unique # [lightresist] == 35 // highlord
             [name] == amulet              && [quality] == unique # [dexterity] == 25 // cat's eye
         //- Rare --------------------------------------------------------------------------
             [type] == amulet              && [quality] <= rare # [itemmagicbonus] >= 5
     //+ ARMOR ================================================================================
         //- White -------------------------------------------------------------------------
             [type] == armor               && [quality] <= superior # [sockets] == 2 // stealth (tal + eth) || smoke (nef + lum)
+            [name] == duskshroud          && [quality] != magic && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == wyrmhide            && [quality] != magic && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == scarabhusk          && [quality] != magic && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == greathauberk        && [quality] != magic && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == archonplate         && [quality] != magic && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == mageplate           && [quality] != magic && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3)
         //- Unique ------------------------------------------------------------------------
             [type] == armor               && [quality] == unique
             [name] == balrogskin          && [quality] == unique // arkaine's valor
@@ -164,10 +167,6 @@
     //+ POLEARMS =============================================================================
         //- White -------------------------------------------------------------------------
             [type] == polearm             && [quality] <= superior # [sockets] == 4 // insight (ral + tir + tal + sol)
-            [name] == greatpoleaxe        && [quality] <= superior # ([sockets] == 0 || [sockets] == 4) // insight/infinity
-            [name] == colossusvoulge      && [quality] <= superior # ([sockets] == 0 || [sockets] == 4) // insight/infinity
-            [name] == thresher            && [quality] <= superior # ([sockets] == 0 || [sockets] == 4) // insight/infinity
-            [name] == giantthresher       && [quality] <= superior # ([sockets] == 0 || [sockets] == 4) // insight/infinity
         //- Unique ------------------------------------------------------------------------
             [name] == ogreaxe             && [quality] == unique && [flag] == ethereal // bonehew
             [name] == thresher            && [quality] == unique && [flag] == ethereal // the reaper's toll
@@ -336,48 +335,48 @@
         // [name] == flawedruby           # # [maxquantity] == 3
         // [name] == flaweddiamond        # # [maxquantity] == 3
         // [name] == flawedemerald        # # [maxquantity] == 3
-        [name] == flawedtopaz          // # # [maxquantity] == 3
+        // [name] == flawedtopaz          # # [maxquantity] == 3
         // [name] == flawedsapphire       # # [maxquantity] == 3
         // [name] == flawedskull          # # [maxquantity] == 3
         // [name] == amethyst             # # [maxquantity] == 3
         // [name] == ruby                 # # [maxquantity] == 3
         // [name] == diamond              # # [maxquantity] == 3
         // [name] == emerald              # # [maxquantity] == 3
-        [name] == topaz                // # # [maxquantity] == 3
+        // [name] == topaz                # # [maxquantity] == 3
         // [name] == sapphire             # # [maxquantity] == 3
         // [name] == skull                # # [maxquantity] == 3
         // [name] == flawlessamethyst     # # [maxquantity] == 3
         // [name] == flawlessruby         # # [maxquantity] == 3
         // [name] == flawlessdiamond      # # [maxquantity] == 3
         // [name] == flawlessemerald      # # [maxquantity] == 3
-        [name] == flawlesstopaz        // # # [maxquantity] == 3
+        // [name] == flawlesstopaz        # # [maxquantity] == 3
         // [name] == flawlesssapphire     # # [maxquantity] == 3
         // [name] == flawlessskull        # # [maxquantity] == 3
         // [name] == perfectamethyst      # # [maxquantity] == 3
         // [name] == perfectruby          # # [maxquantity] == 3
         // [name] == perfectdiamond       # # [maxquantity] == 3
         // [name] == perfectemerald       # # [maxquantity] == 3
-        [name] == perfecttopaz         // # # [maxquantity] == 3
+        // [name] == perfecttopaz         # # [maxquantity] == 3
         // [name] == perfectsapphire      # # [maxquantity] == 3
         // [name] == perfectskull         # # [maxquantity] == 3
     //+ RUNES ================================================================================
-        [name] == talrune              // # # [maxquantity] == 3
-        [name] == thulrune             // # # [maxquantity] == 3
-        [name] == ortrune              // # # [maxquantity] == 3
-        [name] == amnrune              // # # [maxquantity] == 3
-        [name] == ralrune              // # # [maxquantity] == 3
-        [name] == tirrune              // # # [maxquantity] == 3
-        [name] == solrune              // # # [maxquantity] == 3
-        // [name] == elrune               # # [maxquantity] == 3
-        // [name] == eldrune              # # [maxquantity] == 3
-        [name] == nefrune              // # # [maxquantity] == 3
-        [name] == ethrune              // # # [maxquantity] == 3
-        // [name] == ithrune              # # [maxquantity] == 3
-        [name] == shaelrune            // # # [maxquantity] == 3
-        [name] == dolrune              // # # [maxquantity] == 3
-        [name] == iorune               // # # [maxquantity] == 3
-        [name] == lumrune              // # # [maxquantity] == 3
-        [name] == falrune              // # # [maxquantity] == 3
+        [name] == talrune                 # # [maxquantity] == 5
+        [name] == thulrune                # # [maxquantity] == 5
+        [name] == ortrune                 # # [maxquantity] == 5
+        [name] == amnrune                 # # [maxquantity] == 5
+        [name] == ralrune                 # # [maxquantity] == 5
+        [name] == tirrune                 # # [maxquantity] == 5
+        [name] == solrune                 # # [maxquantity] == 5
+        [name] == elrune                  # # [maxquantity] == 5
+        [name] == eldrune                 # # [maxquantity] == 5
+        [name] == nefrune                 # # [maxquantity] == 5
+        [name] == ethrune                 # # [maxquantity] == 5
+        [name] == ithrune                 # # [maxquantity] == 5
+        [name] == shaelrune               # # [maxquantity] == 5
+        [name] == dolrune                 # # [maxquantity] == 5
+        [name] == iorune                  # # [maxquantity] == 5
+        [name] == lumrune                 # # [maxquantity] == 5
+        [name] == falrune                 # # [maxquantity] == 5
         [name] == lemrune
         [name] == korune
         [name] == helrune
