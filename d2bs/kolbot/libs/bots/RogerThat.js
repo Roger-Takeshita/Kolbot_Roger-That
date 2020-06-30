@@ -2146,12 +2146,15 @@ function RogerThat() {
                 }
 
             //- Updated attack when lvl -------------------------------------------
-                if (me.ingame && me.getStat(5) !== unUsedSkill) {
-                    if (me.getStat(5) < unUsedSkill) {
-                        AutoRogerThat.updateAttack();
-                        me.overhead("Attack skills have been updated!");
+                try {
+                    if (me.getStat(5) !== unUsedSkill) {
+                        if (me.getStat(5) < unUsedSkill) {
+                            AutoRogerThat.updateAttack();
+                            me.overhead("Attack skills have been updated!");
+                        }
+                        unUsedSkill = me.getStat(5);
                     }
-                    unUsedSkill = me.getStat(5);
+                } catch (error) {
                 }
 
             //- Check leader ------------------------------------------------------

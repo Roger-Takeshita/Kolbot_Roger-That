@@ -96,11 +96,11 @@
             [name] == colossusvoulge      && [quality] == superior # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // non eth insight/infinity
             [name] == thresher            && [quality] == superior # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // non eth insight/infinity
             [name] == giantthresher       && [quality] == superior # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // non eth insight/infinity
-            [name] == greatpoleaxe        && [quality] <= superior && [flag] == ethereal # [sockets] == 4 // eth insight/infinity
-            [name] == crypticaxe          && [quality] <= superior && [flag] == ethereal # [sockets] == 4 // eth insight/infinity
-            [name] == colossusvoulge      && [quality] <= superior && [flag] == ethereal # [sockets] == 4 // eth insight/infinity
-            [name] == thresher            && [quality] <= superior && [flag] == ethereal # [sockets] == 4 // eth insight/infinity
-            [name] == giantthresher       && [quality] <= superior && [flag] == ethereal # [sockets] == 4 // eth insight/infinity
+            [name] == crypticaxe          && [quality] <= superior && [flag] == ethereal # [sockets] == 4                         // eth insight/infinity
+            [name] == greatpoleaxe        && [quality] <= superior && [flag] == ethereal # ([sockets] == 0 || [sockets] == 4)     // eth insight/infinity
+            [name] == colossusvoulge      && [quality] <= superior && [flag] == ethereal # ([sockets] == 0 || [sockets] == 4)     // eth insight/infinity
+            [name] == thresher            && [quality] <= superior && [flag] == ethereal # ([sockets] == 0 || [sockets] == 4)     // eth insight/infinity
+            [name] == giantthresher       && [quality] <= superior && [flag] == ethereal # ([sockets] == 0 || [sockets] == 4)     // eth insight/infinity
         //- Unique ------------------------------------------------------------------------
             [name] == ogreaxe             && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 320 // bonehew
             [name] == thresher            && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 240 && [lifeleech] == 15 // the reaper's toll

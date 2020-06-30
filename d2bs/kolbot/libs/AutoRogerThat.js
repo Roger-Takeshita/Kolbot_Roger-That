@@ -176,7 +176,7 @@ var AutoRogerThat = {
                                     dropObj[j] = qtyArray[i]
                                 }
 
-                                for (let j = 599 ; j <= 601 ; j++) {
+                                for (let j = 597 ; j <= 601 ; j++) {
                                     dropObj[j] = qtyArray[i]
                                 }
 
@@ -218,7 +218,7 @@ var AutoRogerThat = {
                                 return this.dropProfileItems("socket");
 
                             default:             // Drop runes
-                                const rune = {
+                                const runes = {
                                     el: 610,
                                     eld: 611,
                                     tir: 612,
@@ -254,8 +254,48 @@ var AutoRogerThat = {
                                     zod: 642
                                 };
 
-                                if (rune[itemsArray[i]]) {
-                                    dropObj[rune[itemsArray[i]]] = qtyArray[i];
+                                const gems = {
+                                    camethyst: 557,
+                                    famethyst: 558,
+                                    amethyst: 559,
+                                    flamethyst: 560,
+                                    pamethyst: 561,
+                                    ctopaz: 562,
+                                    ftopaz: 563,
+                                    topaz: 564,
+                                    fltopaz: 565,
+                                    ptopaz: 566,
+                                    csapphire: 567,
+                                    fsapphire: 568,
+                                    sapphire: 569,
+                                    flsapphire: 570,
+                                    psapphire: 571,
+                                    cemerald: 572,
+                                    femerald: 573,
+                                    emerald: 574,
+                                    flemerald: 575,
+                                    pemerald: 576,
+                                    cruby: 577,
+                                    fruby: 578,
+                                    ruby: 579,
+                                    flruby: 580,
+                                    pruby: 581,
+                                    cdiamond: 582,
+                                    fdiamond: 583,
+                                    diamond: 584,
+                                    fldiamond: 585,
+                                    pdiamond: 586,
+                                    cskull: 597,
+                                    fskull: 598,
+                                    skull: 599,
+                                    flskull: 600,
+                                    pskull: 601
+                                }
+
+                                if (runes[itemsArray[i]]) {
+                                    dropObj[runes[itemsArray[i]]] = qtyArray[i];
+                                } else if (gems[itemsArray[i]]) {
+                                    dropObj[gems[itemsArray[i]]] = qtyArray[i];
                                 }
 
                                 break;
