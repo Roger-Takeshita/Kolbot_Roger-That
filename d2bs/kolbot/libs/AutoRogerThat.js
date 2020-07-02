@@ -1147,17 +1147,17 @@ var AutoRogerThat = {
 
                 switch (charClass) {
                     case "amazon":
-                        if (me.charlvl <= 30) {
-                            if (me.getSkill(6, 0) >= 1) {
-                                typeOfAmazon = "bow";
-                                print("Auto ÿc4" + charClass + " ÿc1" + typeOfAmazon + " attack");
-                                Config.SkipImmune   = ["physical"];
-                            } else {
-                                typeOfAmazon = "java";
-                                print("Auto ÿc4" + charClass + " ÿc9" + typeOfAmazon + " attack");
-                                Config.SkipImmune = ["lightning"];
-                            }
+                        if (me.getSkill(6, 0) >= 1) {
+                            typeOfAmazon = "bow";
+                            print("Auto ÿc4" + charClass + " ÿc1" + typeOfAmazon + " attack");
+                            Config.SkipImmune   = ["physical"];
+                        } else {
+                            typeOfAmazon = "java";
+                            print("Auto ÿc4" + charClass + " ÿc9" + typeOfAmazon + " attack");
+                            Config.SkipImmune = ["lightning"];
+                        }
 
+                        if (me.charlvl <= 30) {
                             switch (typeOfAmazon) {
                                 case "java":
                                     skill1 = this.useSkill([24, 14, 10]); // charged strike > power strike > jab
@@ -1175,6 +1175,7 @@ var AutoRogerThat = {
                         } else {
                             Config.AttackSkill  = Config.AttackZonSkill;
                             Config.LowManaSkill = Config.LowManaZonSkill;
+                            Config.UpdateSkill = false;
                         }
 
                         Config.LightningFuryDelay = 10;   // Lightning fury interval in seconds. LF is treated as timed skill.
@@ -1254,6 +1255,8 @@ var AutoRogerThat = {
 
                                     break;
                             }
+
+                            Config.UpdateSkill = false;
                         }
 
                         Config.CastStatic = 60;    // Cast static until the target is at designated life percent. 100 = disabled.
@@ -1261,16 +1264,16 @@ var AutoRogerThat = {
 
                         break;
                     case "necromancer":
-                        if (me.charlvl <= 30) {
-                            if (me.getSkill(67, 0) >= 1) {
-                                typeOfNecro = "spear";
-                                print("Auto ÿc4" + charClass + " ÿc3" + typeOfNecro + " attack");
-                                Config.SkipImmune = ["magic"];
-                            } else {
-                                typeOfNecro = "summoning";
-                                print("Auto ÿc4" + charClass + " ÿc1" + typeOfNecro + " attack");
-                            }
+                        if (me.getSkill(67, 0) >= 1) {
+                            typeOfNecro = "spear";
+                            print("Auto ÿc4" + charClass + " ÿc3" + typeOfNecro + " attack");
+                            Config.SkipImmune = ["magic"];
+                        } else {
+                            typeOfNecro = "summoning";
+                            print("Auto ÿc4" + charClass + " ÿc1" + typeOfNecro + " attack");
+                        }
 
+                        if (me.charlvl <= 30) {
                             switch (typeOfNecro) {
                                 case "summoning":
                                     skill1 = 0;
@@ -1288,6 +1291,7 @@ var AutoRogerThat = {
                         } else {
                             Config.AttackSkill     = Config.AttackNecSkill;
                             Config.LowManaSkill    = Config.LowManaNecSkill;
+                            Config.UpdateSkill = false;
                         }
 
                         Config.Curse[0]        = 66;        // Boss curse. Use skill number or set to 0 to disable.
@@ -1304,17 +1308,17 @@ var AutoRogerThat = {
 
                         break;
                     case "paladin":
-                        if (me.charlvl <= 30) {
-                            if (me.getSkill(103, 0) >= 1) {
-                                typeOfPally = "foh";
-                                print("Auto ÿc4" + charClass + " ÿc9" + typeOfPally + " attack");
-                                Config.SkipImmune = ["lightning"];
-                            } else {
-                                typeOfPally = "hammer";
-                                print("Auto ÿc4" + charClass + " ÿc3" + typeOfPally + " attack");
-                                Config.SkipImmune   = ["magic"];
-                            }
+                        if (me.getSkill(103, 0) >= 1) {
+                            typeOfPally = "foh";
+                            print("Auto ÿc4" + charClass + " ÿc9" + typeOfPally + " attack");
+                            Config.SkipImmune = ["lightning"];
+                        } else {
+                            typeOfPally = "hammer";
+                            print("Auto ÿc4" + charClass + " ÿc3" + typeOfPally + " attack");
+                            Config.SkipImmune   = ["magic"];
+                        }
 
+                        if (me.charlvl <= 30) {
                             switch (typeOfPally) {
                                 case "foh":
                                     skill1 = this.useSkill([121, 116, 111, 106, 96, 97]); // foh > conversion > vengeance > zeal > sacrifice > smite
@@ -1336,6 +1340,7 @@ var AutoRogerThat = {
                         } else {
                             Config.AttackSkill  = Config.AttackPallySkill;
                             Config.LowManaSkill = Config.LowManaPallySkill;
+                            Config.UpdateSkill = false;
                         }
 
                         Config.AvoidDolls   = true;         // Try to attack dolls from a greater distance with hammerdins.
@@ -1352,6 +1357,7 @@ var AutoRogerThat = {
                         } else {
                             Config.AttackSkill  = Config.AttackBarbSkill;
                             Config.LowManaSkill = Config.LowManaBarbSkill;
+                            Config.UpdateSkill = false;
                         }
 
                         Config.SkipImmune     = ["physical"];
@@ -1361,15 +1367,16 @@ var AutoRogerThat = {
 
                         break;
                     case "druid":
+                        if (me.getSkill(223, 0) >= 1) {
+                            typeOfDruid = "wolf";
+                            print("Auto ÿc4" + charClass + " ÿc1" + typeOfDruid + " attack");
+                            Config.Wereform = 1;
+                        } else {
+                            typeOfDruid = "tornado";
+                            print("Auto ÿc4" + charClass + " ÿc3" + typeOfDruid + " attack");
+                        }
+
                         if (me.charlvl <= 30) {
-                            if (me.getSkill(223, 0) >= 1) {
-                                typeOfDruid = "wolf";
-                                print("Auto ÿc4" + charClass + " ÿc1" + typeOfDruid + " attack");
-                                Config.Wereform = "Werewolf";
-                            } else {
-                                typeOfDruid = "tornado";
-                                print("Auto ÿc4" + charClass + " ÿc3" + typeOfDruid + " attack");
-                            }
 
                             switch (typeOfDruid) {
                                 case "wolf":
@@ -1387,6 +1394,7 @@ var AutoRogerThat = {
                         } else {
                             Config.AttackSkill  = Config.AttackDruidSkill;
                             Config.LowManaSkill = Config.LowManaDruidSkill;
+                            Config.UpdateSkill = false;
                         }
 
                         Config.SkipImmune   = ["physical"];
@@ -1404,6 +1412,7 @@ var AutoRogerThat = {
                         } else {
                             Config.AttackSkill  = Config.AttackSinSkill;
                             Config.LowManaSkill = Config.LowManaSinSkill;
+                            Config.UpdateSkill = false;
                         }
 
                         Config.SkipImmune   = ["lightning"];

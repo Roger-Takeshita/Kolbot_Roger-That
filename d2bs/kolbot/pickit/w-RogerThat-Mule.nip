@@ -1,0 +1,75 @@
+//! =========================================================================================== //
+//!              __   _         _   _                _   ___   _      ___  ___                  //
+//!             /__  |_  |\ |  |_  |_)   /\   |     |_)   |   /   |/   |    |                   //
+//!             \_|  |_  | \|  |_  | \  /--\  |_    |    _|_  \_  |\  _|_   |                   //
+//!                                                                                             //
+//! =========================================================================================== //
+    //+ ORGANS ===============================================================================
+        [name] == diablo'shorn
+        [name] == mephisto'sbrain
+        [name] == baal'seye //'
+    //+ PERFECT GEMS =========================================================================
+        [name] == flawedamethyst
+        [name] == flawedruby
+        [name] == flaweddiamond
+        [name] == flawedemerald
+        [name] == flawedtopaz
+        [name] == flawedsapphire
+        [name] == flawedskull
+        [name] == amethyst
+        [name] == ruby
+        [name] == diamond
+        [name] == emerald
+        [name] == topaz
+        [name] == sapphire
+        [name] == skull
+        [name] == flawlessamethyst
+        [name] == flawlessruby
+        [name] == flawlessdiamond
+        [name] == flawlessemerald
+        [name] == flawlesstopaz
+        [name] == flawlesssapphire
+        [name] == flawlessskull
+        [name] == perfectamethyst
+        [name] == perfectruby
+        [name] == perfectdiamond
+        [name] == perfectemerald
+        [name] == perfecttopaz
+        [name] == perfectsapphire
+        [name] == perfectskull
+    //+ RUNES ================================================================================
+        [name] == talrune
+        [name] == thulrune
+        [name] == ortrune
+        [name] == amnrune
+        [name] == ralrune
+        [name] == tirrune
+        [name] == solrune
+        [name] == elrune
+        [name] == eldrune
+        [name] == nefrune
+        [name] == ethrune
+        [name] == ithrune
+        [name] == shaelrune
+        [name] == dolrune
+        [name] == iorune
+        [name] == lumrune
+        [name] == falrune
+        [name] == lemrune
+        [name] == korune
+        [name] == helrune
+        [name] == pulrune
+        [name] == umrune
+        [name] == malrune
+        [name] == istrune
+        [name] >= gulrune && [name] <= zodrune
+    //+ TOKEN ================================================================================
+        [name] == twistedessenceofsuffering     // Blue   - Andariel & Duriel
+        [name] == chargedessenceofhatred        // Yellow - Mephisto
+        [name] == burningessenceofterror        // Red    - Diablo
+        [name] == festeringessenceofdestruction // Green  - Baal
+        [name] == tokenofabsolution
+    //+ KEYS =================================================================================
+        [name] == keyofhate
+        [name] == keyofterror
+        [name] == keyofdestruction

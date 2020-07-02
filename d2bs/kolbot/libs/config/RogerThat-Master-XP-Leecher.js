@@ -120,6 +120,7 @@ function LoadConfig() {
       Config.ManualPlayPick = false;
       Config.OpenChests = false;                         // Open chests. Controls key buying. true = open only chests, 2 = open everything body, rocks...
       Config.AutoMap = false;                            // Set to true to open automap at the beginning of the game.
+      Config.UpdateSkill = false;                        // Update skill manually while lvling up to lvl 30, 31+ will use attack config
    //! GENERAL CONFIG ------------------------------------------------------------------
       Config.LastMessage = "";                           // Message or array of messages to say at the end of the run. Use $nextgame to say next game - "Next game: $nextgame" (works with lead entry point)
       Config.MinGameTime = 0;                            // Min game time in seconds. Bot will TP to town and stay in game if the run is completed before.

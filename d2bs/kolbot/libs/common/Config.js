@@ -205,6 +205,7 @@ var Config = {
 	},
 	GoToTownHP: false,
 	GoToTownMP: false,
+	UpdateSkill: false,
 	RogerThatInventory1: [],
 	RogerThatInventory2: [],
 	RogerThatInventory3: [],

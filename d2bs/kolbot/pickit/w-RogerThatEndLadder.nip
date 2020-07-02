@@ -25,22 +25,11 @@
         //- Unique ------------------------------------------------------------------------
             [name] == serpentskinarmor    && [quality] == unique && [flag] != ethereal # [fireresist] == 35 // skin of the vipermagi
             [name] == russetarmor         && [quality] == unique # [enhanceddefense] == 200 // skullder's
-    //+ AXES =================================================================================
-        //- White -------------------------------------------------------------------------
-            [name] == berserkeraxe        && [quality] == superior && [flag] != ethereal # [enhanceddamage] == 15 && ([sockets] == 3 || [sockets] == 4 || [sockets] == 5) // grief
-            [name] == berserkeraxe        && [quality] == superior && [flag] == ethereal # ([sockets] == 0 || [sockets] == 6) && [enhanceddamage] == 15 // botd
-            [name] == smallcrescent       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4)
-            [name] == warspike            && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5)
-            [name] == gloriousaxe         && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5)
-            [name] == decapitator         && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5)
-            [name] == ettinaxe            && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5)
     //+ BELTS ================================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == sash                && [quality] == unique && [flag] != ethereal # [fireresist] >= 5 // lenymo sash
-            [name] == spiderwebsash       && [quality] == unique && [flag] != ethereal # [enhanceddefense] >= 120 // arachnid mesh
             [name] == mithrilcoil         && [quality] == unique && [flag] != ethereal # [damageresist] == 15 // && [vitality] == 40 // verdungo's hearty cord
             [name] == demonhidesash       && [quality] == unique && [flag] != ethereal # [damageresist] == 15 && [magicdamagereduction] == 15 && [lifeleech] == 8 // string of ears
-            [name] == heavybelt           && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 60 && [itemgoldbonus] == 80 // goldwrap
     //+ BOOTS ================================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == lightplatedboots    && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 60 // goblin toe
@@ -49,7 +38,6 @@
             [name] == sharkskinboots      && [quality] == unique && [flag] != ethereal # [maxhp] == 65 // waterwalk
             [name] == scarabshellboots    && [quality] == unique && [flag] != ethereal # [maxhp] == 65 // waterwalk x1
             [name] == battleboots         && [quality] == unique && [flag] != ethereal # [itemmagicbonus] == 50 // war traveler
-            [name] == boots               && [quality] == unique && [flag] != ethereal # [fireresist] == 45 && [enhanceddefense] == 20 // hotspur
     //+ BOWS =================================================================================
         //- White -------------------------------------------------------------------------
             [name] == diamondbow          && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4

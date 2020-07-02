@@ -2146,15 +2146,15 @@ function RogerThat() {
                 }
 
             //- Updated attack when lvl -------------------------------------------
-                try {
+                if (Config.UpdateSkill && me.charlvl >= 2) {
                     if (me.getStat(5) !== unUsedSkill) {
                         if (me.getStat(5) < unUsedSkill) {
                             AutoRogerThat.updateAttack();
-                            me.overhead("Attack skills have been updated!");
+                            me.overhead("Attack has been updated!");
                         }
+
                         unUsedSkill = me.getStat(5);
                     }
-                } catch (error) {
                 }
 
             //- Check leader ------------------------------------------------------
