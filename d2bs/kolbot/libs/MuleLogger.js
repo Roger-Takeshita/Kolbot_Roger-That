@@ -21,13 +21,13 @@ var MuleLogger = {
 		"account/password/realm": ["all"]
 	},
 
-	LogGame: ["", ""], // ["gamename", "password"]
-	LogNames: true, // Put account/character name on the picture
-	LogItemLevel: true, // Add item level to the picture
-	LogEquipped: false, // include equipped items
-	LogMerc: false, // include items merc has equipped (if alive)
-	SaveScreenShot: false, // Save pictures in jpg format (saved in 'Images' folder)
-	IngameTime: rand(180, 210), // (180, 210) to avoid RD, increase it to (7230, 7290) for mule perming
+	LogGame       : ["", ""],         // ["gamename", "password"]
+	LogNames      : true,             // Put account/character name on the picture
+	LogItemLevel  : true,             // Add item level to the picture
+	LogEquipped   : true,             // include equipped items
+	LogMerc       : true,             // include items merc has equipped (if alive)
+	SaveScreenShot: false,            // Save pictures in jpg format (saved in 'Images' folder)
+	IngameTime    : rand(180, 210),   // (180, 210) to avoid RD, increase it to (7230, 7290) for mule perming
 
 	// don't edit
 	getItemDesc: function (unit, logIlvl) {

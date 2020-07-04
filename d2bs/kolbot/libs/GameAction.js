@@ -5,12 +5,12 @@
 */
 
 var GameAction = {
-    LogNames: true, // Put account/character name on the picture
-    LogItemLevel: true, // Add item level to the picture
-    LogEquipped: true, // include equipped items
-    LogMerc: true, // include items merc has equipped (if alive)
-    SaveScreenShot: false, // Save pictures in jpg format (saved in 'Images' folder)
-    IngameTime: rand(60, 90), // Time to wait after leaving game
+	LogNames      : true,    // Put account/character name on the picture
+	LogItemLevel  : true,    // Add item level to the picture
+	LogEquipped   : true,    // include equipped items
+	LogMerc       : true,    // include items merc has equipped (if alive)
+	SaveScreenShot: false,   // Save pictures in jpg format (saved in 'Images' folder)
+	IngameTime    : 30,      // Time to wait after leaving game
 
 	// don't edit
 	init: function (task) {
