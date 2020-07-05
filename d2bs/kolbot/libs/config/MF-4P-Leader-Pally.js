@@ -41,7 +41,7 @@ function LoadConfig() {
          Config.Baal.BaalMessage = "";                   // Set msg to "baal" so AutoBaal can understand the commands
          Config.Baal.SoulQuit = false;
          Config.Baal.DollQuit = false;
-      Config.Baal.KillBaal = true;
+         Config.Baal.KillBaal = true;
    //! SPECIAL SCRIPTS -----------------------------------------------------------------
       Scripts.WPGetter = false;                          // Get missing waypoints
       Scripts.GetKeys = false;                           // Hunt for T/H/D keys

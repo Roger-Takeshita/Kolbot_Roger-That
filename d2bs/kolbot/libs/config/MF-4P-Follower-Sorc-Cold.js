@@ -17,6 +17,7 @@ function LoadConfig() {
       Scripts.MFHelper  = false;
    //! SCRIPTS -------------------------------------------------------------------------
       Scripts.Mausoleum = true;
+         Config.Mausoleum.KillBloodRaven = true;
          Config.Mausoleum.ClearCrypt = true;
       Scripts.AncientTunnels = true;
          Config.AncientTunnels.KillDarkElder = true;
@@ -99,7 +100,7 @@ function LoadConfig() {
          Config.ManaChicken   =  0;                      // Exit game if mana is less or equal to designated percent.
          Config.MercChicken   =  0;                      // Exit game if merc's life is less or equal to designated percent.
          Config.TownHP        = 55;                      // Go to town if life is under designated percent.
-         Config.TownMP        =  0;                      // Go to town if mana is under designated percent.
+         Config.TownMP        = 10;                      // Go to town if mana is under designated percent.
          Config.GoToTownHP    = false;                   // Go to town if out of healing potions
          Config.GoToTownMP    = false;                   // Go to town if out of mana potions
    //! PICK LIST -----------------------------------------------------------------------

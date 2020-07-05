@@ -17,6 +17,7 @@ function LoadConfig() {
       Scripts.MFHelper  = false;
    //! SCRIPTS -------------------------------------------------------------------------
       Scripts.Mausoleum = true;
+         Config.Mausoleum.KillBloodRaven = true;
          Config.Mausoleum.ClearCrypt = true;
       Scripts.Coldworm = true;
          Config.Coldworm.KillBeetleburst = true;
@@ -63,12 +64,12 @@ function LoadConfig() {
          Config.ShopBot.ScanIDs = [];
          Config.ShopBot.CycleDelay = 0;                  // Delay between shopping cycles in milliseconds, might help with crashes.
          Config.ShopBot.QuitOnMatch = false;             // Leave game as soon as an item is shopped.
-      Scripts.ChestMania = true;                         // Open chests in configured areas. See sdk/areas.txt
-         Config.ChestMania.Act1 = [13, 14, 15, 16, 18, 19]; // List of act 1 areas to open chests in
-         Config.ChestMania.Act2 = [];                    // List of act 2 areas to open chests in
-         Config.ChestMania.Act3 = [];                    // List of act 3 areas to open chests in
-         Config.ChestMania.Act4 = [];                    // List of act 4 areas to open chests in
-         Config.ChestMania.Act5 = [];                    // List of act 5 areas to open chests in
+      Scripts.ChestMania = false;                        // Open chests in configured areas. See sdk/areas.txt
+         Config.ChestMania.Act1 = [13, 14, 15, 16, 18, 19];                   // List of act 1 areas to open chests in
+         Config.ChestMania.Act2 = [55, 59, 65, 66, 67, 68, 69, 70, 71, 72];   // List of act 2 areas to open chests in
+         Config.ChestMania.Act3 = [79, 80, 81, 92, 93, 84, 85, 90];           // List of act 3 areas to open chests in
+         Config.ChestMania.Act4 = [107];                                      // List of act 4 areas to open chests in
+         Config.ChestMania.Act5 = [115, 116, 119, 125, 126, 127];             // List of act 5 areas to open chests in
       Scripts.ClearAnyArea = false;                      // Clear any area. Uses Config.ClearType to determine which type of monsters to kill.
          Config.ClearAnyArea.AreaList = [128, 129, 130]; // List of area ids to clear. See sdk/areas.txt
    //! INVENTORY SETTINGS --------------------------------------------------------------
@@ -102,7 +103,7 @@ function LoadConfig() {
          Config.ManaChicken   =  0;                      // Exit game if mana is less or equal to designated percent.
          Config.MercChicken   =  0;                      // Exit game if merc's life is less or equal to designated percent.
          Config.TownHP        = 55;                      // Go to town if life is under designated percent.
-         Config.TownMP        =  0;                      // Go to town if mana is under designated percent.
+         Config.TownMP        = 10;                      // Go to town if mana is under designated percent.
          Config.GoToTownHP    = false;                   // Go to town if out of healing potions
          Config.GoToTownMP    = false;                   // Go to town if out of mana potions
    //! PICK LIST -----------------------------------------------------------------------
@@ -315,7 +316,7 @@ function LoadConfig() {
          Config.KeepRunewords.push("[type] == bow # ([enhanceddamage] == 275 || [enhanceddamage] == 290)");    // 275% or 290% ed Harmony
          Config.KeepRunewords.push("[type] == axe # ([enhanceddamage] == 340 || [enhanceddamage] == 355)");    // 340% or 355% ed Oath
    //! MONSTER SKIP CONFIG -------------------------------------------------------------
-      Config.SkipImmune  = ["cold"];
+      Config.SkipImmune  = ["fire"];
       Config.SkipEnchant = [];
       Config.SkipAura    = [];
       //Config.SkipException = [getLocaleString(2851), getLocaleString(2852), getLocaleString(2853)]; // vizier, de seis, infector
