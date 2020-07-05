@@ -702,10 +702,10 @@
             [name] == barbedshield        && [quality] == unique && [flag] == ethereal # [enhanceddefense] == 120 // lanceguard eth
             [name] == grimshield          && [quality] == unique # [enhanceddefense] == 130 && [itemmanaafterkill] == 5 // lidless wall
             [name] == sacredrondache      && [quality] == unique # [paladinskills] == 2 && [enhanceddefense] >= 200 && [enhanceddamage] >= 70 && [itemtohitpercent] >= 70 // alma negra
-            [name] == gildedshield        && [quality] == unique # [enhanceddefense] >= 200 // herald of zakarum hoz
+            [name] == gildedshield        && [quality] == unique # [enhanceddefense] == 200 // herald of zakarum hoz
             [name] == hierophanttrophy    && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 200 // homunculus
             [name] == bloodlordskull      && [quality] == unique && [flag] != ethereal && [flag] == identified # [defense] == 444 // homunculus x1
-            [name] == bloodlordskull      && [quality] == unique && [flag] != ethereal # [poisonandboneskilltab]+[cursesskilltab]+[necromancersummoningskilltab] >= 3 //&& [enhanceddefense] == 150 //darkforce spawn
+            [name] == bloodlordskull      && [quality] == unique && [flag] != ethereal # [poisonandboneskilltab] == 3 && [cursesskilltab] == 3 && [necromancersummoningskilltab] == 3 && [enhanceddefense] == 150 // darkforce spawn
             [name] == succubusskull       && [quality] == unique && [flag] != ethereal # [necromancerskills] == 2 && [fireresist] == 30 && [enhanceddefense] == 150 // boneflame
         //- Upgrades ----------------------------------------------------------------------
             [name] == barbedshield        && [quality] == unique && [flag] == identified # [defense] == 134 || [defense] == 197 // swordback hold x1 (noneth/eth)

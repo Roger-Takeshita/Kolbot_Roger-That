@@ -131,6 +131,7 @@
             [name] == spikedshield        && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 60 // swordback hold
             [name] == spikedshield        && [quality] == unique && [flag] == ethereal # [enhanceddefense] == 60 // swordback hold eth
             [name] == monarch             && [quality] == unique # [defense] == 148 // stormshield
+            [name] == bloodlordskull      && [quality] == unique && [flag] != ethereal # [poisonandboneskilltab] >= 1 && [cursesskilltab] >= 1 && [necromancersummoningskilltab] >= 1 // && [enhanceddefense] == 150 // darkforce spawn
     //+ STAVES ===============================================================================
         //- White -------------------------------------------------------------------------
             [type] == staff               && [quality] <= superior # [skillfireball] >= 3 && [sockets] == 2 // leaf (tir + ral)

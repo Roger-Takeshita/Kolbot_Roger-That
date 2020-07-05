@@ -101,8 +101,6 @@
             [name] == sacredrondache      && [quality] == unique // alma negra
             [name] == gildedshield        && [quality] == unique // herald of zakarum hoz
             [name] == hierophanttrophy    && [quality] == unique // homunculus
-            [name] == bloodlordskull      && [quality] == unique // homunculus x1
-            [name] == succubusskull       && [quality] == unique // boneflame
     //+ SCEPTERS =============================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == mightyscepter       && [quality] == unique && [flag] == ethereal // heaven's light
