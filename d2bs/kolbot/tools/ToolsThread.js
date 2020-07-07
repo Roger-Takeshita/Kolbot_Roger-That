@@ -567,6 +567,7 @@ function main() {
 				if (pvpTimeFlag) break;
 				if (!me.inTown) break;
 				me.cancel();
+				Town.identify();
 
 				if (AutoRogerThat.dropProfileItems()) {
 					me.overhead("Done boos!");
@@ -577,7 +578,7 @@ function main() {
 				Pather.moveTo(me.x + rand(-8, 8), me.y + rand(-8, 8));
 
 				break;
-			case 219: //- [        - Pick Everything
+			case 219: //- [        - Pick Up Everything
 				if (pvpTimeFlag) break;
 				let pickStatus;
 				me.cancel();
@@ -783,6 +784,8 @@ function main() {
 				}
 
 				me.cancel();
+				Config.CainID.MinGold = 100;
+				Town.identify();
 
 				if (AutoRogerThat.dropProfileItems("trash")) {
 					me.overhead("Dropped some trash!");

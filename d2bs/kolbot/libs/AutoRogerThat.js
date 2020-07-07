@@ -211,6 +211,8 @@ var AutoRogerThat = {
                                 break;
                             case "item":
                             case "items":        // Drop all items
+                                Config.CainID.MinGold = 100;
+                                Town.identify();
                                 return this.dropProfileItems();
 
                             case "socket":
