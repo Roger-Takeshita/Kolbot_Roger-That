@@ -69,7 +69,6 @@
             [name] == heavygloves         && [quality] == unique && [flag] != ethereal // bloodfist
             [name] == sharkskingloves     && [quality] == unique // bloodfist x1
             [name] == vampirebonegloves   && [quality] == unique // bloodfist x2
-            [name] == chaingloves         && [quality] == unique # [itemmagicbonus] >= 25 // chance guard
             [name] == lightgauntlets      && [quality] == unique // magefist
             [name] == battlegauntlets     && [quality] == unique // magefist x1
             [name] == crusadergauntlets   && [quality] == unique // magefist x2
@@ -92,7 +91,6 @@
             [name] == guardiancrown       && [quality] == unique // arreat's face x1
             [name] == slayerguard         && [quality] == unique // arreat's face
             [name] == sallet              && [quality] == unique // rockstopper
-            [name] == casque              && [quality] == unique # [itemmagicbonus] >= 30 // stealskull
             [name] == skullcap            && [quality] == unique # [itemmagicbonus] >= 25 // tarnhelm
             [name] == warhat              && [quality] == unique
             [name] == grandcrown          && [quality] == unique // crown of thieves

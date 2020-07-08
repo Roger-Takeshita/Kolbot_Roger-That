@@ -46,11 +46,9 @@
             [name] == myrmidongreaves     && [quality] == unique && [flag] == identified // gore rider x1
             [name] == warboots            && [quality] == unique && [flag] != ethereal # [enhanceddefense] >= 160 // gore rider
             [name] == myrmidongreaves     && [quality] == unique && [flag] != ethereal # [enhanceddefense] >= 160 // gore rider x1
-            [name] == scarabshellboots    && [quality] == unique && [flag] == identified // sandstorm trek
             [name] == boneweaveboots      && [quality] == unique && [flag] != ethereal // marrowwalk
             [name] == sharkskinboots      && [quality] == unique && [flag] != ethereal # [maxhp] >= 45 // waterwalk
             [name] == scarabshellboots    && [quality] == unique && [flag] != ethereal # [maxhp] >= 45 // waterwalk x1
-            [name] == battleboots         && [quality] == unique && [flag] != ethereal # [itemmagicbonus] >= 30 // war traveler
             [name] == boots               && [quality] == unique && [flag] != ethereal # [fireresist] == 45 && [enhanceddefense] >= 10 // hotspur
             [name] == wyrmhideboots       && [quality] == unique && [flag] != ethereal   // hotspur x2
     //+ BOWS =================================================================================
@@ -66,7 +64,7 @@
         //- Unique ------------------------------------------------------------------------
             [name] == vampirebonegloves   && [quality] == unique && [flag] != ethereal // dracul's grasp
             [name] == ogregauntlets       && [quality] == unique && [flag] != ethereal // steelrend
-            [name] == chaingloves         && [quality] == unique # [itemmagicbonus] >= 20 // chance guard
+            [name] == chaingloves         && [quality] == unique # [itemmagicbonus] >= 25 // chance guard
     //+ HELMS ================================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == bloodspirit         && [quality] == unique // jalal's mane x1
@@ -74,8 +72,6 @@
             [name] == casque              && [quality] == unique # [itemmagicbonus] >= 30 // stealskull
             [name] == skullcap            && [quality] == unique # [itemmagicbonus] >= 25 // tarnhelm
             [name] == shako               && [quality] == unique // harlequin crest
-            [name] == spiredhelm          && [quality] == unique # [passivecoldmastery] >= 10 // nightwing's veil
-            [name] == corona              && [quality] == unique // crown of ages
             [name] == bonevisage          && [quality] == unique // giant skull
             [name] == grimhelm            && [quality] == unique # [damageresist] >= 15 // vampgaze
     //+ ORB ==================================================================================

@@ -214,7 +214,7 @@ function LoadConfig() {
             Config.Recipes.push([Recipe.Reroll.Magic,          "Grand Charm"]);       // Reroll magic Grand Charm (ilvl 91+)
             Config.Recipes.push([Recipe.Reroll.Magic,               "Diadem"]);       // Reroll magic Diadem
             Config.Recipes.push([Recipe.Reroll.Rare,                "Diadem"]);       // Reroll rare Diadem
-            Config.Recipes.push([Recipe.Token]);                                      // Make Token of Absolution
+            // Config.Recipes.push([Recipe.Token]);                                   // Make Token of Absolution
          //+ SOCKET -----------------------------------------------------------------
             Config.Recipes.push([Recipe.Socket.Weapon, "Great Poleaxe",     Roll.NonEth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",          Roll.NonEth]);

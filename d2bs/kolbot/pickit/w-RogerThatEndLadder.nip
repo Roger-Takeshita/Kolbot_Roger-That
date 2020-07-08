@@ -34,11 +34,11 @@
     //+ BOOTS ================================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == lightplatedboots    && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 60 // goblin toe
-            [name] == scarabshellboots    && [quality] == unique && # [strength] >= 10 // sandstorm trek
+            [name] == scarabshellboots    && [quality] == unique # [strength] >= 10 // sandstorm trek
             [name] == myrmidongreaves     && [quality] == unique && [flag] != ethereal # [dexterity] >= 15 // shadow dancer
             [name] == sharkskinboots      && [quality] == unique && [flag] != ethereal # [maxhp] == 65 // waterwalk
             [name] == scarabshellboots    && [quality] == unique && [flag] != ethereal # [maxhp] == 65 // waterwalk x1
-            [name] == battleboots         && [quality] == unique && [flag] != ethereal # [itemmagicbonus] == 50 // war traveler
+            [name] == battleboots         && [quality] == unique && [flag] != ethereal # [itemmagicbonus] >= 30 // war traveler - max 50% mf
     //+ BOWS =================================================================================
         //- White -------------------------------------------------------------------------
             [name] == diamondbow          && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4
@@ -62,7 +62,7 @@
         //- Grand Charms ------------------------------------------------------------------
             [name] == grandcharm          && [quality] == magic # [itemaddskilltab] == 1 && [cursesskilltab]+[druidsummoningskilltab]+[defensiveaurasskilltab] == 0 // && [maxhp] >= 25
             [name] == grandcharm          && [quality] == magic # ([coldresist] == 15 && [lightresist] == 15)
-            [name] == grandcharm          && [quality] == unique # [itemmagicbonus] >= 20
+            [name] == grandcharm          && [quality] == unique # [itemmagicbonus] >= 20 // gheed's fortune - max 40% mf
     //+ DAGGERS ==============================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == dagger              && [quality] == unique // gull
@@ -86,9 +86,9 @@
             [name] == demonhead           && [quality] == normal && [flag] == ethereal # [sockets] == 0
             [name] == bonevisage          && [quality] == normal && [flag] == ethereal # [sockets] == 0
         //- Unique ------------------------------------------------------------------------
-            [name] == tiara               && [quality] == unique # [fireresist] == 70 //kira's guardian
-            [name] == casque              && [quality] == unique && [flag] == ethereal # [itemmagicbonus] == 50
-            [name] == spiredhelm          && [quality] == unique # [passivecoldmastery] == 15 // nightwing's veil
+            [name] == tiara               && [quality] == unique # [fireresist] == 70 // kira's guardian
+            [name] == casque              && [quality] == unique # [itemmagicbonus] == 50 // stealskull
+            [name] == spiredhelm          && [quality] == unique # [passivecoldmastery] >= 10 // nightwing's veil - max 15% cd
             [name] == grimhelm            && [quality] == unique # [damageresist] == 20 // vampgaze
     //+ ORB ==================================================================================
         //- Unique ------------------------------------------------------------------------
@@ -114,11 +114,11 @@
             [name] == thresher            && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 240 && [lifeleech] == 15 // the reaper's toll
     //+ RINGS ================================================================================
         //- Unique ------------------------------------------------------------------------
-            [name] == ring                && [quality] == unique # [damageresist] >= 7                      // nature piece - max dr 11%
-            [name] == ring                && [quality] == unique # [maxstamina] == 50 && [lifeleech] >= 3   // bk - max ll 5%
-            [name] == ring                && [quality] == unique # [itemabsorblightpercent] >= 10           // wisp - max sorb 20%
-            [name] == ring                && [quality] == unique # [dexterity] >= 15                        // raven frost - max dex 20%
-            [name] == ring                && [quality] == unique # [itemmagicbonus] >= 15                   // nagel - max mf 30%
+            [name] == ring                && [quality] == unique # [damageresist] >= 7 // nature piece - max 11% dr
+            [name] == ring                && [quality] == unique # [maxstamina] == 50 && [lifeleech] >= 3 // bk - max 5% ll
+            [name] == ring                && [quality] == unique # [itemabsorblightpercent] >= 10 // wisp - max 20% sorb
+            [name] == ring                && [quality] == unique # [dexterity] >= 15 // raven frost - max 20 dex
+            [name] == ring                && [quality] == unique # [itemmagicbonus] >= 15 // nagel - max 30% mf
         //- Rare --------------------------------------------------------------------------
             [type] == ring                && [quality] <= rare # [itemmagicbonus] >= 30
     //+ SHIELDS ==============================================================================
