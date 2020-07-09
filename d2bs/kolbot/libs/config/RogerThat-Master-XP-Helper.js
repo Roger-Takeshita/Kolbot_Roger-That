@@ -44,7 +44,7 @@ function LoadConfig() {
          Config.Inventory1[0]       = [1,1,1,1,1,1,0,0,0,0];
          Config.Inventory1[1]       = [1,1,1,1,1,1,0,0,0,0];
          Config.Inventory1[2]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory1[3]       = [1,1,1,1,1,0,0,0,0,0];
+         Config.Inventory1[3]       = [1,1,1,1,1,1,0,0,0,0];
       //+ Inventory 2 ---------------------------------------------------------------
          Config.Inventory2[0]       = [1,1,1,1,1,1,0,0,0,0];
          Config.Inventory2[1]       = [1,1,1,1,1,1,0,0,0,0];
@@ -120,9 +120,9 @@ function LoadConfig() {
       // Config.PickitFiles.push("w-bot3.nip");
       // Config.PickitFiles.push("w-bot4.nip");
       // Config.PickitFiles.push("w-potions.nip");
-      Config.PickitFiles.push("w-RogerThatEarlyLadder.nip");
-      Config.PickitFiles.push("w-RogerThatMidLadder.nip");
-      Config.PickitFiles.push("w-RogerThatEndLadder.nip");
+      // Config.PickitFiles.push("w-RogerThatEarlyLadder.nip");
+      // Config.PickitFiles.push("w-RogerThatMidLadder.nip");
+      // Config.PickitFiles.push("w-RogerThatEndLadder.nip");
       Config.PickitFiles.push("w-RogerThat.nip");
       Config.PickitFiles.push("w-LLD.nip");
       Config.PickRange = 40;

@@ -25,19 +25,20 @@ function LoadConfig() {
    //! SCRIPTS -------------------------------------------------------------------------
       Scripts.Diablo = true;
          Config.Diablo.Entrance = true;
+         Config.Diablo.SealOrder = ["vizier", "seis", "infector"];
       Scripts.Baal = true;
          Config.Baal.HotTPMessage = "";                  // Set msg to "hot" so AutoBaal can understand the commands
          Config.Baal.SafeTPMessage = "";                 // Set msg to "safe" or "come" so AutoBaal can understand the commands
          Config.Baal.BaalMessage = "";                   // Set msg to "baal" so AutoBaal can understand the commands
          Config.Baal.SoulQuit = false;
          Config.Baal.DollQuit = false;
-      Config.Baal.KillBaal = true;
+         Config.Baal.KillBaal = true;
    //! INVENTORY SETTINGS --------------------------------------------------------------
       //+ Inventory 1 ---------------------------------------------------------------
          Config.Inventory1[0]       = [1,1,1,1,1,1,0,0,0,0];
          Config.Inventory1[1]       = [1,1,1,1,1,1,0,0,0,0];
          Config.Inventory1[2]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory1[3]       = [1,1,1,1,1,0,0,0,0,0];
+         Config.Inventory1[3]       = [1,1,1,1,1,1,0,0,0,0];
       //+ Inventory 2 ---------------------------------------------------------------
          Config.Inventory2[0]       = [1,1,1,1,1,1,0,0,0,0];
          Config.Inventory2[1]       = [1,1,1,1,1,1,0,0,0,0];
@@ -113,9 +114,9 @@ function LoadConfig() {
       // Config.PickitFiles.push("w-bot3.nip");
       // Config.PickitFiles.push("w-bot4.nip");
       // Config.PickitFiles.push("w-potions.nip");
-      Config.PickitFiles.push("w-RogerThatEarlyLadder.nip");
-      Config.PickitFiles.push("w-RogerThatMidLadder.nip");
-      Config.PickitFiles.push("w-RogerThatEndLadder.nip");
+      // Config.PickitFiles.push("w-RogerThatEarlyLadder.nip");
+      // Config.PickitFiles.push("w-RogerThatMidLadder.nip");
+      // Config.PickitFiles.push("w-RogerThatEndLadder.nip");
       Config.PickitFiles.push("w-RogerThat.nip");
       Config.PickitFiles.push("w-LLD.nip");
       Config.PickRange = 40;

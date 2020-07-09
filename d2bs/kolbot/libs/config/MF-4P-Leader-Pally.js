@@ -23,7 +23,6 @@ function LoadConfig() {
       Scripts.BoneAsh = true;
       Scripts.Coldworm = true;
          Config.Coldworm.KillBeetleburst = true;
-		   Config.Coldworm.ClearMaggotLair = false;
       Scripts.Stormtree = true;
       Scripts.Travincal = true;
       Scripts.Mephisto = true;
@@ -32,13 +31,14 @@ function LoadConfig() {
       Scripts.Hephasto = true;
       Scripts.Diablo = true;
          Config.Diablo.Entrance = true;
+         Config.Diablo.SealOrder = ["vizier", "seis", "infector"];
       Scripts.Nihlathak = true;
       Scripts.Frozenstein = true;
       Scripts.Snapchip = true;
       Scripts.Baal = true;
-         Config.Baal.HotTPMessage = "";                  // Set msg to "hot" so AutoBaal can understand the commands
-         Config.Baal.SafeTPMessage = "";                 // Set msg to "safe" or "come" so AutoBaal can understand the commands
-         Config.Baal.BaalMessage = "";                   // Set msg to "baal" so AutoBaal can understand the commands
+         Config.Baal.HotTPMessage = "";
+         Config.Baal.SafeTPMessage = "";
+         Config.Baal.BaalMessage = "";
          Config.Baal.SoulQuit = false;
          Config.Baal.DollQuit = false;
          Config.Baal.KillBaal = true;
@@ -71,7 +71,7 @@ function LoadConfig() {
       Config.Inventory[0] = [1,1,1,1,1,1,0,0,0,0];
       Config.Inventory[1] = [1,1,1,1,1,1,0,0,0,0];
       Config.Inventory[2] = [1,1,1,1,1,1,0,0,0,0];
-      Config.Inventory[3] = [1,1,1,1,1,0,0,0,0,0];
+      Config.Inventory[3] = [1,1,1,1,1,1,0,0,0,0];
 
       Config.BeltColumn   = ["hp", "mp", "rv", "rv"];
       Config.MinColumn    = [3, 3, 0, 0];
@@ -207,29 +207,29 @@ function LoadConfig() {
    //! CUBING CONFIG -------------------------------------------------------------------
       Config.Cubing        =  true;
          //+ GEMS -------------------------------------------------------------------
-            // Config.Recipes.push([Recipe.Gem,          "Flawless Amethyst"]);       // Make Perfect Amethyst
-            // Config.Recipes.push([Recipe.Gem,              "Flawless Ruby"]);       // Make Perfect Ruby
-            // Config.Recipes.push([Recipe.Gem,           "Flawless Diamond"]);       // Make Perfect Diamond
-            // Config.Recipes.push([Recipe.Gem,           "Flawless Emerald"]);       // Make Perfect Emerald
-            // Config.Recipes.push([Recipe.Gem,             "Flawless Topaz"]);       // Make Perfect Topaz
-            // Config.Recipes.push([Recipe.Gem,          "Flawless Sapphire"]);       // Make Perfect Sapphire
-            // Config.Recipes.push([Recipe.Gem,             "Flawless Skull"]);       // Make Perfect Skull
+            // Config.Recipes.push([Recipe.Gem,             "Flawless Amethyst"]);       // Make Perfect Amethyst
+            // Config.Recipes.push([Recipe.Gem,                 "Flawless Ruby"]);       // Make Perfect Ruby
+            // Config.Recipes.push([Recipe.Gem,              "Flawless Diamond"]);       // Make Perfect Diamond
+            // Config.Recipes.push([Recipe.Gem,              "Flawless Emerald"]);       // Make Perfect Emerald
+            // Config.Recipes.push([Recipe.Gem,                "Flawless Topaz"]);       // Make Perfect Topaz
+            // Config.Recipes.push([Recipe.Gem,             "Flawless Sapphire"]);       // Make Perfect Sapphire
+            // Config.Recipes.push([Recipe.Gem,                "Flawless Skull"]);       // Make Perfect Skull
          //+ CRAFT ------------------------------------------------------------------
             Config.Recipes.push([Recipe.Caster.Amulet]);                              // Craft Caster Amulet
             Config.Recipes.push([Recipe.Blood.Ring]);                                 // Craft Blood Ring
-            // Config.Recipes.push([Recipe.Caster.Belt,     "Sharkskin Belt"]);       // Craft Caster Sharkskin Belt
-            // Config.Recipes.push([Recipe.Caster.Belt,   "Vampirefang Belt"]);       // Craft Caster Vampirefang Belt
+            // Config.Recipes.push([Recipe.Caster.Belt,        "Sharkskin Belt"]);       // Craft Caster Sharkskin Belt
+            // Config.Recipes.push([Recipe.Caster.Belt,      "Vampirefang Belt"]);       // Craft Caster Vampirefang Belt
             Config.Recipes.push([Recipe.Blood.Gloves,     "Sharkskin Gloves"]);       // Craft Blood Sharkskin Gloves
             Config.Recipes.push([Recipe.Blood.Gloves,   "Vampirebone Gloves"]);       // Craft Blood Vampirebone Gloves
-            // Config.Recipes.push([Recipe.HitPower.Gloves,      "Vambraces"]);       // Craft Hit Power Vambraces
-            // Config.Recipes.push([Recipe.HitPower.Gloves,   "Chain Gloves"]);       // Craft Hit Power Chain Gloves
-            // Config.Recipes.push([Recipe.HitPower.Gloves,  "Heavy Bracers"]);       // Craft Hit Power Heavy Bracers
-            // Config.Recipes.push([Recipe.Blood.Helm,               "Armet"]);       // Craft Blood Armet
+            // Config.Recipes.push([Recipe.HitPower.Gloves,         "Vambraces"]);       // Craft Hit Power Vambraces
+            // Config.Recipes.push([Recipe.HitPower.Gloves,      "Chain Gloves"]);       // Craft Hit Power Chain Gloves
+            // Config.Recipes.push([Recipe.HitPower.Gloves,     "Heavy Bracers"]);       // Craft Hit Power Heavy Bracers
+            // Config.Recipes.push([Recipe.Blood.Helm,                  "Armet"]);       // Craft Blood Armet
          //+ OTHERS -----------------------------------------------------------------
             Config.Recipes.push([Recipe.Reroll.Magic,          "Grand Charm"]);       // Reroll magic Grand Charm (ilvl 91+)
-            // Config.Recipes.push([Recipe.Reroll.Magic,            "Diadem"]);       // Reroll magic Diadem
-            // Config.Recipes.push([Recipe.Reroll.Rare,             "Diadem"]);       // Reroll rare Diadem
-            // Config.Recipes.push([Recipe.Token]);                                   // Make Token of Absolution
+            // Config.Recipes.push([Recipe.Reroll.Magic,               "Diadem"]);       // Reroll magic Diadem
+            // Config.Recipes.push([Recipe.Reroll.Rare,                "Diadem"]);       // Reroll rare Diadem
+            // Config.Recipes.push([Recipe.Token]);                                      // Make Token of Absolution
          //+ SOCKET -----------------------------------------------------------------
             Config.Recipes.push([Recipe.Socket.Weapon, "Great Poleaxe",     Roll.NonEth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",          Roll.NonEth]);
@@ -270,11 +270,11 @@ function LoadConfig() {
             Config.Recipes.push([Recipe.Socket.Armor,  "Lacquered Plate",      Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Armor,  "Shadow Plate",         Roll.Eth]);
          //+ UPGRADE ----------------------------------------------------------------
-            // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional, "Heavy Gloves",       Roll.NonEth]);    // Upgrade Bloodfist to Exceptional
-            // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional, "Light Gauntlets",    Roll.NonEth]);    // Upgrade Magefist to Exceptional
-            // Config.Recipes.push([Recipe.Unique.Armor.ToElite,       "Sharkskin Gloves",   Roll.NonEth]);    // Upgrade Bloodfist or Grave Palm to Elite
-            // Config.Recipes.push([Recipe.Unique.Armor.ToElite,       "Battle Gauntlets",   Roll.NonEth]);    // Upgrade Magefist or Lavagout to Elite
-            // Config.Recipes.push([Recipe.Unique.Armor.ToElite,       "War Boots",          Roll.NonEth]);    // Upgrade Gore Rider to Elite
+            // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,     "Heavy Gloves",      Roll.NonEth]);    // Upgrade Bloodfist to Exceptional
+            // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,     "Light Gauntlets",   Roll.NonEth]);    // Upgrade Magefist to Exceptional
+            // Config.Recipes.push([Recipe.Unique.Armor.ToElite,           "Sharkskin Gloves",  Roll.NonEth]);    // Upgrade Bloodfist or Grave Palm to Elite
+            // Config.Recipes.push([Recipe.Unique.Armor.ToElite,           "Battle Gauntlets",  Roll.NonEth]);    // Upgrade Magefist or Lavagout to Elite
+            // Config.Recipes.push([Recipe.Unique.Armor.ToElite,           "War Boots",         Roll.NonEth]);    // Upgrade Gore Rider to Elite
       Config.MakeRunewords = false;
          Config.Runewords.push([Runeword.Oath,                          "Ettin Axe",            Roll.Eth]);    // Make Oath Ettin Axe
          Config.Runewords.push([Runeword.Oath,                          "Berserker Axe",        Roll.Eth]);    // Make Oath Beserker Axe

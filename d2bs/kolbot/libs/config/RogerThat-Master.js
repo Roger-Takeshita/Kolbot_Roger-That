@@ -29,7 +29,7 @@ function LoadConfig() {
          Config.Inventory1[0]       = [1,1,1,1,1,1,0,0,0,0];
          Config.Inventory1[1]       = [1,1,1,1,1,1,0,0,0,0];
          Config.Inventory1[2]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory1[3]       = [1,1,1,1,1,0,0,0,0,0];
+         Config.Inventory1[3]       = [1,1,1,1,1,1,0,0,0,0];
       //+ Inventory 2 ---------------------------------------------------------------
          Config.Inventory2[0]       = [1,1,1,1,1,1,0,0,0,0];
          Config.Inventory2[1]       = [1,1,1,1,1,1,0,0,0,0];
@@ -78,9 +78,9 @@ function LoadConfig() {
       //+ Town settings -------------------------------------------------------------
          Config.HealHP        = 90;                      // Go to a healer if under designated percent of life.
          Config.HealMP        =  0;                      // Go to a healer if under designated percent of mana.
-         Config.HealStatus    = true;                    // Go to a healer if poisoned or cursed
-         Config.UseMerc       = true;                    // Use merc. This is ignored and always false in d2classic.
-         Config.MercWatch     = true;                    // Instant merc revive during battle.
+         Config.HealStatus    = false;                   // Go to a healer if poisoned or cursed
+         Config.UseMerc       = false;                   // Use merc. This is ignored and always false in d2classic.
+         Config.MercWatch     = false;                   // Instant merc revive during battle.
       //+ Potion settings -----------------------------------------------------------
          Config.UseHP         = 85;                      // Drink a healing potion if life is under designated percent.
          Config.UseRejuvHP    = 65;                      // Drink a rejuvenation potion if life is under designated percent.
@@ -92,7 +92,7 @@ function LoadConfig() {
          Config.MPBuffer      =  0;                      // Number of mana potions to keep in inventory.
          Config.RejuvBuffer   =  0;                      // Number of rejuvenation potions to keep in inventory.
       //+ Chicken settings ----------------------------------------------------------
-         Config.LifeChicken   = 35;                      // Exit game if life is less or equal to designated percent.
+         Config.LifeChicken   =  0;                      // Exit game if life is less or equal to designated percent.
          Config.ManaChicken   =  0;                      // Exit game if mana is less or equal to designated percent.
          Config.MercChicken   =  0;                      // Exit game if merc's life is less or equal to designated percent.
          Config.TownHP        = 55;                      // Go to town if life is under designated percent.
@@ -147,8 +147,8 @@ function LoadConfig() {
          Config.ItemInfoQuality = [];                    // The quality of sold items to log. See NTItemAlias.dbl for values. Example: Config.ItemInfoQuality = [6, 7, 8];
       //+ Item identification settings ----------------------------------------------
          Config.CainID.Enable = true;                    // Identify items at Cain
-            Config.CainID.MinGold = 100000;              // Minimum gold (stash + character) to have in order to use Cain.
-            Config.CainID.MinUnids = 3;                  // Minimum number of unid items in order to use Cain.
+            Config.CainID.MinGold = 500;                 // Minimum gold (stash + character) to have in order to use Cain.
+            Config.CainID.MinUnids = 1;                  // Minimum number of unid items in order to use Cain.
             Config.FieldID = false;                      // Identify items in the field instead of going to town.
             Config.DroppedItemsAnnounce.Enable = false;  // Announce Dropped Items to in-game newbs
             Config.DroppedItemsAnnounce.Quality = [];    // Quality of item to announce. See NTItemAlias.dbl for values. Example: Config.DroppedItemsAnnounce.Quality = [6, 7, 8];
@@ -192,13 +192,13 @@ function LoadConfig() {
    //! CUBING CONFIG -------------------------------------------------------------------
       Config.Cubing        = false;
          //+ GEMS -------------------------------------------------------------------
-            // Config.Recipes.push([Recipe.Gem,          "Flawless Amethyst"]);       // Make Perfect Amethyst
-            // Config.Recipes.push([Recipe.Gem,              "Flawless Ruby"]);       // Make Perfect Ruby
-            // Config.Recipes.push([Recipe.Gem,           "Flawless Diamond"]);       // Make Perfect Diamond
-            // Config.Recipes.push([Recipe.Gem,           "Flawless Emerald"]);       // Make Perfect Emerald
-            // Config.Recipes.push([Recipe.Gem,             "Flawless Topaz"]);       // Make Perfect Topaz
-            // Config.Recipes.push([Recipe.Gem,          "Flawless Sapphire"]);       // Make Perfect Sapphire
-            // Config.Recipes.push([Recipe.Gem,             "Flawless Skull"]);       // Make Perfect Skull
+            // Config.Recipes.push([Recipe.Gem,             "Flawless Amethyst"]);       // Make Perfect Amethyst
+            // Config.Recipes.push([Recipe.Gem,                 "Flawless Ruby"]);       // Make Perfect Ruby
+            // Config.Recipes.push([Recipe.Gem,              "Flawless Diamond"]);       // Make Perfect Diamond
+            // Config.Recipes.push([Recipe.Gem,              "Flawless Emerald"]);       // Make Perfect Emerald
+            // Config.Recipes.push([Recipe.Gem,                "Flawless Topaz"]);       // Make Perfect Topaz
+            // Config.Recipes.push([Recipe.Gem,             "Flawless Sapphire"]);       // Make Perfect Sapphire
+            // Config.Recipes.push([Recipe.Gem,                "Flawless Skull"]);       // Make Perfect Skull
          //+ CRAFT ------------------------------------------------------------------
             Config.Recipes.push([Recipe.Caster.Amulet]);                              // Craft Caster Amulet
             Config.Recipes.push([Recipe.Blood.Ring]);                                 // Craft Blood Ring

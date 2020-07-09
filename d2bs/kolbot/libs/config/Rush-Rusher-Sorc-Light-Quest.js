@@ -55,8 +55,8 @@ function LoadConfig() {
       Config.Inventory[2] = [1,1,1,1,1,1,0,0,0,0];
       Config.Inventory[3] = [1,1,1,1,1,1,0,0,0,0];
 
-      Config.BeltColumn   = ["hp", "mp", "rv", "rv"];
-      Config.MinColumn    = [3, 3, 0, 0];
+      Config.BeltColumn   = ["hp", "mp", "mp", "rv"];
+      Config.MinColumn    = [3, 3, 3, 0];
       Config.StashGold    = 500000;
    //! TOWN SETTINGS / POTION SETTINGS / CHICKEN SETTINGS ------------------------------
       //+ Town settings -------------------------------------------------------------
@@ -91,9 +91,9 @@ function LoadConfig() {
       // Config.PickitFiles.push("w-potions.nip");
       // Config.PickitFiles.push("w-RogerThatEarlyLadder.nip");
       // Config.PickitFiles.push("w-RogerThatMidLadder.nip");
-      Config.PickitFiles.push("w-RogerThatEndLadder.nip");
-      Config.PickitFiles.push("w-RogerThat.nip");
-      Config.PickitFiles.push("w-LLD.nip");
+      // Config.PickitFiles.push("w-RogerThatEndLadder.nip");
+      // Config.PickitFiles.push("w-RogerThat.nip");
+      // Config.PickitFiles.push("w-LLD.nip");
       Config.PickRange = 40;
       Config.FastPick  = true;
    //! IN GAME CONFIG ------------------------------------------------------------------
