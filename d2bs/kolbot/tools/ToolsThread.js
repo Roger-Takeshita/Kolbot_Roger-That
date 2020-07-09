@@ -947,18 +947,16 @@ function main() {
 					quitListDelayTime = getTickCount();
 				}
 
-				if (!me.inTown) {
-					try {
-						Town.goToTown();
-					} catch (e) {
-					}
+				try {
+					Town.goToTown();
+					this.togglePause();
+					Town.doChores();
+					Town.stash(true);
+					me.cancel();
+					delay(1000);
+				} catch (e) {
 				}
 
-				this.togglePause();
-				Town.doChores();
-				Town.stash(true);
-				me.cancel()
-				delay(1000);
 				quitFlag = true;
 			}
 
@@ -1217,19 +1215,15 @@ function main() {
 			if (Config.LogExperience) {
 				Experience.log();
 			}
-			if (Config.QuitListDelay.length > 0 && Config.QuitListDelay[0] === 0 && Config.QuitListDelay[1] === 0) {
-				if (!me.inTown) {
-					try {
-						Town.goToTown();
-					} catch (e) {
-					}
-				}
 
+			try {
+				Town.goToTown();
 				this.togglePause();
 				Town.doChores();
 				Town.stash(true);
 				me.cancel()
 				delay(1000);
+			} catch (e) {
 			}
 
 			this.checkPing(false); // In case of quitlist triggering first

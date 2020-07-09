@@ -126,6 +126,7 @@
             [name] == monarch             && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 4) && [enhanceddefense] == 15 // spirit 15% ed
             [name] == monarch             && [quality] == normal   && [flag] != ethereal # [sockets] == 0 # [maxquantity] == 1                           // spirit cube
             [name] == monarch             && [quality] == normal   && [flag] != ethereal # [sockets] == 4                                                // spirit
+            [type] == auricshields        && [quality] <= superior && [flag] != ethereal # [fireresist] >= 45 && ([sockets] == 0 || [sockets] == 4)      // spirit
             [type] == auricshields        && [quality] <= superior && [class] == elite && [flag] == ethereal # ([enhanceddamage] == 65 && [tohit] == 121 || [fireresist] >= 45) && ([sockets] == 0 || [sockets] == 4) // exile
             [type] == auricshields        && [quality] <= superior && [class] == elite && [flag] != ethereal # ([enhanceddamage] == 65 && [tohit] == 121 || [fireresist] >= 45) && ([sockets] == 0 || [sockets] == 4) // spirit
         //- Unique ------------------------------------------------------------------------
