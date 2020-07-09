@@ -19,7 +19,7 @@ function BaalHelper() { // experi-mental
 		Config.TeleStomp = false;
 		Config.DodgeHP = 100;
 	}
-	
+
 	this.preattack = function () {
 		var check;
 
@@ -247,7 +247,7 @@ WSKLoop:
 		Town.move("portalspot");
 
 		for (i = 0; i < Config.BaalHelper.Wait; i += 1) {
-      if (Pather.getPortal(131, null) && Pather.usePortal(131, null)) {
+			if (Pather.getPortal(131, null) && Pather.usePortal(131, null)) {
 				break;
 			}
 
@@ -260,20 +260,22 @@ WSKLoop:
 	}
 
 	if (Config.BaalHelper.DollQuit && getUnit(1, 691)) {
+		print("Dolls found.");
+
+		return true;
+	}
+
+	if (Config.BaalHelper.SoulQuit && getUnit(1, 641)) {
 		print("Undead Soul Killers found.");
 
 		return true;
 	}
-  if (Config.BaalHelper.SoulQuit && getUnit(1, 641)) {
-    quitGame();
-    return true;
-  }
 
-  Attack.clear(15);
-  this.clearThrone();
-  Pather.moveTo(15115, 5050);
-  Precast.doPrecast(true);
-  tick = getTickCount();
+	Attack.clear(15);
+	this.clearThrone();
+	Pather.moveTo(15115, 5050);
+	Precast.doPrecast(true);
+	tick = getTickCount();
 
 	Pather.moveTo(15093, me.classid === 3 ? 5029 : 5039);
 
