@@ -122,7 +122,7 @@ var AutoRogerThat = {
                                 break;
                             case "armor":
                             case "armors":       // Armors
-                                itemCodes = [313, 314, 314, 315, 315, 316, 317, 318, 319, 320, 321, 322, 322, 323, 324, 325, 325, 326, 327, 334, 348, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 433, 434, 438, 440, 441, 442, 443];
+                                itemCodes = [313, 314, 314, 315, 315, 316, 317, 318, 319, 320, 321, 322, 322, 323, 324, 325, 325, 326, 327, 334, 348, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 433, 434, 438, 439, 440, 441, 442, 443];
                                 for (let j = 0; j < itemCodes.length; j++) {
                                     dropObj[itemCodes[j]] = qtyArray[i]
                                 }
@@ -1325,7 +1325,7 @@ var AutoRogerThat = {
                                 case "foh":
                                     skill1 = this.useSkill([121, 116, 111, 106, 96, 97]); // foh > conversion > vengeance > zeal > sacrifice > smite
                                     skill2 = this.useSkill([123, 119, 114, 103, 98]); // conviction > sanctuary > holy freeze > thorns > might
-                                    Config.Vigor  = false; // Swith to Vigor when running
+                                    Config.Vigor  = true;  // Swith to Vigor when running
                                     Config.Charge = true;  // Use Charge when running
 
                                     break;
