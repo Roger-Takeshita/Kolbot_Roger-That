@@ -28,7 +28,7 @@
     //+ BELTS ================================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == sash                && [quality] == unique && [flag] != ethereal # [fireresist] >= 5 // lenymo sash
-            [name] == spiderwebsash       && [quality] == unique && [flag] != ethereal // arachnid mesh
+            [name] == spiderwebsash       && [quality] == unique && [flag] != ethereal # [enhanceddefense] >= 90 // arachnid mesh - max 120 def
             [name] == mithrilcoil         && [quality] == unique && [flag] != ethereal # [damageresist] == 15 // && [vitality] == 40 // verdungo's hearty cord
             [name] == demonhidesash       && [quality] == unique && [flag] != ethereal # [damageresist] == 15 && [magicdamagereduction] == 15 && [lifeleech] == 8 // string of ears
     //+ BOOTS ================================================================================
@@ -161,8 +161,8 @@
             [name] == crypticsword        && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
             [name] == crystalsword        && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [sockets] == 4                     // spirit
             [name] == dimensionalblade    && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [sockets] == 4                     // spirit
-            [name] == phaseblade          && [quality] == superior # [sockets] == 5 // grief
-            [name] == crystalsword        && [quality] == superior # [sockets] == 5 // cta
+            [name] == phaseblade          && [quality] == superior # [enhanceddamage] >= 1 && [sockets] == 5 // grief
+            [name] == crystalsword        && [quality] <= superior # [sockets] == 5 # [maxquantity] == 1 // cta
     //+ SETS =================================================================================
         //* Tal Rasha's Wrappings =========================================================
             [name] == swirlingcrystal     && [quality] == set // # ([skilllightningmastery] == 2 && [skillfiremastery] == 2 && [skillcoldmastery] == 2) // Tal Rasha's Lidless Eye

@@ -547,9 +547,9 @@
             [name] == matriarchaljavelin  && [quality] == unique # [javelinandspearskilltab] == 4 && [enhanceddamage] == 200 // thunderstroke
             [name] == ghostglaive         && [quality] == unique # [enhanceddamage] == 190 && [lifeleech] == 13
         //- Rare --------------------------------------------------------------------------
-            [name] == maidenjavelin       && [quality] == rare && [flag] != ethereal # [javelinandspearskilltab]+[amazonskills] >= 4 && [ias] >= 30
-            [name] == ceremonialjavelin   && [quality] == rare && [flag] != ethereal # [javelinandspearskilltab]+[amazonskills] >= 4 && [ias] >= 30
-            [name] == matriarchaljavelin  && [quality] == rare && [flag] != ethereal # [javelinandspearskilltab]+[amazonskills] >= 4 && [ias] >= 30
+            [name] == maidenjavelin       && [quality] == rare && [flag] != ethereal # [javelinandspearskilltab]+[amazonskills] >= 5 && [ias] == 40
+            [name] == ceremonialjavelin   && [quality] == rare && [flag] != ethereal # [javelinandspearskilltab]+[amazonskills] >= 5 && [ias] == 40
+            [name] == matriarchaljavelin  && [quality] == rare && [flag] != ethereal # [javelinandspearskilltab]+[amazonskills] >= 5 && [ias] == 40
             [type] == amazonjavelin       && [quality] == rare && [flag] == ethereal # ([enhanceddamage] >= 225 && [itemtohitperlevel] > 0 || [enhanceddamage] >= 400) && ([itemreplenishdurability] > 0 || [itemreplenishquantity] > 0)
             [type] == javelin             && [quality] == rare && [flag] == ethereal # ([enhanceddamage] >= 250 && [itemtohitperlevel] >= 1 || [enhanceddamage] >= 400) && ([itemreplenishdurability] > 0 || [itemreplenishquantity] > 0)
             [type] == amazonjavelin       && [quality] == rare && [flag] != ethereal # [ias] >= 40 && ([amazonskills]+[javelinandspearskilltab] >= 4) && ([itemreplenishquantity] >= 1 || [itemknockback] >= 1 || [enhanceddamage] >= 200)
@@ -560,9 +560,9 @@
             [type] == thrownweapon        && [quality] == rare && [flag] == ethereal # [itemreplenishquantity] >= 1 && [ias] >= 20 && ([enhanceddamage] >= 400 || ([enhanceddamage] >= 275 && [itemtohitperlevel] >= 1))
             [type] == thrownweapon        && [quality] == rare && [flag] == ethereal # [itemreplenishquantity] >= 1 && [ias] >= 40 && ([enhanceddamage] >= 350 || ([enhanceddamage] >= 250 && [itemtohitperlevel] >= 1))
         //- Magic -------------------------------------------------------------------------
-            [name] == maidenjavelin       && [quality] == magic && [flag] != ethereal # [javelinandspearskilltab]+[amazonskills] >= 4 && [ias] >= 30
-            [name] == ceremonialjavelin   && [quality] == magic && [flag] != ethereal # [javelinandspearskilltab]+[amazonskills] >= 4 && [ias] >= 30
-            [name] == matriarchaljavelin  && [quality] == magic && [flag] != ethereal # [javelinandspearskilltab]+[amazonskills] >= 4 && [ias] >= 30
+            [name] == maidenjavelin       && [quality] == magic && [flag] != ethereal # [javelinandspearskilltab]+[amazonskills] >= 5 && [ias] == 40
+            [name] == ceremonialjavelin   && [quality] == magic && [flag] != ethereal # [javelinandspearskilltab]+[amazonskills] >= 5 && [ias] == 40
+            [name] == matriarchaljavelin  && [quality] == magic && [flag] != ethereal # [javelinandspearskilltab]+[amazonskills] >= 5 && [ias] == 40
     //+ MACES ================================================================================
         //- Unique ------------------------------------------------------------------------
             // [name] == tyrantclub          && [quality] == unique && [flag] != ethereal # [enhanceddamage] == 230 // demon limb (for prebuff)
