@@ -1758,34 +1758,32 @@ function RogerThat() {
                                 let qtyArray = [];
                                 let dropReturn;
 
-                                if (msgArray[0] === 'drop') {
-                                    for (let i = 1; i < msgArray.length; i++) {
-                                        if (isNaN(parseInt(msgArray[i], 10))) {
-                                            qtyArray.push(-1);
-                                            itemsArray.push(msgArray[i]);
+                                for (let i = 1; i < msgArray.length; i++) {
+                                    if (isNaN(parseInt(msgArray[i], 10))) {
+                                        qtyArray.push(-1);
+                                        itemsArray.push(msgArray[i]);
 
+                                    } else {
+                                        if (isNaN(parseInt(msgArray[i + 1], 10))) {
+                                            qtyArray.push(parseInt(msgArray[i], 10));
+                                            itemsArray.push(msgArray[i + 1]);
+                                            i++;
                                         } else {
-                                            if (isNaN(parseInt(msgArray[i + 1], 10))) {
-                                                qtyArray.push(parseInt(msgArray[i], 10));
-                                                itemsArray.push(msgArray[i + 1]);
-                                                i++;
-                                            } else {
-                                                console.log('Wrong input');
-                                                wrongInputFlag = true;
-                                                break;
-                                            }
+                                            console.log('Wrong input');
+                                            wrongInputFlag = true;
+                                            break;
                                         }
                                     }
+                                }
 
-                                    if (!wrongInputFlag) {
-                                        dropReturn = AutoRogerThat.dropMultipleItems(itemsArray, qtyArray);
-                                        Pather.moveTo(me.x + rand(-6, 6), me.y + rand(-6, 6));
+                                if (!wrongInputFlag) {
+                                    dropReturn = AutoRogerThat.dropMultipleItems(itemsArray, qtyArray);
+                                    Pather.moveTo(me.x + rand(-6, 6), me.y + rand(-6, 6));
 
-                                        if (dropReturn) {
-                                            me.overhead("Done boss!");
-                                        } else {
-                                            me.overhead("Sorry! I'm poor!");
-                                        }
+                                    if (dropReturn) {
+                                        me.overhead("Done boss!");
+                                    } else {
+                                        me.overhead("Sorry! I'm poor!");
                                     }
                                 }
 
