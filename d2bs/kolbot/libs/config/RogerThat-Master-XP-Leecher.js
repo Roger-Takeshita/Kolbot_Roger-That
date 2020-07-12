@@ -75,9 +75,9 @@ function LoadConfig() {
          Config.InventoryGeneric[2] = [1,1,1,1,1,1,1,1,1,1];
          Config.InventoryGeneric[3] = [1,1,1,1,1,1,1,1,1,1];
 
-      Config.BeltColumn = ["hp", "mp", "mp", "rv"];
-      Config.MinColumn  = [3, 3, 3, 0];
-      Config.StashGold  = 200000;
+      Config.BeltColumn   = ["hp", "mp", "mp", "rv"];
+      Config.MinColumn    = [3, 3, 3, 0];
+      Config.StashGold    = 200000;
    //! TOWN SETTINGS / POTION SETTINGS / CHICKEN SETTINGS ------------------------------
       //+ Town settings -------------------------------------------------------------
          Config.HealHP        = 90;                      // Go to a healer if under designated percent of life.
@@ -163,7 +163,7 @@ function LoadConfig() {
          Config.LogHighRunes = true;                     // Log high runes (Ist - Zod) on item viewer
          Config.LogLowGems = false;                      // Log low gems (chipped, flawed, normal) on item viewer
          Config.LogHighGems = false;                     // Log high gems (flawless, perfect) on item viewer
-         Config.SkipLogging = [];                        // Custom log skip list. Set as three digit item code or classid. Example: ["tes", "ceh", 656, 657] will ignore logging of essences.
+         Config.SkipLogging = [654, 655, 656, 657];      // Custom log skip list. Set as three digit item code or classid. Example: ["tes", "ceh", 656, 657] will ignore logging of essences.
          Config.ShowCubingInfo = false;                  // Show cubing messages on console
       //+ Repair settings -----------------------------------------------------------
          Config.CubeRepair = false;                      // Repair weapons with Ort and armor with Ral rune. Don't use it if you don't understand the risk of losing items.
@@ -195,13 +195,13 @@ function LoadConfig() {
    //! CUBING CONFIG -------------------------------------------------------------------
       Config.Cubing        = false;
          //+ GEMS -------------------------------------------------------------------
-            // Config.Recipes.push([Recipe.Gem,          "Flawless Amethyst"]);       // Make Perfect Amethyst
-            // Config.Recipes.push([Recipe.Gem,              "Flawless Ruby"]);       // Make Perfect Ruby
-            // Config.Recipes.push([Recipe.Gem,           "Flawless Diamond"]);       // Make Perfect Diamond
-            // Config.Recipes.push([Recipe.Gem,           "Flawless Emerald"]);       // Make Perfect Emerald
-            // Config.Recipes.push([Recipe.Gem,             "Flawless Topaz"]);       // Make Perfect Topaz
-            // Config.Recipes.push([Recipe.Gem,          "Flawless Sapphire"]);       // Make Perfect Sapphire
-            // Config.Recipes.push([Recipe.Gem,             "Flawless Skull"]);       // Make Perfect Skull
+            // Config.Recipes.push([Recipe.Gem,             "Flawless Amethyst"]);       // Make Perfect Amethyst
+            // Config.Recipes.push([Recipe.Gem,                 "Flawless Ruby"]);       // Make Perfect Ruby
+            // Config.Recipes.push([Recipe.Gem,              "Flawless Diamond"]);       // Make Perfect Diamond
+            // Config.Recipes.push([Recipe.Gem,              "Flawless Emerald"]);       // Make Perfect Emerald
+            // Config.Recipes.push([Recipe.Gem,                "Flawless Topaz"]);       // Make Perfect Topaz
+            // Config.Recipes.push([Recipe.Gem,             "Flawless Sapphire"]);       // Make Perfect Sapphire
+            // Config.Recipes.push([Recipe.Gem,                "Flawless Skull"]);       // Make Perfect Skull
          //+ CRAFT ------------------------------------------------------------------
             Config.Recipes.push([Recipe.Caster.Amulet]);                              // Craft Caster Amulet
             Config.Recipes.push([Recipe.Blood.Ring]);                                 // Craft Blood Ring
@@ -217,7 +217,7 @@ function LoadConfig() {
             Config.Recipes.push([Recipe.Reroll.Magic,          "Grand Charm"]);       // Reroll magic Grand Charm (ilvl 91+)
             Config.Recipes.push([Recipe.Reroll.Magic,               "Diadem"]);       // Reroll magic Diadem
             Config.Recipes.push([Recipe.Reroll.Rare,                "Diadem"]);       // Reroll rare Diadem
-            // Config.Recipes.push([Recipe.Token]);                                   // Make Token of Absolution
+            // Config.Recipes.push([Recipe.Token]);                                      // Make Token of Absolution
          //+ SOCKET -----------------------------------------------------------------
             Config.Recipes.push([Recipe.Socket.Weapon, "Great Poleaxe",     Roll.NonEth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",          Roll.NonEth]);
@@ -225,23 +225,12 @@ function LoadConfig() {
             Config.Recipes.push([Recipe.Socket.Weapon, "Colossus Voulge",   Roll.NonEth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",          Roll.NonEth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Giant Thresher",    Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Monarch",           Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Sacred Targe",      Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Akaran Targe",      Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Aerin Shield",      Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Protector Shield",  Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Heraldic Shield",   Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Royal Shield",      Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Sacred Hondache",   Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Hondache",          Roll.NonEth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Great Poleaxe",        Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",             Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Cryptic Axe",          Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Colossus Voulge",      Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",             Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Giant Thresher",       Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Weapon, "Berserker Axe",        Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Weapon, "Colossus Blade",       Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Armor,  "Sacred Armor",         Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Armor,  "Archon Plate",         Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Armor,  "Dusk Shroud",          Roll.Eth]);
@@ -257,12 +246,23 @@ function LoadConfig() {
             Config.Recipes.push([Recipe.Socket.Armor,  "Hellforge Plate",      Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Armor,  "Lacquered Plate",      Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Armor,  "Shadow Plate",         Roll.Eth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Monarch",           Roll.NonEth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Sacred Targe",      Roll.NonEth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Akaran Targe",      Roll.NonEth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Aerin Shield",      Roll.NonEth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Protector Shield",  Roll.NonEth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Heraldic Shield",   Roll.NonEth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Royal Shield",      Roll.NonEth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Sacred Hondache",   Roll.NonEth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Hondache",          Roll.NonEth]);
+            Config.Recipes.push([Recipe.Socket.Weapon, "Berserker Axe",        Roll.Eth]);
+            Config.Recipes.push([Recipe.Socket.Weapon, "Colossus Blade",       Roll.Eth]);
          //+ UPGRADE ----------------------------------------------------------------
-            // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional, "Heavy Gloves",       Roll.NonEth]);    // Upgrade Bloodfist to Exceptional
-            // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional, "Light Gauntlets",    Roll.NonEth]);    // Upgrade Magefist to Exceptional
-            // Config.Recipes.push([Recipe.Unique.Armor.ToElite,       "Sharkskin Gloves",   Roll.NonEth]);    // Upgrade Bloodfist or Grave Palm to Elite
-            // Config.Recipes.push([Recipe.Unique.Armor.ToElite,       "Battle Gauntlets",   Roll.NonEth]);    // Upgrade Magefist or Lavagout to Elite
-            // Config.Recipes.push([Recipe.Unique.Armor.ToElite,       "War Boots",          Roll.NonEth]);    // Upgrade Gore Rider to Elite
+            // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,     "Heavy Gloves",      Roll.NonEth]);    // Upgrade Bloodfist to Exceptional
+            // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,     "Light Gauntlets",   Roll.NonEth]);    // Upgrade Magefist to Exceptional
+            // Config.Recipes.push([Recipe.Unique.Armor.ToElite,           "Sharkskin Gloves",  Roll.NonEth]);    // Upgrade Bloodfist or Grave Palm to Elite
+            // Config.Recipes.push([Recipe.Unique.Armor.ToElite,           "Battle Gauntlets",  Roll.NonEth]);    // Upgrade Magefist or Lavagout to Elite
+            // Config.Recipes.push([Recipe.Unique.Armor.ToElite,           "War Boots",         Roll.NonEth]);    // Upgrade Gore Rider to Elite
       Config.MakeRunewords = false;
          Config.Runewords.push([Runeword.Oath,                          "Ettin Axe",            Roll.Eth]);    // Make Oath Ettin Axe
          Config.Runewords.push([Runeword.Oath,                          "Berserker Axe",        Roll.Eth]);    // Make Oath Beserker Axe
@@ -338,7 +338,7 @@ function LoadConfig() {
       };
 
       Config.Dodge             = true;                   // Move away from monsters that get too close. Don't use with short-ranged attacks like Poison Dagger.
-      Config.DodgeRange        =  10;                    // Distance to keep from monsters.
+      Config.DodgeRange        = 10;                     // Distance to keep from monsters.
       Config.DodgeHP           = 100;                    // Dodge only if HP percent is less than or equal to Config.DodgeHP. 100 = always dodge.
       Config.BossPriority      = true;                   // Set to true to attack Unique/SuperUnique monsters first when clearing
       Config.ClearType         = 0xF;                    // Monster spectype to kill in level clear scripts (ie. Mausoleum). 0xF = skip normal, 0x7 = champions/bosses, 0 = all

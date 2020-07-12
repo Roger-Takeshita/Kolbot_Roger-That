@@ -13,7 +13,8 @@ var CustomConfig = {
             // "MF-4S-Leader-Sorc-Cold":               ["D1 - T MF L"],
             // "MF-4S-Follower-Sorc-Light":            ["D2 - T MF L"],
             // "MF-4S-Follower-Sorc-Cold":             ["D3 - T MF L"],
-            // "MF-4S-Follower-Sorc-Fire":             ["D3 - T MF L"],
+            // "MF-4S-Follower-Pally-FOH":             ["D4 - T MF L"],
+            // "MF-4S-Follower-Sorc-Fire":             ["D4 - T MF L"],
             // "MF-4S-Follower-Sorc-Light-Cow":        ["D4 - T MF L"],
             // "MF-4S-Follower-Sorc-Cold-Cow":         ["D4 - T MF L"],
     //! SOCKET QUEST / RUSH --------------------------------------------------

@@ -49,7 +49,7 @@ function LoadConfig() {
          Config.TownHP        = 55;                      // Go to town if life is under designated percent.
          Config.TownMP        =  0;                      // Go to town if mana is under designated percent.
          Config.GoToTownHP    = false;                   // Go to town if out of healing potions
-         Config.GoToTownMP    =  true;                   // Go to town if out of mana potions
+         Config.GoToTownMP    = false;                   // Go to town if out of mana potions
    //! PICK LIST -----------------------------------------------------------------------
       // Config.PickitFiles.push("w-bot1.nip");
       // Config.PickitFiles.push("w-bot2.nip");
@@ -59,8 +59,8 @@ function LoadConfig() {
       // Config.PickitFiles.push("w-RogerThatEarlyLadder.nip");
       // Config.PickitFiles.push("w-RogerThatMidLadder.nip");
       // Config.PickitFiles.push("w-RogerThatEndLadder.nip");
-      Config.PickitFiles.push("w-RogerThat.nip");
-      Config.PickitFiles.push("w-LLD.nip");
+      // Config.PickitFiles.push("w-RogerThat.nip");
+      // Config.PickitFiles.push("w-LLD.nip");
       Config.PickRange = 40;
       Config.FastPick  = true;
    //! IN GAME CONFIG ------------------------------------------------------------------
@@ -69,7 +69,7 @@ function LoadConfig() {
       Config.AutoMap = false;                            // Set to true to open automap at the beginning of the game.
    //! GENERAL CONFIG ------------------------------------------------------------------
       Config.LastMessage = "";                           // Message or array of messages to say at the end of the run. Use $nextgame to say next game - "Next game: $nextgame" (works with lead entry point)
-      Config.MinGameTime = 1200;                         // Min game time in seconds. Bot will TP to town and stay in game if the run is completed before.
+      Config.MinGameTime = 0;                            // Min game time in seconds. Bot will TP to town and stay in game if the run is completed before.
       Config.MaxGameTime = 0;                            // Maximum game time in seconds. Quit game when limit is reached.
       Config.TeleSwitch = false;                         // Switch to secondary (non-primary) slot when teleporting more than 5 nodes.
       Config.MiniShopBot = true;                         // Scan items in NPC shops.

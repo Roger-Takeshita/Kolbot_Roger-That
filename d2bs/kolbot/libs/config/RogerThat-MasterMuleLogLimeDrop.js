@@ -18,9 +18,9 @@ function LoadConfig() {
       Config.Inventory[2] = [0,0,0,0,0,0,0,0,0,0];
       Config.Inventory[3] = [0,0,0,0,0,0,0,0,0,0];
 
-      Config.BeltColumn = ["hp", "mp", "mp", "rv"];
-      Config.MinColumn  = [3, 3, 3, 0];
-      Config.StashGold  = 200000;
+      Config.BeltColumn   = ["hp", "mp", "mp", "rv"];
+      Config.MinColumn    = [3, 3, 3, 0];
+      Config.StashGold    = 200000;
    //! TOWN SETTINGS / POTION SETTINGS / CHICKEN SETTINGS ------------------------------
       //+ Town settings -------------------------------------------------------------
          Config.HealHP        = 90;                      // Go to a healer if under designated percent of life.
@@ -85,7 +85,7 @@ function LoadConfig() {
          Config.LogHighRunes = true;                     // Log high runes (Ist - Zod) on item viewer
          Config.LogLowGems = false;                      // Log low gems (chipped, flawed, normal) on item viewer
          Config.LogHighGems = false;                     // Log high gems (flawless, perfect) on item viewer
-         Config.SkipLogging = [];                        // Custom log skip list. Set as three digit item code or classid. Example: ["tes", "ceh", 656, 657] will ignore logging of essences.
+         Config.SkipLogging = [654, 655, 656, 657];      // Custom log skip list. Set as three digit item code or classid. Example: ["tes", "ceh", 656, 657] will ignore logging of essences.
          Config.ShowCubingInfo = false;                  // Show cubing messages on console
       //+ Repair settings -----------------------------------------------------------
          Config.CubeRepair = false;                      // Repair weapons with Ort and armor with Ral rune. Don't use it if you don't understand the risk of losing items.

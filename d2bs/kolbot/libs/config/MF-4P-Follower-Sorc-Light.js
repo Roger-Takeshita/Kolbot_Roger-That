@@ -121,7 +121,7 @@ function LoadConfig() {
    //! GENERAL CONFIG ------------------------------------------------------------------
       Config.LastMessage = "";                           // Message or array of messages to say at the end of the run. Use $nextgame to say next game - "Next game: $nextgame" (works with lead entry point)
       Config.MinGameTime = 300;                          // Min game time in seconds. Bot will TP to town and stay in game if the run is completed before.
-      Config.MaxGameTime = 1080;                         // Maximum game time in seconds. Quit game when limit is reached.
+      Config.MaxGameTime = 1200;                         // Maximum game time in seconds. Quit game when limit is reached.
       Config.TeleSwitch = false;                         // Switch to secondary (non-primary) slot when teleporting more than 5 nodes.
       Config.MiniShopBot = true;                         // Scan items in NPC shops.
       Config.PacketShopping = false;                     // Use packets to shop. Improves shopping speed.
@@ -160,7 +160,7 @@ function LoadConfig() {
          Config.LogHighRunes = true;                     // Log high runes (Ist - Zod) on item viewer
          Config.LogLowGems = false;                      // Log low gems (chipped, flawed, normal) on item viewer
          Config.LogHighGems = false;                     // Log high gems (flawless, perfect) on item viewer
-         Config.SkipLogging = [];                        // Custom log skip list. Set as three digit item code or classid. Example: ["tes", "ceh", 656, 657] will ignore logging of essences.
+         Config.SkipLogging = [654, 655, 656, 657];      // Custom log skip list. Set as three digit item code or classid. Example: ["tes", "ceh", 656, 657] will ignore logging of essences.
          Config.ShowCubingInfo = false;                  // Show cubing messages on console
       //+ Repair settings -----------------------------------------------------------
          Config.CubeRepair = false;                      // Repair weapons with Ort and armor with Ral rune. Don't use it if you don't understand the risk of losing items.
@@ -184,7 +184,7 @@ function LoadConfig() {
          Config.RogerThatTelegram.Notify.HotIP = true;
          Config.RogerThatTelegram.Notify.DiabloClone = true;
    //! DIABLO CLONE CONFIG -------------------------------------------------------------
-      Config.StopOnDClone = true;                        // Go to town and idle as soon as Diablo walks the Earth
+      Config.StopOnDClone = false;                       // Go to town and idle as soon as Diablo walks the Earth
       Config.SoJWaitTime = 5;                            // Time in minutes to wait for another SoJ sale before leaving game. 0 = disabled
       Config.KillDclone = true;                          // Go to Palace Cellar 3 and try to kill Diablo Clone. Pointless if you already have Annihilus.
       Config.DCloneQuit = false;                         // 1 = quit when Diablo walks, 2 = quit on soj sales, 0 = disabled
@@ -219,7 +219,7 @@ function LoadConfig() {
             Config.Recipes.push([Recipe.Blood.Ring]);                                 // Craft Blood Ring
             // Config.Recipes.push([Recipe.Caster.Belt,        "Sharkskin Belt"]);       // Craft Caster Sharkskin Belt
             // Config.Recipes.push([Recipe.Caster.Belt,      "Vampirefang Belt"]);       // Craft Caster Vampirefang Belt
-            Config.Recipes.push([Recipe.Blood.Gloves,     "Sharkskin Gloves"]);       // Craft Blood Sharkskin Gloves
+            // Config.Recipes.push([Recipe.Blood.Gloves,     "Sharkskin Gloves"]);       // Craft Blood Sharkskin Gloves
             Config.Recipes.push([Recipe.Blood.Gloves,   "Vampirebone Gloves"]);       // Craft Blood Vampirebone Gloves
             // Config.Recipes.push([Recipe.HitPower.Gloves,         "Vambraces"]);       // Craft Hit Power Vambraces
             // Config.Recipes.push([Recipe.HitPower.Gloves,      "Chain Gloves"]);       // Craft Hit Power Chain Gloves
@@ -231,13 +231,34 @@ function LoadConfig() {
             // Config.Recipes.push([Recipe.Reroll.Rare,                "Diadem"]);       // Reroll rare Diadem
             // Config.Recipes.push([Recipe.Token]);                                      // Make Token of Absolution
          //+ SOCKET -----------------------------------------------------------------
-            Config.Recipes.push([Recipe.Socket.Weapon, "Great Poleaxe",     Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",          Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Weapon, "Cryptic Axe",       Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Weapon, "Colossus Voulge",   Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",          Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Weapon, "Giant Thresher",    Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Monarch",           Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Weapon, "Great Poleaxe",     Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",          Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Weapon, "Cryptic Axe",       Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Weapon, "Colossus Voulge",   Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",          Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Weapon, "Giant Thresher",    Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Weapon, "Great Poleaxe",        Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",             Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Weapon, "Cryptic Axe",          Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Weapon, "Colossus Voulge",      Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",             Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Weapon, "Giant Thresher",       Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "Sacred Armor",         Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "Archon Plate",         Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "Dusk Shroud",          Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "Wyrmhide",             Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "Scarab Husk",          Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "Wire Fleece",          Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "Diamond Mail",         Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "Loricated Mail",       Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "Great Hauberk",        Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "Boneweave",            Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "Balrog Skin",          Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "KrakenShell",          Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "Hellforge Plate",      Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "Lacquered Plate",      Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "Shadow Plate",         Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Monarch",           Roll.NonEth]);
             Config.Recipes.push([Recipe.Socket.Shield, "Sacred Targe",      Roll.NonEth]);
             Config.Recipes.push([Recipe.Socket.Shield, "Akaran Targe",      Roll.NonEth]);
             Config.Recipes.push([Recipe.Socket.Shield, "Aerin Shield",      Roll.NonEth]);
@@ -246,29 +267,8 @@ function LoadConfig() {
             Config.Recipes.push([Recipe.Socket.Shield, "Royal Shield",      Roll.NonEth]);
             Config.Recipes.push([Recipe.Socket.Shield, "Sacred Hondache",   Roll.NonEth]);
             Config.Recipes.push([Recipe.Socket.Shield, "Hondache",          Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Weapon, "Great Poleaxe",        Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",             Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Weapon, "Cryptic Axe",          Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Weapon, "Colossus Voulge",      Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",             Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Weapon, "Giant Thresher",       Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Berserker Axe",        Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Colossus Blade",       Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Armor,  "Sacred Armor",         Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Armor,  "Archon Plate",         Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Armor,  "Dusk Shroud",          Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Armor,  "Wyrmhide",             Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Armor,  "Scarab Husk",          Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Armor,  "Wire Fleece",          Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Armor,  "Diamond Mail",         Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Armor,  "Loricated Mail",       Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Armor,  "Great Hauberk",        Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Armor,  "Boneweave",            Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Armor,  "Balrog Skin",          Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Armor,  "KrakenShell",          Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Armor,  "Hellforge Plate",      Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Armor,  "Lacquered Plate",      Roll.Eth]);
-            Config.Recipes.push([Recipe.Socket.Armor,  "Shadow Plate",         Roll.Eth]);
          //+ UPGRADE ----------------------------------------------------------------
             // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,     "Heavy Gloves",      Roll.NonEth]);    // Upgrade Bloodfist to Exceptional
             // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,     "Light Gauntlets",   Roll.NonEth]);    // Upgrade Magefist to Exceptional
