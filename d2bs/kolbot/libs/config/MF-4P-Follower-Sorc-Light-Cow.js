@@ -214,42 +214,47 @@ function LoadConfig() {
             Config.Recipes.push([Recipe.Reroll.Rare,                "Diadem"]);       // Reroll rare Diadem
             // Config.Recipes.push([Recipe.Token]);                                      // Make Token of Absolution
          //+ SOCKET -----------------------------------------------------------------
+            // Config.Recipes.push([Recipe.Socket.Weapon, "Giant Thresher",    Roll.NonEth]);
             // Config.Recipes.push([Recipe.Socket.Weapon, "Great Poleaxe",     Roll.NonEth]);
             // Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",          Roll.NonEth]);
             // Config.Recipes.push([Recipe.Socket.Weapon, "Cryptic Axe",       Roll.NonEth]);
             // Config.Recipes.push([Recipe.Socket.Weapon, "Colossus Voulge",   Roll.NonEth]);
-            // Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",          Roll.NonEth]);
-            // Config.Recipes.push([Recipe.Socket.Weapon, "Giant Thresher",    Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Weapon, "Giant Thresher",       Roll.Eth]);
             // Config.Recipes.push([Recipe.Socket.Weapon, "Great Poleaxe",        Roll.Eth]);
             // Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",             Roll.Eth]);
             // Config.Recipes.push([Recipe.Socket.Weapon, "Cryptic Axe",          Roll.Eth]);
             // Config.Recipes.push([Recipe.Socket.Weapon, "Colossus Voulge",      Roll.Eth]);
-            // Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",             Roll.Eth]);
-            // Config.Recipes.push([Recipe.Socket.Weapon, "Giant Thresher",       Roll.Eth]);
-            // Config.Recipes.push([Recipe.Socket.Armor,  "Sacred Armor",         Roll.Eth]);
-            // Config.Recipes.push([Recipe.Socket.Armor,  "Archon Plate",         Roll.Eth]);
             // Config.Recipes.push([Recipe.Socket.Armor,  "Dusk Shroud",          Roll.Eth]);
             // Config.Recipes.push([Recipe.Socket.Armor,  "Wyrmhide",             Roll.Eth]);
             // Config.Recipes.push([Recipe.Socket.Armor,  "Scarab Husk",          Roll.Eth]);
             // Config.Recipes.push([Recipe.Socket.Armor,  "Wire Fleece",          Roll.Eth]);
             // Config.Recipes.push([Recipe.Socket.Armor,  "Diamond Mail",         Roll.Eth]);
             // Config.Recipes.push([Recipe.Socket.Armor,  "Loricated Mail",       Roll.Eth]);
-            // Config.Recipes.push([Recipe.Socket.Armor,  "Great Hauberk",        Roll.Eth]);
             // Config.Recipes.push([Recipe.Socket.Armor,  "Boneweave",            Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "Great Hauberk",        Roll.Eth]);
             // Config.Recipes.push([Recipe.Socket.Armor,  "Balrog Skin",          Roll.Eth]);
             // Config.Recipes.push([Recipe.Socket.Armor,  "KrakenShell",          Roll.Eth]);
             // Config.Recipes.push([Recipe.Socket.Armor,  "Hellforge Plate",      Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "Archon Plate",         Roll.Eth]);
             // Config.Recipes.push([Recipe.Socket.Armor,  "Lacquered Plate",      Roll.Eth]);
             // Config.Recipes.push([Recipe.Socket.Armor,  "Shadow Plate",         Roll.Eth]);
+            // Config.Recipes.push([Recipe.Socket.Armor,  "Sacred Armor",         Roll.Eth]);
             // Config.Recipes.push([Recipe.Socket.Shield, "Monarch",           Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Target",            Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Rondache",          Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Heraldic Shield",   Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Aerin Shield",      Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Crown Shield",      Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Akaran Targe",      Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Akaran Rondache",   Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Protector Shield",  Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Gilded Shield",     Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Royal Shield",      Roll.NonEth]);
             Config.Recipes.push([Recipe.Socket.Shield, "Sacred Targe",      Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Akaran Targe",      Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Aerin Shield",      Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Protector Shield",  Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Heraldic Shield",   Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Royal Shield",      Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Sacred Hondache",   Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Hondache",          Roll.NonEth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Sacred Rondache",   Roll.NonEth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Kurast Shield",     Roll.NonEth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Zakarum Shield",    Roll.NonEth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Vortex Shield",     Roll.NonEth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Berserker Axe",        Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Colossus Blade",       Roll.Eth]);
          //+ UPGRADE ----------------------------------------------------------------
@@ -262,11 +267,11 @@ function LoadConfig() {
          Config.Runewords.push([Runeword.Oath,                          "Ettin Axe",            Roll.Eth]);    // Make Oath Ettin Axe
          Config.Runewords.push([Runeword.Oath,                          "Berserker Axe",        Roll.Eth]);    // Make Oath Beserker Axe
          Config.Runewords.push([Runeword.Oath,                          "Small Crescent",       Roll.Eth]);    // Make Oath Small Crescent
+         Config.Runewords.push([Runeword.Insight,                       "Giant Thresher",       Roll.Eth]);    // Make ethereal Insight Giant Thresher
+         Config.Runewords.push([Runeword.Insight,                       "Great Poleaxe",        Roll.Eth]);    // Make ethereal Insight Great Poleaxe
          Config.Runewords.push([Runeword.Insight,                       "Thresher",             Roll.Eth]);    // Make ethereal Insight Thresher
          Config.Runewords.push([Runeword.Insight,                       "Cryptic Axe",          Roll.Eth]);    // Make ethereal Insight Cryptic Axe
          Config.Runewords.push([Runeword.Insight,                       "Colossus Voulge",      Roll.Eth]);    // Make ethereal Insight Colossus Voulge
-         Config.Runewords.push([Runeword.Insight,                       "Thresher",             Roll.Eth]);    // Make ethereal Insight Thresher
-         Config.Runewords.push([Runeword.Insight,                       "Giant Thresher",       Roll.Eth]);    // Make ethereal Insight Giant Thresher
          Config.Runewords.push([Runeword.Insight,                       "Elder Staff",          Roll.Eth]);    // Make ethereal Insight Elder Staff
          Config.Runewords.push([Runeword.Insight,                       "Cedar Staff",          Roll.Eth]);    // Make ethereal Insight Cedar Staff
          Config.Runewords.push([Runeword.Insight,                       "Battle Staff",         Roll.Eth]);    // Make ethereal Insight Battle Staff
@@ -275,19 +280,28 @@ function LoadConfig() {
          Config.Runewords.push([Runeword.Insight,                       "Battle Staff",      Roll.NonEth]);    // Make non-ethereal Insight Battle Staff
          Config.Runewords.push([Runeword.Sanctuary,                     "Hyperion",          Roll.NonEth]);    // Make Hyperion Sanctuary
          Config.Runewords.push([Runeword.Sanctuary,                     "Sacred Targe",      Roll.NonEth]);    // Make Sanctuary Sacred Targe
+         Config.Runewords.push([Runeword.Sanctuary,                     "Sacred Rondache",   Roll.NonEth]);    // Make Sanctuary Sacred Rondache
+         Config.Runewords.push([Runeword.Sanctuary,                     "Kurast Shield",     Roll.NonEth]);    // Make Sanctuary Kurast Shield
+         Config.Runewords.push([Runeword.Sanctuary,                     "Zakarum Shield",    Roll.NonEth]);    // Make Sanctuary Zakarum Shield
+         Config.Runewords.push([Runeword.Sanctuary,                     "Vortex Shield",     Roll.NonEth]);    // Make Sanctuary Vortex Shield
          Config.Runewords.push([Runeword.Spirit,                        "Monarch",           Roll.NonEth]);    // Make Spirit Monarch
-         Config.Runewords.push([Runeword.Spirit,                        "Sacred Targe",      Roll.NonEth]);    // Make Spirit Sacred Targe
-         Config.Runewords.push([Runeword.Spirit,                        "Akaran Targe",      Roll.NonEth]);    // Make Spirit Akaran Targe
-         Config.Runewords.push([Runeword.Spirit,                        "Aerin Shield",      Roll.NonEth]);    // Make Spirit Aerin Shield
-         Config.Runewords.push([Runeword.Spirit,                        "Protector Shield",  Roll.NonEth]);    // Make Spirit Protector Shield
+         Config.Runewords.push([Runeword.Spirit,                        "Rondache",          Roll.NonEth]);    // Make Spirit Hondache
+         Config.Runewords.push([Runeword.Spirit,                        "Target",            Roll.NonEth]);    // Make Spirit Target
+         Config.Runewords.push([Runeword.Spirit,                        "Rondache",          Roll.NonEth]);    // Make Spirit Rondache
          Config.Runewords.push([Runeword.Spirit,                        "Heraldic Shield",   Roll.NonEth]);    // Make Spirit Heraldic Shield
+         Config.Runewords.push([Runeword.Spirit,                        "Aerin Shield",      Roll.NonEth]);    // Make Spirit Aerin Shield
+         Config.Runewords.push([Runeword.Spirit,                        "Crown Shield",      Roll.NonEth]);    // Make Spirit Crown Shield
+         Config.Runewords.push([Runeword.Spirit,                        "Akaran Targe",      Roll.NonEth]);    // Make Spirit Akaran Targe
+         Config.Runewords.push([Runeword.Spirit,                        "Akaran Rondache",   Roll.NonEth]);    // Make Spirit Akaran Rondache
+         Config.Runewords.push([Runeword.Spirit,                        "Protector Shield",  Roll.NonEth]);    // Make Spirit Protector Shield
+         Config.Runewords.push([Runeword.Spirit,                        "Gilded Shield",     Roll.NonEth]);    // Make Spirit Gilded Shield
          Config.Runewords.push([Runeword.Spirit,                        "Royal Shield",      Roll.NonEth]);    // Make Spirit Royal Shield
-         Config.Runewords.push([Runeword.Spirit,                        "Sacred Hondache",   Roll.NonEth]);    // Make Spirit Sacred Hondache
-         Config.Runewords.push([Runeword.Spirit,                        "Hondache",          Roll.NonEth]);    // Make Spirit Hondache
+         Config.Runewords.push([Runeword.Spirit,                        "Sacred Targe",      Roll.NonEth]);    // Make Spirit Sacred Targe
+         Config.Runewords.push([Runeword.Spirit,                        "Sacred Rondache",   Roll.NonEth]);    // Make Spirit Sacred Rondache
+         Config.Runewords.push([Runeword.Spirit,                        "Kurast Shield",     Roll.NonEth]);    // Make Spirit Kurast Shield
+         Config.Runewords.push([Runeword.Spirit,                        "Zakarum Shield",    Roll.NonEth]);    // Make Spirit Zakarum Shield
+         Config.Runewords.push([Runeword.Spirit,                        "Vortex Shield",     Roll.NonEth]);    // Make Spirit Vortex Shield
          Config.Runewords.push([Runeword.Harmony,                       "Matriarchal Bow",   Roll.NonEth]);    // Make Harmony Matriarchal Bow
-         Config.Runewords.push([Runeword.Oath,                          "Ettin Axe",            Roll.Eth]);    // Make Oath Ettin Axe
-         Config.Runewords.push([Runeword.Oath,                          "Berserker Axe",        Roll.Eth]);    // Make Oath Beserker Axe
-         Config.Runewords.push([Runeword.Oath,                          "Small Crescent",       Roll.Eth]);    // Make Oath Small Crescent
          Config.KeepRunewords.push("      [type] == shield # ([coldresist] == 70 || [coldresist] == 115)");    // Resist 70/115 Sanctuary
          Config.KeepRunewords.push("     ([type] == polearm || [type] == staff) # [meditationaura] == 17");    // Insight Meditation lvl 17
          Config.KeepRunewords.push("            [type] == shield || [type] == auricshields # [fcr] == 35");    // 35% Fcr Spirit
