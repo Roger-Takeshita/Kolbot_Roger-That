@@ -184,7 +184,7 @@
             [name] == splintmail          && [quality] == set // Berserker's Hauberk
             [name] == doubleaxe           && [quality] == set // Berserker's Hatchet
         //* Cathan's Traps ================================================================
-            [type] == ring                && [quality] == set # [lifeleech] == 6 && [normaldamagereduction] == 2 // Cathan's Seal
+            [type] == ring                && [quality] == set # [lifeleech] == 6 && [damageresist] == 2 // Cathan's Seal
             [type] == amulet              && [quality] == set # [fhr] == 10 && [lightmaxdam] == 5 // Cathan's Sigil
             [name] == chainmail           && [quality] == set // Cathan's Mesh
             [name] == mask                && [quality] == set // Cathan's Visage

@@ -78,7 +78,7 @@
             [name] == duskshroud          && [quality] == unique && [flag] != ethereal # ([passivecoldmastery] == 15 || [passivefiremastery] == 15 || [passiveltngmastery] == 15) && [skillenergyshield] == 3 // ormus
             [name] == krakenshell         && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 200 && [damageresist] == 25 && [plusdefense] == 150 && [strength] == 50 // leviathan
             [name] == balrogskin          && [quality] == unique && [flag] == ethereal # [itemallskills] == 2 && [enhanceddefense] == 180 // arkaine's valor
-            [name] == shadowplate         && [quality] == unique && [flag] == ethereal # [enhanceddefense] == 220 && [coldresist] == 60 && [normaldamagereduction] == 14 // steel carapace
+            [name] == shadowplate         && [quality] == unique && [flag] == ethereal # [enhanceddefense] == 220 && [coldresist] == 60 && [damageresist] == 14 // steel carapace
             [name] == sacredarmor         && [quality] == unique && [flag] == ethereal # [enhanceddefense] == 220 // templar's might
             [name] == wirefleece          && [quality] == unique && [flag] == ethereal # [enhanceddefense] == 200 // gladiator's bane
             [name] == serpentskinarmor    && [quality] == unique && [flag] != ethereal # [fireresist] == 35 && [magicdamagereduction] == 13 // skin of the vipermagi
@@ -518,12 +518,12 @@
             [name] == wingedhelm          && [quality] == rare && [color] == crystalred # [enhanceddefense]*0.3+[maxhp]*2+[tohit]*0.3+[itemtohitpercent]*2+[coldresist]*1.1+[lightresist]*1.0+[fireresist]*0.9 >= 147 // 147 = ca. [red] 90ed 35life 50res
             [name] == grandcrown          && [quality] == rare && [color] == crystalred # [enhanceddefense]*0.3+[maxhp]*2+[tohit]*0.3+[itemtohitpercent]*2+[coldresist]*1.1+[lightresist]*1.0+[fireresist]*0.9 >= 157 // 157 = ca. [red] 90ed 35life 60res
         //- Magic -------------------------------------------------------------------------
-            [type] == circlet             && [quality] == magic && [flag] != ethereal # [sockets] == 3 && ([frw] == 30 || [strength] == 30 || [dexterity] == 30 || [itemmagicbonus] == 35 || [maxhp] >= 100 || [fcr] == 20 || [normaldamagereduction] >= 25 || [maxhp] >= 100)
+            [type] == circlet             && [quality] == magic && [flag] != ethereal # [sockets] == 3 && ([frw] == 30 || [strength] == 30 || [dexterity] == 30 || [itemmagicbonus] >= 35 || [maxhp] >= 100 || [fcr] == 20 || [damageresist] >= 25)
             [type] == circlet             && [quality] == magic && [flag] != ethereal # [amazonskills]+[necromancerskills] == 2 && [frw] == 30
             [type] == circlet             && [quality] == magic && [flag] != ethereal # [fcr] == 20 && ([sorceressskills]+[necromancerskills]+[paladinskills]+[assassinskills]+[druidskills] == 2)
             [type] == circlet             && [quality] == magic && [flag] != ethereal # [fcr] == 20 && ([fireskilltab] == 3 || [coldskilltab] == 3 || [lightningskilltab] == 3 || [poisonandboneskilltab] == 3 || [palicombatskilltab] == 3 || [elementalskilltab] == 3)
             [type] == circlet             && [quality] == magic && [flag] != ethereal # [strength] >= 15 && ([shadowdisciplinesskilltab] == 3 || [lightningskilltab] == 3)
-            [type] == circlet             && [quality] == magic && [flag] != ethereal # ([paladinskills] == 2 || [palicombatskilltab] == 3 || [sorceressskills] == 2 || [lightningskilltab] == 3 || [maxmana] == 120) && [normaldamagereduction] == 25
+            [type] == circlet             && [quality] == magic && [flag] != ethereal # ([paladinskills] == 2 || [palicombatskilltab] == 3 || [sorceressskills] == 2 || [lightningskilltab] == 3 || [maxmana] == 120) && [damageresist] == 25
             [type] == circlet             && [quality] == magic # [barbarianskills] == 2 && [itemgoldbonus] >= 80
             [type] == pelt                && [quality] == magic # ([druidskills]+[skilltornado] >= 5 || [elementalskilltab]+[skilltornado] >= 5)
             [type] == pelt                && [quality] == magic # ([druidskills] == 2 || [elementalskilltab] == 3) && [skillarmageddon]+[skillsummongrizzly] >= 6
@@ -997,7 +997,7 @@
             // [name] == splintmail          && [quality] == set // Berserker's Hauberk
             // [name] == doubleaxe           && [quality] == set // Berserker's Hatchet
         //* Cathan's Traps ================================================================
-            // [type] == ring                && [quality] == set # [lifeleech] == 6 && [normaldamagereduction] == 2 // Cathan's Seal
+            // [type] == ring                && [quality] == set # [lifeleech] == 6 && [damageresist] == 2 // Cathan's Seal
             // [type] == amulet              && [quality] == set # [fhr] == 10 && [lightmaxdam] == 5 // Cathan's Sigil
             // [name] == chainmail           && [quality] == set // Cathan's Mesh
             // [name] == mask                && [quality] == set // Cathan's Visage
@@ -1041,7 +1041,7 @@
             // [name] == fullplatemail       && [quality] == set // Tancred's Spine
             // [name] == boots               && [quality] == set # [staminarecoverybonus] == 25 && [dexterity] == 10 // Tancred's Hobnails
             // [name] == militarypick        && [quality] == set // Tancred's Crowbill
-            // [type] == amulet              && [quality] == set # [magicdamagereduction] == 1 && [normaldamagereduction] == 2 // Tancred's Weird
+            // [type] == amulet              && [quality] == set # [magicdamagereduction] == 1 && [damageresist] == 2 // Tancred's Weird
         //* Vidala's Rig ==================================================================
             // [type] == amulet              && [quality] == set # [coldresist] == 20 && [maxmana] == 15 // Vidala's Snare
             // [name] == longBattleBow       && [quality] == set // Vidala's Barb
