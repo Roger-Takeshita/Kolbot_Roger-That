@@ -29,12 +29,13 @@
         //- Unique ------------------------------------------------------------------------
             [name] == sash                && [quality] == unique && [flag] != ethereal # [fireresist] >= 5 // lenymo sash
             [name] == spiderwebsash       && [quality] == unique && [flag] != ethereal # [enhanceddefense] >= 90 // arachnid mesh - max 120 def
-            [name] == mithrilcoil         && [quality] == unique && [flag] != ethereal # [damageresist] == 15 // && [vitality] == 40 // verdungo's hearty cord
-            [name] == demonhidesash       && [quality] == unique && [flag] != ethereal # [damageresist] == 15 && [magicdamagereduction] == 15 && [lifeleech] == 8 // string of ears
+            [name] == mithrilcoil         && [quality] == unique && [flag] != ethereal # [damageresist] == 15 //&& [vitality] == 40 // verdungo's hearty cord
+            [name] == demonhidesash       && [quality] == unique && [flag] != ethereal # [damageresist] == 15 //&& [magicdamagereduction] == 15 && [lifeleech] == 8 && [enhanceddefense] == 180 // string of ears
     //+ BOOTS ================================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == lightplatedboots    && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 60 // goblin toe
             [name] == scarabshellboots    && [quality] == unique # [strength] >= 10 // sandstorm trek
+            [name] == scarabshellboots    && [quality] == unique && [flag] == ethereal # [strength] >= 10 // eth sandstorm trek
             [name] == myrmidongreaves     && [quality] == unique && [flag] != ethereal # [dexterity] >= 15 // shadow dancer
             [name] == sharkskinboots      && [quality] == unique && [flag] != ethereal # [maxhp] == 65 // waterwalk
             [name] == scarabshellboots    && [quality] == unique && [flag] != ethereal # [maxhp] == 65 // waterwalk x1
@@ -60,7 +61,7 @@
             [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 7 // # # [maxquantity] == 2
             [name] == smallcharm          && [quality] == magic # [itemmagicbonus] >= 3 && ([fireresist] >= 3 && [coldresist] >= 3 || [maxmana] >= 17 || [fireresist] >= 5 || [lightresist] >= 5 || [coldresist] >= 5 || [poisonresist] >= 5 || [fhr] == 5 || [maxhp] >= 15)
         //- Grand Charms ------------------------------------------------------------------
-            [name] == grandcharm          && [quality] == magic # [itemaddskilltab] == 1 && [cursesskilltab]+[druidsummoningskilltab]+[defensiveaurasskilltab] == 0 // && [maxhp] >= 25
+            [name] == grandcharm          && [quality] == magic # [itemaddskilltab] == 1 && [cursesskilltab]+[druidsummoningskilltab]+[defensiveaurasskilltab] == 0 //&& [maxhp] >= 25
             [name] == grandcharm          && [quality] == magic # ([coldresist] == 15 && [lightresist] == 15)
             [name] == grandcharm          && [quality] == unique # [itemmagicbonus] >= 20 // gheed's fortune - max 40% mf
     //+ DAGGERS ==============================================================================
@@ -69,11 +70,13 @@
             [name] == boneknife           && [quality] == unique // wizardspike
     //+ FLAIL & KNOUT ========================================================================
         //- White -------------------------------------------------------------------------
-            [name] == flail               && [quality] <= superior # ([sockets] == 4 || [sockets] == 5)
-            [name] == knout               && [quality] <= superior # ([sockets] == 4 || [sockets] == 5)
+            [name] == flail               && [quality] <= superior # [sockets] == 4 # [maxquantity] == 1 // hoto
+            [name] == knout               && [quality] <= superior # [sockets] == 4 # [maxquantity] == 1 // hoto
+            [name] == flail               && [quality] <= superior # [sockets] == 5 # [maxquantity] == 1 // cta
+            [name] == knout               && [quality] <= superior # [sockets] == 5 # [maxquantity] == 1 // cta
     //+ GLOVES ===============================================================================
         //- Unique ------------------------------------------------------------------------
-            [name] == vampirebonegloves   && [quality] == unique && [flag] != ethereal # [strength] == 15 // dracul's grasp
+            [name] == vampirebonegloves   && [quality] == unique && [flag] != ethereal # [strength] >= 10 && [lifeleech] >= 7 // dracul's grasp - max 15 str and 10% ll
             [name] == heavygloves         && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 20 // bloodfist
             [name] == chaingloves         && [quality] == unique && [flag] != ethereal # [itemmagicbonus] == 40 // chance guard
             [name] == lightgauntlets      && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 30 // magefist
@@ -83,8 +86,8 @@
             [name] == demonhead           && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 0 || [itemmaxdurabilitypercent] == 15) && [sockets] == 3
             [name] == bonevisage          && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 0 || [itemmaxdurabilitypercent] == 15) && [sockets] == 3
             [name] == diadem              && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 0 || [itemmaxdurabilitypercent] == 15) && [sockets] == 3
-            [name] == demonhead           && [quality] == normal && [flag] == ethereal # [sockets] == 0
-            [name] == bonevisage          && [quality] == normal && [flag] == ethereal # [sockets] == 0
+            // [name] == demonhead           && [quality] == normal && [flag] == ethereal # [sockets] == 0
+            // [name] == bonevisage          && [quality] == normal && [flag] == ethereal # [sockets] == 0
         //- Unique ------------------------------------------------------------------------
             [name] == tiara               && [quality] == unique # [fireresist] == 70 // kira's guardian
             [name] == casque              && [quality] == unique # [itemmagicbonus] == 50 // stealskull
@@ -116,14 +119,15 @@
         //- Unique ------------------------------------------------------------------------
             [name] == ring                && [quality] == unique # [damageresist] >= 7 // nature piece - max 11% dr
             [name] == ring                && [quality] == unique # [maxstamina] == 50 && [lifeleech] >= 3 // bk - max 5% ll
-            [name] == ring                && [quality] == unique # [itemabsorblightpercent] >= 10 // wisp - max 20% sorb
+            [type] == ring                && [quality] == unique # ([itemabsorblightpercent] >= 10 && [itemmagicbonus] >= 10) || ([itemabsorblightpercent] >= 10 && [itemmagicbonus] >= 10) // wisp - max 20% sorb and 20% mf
             [name] == ring                && [quality] == unique # [dexterity] >= 15 // raven frost - max 20 dex
             [name] == ring                && [quality] == unique # [itemmagicbonus] >= 15 // nagel - max 30% mf
+            // [type] == ring                && [quality] == unique # [maxhp] == 40 && [magicdamagereduction] == 15 // dwarf
         //- Rare --------------------------------------------------------------------------
             [type] == ring                && [quality] <= rare # [itemmagicbonus] >= 30
     //+ SHIELDS ==============================================================================
         //- White -------------------------------------------------------------------------
-            [name] == monarch             && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 4) && [enhanceddefense] == 15 // spirit 15% ed
+            [name] == monarch             && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 4) && [enhanceddefense] == 15 // spirit 15% edef
             [name] == monarch             && [quality] == normal   && [flag] != ethereal # [sockets] == 0 # [maxquantity] == 1                           // spirit cube
             [name] == monarch             && [quality] == normal   && [flag] != ethereal # [sockets] == 4                                                // spirit
             [type] == auricshields        && [quality] <= superior && [flag] != ethereal # [fireresist] >= 45 && ([sockets] == 0 || [sockets] == 4)      // spirit
@@ -135,7 +139,8 @@
             [name] == spikedshield        && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 60 // swordback hold
             [name] == spikedshield        && [quality] == unique && [flag] == ethereal # [enhanceddefense] == 60 // swordback hold eth
             [name] == monarch             && [quality] == unique # [defense] == 148 // stormshield
-            [name] == bloodlordskull      && [quality] == unique && [flag] != ethereal # [poisonandboneskilltab] >= 1 && [cursesskilltab] >= 1 && [necromancersummoningskilltab] >= 1 // && [enhanceddefense] == 150 // darkforce spawn
+            [name] == hierophanttrophy    && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 200 // homunculus
+            [name] == bloodlordskull      && [quality] == unique && [flag] != ethereal # [poisonandboneskilltab] >= 1 && [cursesskilltab] >= 1 && [necromancersummoningskilltab] >= 1 //&& [enhanceddefense] == 150 // darkforce spawn
     //+ STAVES ===============================================================================
         //- White -------------------------------------------------------------------------
             [type] == staff               && [quality] <= superior # [skillfireball] >= 3 && [sockets] == 2 // leaf (tir + ral)
@@ -165,28 +170,29 @@
             [name] == crystalsword        && [quality] <= superior # [sockets] == 5 # [maxquantity] == 1 // cta
     //+ SETS =================================================================================
         //* Tal Rasha's Wrappings =========================================================
-            [name] == swirlingcrystal     && [quality] == set // # ([skilllightningmastery] == 2 && [skillfiremastery] == 2 && [skillcoldmastery] == 2) // Tal Rasha's Lidless Eye
-            [name] == deathmask           && [quality] == set // # [defense] == 131 // Tal Rasha's Horadric Crest
-            [name] == lacqueredplate      && [quality] == set // # [defense] == 941 // Tal Rasha's Guardianship
+            [name] == swirlingcrystal     && [quality] == set //# ([skilllightningmastery] == 2 && [skillfiremastery] == 2 && [skillcoldmastery] == 2) // Tal Rasha's Lidless Eye
+            [name] == deathmask           && [quality] == set //# [defense] == 131 // Tal Rasha's Horadric Crest
+            [name] == lacqueredplate      && [quality] == set # [defense] >= 833 // Tal Rasha's Guardianship - max 941 def
             [type] == amulet              && [quality] == set # [lightresist] == 33 // Tal Rasha's Adjucation
-            [name] == meshbelt            && [quality] == set # [itemmagicbonus] >= 10 // Tal Rasha's Fine-Spun Cloth
+            [name] == meshbelt            && [quality] == set # [itemmagicbonus] >= 10 && [defense] >= 95 // Tal Rasha's Fine-Spun Cloth - max 15% mf and 100 def
         //* Immortal King =================================================================
             [name] == warbelt             && [quality] == set // Immortal King's Detail
-            [name] == avengerguard        && [quality] == set # [itemmagicbonus] == 40 && [defense] == 175 // Immortal King's Will
+            [name] == avengerguard        && [quality] == set # [itemmagicbonus] >= 25 && [defense] >= 160 // Immortal King's Will - max 40% mf and 175 def
             [name] == ogremaul            && [quality] == set // Immortal King's Stone Crusher
             [name] == sacredarmor         && [quality] == set // Immortal King's Soul Cage
-            [name] == wargauntlets        && [quality] == set // Immortal King's Forge
-            [name] == warboots            && [quality] == set // Immortal King's Pillar
+            [name] == wargauntlets        && [quality] == set # [defense] >= 228 // Immortal King's Forge - max 238 def
+            [name] == warboots            && [quality] == set # [defense] >= 278 // Immortal King's Pillar - max 288 def
         //* Griswold's Legacy =============================================================
-            [name] == ornateplate         && [quality] == set // Griswold's Heart
-            [name] == corona              && [quality] == set // Griswold's Valor
-            [name] == caduceus            && [quality] == set // Griswold's Redemption
-            [name] == vortexshield        && [quality] == set // Griswold's Honor
+            [name] == ornateplate         && [quality] == set # [defense] >= 917 // Griswold's Heart - max 950 def
+            [name] == corona              && [quality] == set # [enhanceddefense] >= 50 && [itemmagicbonus] >= 20 // Griswold's Valor - max 75% edef and 30% mf
+            [name] == caduceus            && [quality] == set # [enhanceddamage] >= 200 && [sockets] >= 3 // Griswold's Redemption - max 240 dmg and 4 socket
+            [name] == vortexshield        && [quality] == set # [defense] >= 290 // Griswold's Honor - max 333 def
         //* Set Pieces ====================================================================
-            [name] == heavybracers        && [quality] == set # [defense] == 74 // Trang-Oul's Claws
-            [name] == heavyboots          && [quality] == set # [dexterity] >= 15 // Cow King's Hooves
-            [type] == ring                && [quality] == set # [maxhp] == 20 # # [maxquantity] == 1 // Angelic Halo
-            [type] == amulet              && [quality] == set # [itemlightradius] == 3 && [itemdamagetomana] == 20 # # [maxquantity] == 1 // Angelic Wings
+            [name] == battleboots         && [quality] == set # [fireresist] == 50 // Aldur's Advance
+            [name] == heavybracers        && [quality] == set # [defense] >= 67 # [maxquantity] == 1 // Trang-Oul's Claws - max 74 def
+            [name] == heavyboots          && [quality] == set # [dexterity] == 20 && [defense] >= 25// Cow King's Hooves - max 35 def
+            [type] == ring                && [quality] == set # [maxhp] == 20 # [maxquantity] == 1 // Angelic Halo
+            [type] == amulet              && [quality] == set # [itemlightradius] == 3 && [itemdamagetomana] == 20 # [maxquantity] == 1 // Angelic Wings
 //! =========================================================================================== //
 //!                                  _   ___        _   _                                       //
 //!                                 / \   |   |_|  |_  |_)                                      //
@@ -256,12 +262,12 @@
         [name] == istrune
         [name] == gulrune
     //+ TOKEN ================================================================================
-        [name] == twistedessenceofsuffering       // # # [maxquantity] == 3  // Blue   - Andariel & Duriel
-        [name] == chargedessenceofhatred          // # # [maxquantity] == 3  // Yellow - Mephisto
-        [name] == burningessenceofterror          // # # [maxquantity] == 3  // Red    - Diablo
-        [name] == festeringessenceofdestruction   // # # [maxquantity] == 3  // Green  - Baal
+        [name] == twistedessenceofsuffering        //# # [maxquantity] == 3  // Blue   - Andariel & Duriel
+        [name] == chargedessenceofhatred           //# # [maxquantity] == 3  // Yellow - Mephisto
+        [name] == burningessenceofterror           //# # [maxquantity] == 3  // Red    - Diablo
+        [name] == festeringessenceofdestruction    //# # [maxquantity] == 3  // Green  - Baal
         [name] == tokenofabsolution
     //+ KEYS =================================================================================
-        [name] == keyofhate                       // # # [maxquantity] == 3
-        [name] == keyofterror                     // # # [maxquantity] == 3
-        [name] == keyofdestruction                // # # [maxquantity] == 3
+        [name] == keyofhate                        //# # [maxquantity] == 3  // Countness
+        [name] == keyofterror                      //# # [maxquantity] == 3  // Summoner
+        [name] == keyofdestruction                 //# # [maxquantity] == 3  // Nihlathak
