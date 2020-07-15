@@ -137,7 +137,6 @@ function LoadConfig() {
       Config.MaxGameTime = 0;                            // Maximum game time in seconds. Quit game when limit is reached.
       Config.TeleSwitch = false;                         // Switch to secondary (non-primary) slot when teleporting more than 5 nodes.
       Config.MiniShopBot = true;                         // Scan items in NPC shops.
-      Config.PacketShopping = false;                     // Use packets to shop. Improves shopping speed.
       Config.TownCheck = false;                          // Go to town if out of potions
       Config.LogExperience = false;                      // Print experience statistics in the manager.
       Config.PingQuit = [{Ping: 0, Duration: 0}];        // Quit if ping is over the given value for over the given time period in seconds.
@@ -145,8 +144,15 @@ function LoadConfig() {
       Config.ScanShrines = [15, 2, 3];                   // 15 = XP, 2 = Health, 3 = Mana
       Config.MFSwitchPercent = 0;                        // Boss life % to switch to non-primary weapon slot. Set to 0 to disable.
       Config.PrimarySlot = -1;                           // Set to use specific weapon slot as primary weapon slot: -1 = disabled, 0 = slot I, 1 = slot II
-      Config.WaypointMenu = true;
       Config.WalkIfManaLessThan = 10;
+   //! FATMOD CONFIG -----------------------------------------------------------------
+      Config.PacketShopping = true;                      // Use packets to shop. Improves shopping speed.
+      Config.FCR = 255;                                  // 0 - disable, 1 to 255 - set value of faster cast rate
+      Config.FHR = 255;                                  // 0 - disable, 1 to 255 - set value of faster hit recovery
+      Config.FBR = 255;                                  // 0 - disable, 1 to 255 - set value of faster block recovery
+      Config.IAS = 255;                                  // 0 - disable, 1 to 255 - set value of increased attack speed
+      Config.PacketCasting = 2;                          // 0 = disable, 1 = packet teleport, 2 = full packet casting.
+      Config.WaypointMenu = true;
    //! ADDITION CONFIG -----------------------------------------------------------------
       //+ Print to console ----------------------------------------------------------
          Config.D2BotPrintGameTime    = false;           // Game time in the end of each game
@@ -255,7 +261,7 @@ function LoadConfig() {
             Config.Recipes.push([Recipe.Socket.Armor,  "Shadow Plate",         Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Armor,  "Sacred Armor",         Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Shield, "Monarch",           Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Target",            Roll.NonEth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Targe",             Roll.NonEth]);
             Config.Recipes.push([Recipe.Socket.Shield, "Rondache",          Roll.NonEth]);
             Config.Recipes.push([Recipe.Socket.Shield, "Heraldic Shield",   Roll.NonEth]);
             Config.Recipes.push([Recipe.Socket.Shield, "Aerin Shield",      Roll.NonEth]);
@@ -301,7 +307,7 @@ function LoadConfig() {
          Config.Runewords.push([Runeword.Sanctuary,                     "Vortex Shield",     Roll.NonEth]);    // Make Sanctuary Vortex Shield
          Config.Runewords.push([Runeword.Spirit,                        "Monarch",           Roll.NonEth]);    // Make Spirit Monarch
          Config.Runewords.push([Runeword.Spirit,                        "Rondache",          Roll.NonEth]);    // Make Spirit Hondache
-         Config.Runewords.push([Runeword.Spirit,                        "Target",            Roll.NonEth]);    // Make Spirit Target
+         Config.Runewords.push([Runeword.Spirit,                        "Targe",             Roll.NonEth]);    // Make Spirit Target
          Config.Runewords.push([Runeword.Spirit,                        "Rondache",          Roll.NonEth]);    // Make Spirit Rondache
          Config.Runewords.push([Runeword.Spirit,                        "Heraldic Shield",   Roll.NonEth]);    // Make Spirit Heraldic Shield
          Config.Runewords.push([Runeword.Spirit,                        "Aerin Shield",      Roll.NonEth]);    // Make Spirit Aerin Shield
