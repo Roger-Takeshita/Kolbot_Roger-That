@@ -120,6 +120,28 @@ function main() {
 		}
 	};
 
+	this.timer = function (tick) {
+		if (!tick) {
+			return "";
+		}
+
+		var min, sec;
+
+		min = Math.floor((getTickCount() - tick) / 60000).toString();
+
+		if (min <= 9) {
+			min = "0" + min;
+		}
+
+		sec = (Math.floor((getTickCount() - tick) / 1000) % 60).toString();
+
+		if (sec <= 9) {
+			sec = "0" + sec;
+		}
+
+		return " " + min + ":" + sec + " min";
+	}
+
 	// Initialize libs - load config variables, build pickit list, attacks, containers and cubing and runeword recipes
 	Config.init(true);
 	Pickit.init(true);
@@ -299,7 +321,7 @@ function main() {
 	}
 
 	if (Config.D2BotPrintGameTime) {
-		D2Bot.printToConsole("Total Game Time: " + Number((getTickCount() - startTime)/60000).toFixed(2) + " min", 10);
+		D2Bot.printToConsole("Total Game Time: " + this.timer(startTime), 5);
 	}
 
 	scriptBroadcast("quit");
