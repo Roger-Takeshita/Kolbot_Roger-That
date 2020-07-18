@@ -1571,7 +1571,7 @@ function RogerThat() {
 
     //! CHAT EVENT ===================================================================
         this.chatEvent = function (nick, msg) {
-            foundMatch = false;;
+            foundMatch = false;
 
             if (!pvpFlag) {
                 msg = msg.toLowerCase();
@@ -1750,9 +1750,10 @@ function RogerThat() {
 
                 //- Drop multiple items and other commands ------------------------
                     if (nick !== me.name) {
+                        const msgArray = msg.split(" ");
+
                         //- Drop multiple items ----------------------------------
-                            if (chatFlag &&  msg.split(" ")[0] === "drop") {
-                                let msgArray = msg.split(' ');
+                            if (chatFlag &&  msgArray[0] === "drop") {
                                 let wrongInputFlag = false;
                                 let itemsArray = [];
                                 let qtyArray = [];
@@ -1788,6 +1789,8 @@ function RogerThat() {
                                 }
 
                                 return true;
+                            } else if (chatFlag && msgArray[msgArray.length - 1] === "status") {
+                                AutoRogerThat.getItemsQuantity(msgArray);
                             } else {
                         //- Other commands ---------------------------------------
                                 switch (msg) {

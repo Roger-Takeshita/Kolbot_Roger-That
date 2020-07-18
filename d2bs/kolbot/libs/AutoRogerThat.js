@@ -20,79 +20,293 @@ var AutoRogerThat = {
                 }
             },
 
+            getItemsQuantity: function (itemsArray) {
+                let items = this.getProfileItems();
+                let checkStatus = this.getItemsClassId(itemsArray);
+                let status = {};
+                let msg = "";
+
+                for (let i = 0; i < items.length; i++) {
+                    if (checkStatus[items[i].classid] !== undefined && checkStatus[items[i].classid].qty >= 0) {
+                        if (!status[checkStatus[items[i].classid].name]) {
+                            status[checkStatus[items[i].classid].name] = 1;
+                        } else {
+                            status[checkStatus[items[i].classid].name] += 1;
+                        }
+                    }
+                }
+
+                for (var item in status) {
+                    msg += status[item] + "x " + item + " ";
+                }
+
+                say("I have: " + msg);
+            },
+
             getItemsClassId: function (itemsArray, qtyArray) {
                 let dropObj = {};
                 let itemCodes = [];
+                const runes = {
+                    el: 610,
+                    eld: 611,
+                    tir: 612,
+                    nef: 613,
+                    eth: 614,
+                    ith: 615,
+                    tal: 616,
+                    ral: 617,
+                    ort: 618,
+                    thul: 619,
+                    amn: 620,
+                    sol: 621,
+                    shael: 622,
+                    dol: 623,
+                    hel: 624,
+                    io: 625,
+                    lum: 626,
+                    ko: 627,
+                    fal: 628,
+                    lem: 629,
+                    pul: 630,
+                    um: 631,
+                    mal: 632,
+                    ist: 633,
+                    gul: 634,
+                    vex: 635,
+                    ohm: 636,
+                    lo: 637,
+                    sur: 638,
+                    ber: 639,
+                    jah: 640,
+                    cham: 641,
+                    zod: 642
+                };
+                const gems = {
+                    camethyst: 557,
+                    famethyst: 558,
+                    amethyst: 559,
+                    flamethyst: 560,
+                    pamethyst: 561,
+                    ctopaz: 562,
+                    ftopaz: 563,
+                    topaz: 564,
+                    fltopaz: 565,
+                    ptopaz: 566,
+                    csapphire: 567,
+                    fsapphire: 568,
+                    sapphire: 569,
+                    flsapphire: 570,
+                    psapphire: 571,
+                    cemerald: 572,
+                    femerald: 573,
+                    emerald: 574,
+                    flemerald: 575,
+                    pemerald: 576,
+                    cruby: 577,
+                    fruby: 578,
+                    ruby: 579,
+                    flruby: 580,
+                    pruby: 581,
+                    cdiamond: 582,
+                    fdiamond: 583,
+                    diamond: 584,
+                    fldiamond: 585,
+                    pdiamond: 586,
+                    cskull: 597,
+                    fskull: 598,
+                    skull: 599,
+                    flskull: 600,
+                    pskull: 601
+                }
+                const codes = {
+                    557: "camethyst",
+                    558: "famethyst",
+                    559: "amethyst",
+                    560: "flamethyst",
+                    561: "pamethyst",
+                    562: "ctopaz",
+                    563: "ftopaz",
+                    564: "topaz",
+                    565: "fltopaz",
+                    566: "ptopaz",
+                    567: "csapphire",
+                    568: "fsapphire",
+                    569: "sapphire",
+                    570: "flsapphire",
+                    571: "psapphire",
+                    572: "cemerald",
+                    573: "femerald",
+                    574: "emerald",
+                    575: "flemerald",
+                    576: "pemerald",
+                    577: "cruby",
+                    578: "fruby",
+                    579: "ruby",
+                    580: "flruby",
+                    581: "pruby",
+                    582: "cdiamond",
+                    583: "fdiamond",
+                    584: "diamond",
+                    585: "fldiamond",
+                    586: "pdiamond",
+                    597: "cskull",
+                    598: "fskull",
+                    599: "skull",
+                    600: "flskull",
+                    601: "pskul",
+                    610: "el",
+                    611: "eld",
+                    612: "tir",
+                    613: "nef",
+                    614: "eth",
+                    615: "ith",
+                    616: "tal",
+                    617: "ral",
+                    618: "ort",
+                    619: "thul",
+                    620: "amn",
+                    621: "sol",
+                    622: "shael",
+                    623: "dol",
+                    624: "hel",
+                    625: "io",
+                    626: "lum",
+                    627: "ko",
+                    628: "fal",
+                    629: "lem",
+                    630: "pul",
+                    631: "um",
+                    632: "mal",
+                    633: "ist",
+                    634: "gul",
+                    635: "vex",
+                    636: "ohm",
+                    637: "lo",
+                    638: "sur",
+                    639: "ber",
+                    640: "jah",
+                    641: "cham",
+                    642: "zod",
+                    647: "terror",
+                    648: "hate",
+                    649: "destruction",
+                    650: "horn",
+                    651: "eye",
+                    652: "brain",
+                    654: "blue",
+                    655: "yellow",
+                    656: "red",
+                    657: "green"
+                }
 
                 for (let i = 0; i < itemsArray.length; i++) {
                     if (itemsArray[i] !== undefined) {
                         switch (itemsArray[i]) {
                             case "h":            // Hate key
-                                dropObj[648] = qtyArray[i];
+                                dropObj[648] = {
+                                    qty: qtyArray ? qtyArray[i] : 0,
+                                    name: "hate key"
+                                };
 
                                 break;
                             case "t":            // Terror key
-                                dropObj[647] = qtyArray[i];
+                                dropObj[647] = {
+                                    qty: qtyArray ? qtyArray[i] : 0,
+                                    name: "terror key"
+                                };
 
                                 break;
                             case "d":            // Destruction key
-                                dropObj[649] = qtyArray[i];
+                                dropObj[649] = {
+                                    qty: qtyArray ? qtyArray[i] : 0,
+                                    name: "destruction key"
+                                };
 
                                 break;
                             case "key":
                             case "keys":         // Keys
                                 itemCodes = [647, 648, 649];
                                 for (let j = 0; j < itemCodes.length; j++) {
-                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                    dropObj[itemCodes[j]] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: codes[itemCodes[j]]
+                                    };
                                 }
 
                                 break;
                             case "horn":         // Horn
-                                dropObj[650] = qtyArray[i];
+                                dropObj[650] = {
+                                    qty: qtyArray ? qtyArray[i] : 0,
+                                    name: "horn"
+                                };
 
                                 break;
                             case "eye":          // Eye
-                                dropObj[651] = qtyArray[i];
+                                dropObj[651] = {
+                                    qty: qtyArray ? qtyArray[i] : 0,
+                                    name: "eye"
+                                };
 
                                 break;
                             case "brain":        // Brain
-                                dropObj[652] = qtyArray[i];
+                                dropObj[652] = {
+                                    qty: qtyArray ? qtyArray[i] : 0,
+                                    name: "brain"
+                                };
 
                                 break;
                             case "organ":
                             case "organs":       // Organs
                                 itemCodes = [650, 651, 652];
                                 for (let j = 0; j < itemCodes.length; j++) {
-                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                    dropObj[itemCodes[j]] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: codes[itemCodes[j]]
+                                    };
                                 }
 
                                 break;
                             case "blue":
                             case "b":            // Blue essence
-                                dropObj[654] = qtyArray[i];
+                                dropObj[654] = {
+                                    qty: qtyArray ? qtyArray[i] : 0,
+                                    name: "blue"
+                                };
 
                                 break;
                             case "yellow":
                             case "y":            // Yellow essence
-                                dropObj[655] = qtyArray[i];
+                                dropObj[655] = {
+                                    qty: qtyArray ? qtyArray[i] : 0,
+                                    name: "yellow"
+                                };
 
                                 break;
                             case "red":
                             case "r":            // Red essence
-                                dropObj[656] = qtyArray[i];
+                                dropObj[656] = {
+                                    qty: qtyArray ? qtyArray[i] : 0,
+                                    name: "red"
+                                };
 
                                 break;
                             case "green":
                             case "g":            // Green essence
-                                dropObj[657] = qtyArray[i];
+                                dropObj[657] = {
+                                    qty: qtyArray ? qtyArray[i] : 0,
+                                    name: "green"
+                                };
 
                                 break;
-                            case "essen":
+                            case "ess":
                             case "essence":
                             case "essences":     // Essences
                                 itemCodes = [654, 655, 656, 657];
                                 for (let j = 0; j < itemCodes.length; j++) {
-                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                    dropObj[itemCodes[j]] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: codes[itemCodes[j]]
+                                    };
                                 }
 
                                 break;
@@ -100,7 +314,10 @@ var AutoRogerThat = {
                             case "helms":        // Helms
                                 itemCodes = [306, 307, 308, 309, 310, 311, 312, 349, 352, 353, 354, 355, 356, 357, 358, 395, 399, 400, 401, 402, 403, 404, 405, 406, 407, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 465, 468, 470, 472, 473, 474, 475, 476, 477, 488, 493, 494, 495, 496, 497];
                                 for (let j = 0; j < itemCodes.length; j++) {
-                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                    dropObj[itemCodes[j]] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: "helm"
+                                    };
                                 }
 
                                 break;
@@ -108,7 +325,10 @@ var AutoRogerThat = {
                             case "gloves":       // Gloves
                                 itemCodes = [334, 335, 336, 337, 338, 380, 381, 382, 383, 384, 450, 451, 452, 453, 454];
                                 for (let j = 0; j < itemCodes.length; j++) {
-                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                    dropObj[itemCodes[j]] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: "glove"
+                                    };
                                 }
 
                                 break;
@@ -116,7 +336,10 @@ var AutoRogerThat = {
                             case "shields":      // Shields
                                 itemCodes = [328, 329, 330, 331, 332, 333, 350, 351, 374, 375, 376, 377, 378, 379, 396, 397, 410, 411, 412, 444, 445, 446, 447, 448, 449, 466, 467, 480, 481, 482, 486, 487, 500, 501, 502, 506, 507];
                                 for (let j = 0; j < itemCodes.length; j++) {
-                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                    dropObj[itemCodes[j]] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: "shield"
+                                    };
                                 }
 
                                 break;
@@ -124,7 +347,10 @@ var AutoRogerThat = {
                             case "armors":       // Armors
                                 itemCodes = [313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 334, 348, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439, 440, 441, 442, 443];
                                 for (let j = 0; j < itemCodes.length; j++) {
-                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                    dropObj[itemCodes[j]] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: "armor"
+                                    };
                                 }
 
                                 break;
@@ -132,7 +358,10 @@ var AutoRogerThat = {
                             case "belts":        // Belts
                                 itemCodes = [344, 345, 346, 347, 348, 390, 391, 392, 393, 394, 460, 461, 462, 463, 464];
                                 for (let j = 0; j < itemCodes.length; j++) {
-                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                    dropObj[itemCodes[j]] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: "belt"
+                                    };
                                 }
 
                                 break;
@@ -140,44 +369,65 @@ var AutoRogerThat = {
                             case "boots":        // Boots
                                 itemCodes = [339, 340, 341, 342, 343, 385, 386, 387, 388, 389, 455, 456, 457, 458, 459];
                                 for (let j = 0; j < itemCodes.length; j++) {
-                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                    dropObj[itemCodes[j]] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: "boot"
+                                    };
                                 }
 
                                 break;
                             case "token":
                             case "tokens":       // Tokens
-                                dropObj[653] = qtyArray[i];
+                                dropObj[653] = {
+                                    qty: qtyArray ? qtyArray[i] : 0,
+                                    name: "token"
+                                };
 
                                 break;
                             case "rune":
                             case "runes":        // All runes
                                 for (let j = 610 ; j <= 642 ; j++) {
-                                    dropObj[j] = qtyArray[i]
+                                    dropObj[j] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: codes[j]
+                                    };
                                 }
 
                                 break;
                             case "lr":
                             case "lrs":          // Low runes
                                 for (let j = 610 ; j <= 634 ; j++) {
-                                    dropObj[j] = qtyArray[i]
+                                    dropObj[j] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: codes[j]
+                                    };
                                 }
 
                                 break;
                             case "hr":
-                            case "hrs":          // Hight runes
+                            case "hrs":          // High runes
                                 for (let j = 635 ; j <= 642 ; j++) {
-                                    dropObj[j] = qtyArray[i]
+                                    dropObj[j] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: codes[j]
+                                    };
                                 }
 
                                 break;
                             case "gem":
                             case "gems":         // Gems
                                 for (let j = 557 ; j <= 586 ; j++) {
-                                    dropObj[j] = qtyArray[i]
+                                    dropObj[j] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: codes[j]
+                                    };
                                 }
 
                                 for (let j = 597 ; j <= 601 ; j++) {
-                                    dropObj[j] = qtyArray[i]
+                                    dropObj[j] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: codes[j]
+                                    };
                                 }
 
                                 break;
@@ -185,28 +435,43 @@ var AutoRogerThat = {
                             case "scs":          // Small charms and large charms
                                 itemCodes = [603, 604];
                                 for (let j = 0; j < itemCodes.length; j++) {
-                                    dropObj[itemCodes[j]] = qtyArray[i]
+                                    dropObj[itemCodes[j]] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: "sc"
+                                    };
                                 }
 
                                 break;
                             case "gc":
                             case "gcs":          // Grand charms
-                                dropObj[605] = qtyArray[i];
+                                dropObj[605] = {
+                                    qty: qtyArray ? qtyArray[i] : 0,
+                                    name: "gc"
+                                };
 
                                 break;
                             case "ring":
                             case "rings":        // Rings
-                                dropObj[522] = qtyArray[i];
+                                dropObj[522] = {
+                                    qty: qtyArray ? qtyArray[i] : 0,
+                                    name: "ring"
+                                };
 
                                 break;
                             case "amulet":
                             case "amulets":      // Amulets
-                                dropObj[520] = qtyArray[i];
+                                dropObj[520] = {
+                                    qty: qtyArray ? qtyArray[i] : 0,
+                                    name: "amulet"
+                                };
 
                                 break;
                             case "jewel":
                             case "jewels":       // Jewels
-                                dropObj[643] = qtyArray[i];
+                                dropObj[643] = {
+                                    qty: qtyArray ? qtyArray[i] : 0,
+                                    name: "jewel"
+                                };
 
                                 break;
                             case "item":
@@ -220,84 +485,16 @@ var AutoRogerThat = {
                                 return this.dropProfileItems("socket");
 
                             default:             // Drop runes
-                                const runes = {
-                                    el: 610,
-                                    eld: 611,
-                                    tir: 612,
-                                    nef: 613,
-                                    eth: 614,
-                                    ith: 615,
-                                    tal: 616,
-                                    ral: 617,
-                                    ort: 618,
-                                    thul: 619,
-                                    amn: 620,
-                                    sol: 621,
-                                    shael: 622,
-                                    dol: 623,
-                                    hel: 624,
-                                    io: 625,
-                                    lum: 626,
-                                    ko: 627,
-                                    fal: 628,
-                                    lem: 629,
-                                    pul: 630,
-                                    um: 631,
-                                    mal: 632,
-                                    ist: 633,
-                                    gul: 634,
-                                    vex: 635,
-                                    ohm: 636,
-                                    lo: 637,
-                                    sur: 638,
-                                    ber: 639,
-                                    jah: 640,
-                                    cham: 641,
-                                    zod: 642
-                                };
-
-                                const gems = {
-                                    camethyst: 557,
-                                    famethyst: 558,
-                                    amethyst: 559,
-                                    flamethyst: 560,
-                                    pamethyst: 561,
-                                    ctopaz: 562,
-                                    ftopaz: 563,
-                                    topaz: 564,
-                                    fltopaz: 565,
-                                    ptopaz: 566,
-                                    csapphire: 567,
-                                    fsapphire: 568,
-                                    sapphire: 569,
-                                    flsapphire: 570,
-                                    psapphire: 571,
-                                    cemerald: 572,
-                                    femerald: 573,
-                                    emerald: 574,
-                                    flemerald: 575,
-                                    pemerald: 576,
-                                    cruby: 577,
-                                    fruby: 578,
-                                    ruby: 579,
-                                    flruby: 580,
-                                    pruby: 581,
-                                    cdiamond: 582,
-                                    fdiamond: 583,
-                                    diamond: 584,
-                                    fldiamond: 585,
-                                    pdiamond: 586,
-                                    cskull: 597,
-                                    fskull: 598,
-                                    skull: 599,
-                                    flskull: 600,
-                                    pskull: 601
-                                }
-
                                 if (runes[itemsArray[i]]) {
-                                    dropObj[runes[itemsArray[i]]] = qtyArray[i];
+                                    dropObj[runes[itemsArray[i]]] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: runes[itemsArray[i]]
+                                    };
                                 } else if (gems[itemsArray[i]]) {
-                                    dropObj[gems[itemsArray[i]]] = qtyArray[i];
+                                    dropObj[gems[itemsArray[i]]] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: gems[itemsArray[i]]
+                                    };
                                 }
 
                                 break;
@@ -343,8 +540,8 @@ var AutoRogerThat = {
             },
 
             dropMultipleItems: function (itemsArray, qtyArray) {
-                let dropItems,
-                    items = this.getProfileItems();
+                let dropItems;
+                const items = this.getProfileItems();
 
                 if (!Town.openStash()) {
                     return false;
@@ -357,12 +554,10 @@ var AutoRogerThat = {
                 dropItems = this.getItemsClassId(itemsArray, qtyArray);
 
                 for (let i=0; i < items.length; i++) {
-                    if (dropItems[items[i].classid] && dropItems[items[i].classid] >= 0) {
-                        if (dropItems[items[i].classid] >= 0) {
-                            items[i].drop();
-                            dropItems[items[i].classid] -= 1;
-                        }
-                    } else if (dropItems[items[i].classid] && dropItems[items[i].classid] === -1) {
+                    if (dropItems[items[i].classid] && dropItems[items[i].classid].qty >  0) {
+                        items[i].drop();
+                        dropItems[items[i].classid].qty -= 1;
+                    } else if (dropItems[items[i].classid] && dropItems[items[i].classid].qty === -1) {
                         items[i].drop();
                     }
                 }
