@@ -25,6 +25,15 @@
         //- Unique ------------------------------------------------------------------------
             [name] == serpentskinarmor    && [quality] == unique && [flag] != ethereal # [fireresist] == 35 // skin of the vipermagi
             [name] == russetarmor         && [quality] == unique # [enhanceddefense] == 200 // skullder's
+    //+ AXES =================================================================================
+        //- White -------------------------------------------------------------------------
+            [name] == warspike            && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 4 || [sockets] == 5)                   // oath / death
+            [name] == smallcrescent       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4)                   // oath
+            [name] == ettinaxe            && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5) // oath / death
+            [name] == gloriousaxe         && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5) // oath / death
+            [name] == berserkeraxe        && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 4 || [sockets] == 5)                   // oath / death
+            [name] == gloriousaxe         && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 4 || [sockets] == 5)                   // oath / death
+            [name] == decapitator         && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5) // oath / death
     //+ BELTS ================================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == sash                && [quality] == unique && [flag] != ethereal # [fireresist] >= 5 // lenymo sash
@@ -54,12 +63,13 @@
             [name] == hydrabow            && [quality] == unique # [manaleech] == 8 // windforce
     //+ CHARMS ===============================================================================
         //- Small Charms ------------------------------------------------------------------
-            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 3 // # # [maxquantity] == 2
-            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 4 // # # [maxquantity] == 2
-            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 5 // # # [maxquantity] == 2
-            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 6 // # # [maxquantity] == 2
-            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 7 // # # [maxquantity] == 2
+            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 3 //# [maxquantity] == 2
+            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 4 //# [maxquantity] == 2
+            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 5 //# [maxquantity] == 2
+            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 6 //# [maxquantity] == 2
+            [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 7 //# [maxquantity] == 2
             [name] == smallcharm          && [quality] == magic # [itemmagicbonus] >= 3 && ([fireresist] >= 3 && [coldresist] >= 3 || [maxmana] >= 17 || [fireresist] >= 5 || [lightresist] >= 5 || [coldresist] >= 5 || [poisonresist] >= 5 || [fhr] == 5 || [maxhp] >= 15)
+            [name] == smallcharm          && [quality] == magic # [maxhp] == 20 //# [maxquantity] == 2
         //- Grand Charms ------------------------------------------------------------------
             [name] == grandcharm          && [quality] == magic # [itemaddskilltab] == 1 && [cursesskilltab]+[druidsummoningskilltab]+[defensiveaurasskilltab] == 0 //&& [maxhp] >= 25
             [name] == grandcharm          && [quality] == magic # ([coldresist] == 15 && [lightresist] == 15)
@@ -68,12 +78,6 @@
         //- Unique ------------------------------------------------------------------------
             [name] == dagger              && [quality] == unique // gull
             [name] == boneknife           && [quality] == unique // wizardspike
-    //+ FLAIL & KNOUT ========================================================================
-        //- White -------------------------------------------------------------------------
-            [name] == flail               && [quality] <= superior # [sockets] == 4 # [maxquantity] == 1 // hoto
-            [name] == knout               && [quality] <= superior # [sockets] == 4 # [maxquantity] == 1 // hoto
-            [name] == flail               && [quality] <= superior # [sockets] == 5 # [maxquantity] == 1 // cta
-            [name] == knout               && [quality] <= superior # [sockets] == 5 # [maxquantity] == 1 // cta
     //+ GLOVES ===============================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == vampirebonegloves   && [quality] == unique && [flag] != ethereal # [strength] >= 10 && [lifeleech] >= 7 // dracul's grasp - max 15 str and 10% ll
@@ -93,28 +97,34 @@
             [name] == casque              && [quality] == unique # [itemmagicbonus] == 50 // stealskull
             [name] == spiredhelm          && [quality] == unique # [passivecoldmastery] >= 10 // nightwing's veil - max 15% cd
             [name] == grimhelm            && [quality] == unique # [damageresist] == 20 // vampgaze
+    //+ MACES ================================================================================
+        //- White -------------------------------------------------------------------------
+            [name] == flail               && [quality] <= superior # [sockets] == 4 # [maxquantity] == 1 // hoto
+            [name] == knout               && [quality] <= superior # [sockets] == 4 # [maxquantity] == 1 // hoto
+            [name] == flail               && [quality] <= superior # [sockets] == 5 # [maxquantity] == 1 // cta
+            [name] == knout               && [quality] <= superior # [sockets] == 5 # [maxquantity] == 1 // cta
     //+ ORB ==================================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == swirlingcrystal     && [quality] == unique && [flag] == ethereal // oculus
     //+ POLEARMS =============================================================================
         //- White -------------------------------------------------------------------------
-            [name] == colossusvoulge      && [quality] <= superior && [flag] == ethereal # [sockets] == 4 // eth insight/infinity
-            [name] == crypticaxe          && [quality] <= superior && [flag] == ethereal # [sockets] == 4 // eth insight/infinity
+            [name] == giantthresher       && [quality] <= superior && [flag] == ethereal # [sockets] == 4 // eth insight/infinity
             [name] == greatpoleaxe        && [quality] <= superior && [flag] == ethereal # [sockets] == 4 // eth insight/infinity
             [name] == thresher            && [quality] <= superior && [flag] == ethereal # [sockets] == 4 // eth insight/infinity
-            [name] == giantthresher       && [quality] <= superior && [flag] == ethereal # [sockets] == 4 // eth insight/infinity
-            [name] == colossusvoulge      && [quality] == normal   && [flag] == ethereal # [sockets] == 0 //# [maxquantity] == 1 // eth insight/infinity cube
-            [name] == crypticaxe          && [quality] == normal   && [flag] == ethereal # [sockets] == 0 //# [maxquantity] == 1 // eth insight/infinity cube
+            [name] == crypticaxe          && [quality] <= superior && [flag] == ethereal # [sockets] == 4 // eth insight/infinity
+            [name] == colossusvoulge      && [quality] <= superior && [flag] == ethereal # [sockets] == 4 // eth insight/infinity
+            [name] == giantthresher       && [quality] == normal   && [flag] == ethereal # [sockets] == 0 //# [maxquantity] == 1 // eth insight/infinity cube
             [name] == greatpoleaxe        && [quality] == normal   && [flag] == ethereal # [sockets] == 0 //# [maxquantity] == 1 // eth insight/infinity cube
             [name] == thresher            && [quality] == normal   && [flag] == ethereal # [sockets] == 0 //# [maxquantity] == 1 // eth insight/infinity cube
-            [name] == giantthresher       && [quality] == normal   && [flag] == ethereal # [sockets] == 0 //# [maxquantity] == 1 // eth insight/infinity cube
-            [name] == crypticaxe          && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [sockets] == 4 // eth insight/infinity
+            [name] == crypticaxe          && [quality] == normal   && [flag] == ethereal # [sockets] == 0 //# [maxquantity] == 1 // eth insight/infinity cube
+            [name] == colossusvoulge      && [quality] == normal   && [flag] == ethereal # [sockets] == 0 //# [maxquantity] == 1 // eth insight/infinity cube
+            [name] == giantthresher       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [sockets] == 4 // eth insight/infinity
             [name] == greatpoleaxe        && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [sockets] == 4 // eth insight/infinity
             [name] == thresher            && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [sockets] == 4 // eth insight/infinity
-            [name] == giantthresher       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [sockets] == 4 // eth insight/infinity
+            [name] == crypticaxe          && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [sockets] == 4 // eth insight/infinity
             [name] == colossusvoulge      && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [sockets] == 0 // eth insight/infinity
             [name] == colossusvoulge      && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [sockets] == 4 // eth insight/infinity
-    //- Unique ------------------------------------------------------------------------
+        //- Unique ------------------------------------------------------------------------
             [name] == ogreaxe             && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 320 // bonehew
             [name] == thresher            && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 240 && [lifeleech] == 15 // the reaper's toll
     //+ RINGS ================================================================================
@@ -161,15 +171,17 @@
     //+ SWORDS ===============================================================================
         //- White -------------------------------------------------------------------------
             [name] == broadsword          && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
-            [name] == battlesword         && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
-            [name] == conquestsword       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
-            [name] == longsword           && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
-            [name] == runesword           && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
-            [name] == crypticsword        && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
             [name] == crystalsword        && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [sockets] == 4                     // spirit
+            [name] == longsword           && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
+            [name] == battlesword         && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
             [name] == dimensionalblade    && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [sockets] == 4                     // spirit
+            [name] == runesword           && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
+            [name] == conquestsword       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
+            [name] == crypticsword        && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
             [name] == phaseblade          && [quality] == superior # [enhanceddamage] >= 1 && [sockets] == 5 // grief
-            [name] == crystalsword        && [quality] <= superior # [sockets] == 5 # [maxquantity] == 1 // cta
+            [name] == highlandblade       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // oath
+            [name] == colossusblade       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 4 || [sockets] == 5) // oath / death
+            // [name] == crystalsword        && [quality] <= superior # [sockets] == 5 # [maxquantity] == 1 // cta
     //+ SETS =================================================================================
         //* Tal Rasha's Wrappings =========================================================
             [name] == swirlingcrystal     && [quality] == set //# ([skilllightningmastery] == 2 && [skillfiremastery] == 2 && [skillcoldmastery] == 2) // Tal Rasha's Lidless Eye
@@ -192,7 +204,7 @@
         //* Set Pieces ====================================================================
             [name] == battleboots         && [quality] == set # [fireresist] == 50 // Aldur's Advance
             [name] == heavybracers        && [quality] == set # [defense] >= 67 # [maxquantity] == 1 // Trang-Oul's Claws - max 74 def
-            [name] == heavyboots          && [quality] == set # [dexterity] == 20 && [defense] >= 25// Cow King's Hooves - max 35 def
+            [name] == heavyboots          && [quality] == set # [dexterity] == 20 && [defense] >= 25 // Cow King's Hooves - max 35 def
             [type] == ring                && [quality] == set # [maxhp] == 20 # [maxquantity] == 1 // Angelic Halo
             [type] == amulet              && [quality] == set # [itemlightradius] == 3 && [itemdamagetomana] == 20 # [maxquantity] == 1 // Angelic Wings
 //! =========================================================================================== //

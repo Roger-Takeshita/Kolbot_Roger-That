@@ -133,13 +133,12 @@
             [name] == ancientarmor        && [quality] == magic && [flag] != ethereal # [sockets] == 4 && [maxhp] >= 100
     //+ AXES =================================================================================
         //- White -------------------------------------------------------------------------
-            [name] == berserkeraxe        && [quality] == superior && [flag] != ethereal # [enhanceddamage] == 15 && ([sockets] == 3 || [sockets] == 4 || [sockets] == 5) // grief / beast
+            [name] == warspike            && [quality] == superior && [flag] != ethereal # [enhanceddamage] == 15 && [sockets] == 3 // crescent moon
+            [name] == smallcrescent       && [quality] == superior && [flag] != ethereal # [enhanceddamage] == 15 && [sockets] == 3 // crescent moon
+            [name] == ettinaxe            && [quality] == superior && [flag] != ethereal # [enhanceddamage] == 15 && [sockets] == 3 // crescent moon
+            [name] == berserkeraxe        && [quality] == superior && [flag] != ethereal # [enhanceddamage] == 15 && ([sockets] == 3 || [sockets] == 4 || [sockets] == 5) // crescent moon / passion / grief / beast
             [name] == berserkeraxe        && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 6) // botd
-            [name] == smallcrescent       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4)
-            [name] == warspike            && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5)
-            [name] == gloriousaxe         && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5)
-            [name] == decapitator         && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5)
-            [name] == ettinaxe            && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5)
+            [name] == gloriousaxe         && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 6) // botd
         //- Unique ------------------------------------------------------------------------
             [name] == tomahawk            && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 225 // razor's edge
             [name] == ettinaxe            && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 270 && [sockets] == 5 // rune master
@@ -368,10 +367,6 @@
             [name] == kris                && [quality] == rare # ([enhanceddamage] >= 250 && [itemtohitperlevel] >= 1 || [enhanceddamage] >= 400) && [ias] >= 40
             [name] == cinquedeas          && [quality] == rare # ([enhanceddamage] >= 250 && [itemtohitperlevel] >= 1 || [enhanceddamage] >= 400) && [ias] >= 40
             [name] == fangedknife         && [quality] == rare # ([enhanceddamage] >= 250 && [itemtohitperlevel] >= 1 || [enhanceddamage] >= 400) && [ias] >= 40
-    //+ FLAIL & KNOUT ========================================================================
-        //- White -------------------------------------------------------------------------
-            [name] == flail               && [quality] <= superior # [enhanceddamage] == 15 && [tohit] == 3 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5)
-            [name] == knout               && [quality] <= superior # [enhanceddamage] == 15 && [tohit] == 3 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5)
     //+ GLOVES ===============================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == vampirebonegloves   && [quality] == unique && [flag] != ethereal # [strength] == 15 && [enhanceddefense] == 120 // dracul's grasp
@@ -548,6 +543,10 @@
             [name] == ceremonialjavelin   && [quality] == magic && [flag] != ethereal # [javelinandspearskilltab]+[amazonskills] >= 5 && [ias] == 40
             [name] == matriarchaljavelin  && [quality] == magic && [flag] != ethereal # [javelinandspearskilltab]+[amazonskills] >= 5 && [ias] == 40
     //+ MACES ================================================================================
+        //- White -------------------------------------------------------------------------
+            [name] == flail               && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [tohit] == 3 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5)
+            [name] == knout               && [quality] == superior # [enhanceddamage] == 15 && [tohit] == 3 && [sockets] == 4 // passion
+            [name] == scourge             && [quality] == superior # [enhanceddamage] == 15 && [tohit] == 3 && [sockets] == 4 // passion
         //- Unique ------------------------------------------------------------------------
             // [name] == tyrantclub          && [quality] == unique && [flag] != ethereal # [enhanceddamage] == 230 // demon limb (for prebuff)
             [name] == scourge             && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 300 // stormlash
@@ -842,12 +841,10 @@
             // [name] == quarterstaff        && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 300 // ribcracker
     //+ SWORDS ===============================================================================
         //- White -------------------------------------------------------------------------
-            [name] == crystalsword        && [quality] == superior # [enhanceddamage] == 15 && [tohit] == 3 && [sockets] == 5 // cta
-            [name] == highlandblade       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // passion
-            [name] == phaseblade          && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4 // passion
-            [name] == zweihander          && [quality] == superior && [flag] != ethereal # [enhanceddamage] == 15 && [sockets] == 5
-            [name] == colossusblade       && [quality] == superior && [flag] != ethereal # [enhanceddamage] == 15 && [tohit] == 3 && ([sockets] == 3 || [sockets] == 5)
-            [name] == colossusblade       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 5 || [sockets] == 6)
+            [name] == crystalsword        && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [tohit] == 3 && ([sockets] == 3 || [sockets] == 5) // crescent moon / cta
+            [name] == phaseblade          && [quality] == superior # [enhanceddamage] == 15 && ([sockets] == 3 || [sockets] == 4) // crescent moon / passion
+            [name] == zweihander          && [quality] == superior && [flag] != ethereal # [enhanceddamage] == 15 && [sockets] == 5 // honor
+            [name] == colossusblade       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 6) // botd
         //- Unique ------------------------------------------------------------------------
             [name] == espandon            && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 200 // crainte vomir
             [name] == phaseblade          && [quality] == unique # [sanctuaryaura] == 13 && [enhanceddamage] == 270 && [strength] == 10 // azurewrath
@@ -855,24 +852,24 @@
             // [name] == battlesword         && [quality] == unique && [flag] == ethereal // headstriker
         //- Rare --------------------------------------------------------------------------
             [type] == sword               && [quality] == rare && [class] == elite && [flag] == ethereal # [enhanceddamage] >= 250 && [itemtohitperlevel] >= 1 || [enhanceddamage] >= 400
-            [name] == scimitar            && [quality] == rare # ([enhanceddamage] >= 250 && [itemtohitperlevel] >= 1 || [enhanceddamage] >= 400) && [ias] >= 40 && [sockets] == 2
             [name] == cutlass             && [quality] == rare # ([enhanceddamage] >= 250 && [itemtohitperlevel] >= 1 || [enhanceddamage] >= 400) && [ias] >= 40 && [sockets] == 2
+            [name] == scimitar            && [quality] == rare # ([enhanceddamage] >= 250 && [itemtohitperlevel] >= 1 || [enhanceddamage] >= 400) && [ias] >= 40 && [sockets] == 2
             [name] == ataghan             && [quality] == rare # ([enhanceddamage] >= 250 && [itemtohitperlevel] >= 1 || [enhanceddamage] >= 400) && [ias] >= 40 && [sockets] == 2
             [name] == phaseblade          && [quality] == rare # [itemtohitperlevel] >= 1 && [ias] == 40
         //- Magic -------------------------------------------------------------------------
             [type] == sword               && [quality] == magic && [class] == elite && [flag] == ethereal # [enhanceddamage] >= 250 && [itemtohitperlevel] >= 1 || [enhanceddamage] >= 400
-            [name] == scimitar            && [quality] == magic # ([enhanceddamage] >= 250 && [itemtohitperlevel] >= 1 || [enhanceddamage] >= 400) && [ias] >= 40 && [sockets] == 2
             [name] == cutlass             && [quality] == magic # ([enhanceddamage] >= 250 && [itemtohitperlevel] >= 1 || [enhanceddamage] >= 400) && [ias] >= 40 && [sockets] == 2
+            [name] == scimitar            && [quality] == magic # ([enhanceddamage] >= 250 && [itemtohitperlevel] >= 1 || [enhanceddamage] >= 400) && [ias] >= 40 && [sockets] == 2
             [name] == ataghan             && [quality] == magic # ([enhanceddamage] >= 250 && [itemtohitperlevel] >= 1 || [enhanceddamage] >= 400) && [ias] >= 40 && [sockets] == 2
-            [name] == phaseblade          && [quality] == magic # [sockets] >= 4 && [itemskillonhit] == 66
+            [name] == phaseblade          && [quality] == magic # [sockets] == 4 && [itemskillonhit] == 66
+            [name] == phaseblade          && [quality] == magic # [ias] == 40 && ([itemtohitperlevel] >= 1 || [sockets] == 4)
             [name] == balrogblade         && [quality] == magic && [flag] == ethereal # ([ias] >= 40 || [maxdamage] >= 63) && [enhanceddamage] >= 300
             [name] == colossussword       && [quality] == magic && [flag] == ethereal # ([ias] >= 40 || [maxdamage] >= 63) && [enhanceddamage] >= 300
             [name] == colossusblade       && [quality] == magic && [flag] == ethereal # ([ias] >= 40 || [maxdamage] >= 63) && [enhanceddamage] >= 300
-            [name] == phaseblade          && [quality] == magic # [itemtohitperlevel] >= 1 && [ias] == 40
     //+ WANDS ================================================================================
         //- White -------------------------------------------------------------------------
-            [type] == wand                && [quality] <= superior # [skillbonespear] == 3 && [skillgolemmastery]+[skillbonespirit]+[skillteeth]+[skillclaygolem]+[skilllowerresist]+[skillrevive]+[skilldecrepify]+[skillamplifydamage] >= 1 && [sockets] != 1
-            [type] == wand                && [quality] <= superior # [skillbonespirit] == 3 && [skillgolemmastery]+[skillbonespear]+[skillteeth]+[skillclaygolem]+[skilllowerresist]+[skillrevive]+[skilldecrepify]+[skillamplifydamage] >= 1 && [sockets] != 1
+            [type] == wand                && [quality] <= superior # [skillbonespear]  == 3 && [skillgolemmastery]+[skillbonespirit]+[skillteeth]+[skillclaygolem]+[skilllowerresist]+[skillrevive]+[skilldecrepify]+[skillamplifydamage] >= 1 && [sockets] != 1
+            [type] == wand                && [quality] <= superior # [skillbonespirit] == 3 && [skillgolemmastery]+[skillbonespear] +[skillteeth]+[skillclaygolem]+[skilllowerresist]+[skillrevive]+[skilldecrepify]+[skillamplifydamage] >= 1 && [sockets] != 1
         //- Unique ------------------------------------------------------------------------
             [name] == unearthedwand       && [quality] == unique && [flag] == identified // death's web
             [name] == burntwand           && [quality] == unique && [flag] == ethereal && [flag] == identified // suicide branch
