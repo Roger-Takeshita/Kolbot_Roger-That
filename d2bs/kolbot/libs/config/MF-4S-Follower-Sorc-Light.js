@@ -86,15 +86,14 @@ function LoadConfig() {
       //+ Potion settings -----------------------------------------------------------
          Config.UseHP        = 85;                       // Drink a healing potion if life is under designated percent.
          Config.UseRejuvHP   = 65;                       // Drink a rejuvenation potion if life is under designated percent.
-         Config.UseMP        = 40;                       // Drink a mana potion if mana is under designated percent.
-         Config.UseRejuvMP   = 10;                       // Drink a rejuvenation potion if mana is under designated percent.
+         Config.UseMP        = 50;                       // Drink a mana potion if mana is under designated percent.
          Config.UseMercHP    = 85;                       // Give a healing potion to your merc if his/her life is under designated percent.
-         Config.UseMercRejuv = 40;                       // Give a rejuvenation potion to your merc if his/her life is under designated percent.
+         Config.UseMercRejuv = 50;                       // Give a rejuvenation potion to your merc if his/her life is under designated percent.
          Config.HPBuffer     =  0;                       // Number of healing potions to keep in inventory.
          Config.MPBuffer     =  0;                       // Number of mana potions to keep in inventory.
          Config.RejuvBuffer  =  0;                       // Number of rejuvenation potions to keep in inventory.
          Config.TownHP       = 55;                       // Go to town if life is under designated percent.
-         Config.TownMP       = 10;                       // Go to town if mana is under designated percent.
+         Config.TownMP       = 15;                       // Go to town if mana is under designated percent.
          Config.TownCheck    = true;                     // Go to town if out of potions
       //+ Chicken settings ----------------------------------------------------------
          Config.LifeChicken  = 35;                       // Exit game if life is less or equal to designated percent.

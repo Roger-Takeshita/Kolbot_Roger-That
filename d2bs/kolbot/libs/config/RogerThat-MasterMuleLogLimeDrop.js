@@ -23,29 +23,29 @@ function LoadConfig() {
       Config.StashGold    = 200000;
    //! TOWN SETTINGS / POTION SETTINGS / CHICKEN SETTINGS ------------------------------
       //+ Town settings -------------------------------------------------------------
-         Config.HealHP        = 90;                      // Go to a healer if under designated percent of life.
-         Config.HealMP        =  0;                      // Go to a healer if under designated percent of mana.
-         Config.HealStatus    = false;                   // Go to a healer if poisoned or cursed
-         Config.UseMerc       = false;                   // Use merc. This is ignored and always false in d2classic.
-         Config.MercWatch     = false;                   // Instant merc revive during battle.
+         Config.HealHP       = 90;                       // Go to a healer if under designated percent of life.
+         Config.HealMP       =  0;                       // Go to a healer if under designated percent of mana.
+         Config.HealStatus   = false;                    // Go to a healer if poisoned or cursed
+         Config.UseMerc      = false;                    // Use merc. This is ignored and always false in d2classic.
+         Config.MercWatch    = false;                    // Instant merc revive during battle.
       //+ Potion settings -----------------------------------------------------------
-         Config.UseHP         = 85;                      // Drink a healing potion if life is under designated percent.
-         Config.UseRejuvHP    = 65;                      // Drink a rejuvenation potion if life is under designated percent.
-         Config.UseMP         = 40;                      // Drink a mana potion if mana is under designated percent.
-         Config.UseRejuvMP    = 10;                      // Drink a rejuvenation potion if mana is under designated percent.
-         Config.UseMercHP     = 85;                      // Give a healing potion to your merc if his/her life is under designated percent.
-         Config.UseMercRejuv  = 40;                      // Give a rejuvenation potion to your merc if his/her life is under designated percent.
-         Config.HPBuffer      =  0;                      // Number of healing potions to keep in inventory.
-         Config.MPBuffer      =  0;                      // Number of mana potions to keep in inventory.
-         Config.RejuvBuffer   =  0;                      // Number of rejuvenation potions to keep in inventory.
+         Config.UseHP        = 85;                       // Drink a healing potion if life is under designated percent.
+         Config.UseRejuvHP   = 65;                       // Drink a rejuvenation potion if life is under designated percent.
+         Config.UseMP        = 50;                       // Drink a mana potion if mana is under designated percent.
+         Config.UseMercHP    = 85;                       // Give a healing potion to your merc if his/her life is under designated percent.
+         Config.UseMercRejuv = 50;                       // Give a rejuvenation potion to your merc if his/her life is under designated percent.
+         Config.HPBuffer     =  0;                       // Number of healing potions to keep in inventory.
+         Config.MPBuffer     =  0;                       // Number of mana potions to keep in inventory.
+         Config.RejuvBuffer  =  0;                       // Number of rejuvenation potions to keep in inventory.
+         Config.TownHP       = 55;                       // Go to town if life is under designated percent.
+         Config.TownMP       = 15;                       // Go to town if mana is under designated percent.
+         Config.GoToTownHP   = false;                    // Go to town if out of healing potions, use with RogerThat-Master (only)
+         Config.GoToTownMP   = false;                    // Go to town if out of mana potions, use with RogerThat-Master (only)
       //+ Chicken settings ----------------------------------------------------------
-         Config.LifeChicken   = 35;                      // Exit game if life is less or equal to designated percent.
-         Config.ManaChicken   =  0;                      // Exit game if mana is less or equal to designated percent.
-         Config.MercChicken   =  0;                      // Exit game if merc's life is less or equal to designated percent.
-         Config.TownHP        = 55;                      // Go to town if life is under designated percent.
-         Config.TownMP        =  0;                      // Go to town if mana is under designated percent.
-         Config.GoToTownHP    = false;                   // Go to town if out of healing potions
-         Config.GoToTownMP    = false;                   // Go to town if out of mana potions
+         Config.LifeChicken  = 35;                       // Exit game if life is less or equal to designated percent.
+         Config.ManaChicken  =  0;                       // Exit game if mana is less or equal to designated percent.
+         Config.MercChicken  =  0;                       // Exit game if merc's life is less or equal to designated percent.
+         Config.PingQuit     = [{Ping: 0, Duration: 0}]; // Quit if ping is over the given value for over the given time period in seconds.
    //! PICK LIST -----------------------------------------------------------------------
       // Config.PickitFiles.push("w-bot1.nip");
       // Config.PickitFiles.push("w-bot2.nip");
@@ -67,6 +67,7 @@ function LoadConfig() {
          Config.D2BotPrintScriptError = false;           // Script error
          Config.D2BotPrintDie         =  true;           // When you die
          Config.D2BotPrintLostXp      = false;           // When you lose experience
+         Config.LogExperience         = false;           // Print experience statistics in the manager.
       //+ Additional item info log settings. All info goes to \logs\ItemLog.txt -----
          Config.ItemInfo = false;                        // Log stashed, skipped (due to no space) or sold items.
          Config.ItemInfoQuality = [];                    // The quality of sold items to log. See NTItemAlias.dbl for values. Example: Config.ItemInfoQuality = [6, 7, 8];
