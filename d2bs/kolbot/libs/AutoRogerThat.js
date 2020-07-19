@@ -12,14 +12,15 @@ var AutoRogerThat = {
                 this.beltSize = Storage.BeltSize();
             },
 
-    //! DROP ITEMS ====================================================================
-        //+ Drop items ------------------------------------------------------------
+    //! ITEMS INFO ====================================================================
+        //+ Print items ------------------------------------------------------------
             printItems: function (items) {
                 for (let i = 0; i < items.length; i++){
                     print("ÿc9" + items[i].classid + "ÿc0 "+ items[i].name + "ÿc9 Quality: ÿc0" + items[i].quality + "ÿc9 Location: ÿc0"+ items[i].location + "ÿc9 Item Type: ÿc0" + items[i].itemType)
                 }
             },
 
+        //+ Get items qty ----------------------------------------------------------
             getItemsQuantity: function (itemsArray) {
                 let items = this.getProfileItems();
                 let checkStatus = this.getItemsClassId(itemsArray);
@@ -43,6 +44,7 @@ var AutoRogerThat = {
                 say("I have: " + msg);
             },
 
+        //+ Get items id -----------------------------------------------------------
             getItemsClassId: function (itemsArray, qtyArray) {
                 let dropObj = {};
                 let itemCodes = [];
@@ -505,6 +507,8 @@ var AutoRogerThat = {
                 return dropObj;
             },
 
+    //! DROP ITEMS ====================================================================
+        //+ Drop items -------------------------------------------------------------
             dropProfileItems: function (mode) {
                 let items;
 
@@ -565,7 +569,7 @@ var AutoRogerThat = {
                 return true;
             },
 
-        //+ Get profile items -----------------------------------------------------
+        //+ Get profile items ------------------------------------------------------
             getProfileItems: function (mode) {
                 let item = me.findItems(-1, 0),
                     items = [];
@@ -605,12 +609,12 @@ var AutoRogerThat = {
                 return items;
             },
 
-        //+ Cube ingredients ------------------------------------------------------
+        //+ Cube ingredients -------------------------------------------------------
             utilityIngredient: function (item) {
                 return CraftingSystem.validGids.indexOf(item.gid) > -1;
             },
 
-        //+ Check if an item is a cubing ingredient -------------------------------
+        //+ Check if an item is a cubing ingredient --------------------------------
             cubingIngredient: function (item) {
                 for (let i = 0 ; i < Cubing.validIngredients.length ; i++) {
                     if (item.gid === Cubing.validIngredients[i].gid) {
@@ -648,7 +652,7 @@ var AutoRogerThat = {
                 return false;
             },
 
-        //+ Drop anni/torch -------------------------------------------------------
+        //+ Drop anni/torch --------------------------------------------------------
             dropCharm: function (dropAnni) {
                 let item;
 
@@ -688,9 +692,9 @@ var AutoRogerThat = {
     //! PICK ITEMS ====================================================================
         gidList: [],
         beltSize: 1,
-        ignoreLog: [4, 5, 6, 22, 41, 76, 77, 78, 79, 80, 81], // Ignored item types for item logging
+        ignoreLog: [4, 5, 6, 22, 41, 76, 77, 78, 79, 80, 81],
 
-        //+ Check items with pickit list ------------------------------------------
+        //+ Check items with pickit list -------------------------------------------
             checkItem: function (unit) {
                 let rval = NTIP.CheckItem(unit, false, true);
 
@@ -742,7 +746,7 @@ var AutoRogerThat = {
                 return rval;
             },
 
-        //+ Pick multiple items ---------------------------------------------------
+        //+ Pick multiple items ----------------------------------------------------
             pickItems: function () {
                 let status,
                     item,
@@ -824,7 +828,7 @@ var AutoRogerThat = {
                 return true;
             },
 
-        //+ Pick item -------------------------------------------------------------
+        //+ Pick item --------------------------------------------------------------
             pickItem: function (unit, status, keptLine) {
                 function ItemStats(unit) {
                     this.ilvl = unit.ilvl;
@@ -963,7 +967,7 @@ var AutoRogerThat = {
                 return true;
             },
 
-        //+ Can pick it? ----------------------------------------------------------
+        //+ Can pick it? -----------------------------------------------------------
             canPick: function (unit) {
                 let tome,
                     charm,
@@ -1136,7 +1140,7 @@ var AutoRogerThat = {
                 return true;
             },
 
-        //+ Check belt ------------------------------------------------------------
+        //+ Check belt -------------------------------------------------------------
             checkBelt: function () {
                 var check = 0,
                     item = me.getItem(-1, 2);
@@ -1152,12 +1156,12 @@ var AutoRogerThat = {
                 return check === 4;
             },
 
-        //+ Sort items by distance for general item pickup ------------------------
+        //+ Sort items by distance for general item pickup -------------------------
             sortItems: function (unitA, unitB) {
                 return getDistance(me, unitA) - getDistance(me, unitB);
             },
 
-        //+ Sort items by distance for general item pickup - fast pick ------------
+        //+ Sort items by distance for general item pickup - fast pick -------------
             sortFastPickItems: function (unitA, unitB) {
                 if (unitA.itemType === 74 || unitA.quality === 7) {
                     return -1;
@@ -1170,7 +1174,7 @@ var AutoRogerThat = {
                 return getDistance(me, unitA) - getDistance(me, unitB);
             },
 
-        //+ Fast pickit -----------------------------------------------------------
+        //+ Fast pickit ------------------------------------------------------------
             fastPick: function () {
                 let item,
                     gid,
@@ -1646,16 +1650,18 @@ var AutoRogerThat = {
                         print("ÿc2Sending msg: ÿc0ÿc9" + data.message + "ÿc0 (code ÿc4" + data.code + "ÿc0)");
 
                         while (tries <= 4) {
-                            response = HTTP({
-                                url: Config.RogerThatTelegram.Url + "/api/diablo/notify",
-                                port: Config.RogerThatTelegram.Port,
-                                method: "POST",
-                                headers: {
-                                    'Authorization': "Bearer " + Config.RogerThatTelegram.Token,
-                                    'Content-Type': "application/json"
-                                },
-                                data: JSON.stringify(data)
-                            });
+                            try {
+                                response = HTTP({
+                                    url: Config.RogerThatTelegram.Url + "/api/diablo/notify",
+                                    port: Config.RogerThatTelegram.Port,
+                                    method: "POST",
+                                    headers: {
+                                        'Authorization': "Bearer " + Config.RogerThatTelegram.Token,
+                                        'Content-Type': "application/json"
+                                    },
+                                    data: JSON.stringify(data)
+                                });
+                            } catch (error) {}
 
                             if (response) {
                                 break;
