@@ -1080,6 +1080,7 @@ MainLoop:
 								return copyUnit(portal);
 							}
 						}
+						delay(150);
 					} while (portal.getNext());
 				}
 
