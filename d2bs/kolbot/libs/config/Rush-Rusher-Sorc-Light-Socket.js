@@ -172,7 +172,7 @@ function LoadConfig() {
          Config.RogerThatTelegram.Notify.HotIP = true;
          Config.RogerThatTelegram.Notify.DiabloClone = true;
    //! DIABLO CLONE CONFIG -------------------------------------------------------------
-      Config.StopOnDClone = true;                        // Go to town and idle as soon as Diablo walks the Earth
+      Config.StopOnDClone = false;                       // Go to town and idle as soon as Diablo walks the Earth
       Config.SoJWaitTime = 5;                            // Time in minutes to wait for another SoJ sale before leaving game. 0 = disabled
       Config.KillDclone = true;                          // Go to Palace Cellar 3 and try to kill Diablo Clone. Pointless if you already have Annihilus.
       Config.DCloneQuit = false;                         // 1 = quit when Diablo walks, 2 = quit on soj sales, 0 = disabled
@@ -255,11 +255,16 @@ function LoadConfig() {
             // Config.Recipes.push([Recipe.Socket.Shield, "Protector Shield",  Roll.NonEth]);
             // Config.Recipes.push([Recipe.Socket.Shield, "Gilded Shield",     Roll.NonEth]);
             // Config.Recipes.push([Recipe.Socket.Shield, "Royal Shield",      Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Sacred Targe",      Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Sacred Rondache",   Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Kurast Shield",     Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Zakarum Shield",    Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Vortex Shield",     Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Sacred Targe",      Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Sacred Rondache",   Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Kurast Shield",     Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Zakarum Shield",    Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Vortex Shield",     Roll.NonEth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Sacred Targe",         Roll.Eth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Sacred Rondache",      Roll.Eth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Kurast Shield",        Roll.Eth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Zakarum Shield",       Roll.Eth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Vortex Shield",        Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Berserker Axe",        Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Colossus Blade",       Roll.Eth]);
          //+ UPGRADE ----------------------------------------------------------------

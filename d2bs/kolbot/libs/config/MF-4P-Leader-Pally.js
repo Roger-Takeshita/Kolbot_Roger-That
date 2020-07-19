@@ -271,11 +271,16 @@ function LoadConfig() {
             // Config.Recipes.push([Recipe.Socket.Shield, "Protector Shield",  Roll.NonEth]);
             // Config.Recipes.push([Recipe.Socket.Shield, "Gilded Shield",     Roll.NonEth]);
             // Config.Recipes.push([Recipe.Socket.Shield, "Royal Shield",      Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Sacred Targe",      Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Sacred Rondache",   Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Kurast Shield",     Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Zakarum Shield",    Roll.NonEth]);
-            Config.Recipes.push([Recipe.Socket.Shield, "Vortex Shield",     Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Sacred Targe",      Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Sacred Rondache",   Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Kurast Shield",     Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Zakarum Shield",    Roll.NonEth]);
+            // Config.Recipes.push([Recipe.Socket.Shield, "Vortex Shield",     Roll.NonEth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Sacred Targe",         Roll.Eth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Sacred Rondache",      Roll.Eth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Kurast Shield",        Roll.Eth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Zakarum Shield",       Roll.Eth]);
+            Config.Recipes.push([Recipe.Socket.Shield, "Vortex Shield",        Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Berserker Axe",        Roll.Eth]);
             Config.Recipes.push([Recipe.Socket.Weapon, "Colossus Blade",       Roll.Eth]);
          //+ UPGRADE ----------------------------------------------------------------
