@@ -52,11 +52,11 @@
     //+ BOWS =================================================================================
         //- White -------------------------------------------------------------------------
             [name] == diamondbow          && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4
+            [name] == greatbow            && [quality] == superior # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4)
+            [name] == wardbow             && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4
             [name] == shadowbow           && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4
             [name] == crusaderbow         && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4
-            [name] == wardbow             && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4
             [name] == hydrabow            && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4
-            [name] == greatbow            && [quality] == superior # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4)
             [name] == matriarchalbow      && [quality] <= superior # [bowandcrossbowskilltab] == 3 && [enhanceddamage] == 15 && [sockets] == 4 // faith
             [name] == grandmatronbow      && [quality] <= superior # [bowandcrossbowskilltab] == 3 && [enhanceddamage] == 15 && [sockets] == 4 // faith
         //- Unique ------------------------------------------------------------------------
@@ -96,6 +96,8 @@
             [name] == tiara               && [quality] == unique # [fireresist] == 70 // kira's guardian
             [name] == casque              && [quality] == unique # [itemmagicbonus] == 50 // stealskull
             [name] == spiredhelm          && [quality] == unique # [passivecoldmastery] >= 10 // nightwing's veil - max 15% cd
+            [name] == demonhead           && [quality] == unique # [strength] >= 30 && [lifeleech] >= 8 && [enhanceddefense] >= 100 // andariel's visage - max 30 str, 10% ll and 150% edef
+            [name] == demonhead           && [quality] == unique # [strength] >= 25 && [lifeleech] >= 8 && [enhanceddefense] >= 100 // andariel's visage - max 30 str, 10% ll and 150% edef
             [name] == grimhelm            && [quality] == unique # [damageresist] == 20 // vampgaze
     //+ MACES ================================================================================
         //- White -------------------------------------------------------------------------
@@ -139,10 +141,11 @@
             [type] == ring                && [quality] <= rare # [itemmagicbonus] >= 30
     //+ SHIELDS ==============================================================================
         //- White -------------------------------------------------------------------------
-            [name] == monarch             && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 4) && [enhanceddefense] == 15 // spirit 15% edef
+            [name] == monarch             && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 4) && [enhanceddefense] == 15 && [itemmaxdurabilitypercent] == 15 // spirit 15% edef
             [name] == monarch             && [quality] == normal   && [flag] != ethereal # [sockets] == 0 # [maxquantity] == 1                           // spirit cube
             [name] == monarch             && [quality] == normal   && [flag] != ethereal # [sockets] == 4                                                // spirit
             [type] == auricshields        && [quality] <= superior && [flag] != ethereal # [fireresist] >= 45 && ([sockets] == 0 || [sockets] == 4)      // spirit
+            [type] == auricshields        && [quality] <= superior && [flag] != ethereal # [enhanceddamage] == 65 && [tohit] == 121 && ([sockets] == 0 || [sockets] == 4) // dmg spirit
             [type] == auricshields        && [quality] <= superior && [class] == elite && [flag] == ethereal # ([enhanceddamage] == 65 && [tohit] == 121 || [fireresist] >= 45) && ([sockets] == 0 || [sockets] == 4) // exile
             [type] == auricshields        && [quality] <= superior && [class] == elite && [flag] != ethereal # ([enhanceddamage] == 65 && [tohit] == 121 || [fireresist] >= 45) && ([sockets] == 0 || [sockets] == 4) // spirit
         //- Unique ------------------------------------------------------------------------
@@ -178,7 +181,8 @@
             [name] == runesword           && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
             [name] == conquestsword       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
             [name] == crypticsword        && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
-            [name] == phaseblade          && [quality] == superior # [enhanceddamage] >= 1 && [sockets] == 5 // grief
+            [name] == phaseblade          && [quality] == superior # [enhanceddamage] >= 15 && [sockets] == 5 // grief
+            [name] == phaseblade          && [quality] == superior # [enhanceddamage] >= 15 && [tohit] == 3 &&  ([sockets] == 0 || [sockets] == 6) // last wish
             [name] == highlandblade       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // oath
             [name] == colossusblade       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 4 || [sockets] == 5) // oath / death
             // [name] == crystalsword        && [quality] <= superior # [sockets] == 5 # [maxquantity] == 1 // cta
@@ -188,7 +192,7 @@
             [name] == deathmask           && [quality] == set //# [defense] == 131 // Tal Rasha's Horadric Crest
             [name] == lacqueredplate      && [quality] == set # [defense] >= 833 // Tal Rasha's Guardianship - max 941 def
             [type] == amulet              && [quality] == set # [lightresist] == 33 // Tal Rasha's Adjucation
-            [name] == meshbelt            && [quality] == set # [itemmagicbonus] >= 10 && [defense] >= 95 // Tal Rasha's Fine-Spun Cloth - max 15% mf and 100 def
+            [name] == meshbelt            && [quality] == set # [itemmagicbonus] >= 10 && [defense] >= 35 // Tal Rasha's Fine-Spun Cloth - max 15% mf and 40 def
         //* Immortal King =================================================================
             [name] == warbelt             && [quality] == set // Immortal King's Detail
             [name] == avengerguard        && [quality] == set # [itemmagicbonus] >= 25 && [defense] >= 160 // Immortal King's Will - max 40% mf and 175 def
