@@ -26,6 +26,7 @@ var AutoRogerThat = {
                 let checkStatus = this.getItemsClassId(itemsArray);
                 let status = {};
                 let msg = "";
+                let haveSomething = false;
 
                 for (let i = 0; i < items.length; i++) {
                     if (checkStatus[items[i].classid] !== undefined && checkStatus[items[i].classid].qty >= 0) {
@@ -34,14 +35,19 @@ var AutoRogerThat = {
                         } else {
                             status[checkStatus[items[i].classid].name] += 1;
                         }
+                        haveSomething = true;
                     }
                 }
 
-                for (var item in status) {
-                    msg += status[item] + "x " + item + " ";
-                }
+                if (haveSomething) {
+                    for (var item in status) {
+                        msg += status[item] + "x " + item + " ";
+                    }
 
-                say("I have: " + msg);
+                    say("I have: " + msg);
+                } else {
+                    me.overhead("Sorry! I'm poor!");
+                }
             },
 
         //+ Get items id -----------------------------------------------------------
@@ -1642,7 +1648,7 @@ var AutoRogerThat = {
 
             if (Config.RogerThatTelegram.Active &&
                 (Config.RogerThatTelegram.Notify.Trade || Config.RogerThatTelegram.Notify.HotIP || Config.RogerThatTelegram.Notify.DiabloClone)) {
-                    if (Config.RogerThatTelegram.Url === '' || Config.RogerThatTelegram.Token === '' || Config.RogerThatTelegram.Port === undefined) {
+                    if (Config.RogerThatTelegram.Url === '' || Config.RogerThatTelegram.Email === '' || Config.RogerThatTelegram.Password === '') {
                         me.overhead("ÿc1ERROR:ÿc0 Headers are not configured.");
                     } else {
                         const HTTP = require("../libs/modules/HTTP");
@@ -1651,17 +1657,19 @@ var AutoRogerThat = {
 
                         while (tries <= 4) {
                             try {
+                                data.email = Config.RogerThatTelegram.Email;
+                                data.password = Config.RogerThatTelegram.Password;
                                 response = HTTP({
                                     url: Config.RogerThatTelegram.Url + "/api/diablo/notify",
-                                    port: Config.RogerThatTelegram.Port,
                                     method: "POST",
                                     headers: {
-                                        'Authorization': "Bearer " + Config.RogerThatTelegram.Token,
                                         'Content-Type': "application/json"
                                     },
                                     data: JSON.stringify(data)
                                 });
-                            } catch (error) {}
+                            } catch (error) {
+                                print(JSON.stringify(error, undefined, 3));
+                            }
 
                             if (response) {
                                 break;
@@ -1677,14 +1685,13 @@ var AutoRogerThat = {
 
                         if (!response) {
                             print("ÿc1Failed to connect to ÿc9" + Config.RogerThatTelegram.Url);
-                            me.overhead("ÿc1No response from server");
+                            me.overhead("ÿc1!");
                         } else {
                             print("ÿc2Message delivered to ÿc9" + Config.RogerThatTelegram.Url);
                             response.then((data) => {
                                 const msgArray = data.split(/\r?\n/);
-
                                 print("ÿc2Server response: ÿc9 " + msgArray[msgArray.length - 1]);
-                                me.overhead("ÿc2" + msgArray[msgArray.length-1]);
+                                // me.overhead("ÿc2" + msgArray[msgArray.length-1]);
                             })
                         }
                     }

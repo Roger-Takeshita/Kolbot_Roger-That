@@ -465,15 +465,13 @@ function RogerThat() {
                         AutoRogerThat.notify({
                             code: "Trade",
                             message: "Trade",
-                            data: {
-                                profile: me.profile,
-                                game: me.gamename,
-                                account: name2
-                            }
+                            profile: me.profile,
+                            gameName: me.gamename,
+                            gamePassword: me.gamepassword,
+                            ip: me.gameserverip
                         });
 
                         messageFlag = false;
-                        Town.move("stash");
 
                         if (tradeMessage !== "") {
                             me.cancel();

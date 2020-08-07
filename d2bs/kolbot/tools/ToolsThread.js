@@ -739,13 +739,11 @@ function main() {
 				// 	Config.RogerThatTelegram.Notify.DiabloClone = true;
 				// AutoRogerThat.notify({
 				// 	code: 'Trade',
-				// 	message: 'Trade Test',
-				// 	data: {
-				// 		profile: me.profile,
-				// 		game: me.gamename,
-				// 		password: me.gamepassword,
-				// 		ip: me.gameserverip
-				// 	}
+				// 	message: 'Custom Trade Msg',
+				// 	profile: me.profile,
+				// 	gameName: me.gamename,
+				// 	gamePassword: me.gamepassword,
+				// 	ip: me.gameserverip
 				// });
 
 				break;
@@ -981,9 +979,10 @@ function main() {
 			AutoRogerThat.notify({
 				code: 'Soj',
 				message: param1 + ' Stones of Jordan Sold to Merchants',
-				data: {
-					ip: me.gameserverip
-				}
+				profile: me.profile,
+				gameName: me.gamename,
+				gamePassword: me.gamepassword,
+				ip: me.gameserverip
 			});
 
 			if (Config.DCloneQuit === 2) {
@@ -1001,15 +1000,18 @@ function main() {
 
 			break;
 		case 0x12: // "Diablo Walks the Earth"
+			if (me.gametype === 1) {
+				D2Bot.printToConsole("Diablo Walks the Earth", 7);
+				print("ÿc4Diablo Walks the Earth");
+			}
+
 			AutoRogerThat.notify({
 				code: 'Diablo Clone',
-				message: 'Diablo walks on the earth',
-				data: {
-					profile: me.profile,
-					game: me.gamename,
-					password: me.gamepassword,
-					ip: me.gameserverip
-				}
+				message: 'Diablo Walks the Earth',
+				profile: me.profile,
+				gameName: me.gamename,
+				gamePassword: me.gamepassword,
+				ip: me.gameserverip
 			});
 
 			if (Config.DCloneQuit > 0) {
@@ -1021,14 +1023,14 @@ function main() {
 			}
 
 			if (Config.StopOnDClone && me.gametype === 1) { // only do this in expansion
-				D2Bot.printToConsole("Diablo Walks the Earth", 7);
+				// D2Bot.printToConsole("Diablo Walks the Earth", 7);
 
 				cloneWalked = true;
 
 				this.togglePause();
 				Town.goToTown();
-				showConsole();
-				print("ÿc4Diablo Walks the Earth");
+				// showConsole();
+				// print("ÿc4Diablo Walks the Earth");
 
 				me.maxgametime = 0;
 

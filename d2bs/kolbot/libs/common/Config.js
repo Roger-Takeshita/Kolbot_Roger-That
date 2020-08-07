@@ -199,9 +199,9 @@ var Config = {
 			DiabloClone: false,
 			HotIP: false,
 		},
-		Token: '',
+		Email: '',
+		Password: '',
 		Url: '',
-		Port: 3001
 	},
 	GoToTownHP: false,
 	GoToTownMP: false,
