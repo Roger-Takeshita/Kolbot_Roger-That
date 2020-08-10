@@ -96,7 +96,7 @@
             [name] == tiara               && [quality] == unique # [fireresist] == 70 // kira's guardian
             [name] == casque              && [quality] == unique # [itemmagicbonus] == 50 // stealskull
             [name] == spiredhelm          && [quality] == unique # [passivecoldmastery] >= 10 // nightwing's veil - max 15% cd
-            [name] == demonhead           && [quality] == unique # [strength] >= 30 && [lifeleech] >= 8 && [enhanceddefense] >= 100 // andariel's visage - max 30 str, 10% ll and 150% edef
+            [name] == demonhead           && [quality] == unique # [strength] >= 25 && [lifeleech] >= 8 && [enhanceddefense] >= 100 // andariel's visage - max 30 str, 10% ll and 150% edef
             [name] == demonhead           && [quality] == unique # [strength] >= 25 && [lifeleech] >= 8 && [enhanceddefense] >= 100 // andariel's visage - max 30 str, 10% ll and 150% edef
             [name] == grimhelm            && [quality] == unique # [damageresist] == 20 // vampgaze
     //+ MACES ================================================================================

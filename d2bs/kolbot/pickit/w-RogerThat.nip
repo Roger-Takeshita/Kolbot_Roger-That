@@ -393,7 +393,7 @@
             [type] == gloves              && [quality] == crafted # [itemknockback] >= 1 && [ias] == 20 && [dexterity]+[strength] >= 15 && ([coldresist]+[fireresist]+[lightresist]+[poisonresist] >= 22 || [itemaddskilltab] >= 2 || [dexterity]+[strength] >= 22)
         //- Craft Blood -------------------------------------------------------------------
             [type] == gloves              && [quality] == crafted # ([javelinandspearskilltab]+[passiveandmagicskilltab]+[bowandcrossbowskilltab] >= 2) && [ias] == 20 && [itemknockback] >= 1
-            [type] == gloves              && [quality] == crafted # [itemcrushingblow] >= 9 && [ias] == 20 && [dexterity]+[strength] >= 20
+            [type] == gloves              && [quality] == crafted # [itemcrushingblow] == 10 && [ias] == 20 && [dexterity]+[strength] >= 10
             [type] == gloves              && [quality] == crafted # [itemcrushingblow] >= 5 && [ias] == 20 && [dexterity]+[strength] >= 25 && [maxhp] >= 17
     //+ JEWELS ===============================================================================
         //- Unique ------------------------------------------------------------------------

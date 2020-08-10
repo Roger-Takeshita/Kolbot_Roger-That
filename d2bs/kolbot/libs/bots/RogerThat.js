@@ -22,7 +22,7 @@ function RogerThat() {
         checkLeaderFlag = false,
         checkPartyFlag = false,
         leaderLeftPartyFlag = false,
-        unUsedSkill= me.getStat(5),
+        unUsedSkill = me.getStat(5),
         actions = [],
         leaderAct,
         target,
@@ -372,7 +372,6 @@ function RogerThat() {
                         } else if (!messageFlag) {
                             print("ÿc4Message Log:ÿc0 ÿc1OFFÿc0");
                             me.overhead("ÿc4Message Log:ÿc0 ÿc1OFFÿc0");
-                            Town.move("stash");
                         }
 
                         msg = "";
@@ -466,9 +465,8 @@ function RogerThat() {
                             code: "Trade",
                             message: "Trade",
                             profile: me.profile,
+                            userAcc: name2,
                             gameName: me.gamename,
-                            gamePassword: me.gamepassword,
-                            ip: me.gameserverip
                         });
 
                         messageFlag = false;
@@ -2145,13 +2143,9 @@ function RogerThat() {
                 }
 
             //- Updated attack when lvl -------------------------------------------
-                if (Config.UpdateSkill && me.charlvl >= 2) {
-                    if (me.getStat(5) !== unUsedSkill) {
-                        if (me.getStat(5) < unUsedSkill) {
-                            AutoRogerThat.updateAttack();
-                            me.overhead("Attack has been updated!");
-                        }
-
+                if (me.ingame && me.gameReady && Config.UpdateSkill && me.getStat(5) !== unUsedSkill) {
+                    if (AutoRogerThat.updateAttack()) {
+                        print("ÿc4Attack skills have been updated!");
                         unUsedSkill = me.getStat(5);
                     }
                 }
@@ -2434,7 +2428,7 @@ function RogerThat() {
                                         let leaderAct = this.checkLeaderAct(leader);
 
                                         if (me.inTown && leaderAct !== me.act) {
-                                            me.overhead = ("Yes, leader ÿc2" + Config.Leader + "ÿc0");
+                                            me.overhead("Yes, leader ÿc2" + Config.Leader);
                                             Town.goToTown(leaderAct);
                                         } else if (!me.inTown) {
                                             if (!this.goToTownTomeBook()) {
