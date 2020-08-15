@@ -59,11 +59,6 @@ function main() {
 	Runewords.init();
 	Cubing.init();
 
-	if (Config.RogerThatInventoryFlag) {
-		AutoRogerThat.updateInventory();
-		AutoRogerThat.updateAttack();
-	}
-
 	for (i = 0; i < 5; i += 1) {
 		timerLastDrink[i] = 0;
 	}

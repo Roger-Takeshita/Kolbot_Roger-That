@@ -88,6 +88,11 @@ var Config = {
 
 		try {
 			LoadConfig.call();
+
+			if (Config.RogerThatInventoryFlag) {
+				AutoRogerThat.updateInventory();
+				AutoRogerThat.updateAttack();
+			}
 		} catch (e2) {
 			if (notify) {
 				print("ÿc8Error in " + e2.fileName.substring(e2.fileName.lastIndexOf("\\") + 1, e2.fileName.length) + "(line " + e2.lineNumber + "): " + e2.message);

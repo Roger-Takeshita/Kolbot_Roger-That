@@ -18,7 +18,6 @@ function RogerThat() {
         pvpFlag = false,
         chatFlag = false,
         attack = true,
-        openContainers = true,
         checkLeaderFlag = false,
         checkPartyFlag = false,
         leaderLeftPartyFlag = false,
@@ -32,7 +31,7 @@ function RogerThat() {
 
     //! PARTY ========================================================================
         //+ Get leader's party unit ===============================================
-            this.getLeader = function (name) {
+            function getLeader (name) {
                 if (me.ingame) {
                     let player = getParty();
 
@@ -49,7 +48,7 @@ function RogerThat() {
             };
 
         //+ Get leader's unit =====================================================
-            this.getLeaderUnit = function (name) {
+            function getLeaderUnit (name) {
                 let player = getUnit(0, name);
 
                 if (player) {
@@ -64,7 +63,7 @@ function RogerThat() {
             };
 
         //+ Get leader's act from party unit ======================================
-            this.checkLeaderAct = function (unit) {
+            function checkLeaderAct (unit) {
                 if (unit.area <= 39) {
                     return 1;
                 }
@@ -81,7 +80,7 @@ function RogerThat() {
             };
 
         //+ Change areas to where leader is =======================================
-            this.checkExit = function (unit, area) {
+            function checkExit (unit, area) {
                 let exits = getArea().exits;
 
                 if (unit.inTown) {
@@ -138,11 +137,11 @@ function RogerThat() {
             };
 
         //+ Got to leader act / area ==============================================
-            this.useTP = function (name) {
+            function useTP (name) {
                 if (!Pather.usePortal(null, name, null, 2)) {
                     target = getUnit(1, NPC.Cain);
                     if (target) {
-                        this.talkTo(NPC.Cain);
+                        talkTo(NPC.Cain);
                     }
 
                     delay(250);
@@ -155,41 +154,41 @@ function RogerThat() {
                 return true;
             };
 
-            this.goToLeader = function (leader, justWp) {
-                leaderAct = this.checkLeaderAct(leader);
+            function goToLeader (leader, justWp) {
+                leaderAct = checkLeaderAct(leader);
 
                 if (me.inTown && leaderAct !== me.act) {
                     Town.goToTown(leaderAct);
                     Town.move("portalspot");
                     delay(250);
-                    this.useTP(leader.name);
+                    useTP(leader.name);
                 } else if (me.inTown && leaderAct === me.act) {
                     Town.move("portalspot");
                     delay(250);
-                    this.useTP(leader.name);
+                    useTP(leader.name);
 
                     if (!justWp) {
-                        while (!this.getLeaderUnit(leader.name) && !me.dead && !me.inTown) {
+                        while (!getLeaderUnit(leader.name) && !me.dead && !me.inTown) {
                             Attack.clear(10);
                             delay(150);
                         }
                     }
                 } else if (!me.inTown && leaderAct !== me.act) {
-                    if (!this.goToTownTomeBook()) {
+                    if (!goToTownTomeBook()) {
                         return false;
                     }
 
-                    Town.goToTown(this.checkLeaderAct(leader));
+                    Town.goToTown(checkLeaderAct(leader));
                     Town.move("portalspot");
                     delay(250);
-                    this.useTP(leader.name);
+                    useTP(leader.name);
                 }
 
                 return true;
             };
 
         //+ Get WP ================================================================
-            this.getWp = function () {
+            function getWp () {
                 if (me.inTown) {
                     return false;
                 }
@@ -488,7 +487,7 @@ function RogerThat() {
 
     //! EVENTS =======================================================================
         //+ Talk to a NPC =========================================================
-            this.talk = function (name) {
+            function talk (name) {
                 let npc,
                     names;
 
@@ -541,7 +540,7 @@ function RogerThat() {
                 }
 
                 if (name === NPC.Cain) {
-                    this.talkTo(NPC.Cain);
+                    talkTo(NPC.Cain);
                     return true;
                 }
 
@@ -565,7 +564,7 @@ function RogerThat() {
             };
 
         //+ Change act after completing last act quest ============================
-            this.changeAct = function (act) {
+            function changeAct (act) {
                 let npc,
                     preArea = me.area,
                     target;
@@ -694,7 +693,7 @@ function RogerThat() {
             };
 
         //+ Pick Potions ==========================================================
-            this.pickPotions = function (range) {
+            function pickPotions (range) {
                 var status, item,
                     pickList = [];
 
@@ -736,7 +735,7 @@ function RogerThat() {
             };
 
         //+ Open Containers =======================================================
-            this.openContainers = function (range) {
+            function openContainers (range) {
                 let unit = getUnit(2),
                     unitList = [],
                     containers = ["chest", "loose rock", "hidden stash", "loose boulder", "corpseonstick", "casket", "armorstand", "weaponrack", "barrel", "holeanim",
@@ -768,7 +767,7 @@ function RogerThat() {
             };
 
         //+ Open Get Portal =======================================================
-            this.getPortal = function (targetArea, owner) {
+            function getPortal (targetArea, owner) {
                 let portal = getUnit(2, "portal");
 
                 if (portal) {
@@ -802,7 +801,7 @@ function RogerThat() {
             };
 
         //+ Check Quest ===========================================================
-            this.checkQuest = function () {
+            function checkQuest () {
                 let item, itemClassId, quest, count;
 
                 switch (me.area) {
@@ -850,7 +849,7 @@ function RogerThat() {
 
                             if (!item) {
                                 me.overhead("Someone already took the scroll!")
-                                this.goToTownTomeBook();
+                                goToTownTomeBook();
                                 break;
                             }
 
@@ -858,11 +857,11 @@ function RogerThat() {
                             delay(500);
 
                             if (me.getItem(itemClassId)) {
-                                if (!this.goToTownTomeBook()) {
+                                if (!goToTownTomeBook()) {
                                     break;
                                 }
 
-                                this.talkTo(NPC.Akara);
+                                talkTo(NPC.Akara);
                                 me.cancel();
                                 Town.move("portalspot");
                             }
@@ -916,12 +915,12 @@ function RogerThat() {
                             if (!item) {
                                 me.overhead("Someone already took the tool!");
 
-                                if (!this.goToTownTomeBook()) {
+                                if (!goToTownTomeBook()) {
                                     break;
                                 }
 
                                 delay(500);
-                                this.talkTo(NPC.Charsi);
+                                talkTo(NPC.Charsi);
                                 Town.move("portalspot");
                                 break;
                             }
@@ -930,11 +929,11 @@ function RogerThat() {
                             delay(500);
 
                             if (me.getItem(itemClassId)) {
-                                if (!this.goToTownTomeBook()) {
+                                if (!goToTownTomeBook()) {
                                     break;
                                 }
 
-                                this.talkTo(NPC.Charsi);
+                                talkTo(NPC.Charsi);
                                 Town.move("portalspot");
                                 break;
                             }
@@ -971,11 +970,11 @@ function RogerThat() {
                             if (me.getItem(itemClassId)) {
                                 clickItem(1, me.getItem(itemClassId));
 
-                                if (!this.goToTownTomeBook()) {
+                                if (!goToTownTomeBook()) {
                                     break;
                                 }
 
-                                this.talkTo(NPC.Atma);
+                                talkTo(NPC.Atma);
                                 break;
                             }
 
@@ -994,7 +993,7 @@ function RogerThat() {
 
                         if (me.getItem(itemClassId)) {
                             me.overhead("I already got the cube!");
-                            this.goToTownTomeBook();
+                            goToTownTomeBook();
                             break;
                         }
 
@@ -1020,14 +1019,14 @@ function RogerThat() {
                             delay(500);
 
                             if (me.getItem(itemClassId)) {
-                                if (!this.goToTownTomeBook()) {
+                                if (!goToTownTomeBook()) {
                                     break;
                                 }
 
                                 delay(250);
 
-                                if (this.cubeStaff()) {
-                                    this.talkTo(NPC.Drognan);
+                                if (cubeStaff()) {
+                                    talkTo(NPC.Drognan);
                                     Town.move("portalspot");
                                 }
 
@@ -1049,13 +1048,13 @@ function RogerThat() {
 
                         if (me.getQuest(11, 0)) {
                             me.overhead("I already done the quest!");
-                            this.goToTownTomeBook();
+                            goToTownTomeBook();
                             break;
                         }
 
                         if (me.getItem(itemClassId)) {
                             me.overhead("I already got the amulet!");
-                            this.goToTownTomeBook();
+                            goToTownTomeBook();
                             break;
                         }
 
@@ -1081,14 +1080,14 @@ function RogerThat() {
                             delay(500);
 
                             if (me.getItem(itemClassId)) {
-                                if (!this.goToTownTomeBook()) {
+                                if (!goToTownTomeBook()) {
                                     break;
                                 }
 
                                 delay(250);
 
-                                if (this.cubeStaff()) {
-                                    this.talkTo(NPC.Drognan);
+                                if (cubeStaff()) {
+                                    talkTo(NPC.Drognan);
                                     Town.move("portalspot");
                                 }
 
@@ -1110,13 +1109,13 @@ function RogerThat() {
 
                         if (me.getQuest(10, 0)) {
                             me.overhead("I've already done this quest!");
-                            this.goToTownTomeBook();
+                            goToTownTomeBook();
                             break;
                         }
 
                         if (me.getItem(itemClassId)) {
                             me.overhead("I've already got the amulet!");
-                            this.goToTownTomeBook();
+                            goToTownTomeBook();
                             break;
                         }
 
@@ -1142,14 +1141,14 @@ function RogerThat() {
                             delay(500);
 
                             if (me.getItem(itemClassId)) {
-                                if (!this.goToTownTomeBook()) {
+                                if (!goToTownTomeBook()) {
                                     break;
                                 }
 
                                 delay(250);
 
-                                if (this.cubeStaff()) {
-                                    this.talkTo(NPC.Drognan);
+                                if (cubeStaff()) {
+                                    talkTo(NPC.Drognan);
                                     Town.move("portalspot");
                                 }
 
@@ -1173,11 +1172,11 @@ function RogerThat() {
                     case 71:
                     case 72:
                         delay(rand(0, 6) * 1000);
-                        this.placeStaff();
+                        placeStaff();
 
                         break;
                     case 73:    // Tal rasha's chamber - talk to Tyrael
-                        this.talkToTyrael();
+                        talkToTyrael();
                         Pather.usePortal(null);
 
                         break;
@@ -1194,7 +1193,7 @@ function RogerThat() {
 
                         if (me.getItem(itemClassId)) {
                             me.overhead("I already got the blade!");
-                            this.goToTownTomeBook();
+                            goToTownTomeBook();
                             Town.doChores();
                             me.cancel();
                             Town.move("portalspot");
@@ -1216,7 +1215,7 @@ function RogerThat() {
 
                             if (!item) {
                                 me.overhead("Someone already took the blade!");
-                                if (!this.goToTownTomeBook()) {
+                                if (!goToTownTomeBook()) {
                                     break;
                                 }
 
@@ -1231,7 +1230,7 @@ function RogerThat() {
                             delay(500);
 
                             if (me.getItem(itemClassId)) {
-                                if (!this.goToTownTomeBook()) {
+                                if (!goToTownTomeBook()) {
                                     break;
                                 }
 
@@ -1256,7 +1255,7 @@ function RogerThat() {
 
                         if (me.getQuest(17, 0)) {
                             me.overhead("I've already done this quest!");
-                            this.goToTownTomeBook();
+                            goToTownTomeBook();
                             break;
                         }
 
@@ -1280,7 +1279,7 @@ function RogerThat() {
 
                             if (!item) {
                                 me.overhead("Someone already took the book!");
-                                this.goToTownTomeBook();
+                                goToTownTomeBook();
                                 break;
                             }
 
@@ -1288,12 +1287,12 @@ function RogerThat() {
                             delay(500);
 
                             if (me.getItem(itemClassId)) {
-                                if (!this.goToTownTomeBook()) {
+                                if (!goToTownTomeBook()) {
                                     break;
                                 }
 
                                 delay(250);
-                                this.talkTo(NPC.Alkor);
+                                talkTo(NPC.Alkor);
                                 Town.move("portalspot");
                                 break;
                             }
@@ -1330,13 +1329,13 @@ function RogerThat() {
                             break;
                         }
 
-                        this.talkToAnya();
+                        talkToAnya();
 
-                        if (!this.goToTownTomeBook()) {
+                        if (!goToTownTomeBook()) {
                             break;
                         }
 
-                        this.talkTo(NPC.Malah);
+                        talkTo(NPC.Malah);
                         itemClassId = 644;  // Potion
 
                         if (me.getItem(itemClassId)) {
@@ -1346,16 +1345,16 @@ function RogerThat() {
                                 break;
                             }
 
-                            this.talkToAnya();
+                            talkToAnya();
 
-                            if (!this.goToTownTomeBook()) {
+                            if (!goToTownTomeBook()) {
                                 break;
                             }
                         } else {
                             delay(15000);
                         }
 
-                        this.talkTo(NPC.Malah);
+                        talkTo(NPC.Malah);
 
                         if (me.getItem(646)) {
                             clickItem(1, me.getItem(646));
@@ -1371,7 +1370,7 @@ function RogerThat() {
                         if (item) {
                             if (me.getQuest(20, 0)) {
                                 me.overhead("I've already done this quest!");
-                                this.goToTownTomeBook();
+                                goToTownTomeBook();
                                 break;
                             }
 
@@ -1379,7 +1378,7 @@ function RogerThat() {
                                 item = getUnit(4, itemClassId);
 
                                 if (!item) {
-                                    if (!this.goToTownTomeBook()) {
+                                    if (!goToTownTomeBook()) {
                                         break;
                                     }
 
@@ -1398,7 +1397,7 @@ function RogerThat() {
                                 delay(500);
 
                                 if (me.getItem(itemClassId)) {
-                                    if (!this.goToTownTomeBook()) {
+                                    if (!goToTownTomeBook()) {
                                         break;
                                     }
 
@@ -1432,8 +1431,8 @@ function RogerThat() {
                             me.overhead("Picking items.");
                             Pickit.pickItems();
 
-                            if (!me.inTown && openContainers) {
-                                this.openContainers(20);
+                            if (!me.inTown && Config.OpenChests) {
+                                openContainers(20);
                             }
 
                             me.overhead("Done picking.");
@@ -1444,11 +1443,11 @@ function RogerThat() {
             };
 
         //+ Go To Town Tome Book ==================================================
-            this.goToTownTomeBook = function () {
+            function goToTownTomeBook () {
                 if (!me.inTown) {
                     delay(150);
 
-                    if (!Pather.getPortal(null, leader.name)) {
+                    if (!getPortal(null, leader.name)) {
                         if (!me.findItem("tbk", 0, 3)) {
                             me.overhead("ÿc1Sorry, I don't have tp!ÿc0");
                             return false;
@@ -1470,7 +1469,7 @@ function RogerThat() {
             };
 
         //+ Cube Staff ============================================================
-            this.cubeStaff = function () {
+            function cubeStaff () {
                 let staff = me.getItem("vip"),
                     amulet = me.getItem("msf");
 
@@ -1500,7 +1499,7 @@ function RogerThat() {
             };
 
         //+ Place Staff ===========================================================
-            this.placeStaff = function () {
+            function placeStaff () {
                 let item = me.getItem(91);
                 let orifice = getUnit(2, 152);
 
@@ -1519,7 +1518,7 @@ function RogerThat() {
             };
 
         //+ Talk To Tyrael ========================================================
-            this.talkToTyrael = function () {
+            function talkToTyrael () {
                 let NPC = getUnit(1, "Tyrael");
 
                 if (!NPC) {
@@ -1538,7 +1537,7 @@ function RogerThat() {
             };
 
         //+ Talk To Anya ==========================================================
-            this.talkToAnya = function () {
+            function talkToAnya () {
                 target = getUnit(2, 558);
 
                 if (!target) {
@@ -1558,7 +1557,7 @@ function RogerThat() {
             };
 
         //+ Talk To ... ===========================================================
-            this.talkTo = function (NPC) {
+            function talkTo (NPC) {
                 Town.move(NPC);
                 target = getUnit(1, NPC);
                 target.openMenu();
@@ -1566,7 +1565,7 @@ function RogerThat() {
             };
 
     //! CHAT EVENT ===================================================================
-        this.chatEvent = function (nick, msg) {
+        function chatEvent (nick, msg) {
             foundMatch = false;
 
             if (!pvpFlag) {
@@ -1581,7 +1580,7 @@ function RogerThat() {
                             return true;
                         } else if (nick !== me.name && msg === "i am the boss" && nick === FileTools.readText(filename)) {
                             Config.Leader = nick;
-                            leader = this.getLeader(nick);
+                            leader = getLeader(nick);
                             checkLeaderFlag = false;
                             checkPartyFlag = false;
                             return true;
@@ -1674,10 +1673,10 @@ function RogerThat() {
                             case "s":
                                 if (stop) {
                                     stop = false;
-                                    me.overhead("Resuming.");
+                                    me.overhead("ÿc2Resuming.");
                                 } else {
                                     stop = true;
-                                    me.overhead("Stopping.");
+                                    me.overhead("ÿc1Stopping.");
                                 }
 
                                 foundMatch = true;
@@ -1732,8 +1731,8 @@ function RogerThat() {
 
                                 break;
                             default:
-                                if (msg.split(" ")[0] === 'talk' && this.goToTownTomeBook()) {
-                                    this.talk(msg.split(" ")[1]);
+                                if (msg.split(" ")[0] === 'talk' && goToTownTomeBook()) {
+                                    talk(msg.split(" ")[1]);
                                 }
 
                                 break
@@ -1834,7 +1833,7 @@ function RogerThat() {
             return true;
         };
 
-        addEventListener("chatmsg", this.chatEvent);
+        addEventListener("chatmsg", chatEvent);
 
     //! SHOW HOOKS ===================================================================
         let hooks = [],
@@ -1850,35 +1849,35 @@ function RogerThat() {
 
         //+ Toggle info class =====================================================
             function UnitInfo() {
-                this.x = resolution !== 0 ? 670 : 510;
-                this.y = 30;
-                this.hooks = [];
-                this.cleared = true;
+                let x = resolution !== 0 ? 670 : 510;
+                let y = 30;
+                let hooks = [];
+                let cleared = true;
 
-                this.createInfo = function (unit) {
+                function createInfo (unit) {
                     if (typeof unit === "undefined") {
-                        this.remove();
+                        remove();
 
                         return;
                     }
 
                     switch (unit.type) {
                         case 0:
-                            this.playerInfo(unit);
+                            playerInfo(unit);
 
                             break;
                         case 1:
-                            this.monsterInfo(unit);
+                            monsterInfo(unit);
 
                             break;
                         case 4:
-                            this.itemInfo(unit);
+                            itemInfo(unit);
 
                             break;
                     }
                 };
 
-                this.playerInfo = function (unit) {
+                function playerInfo (unit) {
                     let i,
                         items,
                         string,
@@ -1886,25 +1885,25 @@ function RogerThat() {
                         frameYsize = 20,
                         quality = ["ÿc0", "ÿc0", "ÿc0", "ÿc0", "ÿc3", "ÿc2", "ÿc9", "ÿc4", "ÿc8"];
 
-                    if (!this.currentGid) {
-                        this.currentGid = unit.gid;
+                    if (!currentGid) {
+                        currentGid = unit.gid;
                     }
 
-                    if (this.currentGid === unit.gid && !this.cleared) {
+                    if (currentGid === unit.gid && !cleared) {
                         return;
                     }
 
-                    if (this.currentGid !== unit.gid) {
-                        this.remove();
-                        this.currentGid = unit.gid;
+                    if (currentGid !== unit.gid) {
+                        remove();
+                        currentGid = unit.gid;
                     }
 
-                    this.hooks.push(new Text("ÿc0" + unit.name + " (" + unit.charlvl + " " + classes[unit.classid] + ")", this.x, this.y, 4, 13, 2));
+                    hooks.push(new Text("ÿc0" + unit.name + " (" + unit.charlvl + " " + classes[unit.classid] + ")", x, y, 4, 13, 2));
 
                     items = unit.getItems();
 
                     if (items) {
-                        this.hooks.push(new Text("Equipped items:", this.x, this.y + 15, 4, 13, 2));
+                        hooks.push(new Text("Equipped items:", x, y + 15, 4, 13, 2));
                         frameYsize += 15;
 
                         for (i = 0; i < items.length; i += 1) {
@@ -1914,7 +1913,7 @@ function RogerThat() {
                                 string = quality[items[i].quality] + (items[i].quality > 4 && items[i].getFlag(0x10) ? items[i].fname.split("\n").reverse()[0].replace("ÿc4", "") : items[i].name);
                             }
 
-                            this.hooks.push(new Text(string, this.x, this.y + (i + 2) * 15, 0, 13, 2));
+                            hooks.push(new Text(string, x, y + (i + 2) * 15, 0, 13, 2));
 
                             if (string.length > frameXsize) {
                                 frameXsize = string.length;
@@ -1928,90 +1927,90 @@ function RogerThat() {
 
                     frameYsize += 145;
 
-                    this.hooks.push(new Text("Fire Resist: ÿc1" + (unit.getStat(39) - 30) + " / " + (unit.getStat(40) + 75), this.x, this.y + (i + 2) * 15 + 10, 4, 13, 2));
-                    this.hooks.push(new Text("Cold Resist: ÿc3" + (unit.getStat(43) - 30) + " / " + (unit.getStat(44) + 75), this.x, this.y + (i + 2) * 15 + 25, 4, 13, 2));
-                    this.hooks.push(new Text("Light Resist: ÿc9" + (unit.getStat(41) - 30) + " / " + (unit.getStat(42) + 75), this.x, this.y + (i + 2) * 15 + 40, 4, 13, 2));
-                    this.hooks.push(new Text("Poison Resist: ÿc2" + (unit.getStat(45) - 30) + " / " + (unit.getStat(46) + 75), this.x, this.y + (i + 2) * 15 + 55, 4, 13, 2));
-                    this.hooks.push(new Text("Physical resist: ÿc0" + unit.getStat(36), this.x, this.y + (i + 2) * 15 + 70, 4, 13, 2));
+                    hooks.push(new Text("Fire Resist: ÿc1" + (unit.getStat(39) - 30) + " / " + (unit.getStat(40) + 75), x, y + (i + 2) * 15 + 10, 4, 13, 2));
+                    hooks.push(new Text("Cold Resist: ÿc3" + (unit.getStat(43) - 30) + " / " + (unit.getStat(44) + 75), x, y + (i + 2) * 15 + 25, 4, 13, 2));
+                    hooks.push(new Text("Light Resist: ÿc9" + (unit.getStat(41) - 30) + " / " + (unit.getStat(42) + 75), x, y + (i + 2) * 15 + 40, 4, 13, 2));
+                    hooks.push(new Text("Poison Resist: ÿc2" + (unit.getStat(45) - 30) + " / " + (unit.getStat(46) + 75), x, y + (i + 2) * 15 + 55, 4, 13, 2));
+                    hooks.push(new Text("Physical resist: ÿc0" + unit.getStat(36), x, y + (i + 2) * 15 + 70, 4, 13, 2));
 
                     //Sorb
-                    this.hooks.push(new Text("Fire Absorb: ÿc1" + unit.getStat(142), this.x, this.y + (i + 2) * 15 + 85, 4, 13, 2));
-                    this.hooks.push(new Text("Cold Absorb: ÿc3" + unit.getStat(148), this.x, this.y + (i + 2) * 15 + 100, 4, 13, 2));
-                    this.hooks.push(new Text("Light Absorb: ÿc9" + unit.getStat(144), this.x, this.y + (i + 2) * 15 + 115, 4, 13, 2));
+                    hooks.push(new Text("Fire Absorb: ÿc1" + unit.getStat(142), x, y + (i + 2) * 15 + 85, 4, 13, 2));
+                    hooks.push(new Text("Cold Absorb: ÿc3" + unit.getStat(148), x, y + (i + 2) * 15 + 100, 4, 13, 2));
+                    hooks.push(new Text("Light Absorb: ÿc9" + unit.getStat(144), x, y + (i + 2) * 15 + 115, 4, 13, 2));
 
-                    this.hooks.push(new Text("Faster Cast Rate: ÿc0" + unit.getStat(105), this.x, this.y + (i + 2) * 15 + 130, 4, 13, 2));
+                    hooks.push(new Text("Faster Cast Rate: ÿc0" + unit.getStat(105), x, y + (i + 2) * 15 + 130, 4, 13, 2));
 
-                    this.cleared = false;
+                    cleared = false;
 
-                    this.hooks.push(new Box(this.x + 2, this.y - 15, Math.round(frameXsize * 7.5) - 4, frameYsize, 0x0, 1, 2));
-                    this.hooks.push(new Frame(this.x, this.y - 15, Math.round(frameXsize * 7.5), frameYsize, 2));
+                    hooks.push(new Box(x + 2, y - 15, Math.round(frameXsize * 7.5) - 4, frameYsize, 0x0, 1, 2));
+                    hooks.push(new Frame(x, y - 15, Math.round(frameXsize * 7.5), frameYsize, 2));
 
-                    this.hooks[this.hooks.length - 2].zorder = 0;
+                    hooks[hooks.length - 2].zorder = 0;
                 };
 
-                this.monsterInfo = function (unit) {
+                function monsterInfo (unit) {
                     var frameYsize = 125;
 
-                    if (!this.currentGid) {
-                        this.currentGid = unit.gid;
+                    if (!currentGid) {
+                        currentGid = unit.gid;
                     }
 
-                    if (this.currentGid === unit.gid && !this.cleared) {
+                    if (currentGid === unit.gid && !cleared) {
                         return;
                     }
 
-                    if (this.currentGid !== unit.gid) {
-                        this.remove();
-                        this.currentGid = unit.gid;
+                    if (currentGid !== unit.gid) {
+                        remove();
+                        currentGid = unit.gid;
                     }
 
-                    this.hooks.push(new Text("Classid: ÿc0" + unit.classid, this.x, this.y, 4, 13, 2));
-                    this.hooks.push(new Text("HP percent: ÿc0" + Math.round(unit.hp * 100 / 128), this.x, this.y + 15, 4, 13, 2));
-                    this.hooks.push(new Text("Fire resist: ÿc1" + unit.getStat(39), this.x, this.y + 30, 4, 13, 2));
-                    this.hooks.push(new Text("Cold resist: ÿc3" + unit.getStat(43), this.x, this.y + 45, 4, 13, 2));
-                    this.hooks.push(new Text("Lightning resist: ÿc9" + unit.getStat(41), this.x, this.y + 60, 4, 13, 2));
-                    this.hooks.push(new Text("Poison resist: ÿc2" + unit.getStat(45), this.x, this.y + 75, 4, 13, 2));
-                    this.hooks.push(new Text("Physical resist: ÿc0" + unit.getStat(36), this.x, this.y + 90, 4, 13, 2));
-                    this.hooks.push(new Text("Magic resist: ÿc0" + unit.getStat(37), this.x, this.y + 105, 4, 13, 2));
+                    hooks.push(new Text("Classid: ÿc0" + unit.classid, x, y, 4, 13, 2));
+                    hooks.push(new Text("HP percent: ÿc0" + Math.round(unit.hp * 100 / 128), x, y + 15, 4, 13, 2));
+                    hooks.push(new Text("Fire resist: ÿc1" + unit.getStat(39), x, y + 30, 4, 13, 2));
+                    hooks.push(new Text("Cold resist: ÿc3" + unit.getStat(43), x, y + 45, 4, 13, 2));
+                    hooks.push(new Text("Lightning resist: ÿc9" + unit.getStat(41), x, y + 60, 4, 13, 2));
+                    hooks.push(new Text("Poison resist: ÿc2" + unit.getStat(45), x, y + 75, 4, 13, 2));
+                    hooks.push(new Text("Physical resist: ÿc0" + unit.getStat(36), x, y + 90, 4, 13, 2));
+                    hooks.push(new Text("Magic resist: ÿc0" + unit.getStat(37), x, y + 105, 4, 13, 2));
 
-                    this.cleared = false;
+                    cleared = false;
 
-                    this.hooks.push(new Box(this.x + 2, this.y - 15, 136 + 85, frameYsize, 0x0, 1, 2));
-                    this.hooks.push(new Frame(this.x, this.y - 15, 140 + 85, frameYsize, 2));
+                    hooks.push(new Box(x + 2, y - 15, 136 + 85, frameYsize, 0x0, 1, 2));
+                    hooks.push(new Frame(x, y - 15, 140 + 85, frameYsize, 2));
 
-                    this.hooks[this.hooks.length - 2].zorder = 0;
+                    hooks[hooks.length - 2].zorder = 0;
                 };
 
-                this.itemInfo = function (unit) {
+                function itemInfo (unit) {
                     var i = 0,
                         frameYsize = 50;
 
-                    if (!this.currentGid) {
-                        this.currentGid = unit.gid;
+                    if (!currentGid) {
+                        currentGid = unit.gid;
                     }
 
-                    if (this.currentGid === unit.gid && !this.cleared) {
+                    if (currentGid === unit.gid && !cleared) {
                         return;
                     }
 
-                    if (this.currentGid !== unit.gid) {
-                        this.remove();
-                        this.currentGid = unit.gid;
+                    if (currentGid !== unit.gid) {
+                        remove();
+                        currentGid = unit.gid;
                     }
 
-                    this.hooks.push(new Text("Classid: ÿc0" + unit.classid, this.x, this.y, 4, 13, 2));
-                    this.hooks.push(new Text("Code: ÿc0" + unit.code, this.x, this.y + 15, 4, 13, 2));
-                    this.hooks.push(new Text("Item level: ÿc0" + unit.ilvl, this.x, this.y + 30, 4, 13, 2));
+                    hooks.push(new Text("Classid: ÿc0" + unit.classid, x, y, 4, 13, 2));
+                    hooks.push(new Text("Code: ÿc0" + unit.code, x, y + 15, 4, 13, 2));
+                    hooks.push(new Text("Item level: ÿc0" + unit.ilvl, x, y + 30, 4, 13, 2));
 
-                    this.cleared = false;
-                    this.socketedItems = unit.getItems();
+                    cleared = false;
+                    socketedItems = unit.getItems();
 
-                    if (this.socketedItems[0]) {
-                        this.hooks.push(new Text("Socketed with:", this.x, this.y + 45, 4, 13, 2));
+                    if (socketedItems[0]) {
+                        hooks.push(new Text("Socketed with:", x, y + 45, 4, 13, 2));
                         frameYsize += 15;
 
-                        for (i = 0; i < this.socketedItems.length; i += 1) {
-                            this.hooks.push(new Text(this.socketedItems[i].fname.split("\n").reverse().join(" "), this.x, this.y + (i + 4) * 15, 0, 13, 2));
+                        for (i = 0; i < socketedItems.length; i += 1) {
+                            hooks.push(new Text(socketedItems[i].fname.split("\n").reverse().join(" "), x, y + (i + 4) * 15, 0, 13, 2));
 
                             frameYsize += 15;
                         }
@@ -2019,8 +2018,8 @@ function RogerThat() {
 
                     // Get prefix and suffix from identified magic items
                     if (unit.quality === 4 && unit.getFlag(0x10)) {
-                        this.hooks.push(new Text("Prefix: ÿc0" + unit.prefixnum, this.x, this.y + frameYsize - 5, 4, 13, 2));
-                        this.hooks.push(new Text("Suffix: ÿc0" + unit.suffixnum, this.x, this.y + frameYsize + 10, 4, 13, 2));
+                        hooks.push(new Text("Prefix: ÿc0" + unit.prefixnum, x, y + frameYsize - 5, 4, 13, 2));
+                        hooks.push(new Text("Suffix: ÿc0" + unit.suffixnum, x, y + frameYsize + 10, 4, 13, 2));
 
                         frameYsize += 30;
                     }
@@ -2032,7 +2031,7 @@ function RogerThat() {
                             n = 0;
 
                         while (n < prefixes.length) {
-                            this.hooks.push(new Text("Prefix: ÿc0" + prefixes[n], this.x, this.y + frameYsize - 5, 4, 13, 2));
+                            hooks.push(new Text("Prefix: ÿc0" + prefixes[n], x, y + frameYsize - 5, 4, 13, 2));
                             frameYsize += 15;
                             n += 1
                         }
@@ -2041,24 +2040,24 @@ function RogerThat() {
                         n = 0;
 
                         while (n < suffixes.length) {
-                            this.hooks.push(new Text("Suffix: ÿc0" + suffixes[n], this.x, this.y + frameYsize - 5, 4, 13, 2));
+                            hooks.push(new Text("Suffix: ÿc0" + suffixes[n], x, y + frameYsize - 5, 4, 13, 2));
                             frameYsize += 15;
                             n += 1
                         }
                     }
 
-                    this.hooks.push(new Box(this.x + 2, this.y - 15, 116 + 105, frameYsize, 0x0, 1, 2));
-                    this.hooks.push(new Frame(this.x, this.y - 15, 120 + 105, frameYsize, 2));
+                    hooks.push(new Box(x + 2, y - 15, 116 + 105, frameYsize, 0x0, 1, 2));
+                    hooks.push(new Frame(x, y - 15, 120 + 105, frameYsize, 2));
 
-                    this.hooks[this.hooks.length - 2].zorder = 0;
+                    hooks[hooks.length - 2].zorder = 0;
                 };
 
-                this.remove = function () {
-                    while (this.hooks.length > 0) {
-                        this.hooks.shift().remove();
+                function remove () {
+                    while (hooks.length > 0) {
+                        hooks.shift().remove();
                     }
 
-                    this.cleared = true;
+                    cleared = true;
                 };
             }
 
@@ -2160,19 +2159,19 @@ function RogerThat() {
                     delay(200);
 
                     if (isLeaderHere !== "") {
-                        leader = this.getLeader(isLeaderHere);
+                        leader = getLeader(isLeaderHere);
 
                         if (leader && leader.name === me.name) {
-                            me.overhead("I'm the boss");
+                            !pvpFlag && me.overhead("I'm the boss");
                         } else {
                             Config.Leader = isLeaderHere;
 
                             if (!leaderLeftPartyFlag) {
-                                print("The leader is ÿc4" + isLeaderHere + "ÿc0");
-                                me.overhead("The leader is ÿc4" + isLeaderHere + "ÿc0");
+                                !pvpFlag && print("The leader is ÿc4" + isLeaderHere + "ÿc0");
+                                !pvpFlag && me.overhead("The leader is ÿc4" + isLeaderHere + "ÿc0");
                             } else {
-                                print("ÿc1" + Config.Leader + "ÿc0 has left the party");
-                                me.overhead("ÿc1" + Config.Leader + "ÿc0 has left the party");
+                                !pvpFlag && print("ÿc1" + Config.Leader + "ÿc0 has left the party");
+                                !pvpFlag && me.overhead("ÿc1" + Config.Leader + "ÿc0 has left the party");
                             }
                         }
                     } else {
@@ -2184,14 +2183,14 @@ function RogerThat() {
                 }
 
                 if (checkLeaderFlag && Config.Leader !== "" && Misc.inMyParty(Config.Leader) && !checkPartyFlag) {
-                    leaderUnit = this.getLeaderUnit(leader.name);
+                    leaderUnit = getLeaderUnit(leader.name);
                     print("Partied leader ÿc2" + leader.name + "ÿc0");
                     me.overhead("Partied leader ÿc2" + leader.name + "ÿc0");
                     checkPartyFlag = true;
                     leaderLeftPartyFlag = false;
                 } else if (checkLeaderFlag &&  Config.Leader !== "" && !Misc.inMyParty(Config.Leader) && checkPartyFlag) {
                     if (!me.inTown) {
-                        this.goToTownTomeBook();
+                        goToTownTomeBook();
                     }
 
                     leaderLeftPartyFlag = true;
@@ -2216,7 +2215,7 @@ function RogerThat() {
 
                     if (!me.inTown) {
                         if (!leaderUnit || !copyUnit(leaderUnit).x) {
-                            leaderUnit = this.getLeaderUnit(Config.Leader);
+                            leaderUnit = getLeaderUnit(Config.Leader);
 
                             if (leaderUnit) {
                                 me.overhead("Leader unit found.");
@@ -2244,7 +2243,7 @@ function RogerThat() {
 
                         if (attack) {
                             Attack.clear(20, false, false, false, false);
-                            this.pickPotions(20);
+                            pickPotions(20);
                         }
 
                         if (me.classid === 3 && Config.AttackSkill[2] > 0) {
@@ -2256,7 +2255,7 @@ function RogerThat() {
                                 delay(100);
                             }
 
-                            result = this.checkExit(leader, leader.area);
+                            result = checkExit(leader, leader.area);
 
                             switch (result) {
                                 case 1:
@@ -2284,27 +2283,27 @@ function RogerThat() {
                                 delay(100);
                             }
 
-                            leaderUnit = this.getLeaderUnit(Config.Leader);
+                            leaderUnit = getLeaderUnit(Config.Leader);
                         }
                     }
 
                     if (actions.length > 0) {
                         switch (actions[0]) {
                             case "1":
-                                this.goToLeader(leader);
+                                goToLeader(leader);
                                 actions.shift();
 
                                 break;
                             case "2":
                                 if (!me.inTown) {
-                                    this.goToTownTomeBook();
+                                    goToTownTomeBook();
                                 }
 
                                 actions.shift();
 
                                 break;
                             case "3":
-                                if (!me.inTown && !this.goToTownTomeBook()) {
+                                if (!me.inTown && !goToTownTomeBook()) {
                                     actions.shift();
                                     break;
                                 }
@@ -2336,9 +2335,9 @@ function RogerThat() {
                             case "a2":
                             case "a3":
                             case "a5":
-                                if (this.goToTownTomeBook()) {
+                                if (goToTownTomeBook()) {
                                     const act = actions[0];
-                                    this.changeAct(parseInt(act[1], 10));
+                                    changeAct(parseInt(act[1], 10));
                                 }
 
                                 actions.shift();
@@ -2371,7 +2370,7 @@ function RogerThat() {
 
                                 break;
                             case "cow":
-                                if (!this.goToTownTomeBook()) {
+                                if (!goToTownTomeBook()) {
                                     actions.shift();
                                     break
                                 }
@@ -2392,28 +2391,28 @@ function RogerThat() {
                                 break;
                             case "p":
                                 if (!me.inTown) {
-                                    this.checkQuest();
+                                    checkQuest();
                                 }
 
                                 actions.shift();
 
                                 break;
                             case "wp":
-                                this.getWp();
+                                getWp();
                                 actions.shift();
 
                                 break;
                             case "1wp":
-                                this.goToLeader(leader, true);
+                                goToLeader(leader, true);
                                 delay(250);
-                                this.getWp();
+                                getWp();
                                 delay(1000);
-                                this.goToTownTomeBook();
+                                goToTownTomeBook();
                                 actions.shift();
 
                                 break;
                             case "#bye":
-                                if (this.goToTownTomeBook()) {
+                                if (goToTownTomeBook()) {
                                     Town.goToTown(1);
                                 }
 
@@ -2425,13 +2424,13 @@ function RogerThat() {
                             case "#come":
                                 if (Config.Leader !== "") {
                                     if (Misc.inMyParty(Config.Leader)) {
-                                        let leaderAct = this.checkLeaderAct(leader);
+                                        let leaderAct = checkLeaderAct(leader);
 
                                         if (me.inTown && leaderAct !== me.act) {
                                             me.overhead("Yes, leader ÿc2" + Config.Leader);
                                             Town.goToTown(leaderAct);
                                         } else if (!me.inTown) {
-                                            if (!this.goToTownTomeBook()) {
+                                            if (!goToTownTomeBook()) {
                                                 break;
                                             }
                                         }
@@ -2447,7 +2446,7 @@ function RogerThat() {
 
                                 break;
                             case "#quit":
-                                this.goToTownTomeBook();
+                                goToTownTomeBook();
                                 delay(rand(6, 10) * 1000);
                                 quit();
 

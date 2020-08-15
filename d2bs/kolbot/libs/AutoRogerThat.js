@@ -1224,7 +1224,7 @@ var AutoRogerThat = {
 
         //+ Update inventory -------------------------------------------------------
             updateInventory: function () {
-                for (let i = 0 ; i < Config.RogerThatInventory1.length ; i++) {
+                for (let i = 0; i < Config.RogerThatInventory1.length; i++) {
                     if (me.name === Config.RogerThatInventory1[i]) {
                         print("Inventory ÿc9Oneÿc0");
                         Config.Inventory[0] = Config.Inventory1[0];
@@ -1236,31 +1236,31 @@ var AutoRogerThat = {
                     }
                 }
 
-                for (let i = 0 ; i < Config.RogerThatInventory2.length ; i++) {
+                for (let i = 0; i < Config.RogerThatInventory2.length; i++) {
                     if (me.name === Config.RogerThatInventory2[i]) {
-                    print("Inventory ÿc9Twoÿc0");
-                    Config.Inventory[0] = Config.Inventory2[0];
-                    Config.Inventory[1] = Config.Inventory2[1];
-                    Config.Inventory[2] = Config.Inventory2[2];
-                    Config.Inventory[3] = Config.Inventory2[3];
-                    this.printInventory();
-                    return true;
+                        print("Inventory ÿc9Twoÿc0");
+                        Config.Inventory[0] = Config.Inventory2[0];
+                        Config.Inventory[1] = Config.Inventory2[1];
+                        Config.Inventory[2] = Config.Inventory2[2];
+                        Config.Inventory[3] = Config.Inventory2[3];
+                        this.printInventory();
+                        return true;
                     }
                 }
 
-                for (let i = 0 ; i < Config.RogerThatInventory3.length ; i++) {
+                for (let i = 0; i < Config.RogerThatInventory3.length; i++) {
                     if (me.name === Config.RogerThatInventory3[i]) {
-                    print("Inventory ÿc9Threeÿc0");
-                    Config.Inventory[0] = Config.Inventory3[0];
-                    Config.Inventory[1] = Config.Inventory3[1];
-                    Config.Inventory[2] = Config.Inventory3[2];
-                    Config.Inventory[3] = Config.Inventory3[3];
-                    this.printInventory();
-                    return true;
+                        print("Inventory ÿc9Threeÿc0");
+                        Config.Inventory[0] = Config.Inventory3[0];
+                        Config.Inventory[1] = Config.Inventory3[1];
+                        Config.Inventory[2] = Config.Inventory3[2];
+                        Config.Inventory[3] = Config.Inventory3[3];
+                        this.printInventory();
+                        return true;
                     }
                 }
 
-                for (let i = 0 ; i < Config.RogerThatInventory4.length ; i++) {
+                for (let i = 0; i < Config.RogerThatInventory4.length; i++) {
                     if (me.name === Config.RogerThatInventory4[i]) {
                         print("Inventory ÿc9Fourÿc0");
                         Config.Inventory[0] = Config.Inventory4[0];
@@ -1272,19 +1272,19 @@ var AutoRogerThat = {
                     }
                 }
 
-                for (let i = 0 ; i < Config.RogerThatInventory5.length ; i++) {
+                for (let i = 0; i < Config.RogerThatInventory5.length; i++) {
                     if (me.name == Config.RogerThatInventory5[i]) {
-                    print("Inventory ÿc9Fiveÿc0");
-                    Config.Inventory[0] = Config.Inventory5[0];
-                    Config.Inventory[1] = Config.Inventory5[1];
-                    Config.Inventory[2] = Config.Inventory5[2];
-                    Config.Inventory[3] = Config.Inventory5[3];
-                    this.printInventory();
-                    return true;
+                        print("Inventory ÿc9Fiveÿc0");
+                        Config.Inventory[0] = Config.Inventory5[0];
+                        Config.Inventory[1] = Config.Inventory5[1];
+                        Config.Inventory[2] = Config.Inventory5[2];
+                        Config.Inventory[3] = Config.Inventory5[3];
+                        this.printInventory();
+                        return true;
                     }
                 }
 
-                for (let i = 0 ; i < Config.RogerThatInventory6.length ; i++) {
+                for (let i = 0; i < Config.RogerThatInventory6.length; i++) {
                     if (me.name == Config.RogerThatInventory6[i]) {
                         print("Inventory ÿc9Sixÿc0");
                         Config.Inventory[0] = Config.Inventory6[0];
@@ -1296,7 +1296,7 @@ var AutoRogerThat = {
                     }
                 }
 
-                for (let i = 0 ; i < Config.RogerThatInventory7.length; i++) {
+                for (let i = 0; i < Config.RogerThatInventory7.length; i++) {
                     if (me.name == Config.RogerThatInventory7[i]) {
                         print("Inventory ÿc9Sevenÿc0");
                         Config.Inventory[0] = Config.Inventory7[0];
@@ -1308,7 +1308,7 @@ var AutoRogerThat = {
                     }
                 }
 
-                for (let i = 0 ; i < Config.RogerThatInventory8.length ; i++) {
+                for (let i = 0; i < Config.RogerThatInventory8.length; i++) {
                     if (me.name == Config.RogerThatInventory8[i]) {
                         print("Inventory ÿc9Eightÿc0");
                         Config.Inventory[0] = Config.Inventory8[0];
@@ -1352,293 +1352,298 @@ var AutoRogerThat = {
                     skill1,
                     skill2;
 
-                switch (charClass) {
-                    case "amazon":
-                        if (me.getSkill(6, 0) >= 1) {
-                            typeOfAmazon = "bow";
-                            print("Auto ÿc4" + charClass + " ÿc1" + typeOfAmazon + " attack");
-                            Config.SkipImmune   = ["physical"];
-                        } else {
-                            typeOfAmazon = "java";
-                            print("Auto ÿc4" + charClass + " ÿc9" + typeOfAmazon + " attack");
-                            Config.SkipImmune = ["lightning"];
-                        }
-
-                        if (me.charlvl <= 30) {
-                            switch (typeOfAmazon) {
-                                case "java":
-                                    skill1 = this.useSkill([24, 14, 10]); // charged strike > power strike > jab
-                                    skill2 = skill1;
-
-                                    break;
-                                case "bow":
-                                    skill1 = this.useSkill([31, 26, 12, 6]); // freezing arrow > strafe > multiple shot > magic arrow
-                                    skill2 = skill1;
-
-                                    break;
-                            }
-
-                            Config.AttackSkill  = [skill1, skill1, skill2, skill1, skill2, 0, 0];
-                        } else {
-                            Config.AttackSkill  = Config.AttackZonSkill;
-                            Config.LowManaSkill = Config.LowManaZonSkill;
-                            Config.UpdateSkill = false;
-                        }
-
-                        Config.LightningFuryDelay = 10;   // Lightning fury interval in seconds. LF is treated as timed skill.
-                        Config.SummonValkyrie     = true; // Summon Valkyrie
-
-                        break;
-                    case "sorceress":
-                        if (me.getSkill(36, 0) >= 1) {
-                            typeOfSorc = "fire";
-                            Config.SkipImmune = ["fire"];
-                            print("Auto ÿc4" + charClass + " ÿc1" + typeOfSorc + " attack");
-                        } else if (me.getSkill(39, 0) >= 1) {
-                            typeOfSorc = "cold";
-                            Config.SkipImmune   = ["cold"];
-                            print("Auto ÿc4" + charClass + " ÿc3" + typeOfSorc + " attack");
-                        } else if (me.getSkill(38, 0) >= 1) {
-                            typeOfSorc = "light";
-                            Config.SkipImmune   = ["lightning"];
-                            print("Auto ÿc4" + charClass + " ÿc9" + typeOfSorc + " attack");
-                        } else {
-                            typeOfSorc = "";
-                            print("Auto ÿc4" + charClass + "ÿc1  undefined type of sorc");
-                        }
-
-                        if (me.charlvl == 1) {
-                            if (me.getSkill(36, 1, false) >= 1) { // fire bolt
-                                skill1 = 36;
+                if (me.ingame && me.gameReady) {
+                    switch (charClass) {
+                        case "amazon":
+                            if (me.getSkill(6, 0) >= 1) {
+                                typeOfAmazon = "bow";
+                                print("Auto ÿc4" + charClass + " ÿc1" + typeOfAmazon + " attack");
+                                Config.SkipImmune = ["physical"];
                             } else {
-                                skill1 = 0;
+                                typeOfAmazon = "java";
+                                print("Auto ÿc4" + charClass + " ÿc9" + typeOfAmazon + " attack");
+                                Config.SkipImmune = ["lightning"];
                             }
 
-                            skill2 = skill1;
-                            Config.AttackSkill  = [skill2, skill2, skill1, skill2, skill1, 0, 0];
-                            Config.LowManaSkill = [0, 0];
-                        } else if (me.charlvl <= 30) {
-                            switch (typeOfSorc) {
-                                case "light":
-                                    skill1 = this.useSkill([18, 49, 38]); // chain lightning > lightning > charged bolt
-                                    skill2 = this.useSkill([49, 18, 38]); // lightning > chain lightning > charged bolt
+                            if (me.charlvl <= 30) {
+                                switch (typeOfAmazon) {
+                                    case "java":
+                                        skill1 = this.useSkill([24, 14, 10]); // charged strike > power strike > jab
+                                        skill2 = skill1;
 
-                                    break;
-                                case "fire":
-                                    skill1 = this.useSkill([47, 36]);     // fire ball > fire bolt
-                                    skill2 = this.useSkill([56, 47, 36]); // meteor > fire ball > fire bolt
+                                        break;
+                                    case "bow":
+                                        skill1 = this.useSkill([31, 26, 12, 6]); // freezing arrow > strafe > multiple shot > magic arrow
+                                        skill2 = skill1;
 
-                                    break;
-                                case "cold":
-                                    skill1 = this.useSkill([55, 45, 39]); // glacial spike > ice blast > ice bolt
-                                    skill2 = this.useSkill([59, 45, 39]); // blizzard > ice blast > ice bolt
+                                        break;
+                                }
 
-                                    break;
+                                Config.AttackSkill = [skill1, skill1, skill2, skill1, skill2, 0, 0];
+                            } else {
+                                Config.AttackSkill = Config.AttackZonSkill;
+                                Config.LowManaSkill = Config.LowManaZonSkill;
+                                Config.UpdateSkill = false;
                             }
 
-                            Config.AttackSkill  = [skill2, skill2, skill1, skill2, skill1, 0, 0];
-                            Config.LowManaSkill = [0, 0];
+                            Config.LightningFuryDelay = 10;   // Lightning fury interval in seconds. LF is treated as timed skill.
+                            Config.SummonValkyrie = true; // Summon Valkyrie
 
-                        } else {
-                            switch (typeOfSorc) {
-                                case "light":
-                                    Config.AttackSkill  = Config.AttackSorcLightSkill;
-                                    Config.LowManaSkill = Config.LowManaSorcLightSkill;
-
-                                    break;
-                                case "fire":
-                                    Config.AttackSkill  = Config.AttackSorcFireSkill;
-                                    Config.LowManaSkill = Config.LowManaSorcFireSkill;
-
-                                    break;
-                                case "cold":
-                                    Config.AttackSkill  = Config.AttackSorcColdSkill;
-                                    Config.LowManaSkill = Config.LowManaSorcColdSkill;
-
-                                    break;
-                                default:
-                                    Config.AttackSkill  = [0, 0, 0, 0, 0, 0, 0];
-                                    Config.LowManaSkill = [0, 0];
-
-                                    break;
+                            break;
+                        case "sorceress":
+                            if (me.getSkill(36, 0) >= 1) {
+                                typeOfSorc = "fire";
+                                Config.SkipImmune = ["fire"];
+                                print("Auto ÿc4" + charClass + " ÿc1" + typeOfSorc + " attack");
+                            } else if (me.getSkill(39, 0) >= 1) {
+                                typeOfSorc = "cold";
+                                Config.SkipImmune = ["cold"];
+                                print("Auto ÿc4" + charClass + " ÿc3" + typeOfSorc + " attack");
+                            } else if (me.getSkill(38, 0) >= 1) {
+                                typeOfSorc = "light";
+                                Config.SkipImmune = ["lightning"];
+                                print("Auto ÿc4" + charClass + " ÿc9" + typeOfSorc + " attack");
+                            } else {
+                                typeOfSorc = "";
+                                print("Auto ÿc4" + charClass + "ÿc1  undefined type of sorc");
                             }
 
-                            Config.UpdateSkill = false;
-                        }
-
-                        Config.CastStatic = 60;    // Cast static until the target is at designated life percent. 100 = disabled.
-                        Config.StaticList = ["bloodraven", "griswold", "andariel", "summoner", "duriel", "mephisto", "diablo", "izual", "baal"];
-
-                        break;
-                    case "necromancer":
-                        if (me.getSkill(67, 0) >= 1) {
-                            typeOfNecro = "spear";
-                            print("Auto ÿc4" + charClass + " ÿc3" + typeOfNecro + " attack");
-                            Config.SkipImmune = ["magic"];
-                        } else {
-                            typeOfNecro = "summoning";
-                            print("Auto ÿc4" + charClass + " ÿc1" + typeOfNecro + " attack");
-                        }
-
-                        if (me.charlvl <= 30) {
-                            switch (typeOfNecro) {
-                                case "summoning":
+                            if (me.charlvl == 1) {
+                                if (me.getSkill(36, 1, false) >= 1) { // fire bolt
+                                    skill1 = 36;
+                                } else {
                                     skill1 = 0;
-                                    skill2 = 0;
+                                }
 
-                                    break;
-                                case "spear":
-                                    skill1 = this.useSkill([84, 67]); // bone spear > teeth
-                                    skill2 = skill1;
+                                skill2 = skill1;
+                                Config.AttackSkill = [skill2, skill2, skill1, skill2, skill1, 0, 0];
+                                Config.LowManaSkill = [0, 0];
+                            } else if (me.charlvl <= 30) {
+                                switch (typeOfSorc) {
+                                    case "light":
+                                        skill1 = this.useSkill([18, 49, 38]); // chain lightning > lightning > charged bolt
+                                        skill2 = this.useSkill([49, 18, 38]); // lightning > chain lightning > charged bolt
 
-                                    break;
+                                        break;
+                                    case "fire":
+                                        skill1 = this.useSkill([47, 36]);     // fire ball > fire bolt
+                                        skill2 = this.useSkill([56, 47, 36]); // meteor > fire ball > fire bolt
+
+                                        break;
+                                    case "cold":
+                                        skill1 = this.useSkill([55, 45, 39]); // glacial spike > ice blast > ice bolt
+                                        skill2 = this.useSkill([59, 45, 39]); // blizzard > ice blast > ice bolt
+
+                                        break;
+                                }
+
+                                Config.AttackSkill = [skill2, skill2, skill1, skill2, skill1, 0, 0];
+                                Config.LowManaSkill = [0, 0];
+
+                            } else {
+                                switch (typeOfSorc) {
+                                    case "light":
+                                        Config.AttackSkill = Config.AttackSorcLightSkill;
+                                        Config.LowManaSkill = Config.LowManaSorcLightSkill;
+
+                                        break;
+                                    case "fire":
+                                        Config.AttackSkill = Config.AttackSorcFireSkill;
+                                        Config.LowManaSkill = Config.LowManaSorcFireSkill;
+
+                                        break;
+                                    case "cold":
+                                        Config.AttackSkill = Config.AttackSorcColdSkill;
+                                        Config.LowManaSkill = Config.LowManaSorcColdSkill;
+
+                                        break;
+                                    default:
+                                        Config.AttackSkill = [0, 0, 0, 0, 0, 0, 0];
+                                        Config.LowManaSkill = [0, 0];
+
+                                        break;
+                                }
+
+                                Config.UpdateSkill = false;
                             }
 
-                            Config.AttackSkill  = [skill1, skill1, skill2, skill1, skill2, 0, 0];
-                        } else {
-                            Config.AttackSkill     = Config.AttackNecSkill;
-                            Config.LowManaSkill    = Config.LowManaNecSkill;
-                            Config.UpdateSkill = false;
-                        }
+                            Config.CastStatic = 60;    // Cast static until the target is at designated life percent. 100 = disabled.
+                            Config.StaticList = ["bloodraven", "griswold", "andariel", "summoner", "duriel", "mephisto", "diablo", "izual", "baal"];
 
-                        Config.Curse[0]        = 66;        // Boss curse. Use skill number or set to 0 to disable.
-                        Config.Curse[1]        = 66;        // Other monsters curse. Use skill number or set to 0 to disable.
-                        Config.ExplodeCorpses  = 74;        // Explode corpses. Use skill number or 0 to disable. 74 = Corpse Explosion, 83 = Poison Explosion
-                        Config.Golem           = "Clay";    // Golem. 0 or "None" = don't summon, 1 or "Clay" = Clay Golem, 2 or "Blood" = Blood Golem, 3 or "Fire" = Fire Golem
-                        Config.Skeletons       = "max";     // Number of skeletons to raise. Set to "max" to auto detect, set to 0 to disable.
-                        Config.SkeletonMages   = "max";     // Number of skeleton mages to raise. Set to "max" to auto detect, set to 0 to disable.
-                        Config.Revives         = "max";     // Number of revives to raise. Set to "max" to auto detect, set to 0 to disable.
-                        Config.PoisonNovaDelay = 2;         // Delay between two Poison Novas in seconds.
-                        Config.ActiveSummon    = false;     // Raise dead between each attack. If false, it will raise after clearing a spot.
-                        Config.ReviveUnstackable = true;    // Revive monsters that can move freely after you teleport.
-                        Config.IronGolemChicken  = 30;      // Exit game if Iron Golem's life is less or equal to designated percent.
+                            break;
+                        case "necromancer":
+                            if (me.getSkill(67, 0) >= 1) {
+                                typeOfNecro = "spear";
+                                print("Auto ÿc4" + charClass + " ÿc3" + typeOfNecro + " attack");
+                                Config.SkipImmune = ["magic"];
+                            } else {
+                                typeOfNecro = "summoning";
+                                print("Auto ÿc4" + charClass + " ÿc1" + typeOfNecro + " attack");
+                            }
 
-                        break;
-                    case "paladin":
-                        if (me.getSkill(103, 0) >= 1) {
-                            typeOfPally = "foh";
-                            print("Auto ÿc4" + charClass + " ÿc9" + typeOfPally + " attack");
+                            if (me.charlvl <= 30) {
+                                switch (typeOfNecro) {
+                                    case "summoning":
+                                        skill1 = 0;
+                                        skill2 = 0;
+
+                                        break;
+                                    case "spear":
+                                        skill1 = this.useSkill([84, 67]); // bone spear > teeth
+                                        skill2 = skill1;
+
+                                        break;
+                                }
+
+                                Config.AttackSkill = [skill1, skill1, skill2, skill1, skill2, 0, 0];
+                            } else {
+                                Config.AttackSkill = Config.AttackNecSkill;
+                                Config.LowManaSkill = Config.LowManaNecSkill;
+                                Config.UpdateSkill = false;
+                            }
+
+                            Config.Curse[0] = 66;        // Boss curse. Use skill number or set to 0 to disable.
+                            Config.Curse[1] = 66;        // Other monsters curse. Use skill number or set to 0 to disable.
+                            Config.ExplodeCorpses = 74;        // Explode corpses. Use skill number or 0 to disable. 74 = Corpse Explosion, 83 = Poison Explosion
+                            Config.Golem = "Clay";    // Golem. 0 or "None" = don't summon, 1 or "Clay" = Clay Golem, 2 or "Blood" = Blood Golem, 3 or "Fire" = Fire Golem
+                            Config.Skeletons = "max";     // Number of skeletons to raise. Set to "max" to auto detect, set to 0 to disable.
+                            Config.SkeletonMages = "max";     // Number of skeleton mages to raise. Set to "max" to auto detect, set to 0 to disable.
+                            Config.Revives = "max";     // Number of revives to raise. Set to "max" to auto detect, set to 0 to disable.
+                            Config.PoisonNovaDelay = 2;         // Delay between two Poison Novas in seconds.
+                            Config.ActiveSummon = false;     // Raise dead between each attack. If false, it will raise after clearing a spot.
+                            Config.ReviveUnstackable = true;    // Revive monsters that can move freely after you teleport.
+                            Config.IronGolemChicken = 30;      // Exit game if Iron Golem's life is less or equal to designated percent.
+
+                            break;
+                        case "paladin":
+                            if (me.getSkill(103, 0) >= 1) {
+                                typeOfPally = "foh";
+                                print("Auto ÿc4" + charClass + " ÿc9" + typeOfPally + " attack");
+                                Config.SkipImmune = ["lightning"];
+                            } else {
+                                typeOfPally = "hammer";
+                                print("Auto ÿc4" + charClass + " ÿc3" + typeOfPally + " attack");
+                                Config.SkipImmune = ["magic"];
+                            }
+
+                            if (me.charlvl <= 30) {
+                                switch (typeOfPally) {
+                                    case "foh":
+                                        skill1 = this.useSkill([121, 116, 111, 106, 96, 97]); // foh > conversion > vengeance > zeal > sacrifice > smite
+                                        skill2 = this.useSkill([123, 119, 114, 103, 98]); // conviction > sanctuary > holy freeze > thorns > might
+                                        Config.Vigor = true;  // Swith to Vigor when running
+                                        Config.Charge = true;  // Use Charge when running
+
+                                        break;
+                                    case "hammer":
+                                        skill1 = this.useSkill([112, 97]); // blessed hammer > smite
+                                        skill2 = this.useSkill([113, 98]); // concentration > might
+                                        Config.Vigor = true;  // Swith to Vigor when running
+                                        Config.Charge = false; // Use Charge when running
+
+                                        break;
+                                }
+
+                                Config.AttackSkill = [skill1, skill1, skill2, skill1, skill2, 0, 0];
+                            } else {
+                                Config.AttackSkill = Config.AttackPallySkill;
+                                Config.LowManaSkill = Config.LowManaPallySkill;
+                                Config.UpdateSkill = false;
+                            }
+
+                            Config.AvoidDolls = true;         // Try to attack dolls from a greater distance with hammerdins.
+                            Config.Redemption = [50, 50];     // Switch to Redemption after clearing an area if under designated life or mana. Format: [lifepercent, manapercent]
+
+                            break;
+                        case "barbarian":
+                            if (me.charlvl <= 30) {
+                                skill1 = this.useSkill([151, 144, 139, 126]); // whirlwind > concentrate > stun > bash
+                                skill2 = this.useSkill([132]); // leap
+
+                                Config.AttackSkill = [skill1, skill1, skill2, skill1, skill2, 0, 0];
+                                Config.LowManaSkill = [0, 0];
+                            } else {
+                                Config.AttackSkill = Config.AttackBarbSkill;
+                                Config.LowManaSkill = Config.LowManaBarbSkill;
+                                Config.UpdateSkill = false;
+                            }
+
+                            Config.SkipImmune = ["physical"];
+                            Config.FindItem = false;      // Use Find Item skill on corpses after clearing.
+                            Config.FindItemSwitch = false;      // Switch to non-primary slot when using Find Item skills
+                            print("Auto ÿc4" + charClass + " ÿc1 attack");
+
+                            break;
+                        case "druid":
+                            if (me.getSkill(223, 0) >= 1) {
+                                typeOfDruid = "wolf";
+                                print("Auto ÿc4" + charClass + " ÿc1" + typeOfDruid + " attack");
+                                Config.Wereform = 1;
+                            } else {
+                                typeOfDruid = "tornado";
+                                print("Auto ÿc4" + charClass + " ÿc3" + typeOfDruid + " attack");
+                            }
+
+                            if (me.charlvl <= 30) {
+
+                                switch (typeOfDruid) {
+                                    case "wolf":
+                                        skill1 = this.useSkill([248, 232]); // fury > feral rage
+                                        skill2 = skill1;
+
+                                        break;
+                                    case "tornado":
+                                        skill1 = this.useSkill([245, 240]); // tornado > twister
+                                        skill2 = skill1;
+                                        break;
+                                }
+
+                                Config.AttackSkill = [skill1, skill1, skill2, skill1, skill2, 0, 0];
+                            } else {
+                                Config.AttackSkill = Config.AttackDruidSkill;
+                                Config.LowManaSkill = Config.LowManaDruidSkill;
+                                Config.UpdateSkill = false;
+                            }
+
+                            Config.SkipImmune = ["physical"];
+                            Config.SummonRaven = true;
+                            Config.SummonAnimal = "Grizzly";        // 0 = disabled, 1 or "Spirit Wolf" = summon spirit wolf, 2 or "Dire Wolf" = summon dire wolf, 3 or "Grizzly" = summon grizzly
+                            Config.SummonSpirit = "Oak Sage";       // 0 = disabled, 1 / "Oak Sage", 2 / "Heart of Wolverine", 3 / "Spirit of Barbs"
+                            Config.SummonVine = "Poison Creeper"; // 0 = disabled, 1 / "Poison Creeper", 2 / "Carrion Vine", 3 / "Solar Creeper"
+
+                            break;
+                        case "assassin":
+                            if (me.charlvl <= 30) {
+                                skill1 = this.useSkill([]);
+                                skill2 = skill1;
+                                Config.AttackSkill = [skill1, skill1, skill2, skill1, skill2, 0, 0];
+                            } else {
+                                Config.AttackSkill = Config.AttackSinSkill;
+                                Config.LowManaSkill = Config.LowManaSinSkill;
+                                Config.UpdateSkill = false;
+                            }
+
                             Config.SkipImmune = ["lightning"];
-                        } else {
-                            typeOfPally = "hammer";
-                            print("Auto ÿc4" + charClass + " ÿc3" + typeOfPally + " attack");
-                            Config.SkipImmune   = ["magic"];
-                        }
+                            Config.UseTraps = true;                      // Set to true to use traps
+                            Config.Traps = [271, 271, 271, 276, 276]; // Skill IDs for traps to be cast on all mosters except act bosses.
+                            Config.BossTraps = [271, 271, 271, 271, 271]; // Skill IDs for traps to be cast on act bosses.
+                            Config.SummonShadow = "Master";                  // 0 = don't summon, 1 or "Warrior" = summon Shadow Warrior, 2 or "Master" = summon Shadow Master
+                            Config.UseFade = true;                      // Set to true to use Fade prebuff.
+                            Config.UseBoS = false;                     // Set to true to use Burst of Speed prebuff.
+                            Config.UseVenom = false;                     // Set to true to use Venom prebuff. Set to false if you don't have the skill and have Arachnid Mesh - it will cause connection drop otherwise.
+                            Config.UseCloakofShadows = true;                 // Set to true to use Cloak of Shadows while fighting. Useful for blinding regular monsters/minions.
+                            Config.AggressiveCloak = false;                // Move into Cloak range or cast if already close
+                            print("Auto ÿc4" + charClass + " ÿc9 attack");
 
-                        if (me.charlvl <= 30) {
-                            switch (typeOfPally) {
-                                case "foh":
-                                    skill1 = this.useSkill([121, 116, 111, 106, 96, 97]); // foh > conversion > vengeance > zeal > sacrifice > smite
-                                    skill2 = this.useSkill([123, 119, 114, 103, 98]); // conviction > sanctuary > holy freeze > thorns > might
-                                    Config.Vigor  = true;  // Swith to Vigor when running
-                                    Config.Charge = true;  // Use Charge when running
+                            break;
+                    }
 
-                                    break;
-                                case "hammer":
-                                    skill1 = this.useSkill([112, 97]); // blessed hammer > smite
-                                    skill2 = this.useSkill([113, 98]); // concentration > might
-                                    Config.Vigor  = true;  // Swith to Vigor when running
-                                    Config.Charge = false; // Use Charge when running
-
-                                    break;
-                            }
-
-                            Config.AttackSkill = [skill1, skill1, skill2, skill1, skill2, 0, 0];
-                        } else {
-                            Config.AttackSkill  = Config.AttackPallySkill;
-                            Config.LowManaSkill = Config.LowManaPallySkill;
-                            Config.UpdateSkill = false;
-                        }
-
-                        Config.AvoidDolls   = true;         // Try to attack dolls from a greater distance with hammerdins.
-                        Config.Redemption   = [50, 50];     // Switch to Redemption after clearing an area if under designated life or mana. Format: [lifepercent, manapercent]
-
-                        break;
-                    case "barbarian":
-                        if (me.charlvl <= 30) {
-                            skill1 = this.useSkill([151, 144, 139, 126]); // whirlwind > concentrate > stun > bash
-                            skill2 = this.useSkill([132]); // leap
-
-                            Config.AttackSkill  = [skill1, skill1, skill2, skill1, skill2, 0, 0];
-                            Config.LowManaSkill = [0, 0];
-                        } else {
-                            Config.AttackSkill  = Config.AttackBarbSkill;
-                            Config.LowManaSkill = Config.LowManaBarbSkill;
-                            Config.UpdateSkill = false;
-                        }
-
-                        Config.SkipImmune     = ["physical"];
-                        Config.FindItem       = false;      // Use Find Item skill on corpses after clearing.
-                        Config.FindItemSwitch = false;      // Switch to non-primary slot when using Find Item skills
-                        print("Auto ÿc4" + charClass + " ÿc1 attack");
-
-                        break;
-                    case "druid":
-                        if (me.getSkill(223, 0) >= 1) {
-                            typeOfDruid = "wolf";
-                            print("Auto ÿc4" + charClass + " ÿc1" + typeOfDruid + " attack");
-                            Config.Wereform = 1;
-                        } else {
-                            typeOfDruid = "tornado";
-                            print("Auto ÿc4" + charClass + " ÿc3" + typeOfDruid + " attack");
-                        }
-
-                        if (me.charlvl <= 30) {
-
-                            switch (typeOfDruid) {
-                                case "wolf":
-                                    skill1 = this.useSkill([248, 232]); // fury > feral rage
-                                    skill2 = skill1;
-
-                                    break;
-                                case "tornado":
-                                    skill1 = this.useSkill([245, 240]); // tornado > twister
-                                    skill2 = skill1;
-                                    break;
-                            }
-
-                            Config.AttackSkill  = [skill1, skill1, skill2, skill1, skill2, 0, 0];
-                        } else {
-                            Config.AttackSkill  = Config.AttackDruidSkill;
-                            Config.LowManaSkill = Config.LowManaDruidSkill;
-                            Config.UpdateSkill = false;
-                        }
-
-                        Config.SkipImmune   = ["physical"];
-                        Config.SummonRaven  = true;
-                        Config.SummonAnimal = "Grizzly";        // 0 = disabled, 1 or "Spirit Wolf" = summon spirit wolf, 2 or "Dire Wolf" = summon dire wolf, 3 or "Grizzly" = summon grizzly
-                        Config.SummonSpirit = "Oak Sage";       // 0 = disabled, 1 / "Oak Sage", 2 / "Heart of Wolverine", 3 / "Spirit of Barbs"
-                        Config.SummonVine   = "Poison Creeper"; // 0 = disabled, 1 / "Poison Creeper", 2 / "Carrion Vine", 3 / "Solar Creeper"
-
-                        break;
-                    case "assassin":
-                        if (me.charlvl <= 30) {
-                            skill1 = this.useSkill([]);
-                            skill2 = skill1;
-                            Config.AttackSkill  = [skill1, skill1, skill2, skill1, skill2, 0, 0];
-                        } else {
-                            Config.AttackSkill  = Config.AttackSinSkill;
-                            Config.LowManaSkill = Config.LowManaSinSkill;
-                            Config.UpdateSkill = false;
-                        }
-
-                        Config.SkipImmune   = ["lightning"];
-                        Config.UseTraps     = true;                      // Set to true to use traps
-                        Config.Traps        = [271, 271, 271, 276, 276]; // Skill IDs for traps to be cast on all mosters except act bosses.
-                        Config.BossTraps    = [271, 271, 271, 271, 271]; // Skill IDs for traps to be cast on act bosses.
-                        Config.SummonShadow = "Master";                  // 0 = don't summon, 1 or "Warrior" = summon Shadow Warrior, 2 or "Master" = summon Shadow Master
-                        Config.UseFade      = true;                      // Set to true to use Fade prebuff.
-                        Config.UseBoS       = false;                     // Set to true to use Burst of Speed prebuff.
-                        Config.UseVenom     = false;                     // Set to true to use Venom prebuff. Set to false if you don't have the skill and have Arachnid Mesh - it will cause connection drop otherwise.
-                        Config.UseCloakofShadows = true;                 // Set to true to use Cloak of Shadows while fighting. Useful for blinding regular monsters/minions.
-                        Config.AggressiveCloak   = false;                // Move into Cloak range or cast if already close
-                        print("Auto ÿc4" + charClass + " ÿc9 attack");
-
-                        break;
+                    // print("Attack: " + JSON.stringify(Config.AttackSkill));
+                    // print("Low Mana Attack: " + JSON.stringify(Config.LowManaSkill));
+                    return true;
                 }
 
-                // print("Attack: " + JSON.stringify(Config.AttackSkill));
-                // print("Low Mana Attack: " + JSON.stringify(Config.LowManaSkill));
+                return false
             },
 
     //! SEND NOTIFICATIONS ============================================================
