@@ -1849,35 +1849,35 @@ function RogerThat() {
 
         //+ Toggle info class =====================================================
             function UnitInfo() {
-                let x = resolution !== 0 ? 670 : 510;
-                let y = 30;
-                let hooks = [];
-                let cleared = true;
+                this.x = resolution !== 0 ? 670 : 510;
+                this.y = 30;
+                this.hooks = [];
+                this.cleared = true;
 
-                function createInfo (unit) {
+                this.createInfo = function (unit) {
                     if (typeof unit === "undefined") {
-                        remove();
+                        this.remove();
 
                         return;
                     }
 
                     switch (unit.type) {
                         case 0:
-                            playerInfo(unit);
+                            this.playerInfo(unit);
 
                             break;
                         case 1:
-                            monsterInfo(unit);
+                            this.monsterInfo(unit);
 
                             break;
                         case 4:
-                            itemInfo(unit);
+                            this.itemInfo(unit);
 
                             break;
                     }
                 };
 
-                function playerInfo (unit) {
+                this.playerInfo = function (unit) {
                     let i,
                         items,
                         string,
@@ -1885,25 +1885,25 @@ function RogerThat() {
                         frameYsize = 20,
                         quality = ["ÿc0", "ÿc0", "ÿc0", "ÿc0", "ÿc3", "ÿc2", "ÿc9", "ÿc4", "ÿc8"];
 
-                    if (!currentGid) {
-                        currentGid = unit.gid;
+                    if (!this.currentGid) {
+                        this.currentGid = unit.gid;
                     }
 
-                    if (currentGid === unit.gid && !cleared) {
+                    if (this.currentGid === unit.gid && !this.cleared) {
                         return;
                     }
 
-                    if (currentGid !== unit.gid) {
-                        remove();
-                        currentGid = unit.gid;
+                    if (this.currentGid !== unit.gid) {
+                        this.remove();
+                        this.currentGid = unit.gid;
                     }
 
-                    hooks.push(new Text("ÿc0" + unit.name + " (" + unit.charlvl + " " + classes[unit.classid] + ")", x, y, 4, 13, 2));
+                    this.hooks.push(new Text("ÿc0" + unit.name + " (" + unit.charlvl + " " + classes[unit.classid] + ")", this.x, this.y, 4, 13, 2));
 
                     items = unit.getItems();
 
                     if (items) {
-                        hooks.push(new Text("Equipped items:", x, y + 15, 4, 13, 2));
+                        this.hooks.push(new Text("Equipped items:", this.x, this.y + 15, 4, 13, 2));
                         frameYsize += 15;
 
                         for (i = 0; i < items.length; i += 1) {
@@ -1913,7 +1913,7 @@ function RogerThat() {
                                 string = quality[items[i].quality] + (items[i].quality > 4 && items[i].getFlag(0x10) ? items[i].fname.split("\n").reverse()[0].replace("ÿc4", "") : items[i].name);
                             }
 
-                            hooks.push(new Text(string, x, y + (i + 2) * 15, 0, 13, 2));
+                            this.hooks.push(new Text(string, this.x, this.y + (i + 2) * 15, 0, 13, 2));
 
                             if (string.length > frameXsize) {
                                 frameXsize = string.length;
@@ -1927,90 +1927,90 @@ function RogerThat() {
 
                     frameYsize += 145;
 
-                    hooks.push(new Text("Fire Resist: ÿc1" + (unit.getStat(39) - 30) + " / " + (unit.getStat(40) + 75), x, y + (i + 2) * 15 + 10, 4, 13, 2));
-                    hooks.push(new Text("Cold Resist: ÿc3" + (unit.getStat(43) - 30) + " / " + (unit.getStat(44) + 75), x, y + (i + 2) * 15 + 25, 4, 13, 2));
-                    hooks.push(new Text("Light Resist: ÿc9" + (unit.getStat(41) - 30) + " / " + (unit.getStat(42) + 75), x, y + (i + 2) * 15 + 40, 4, 13, 2));
-                    hooks.push(new Text("Poison Resist: ÿc2" + (unit.getStat(45) - 30) + " / " + (unit.getStat(46) + 75), x, y + (i + 2) * 15 + 55, 4, 13, 2));
-                    hooks.push(new Text("Physical resist: ÿc0" + unit.getStat(36), x, y + (i + 2) * 15 + 70, 4, 13, 2));
+                    this.hooks.push(new Text("Fire Resist: ÿc1" + (unit.getStat(39) - 30) + " / " + (unit.getStat(40) + 75), this.x, this.y + (i + 2) * 15 + 10, 4, 13, 2));
+                    this.hooks.push(new Text("Cold Resist: ÿc3" + (unit.getStat(43) - 30) + " / " + (unit.getStat(44) + 75), this.x, this.y + (i + 2) * 15 + 25, 4, 13, 2));
+                    this.hooks.push(new Text("Light Resist: ÿc9" + (unit.getStat(41) - 30) + " / " + (unit.getStat(42) + 75), this.x, this.y + (i + 2) * 15 + 40, 4, 13, 2));
+                    this.hooks.push(new Text("Poison Resist: ÿc2" + (unit.getStat(45) - 30) + " / " + (unit.getStat(46) + 75), this.x, this.y + (i + 2) * 15 + 55, 4, 13, 2));
+                    this.hooks.push(new Text("Physical resist: ÿc0" + unit.getStat(36), this.x, this.y + (i + 2) * 15 + 70, 4, 13, 2));
 
                     //Sorb
-                    hooks.push(new Text("Fire Absorb: ÿc1" + unit.getStat(142), x, y + (i + 2) * 15 + 85, 4, 13, 2));
-                    hooks.push(new Text("Cold Absorb: ÿc3" + unit.getStat(148), x, y + (i + 2) * 15 + 100, 4, 13, 2));
-                    hooks.push(new Text("Light Absorb: ÿc9" + unit.getStat(144), x, y + (i + 2) * 15 + 115, 4, 13, 2));
+                    this.hooks.push(new Text("Fire Absorb: ÿc1" + unit.getStat(142), this.x, this.y + (i + 2) * 15 + 85, 4, 13, 2));
+                    this.hooks.push(new Text("Cold Absorb: ÿc3" + unit.getStat(148), this.x, this.y + (i + 2) * 15 + 100, 4, 13, 2));
+                    this.hooks.push(new Text("Light Absorb: ÿc9" + unit.getStat(144), this.x, this.y + (i + 2) * 15 + 115, 4, 13, 2));
 
-                    hooks.push(new Text("Faster Cast Rate: ÿc0" + unit.getStat(105), x, y + (i + 2) * 15 + 130, 4, 13, 2));
+                    this.hooks.push(new Text("Faster Cast Rate: ÿc0" + unit.getStat(105), this.x, this.y + (i + 2) * 15 + 130, 4, 13, 2));
 
-                    cleared = false;
+                    this.cleared = false;
 
-                    hooks.push(new Box(x + 2, y - 15, Math.round(frameXsize * 7.5) - 4, frameYsize, 0x0, 1, 2));
-                    hooks.push(new Frame(x, y - 15, Math.round(frameXsize * 7.5), frameYsize, 2));
+                    this.hooks.push(new Box(this.x + 2, this.y - 15, Math.round(frameXsize * 7.5) - 4, frameYsize, 0x0, 1, 2));
+                    this.hooks.push(new Frame(this.x, this.y - 15, Math.round(frameXsize * 7.5), frameYsize, 2));
 
-                    hooks[hooks.length - 2].zorder = 0;
+                    this.hooks[this.hooks.length - 2].zorder = 0;
                 };
 
-                function monsterInfo (unit) {
+                this.monsterInfo = function (unit) {
                     var frameYsize = 125;
 
-                    if (!currentGid) {
-                        currentGid = unit.gid;
+                    if (!this.currentGid) {
+                        this.currentGid = unit.gid;
                     }
 
-                    if (currentGid === unit.gid && !cleared) {
+                    if (this.currentGid === unit.gid && !this.cleared) {
                         return;
                     }
 
-                    if (currentGid !== unit.gid) {
-                        remove();
-                        currentGid = unit.gid;
+                    if (this.currentGid !== unit.gid) {
+                        this.remove();
+                        this.currentGid = unit.gid;
                     }
 
-                    hooks.push(new Text("Classid: ÿc0" + unit.classid, x, y, 4, 13, 2));
-                    hooks.push(new Text("HP percent: ÿc0" + Math.round(unit.hp * 100 / 128), x, y + 15, 4, 13, 2));
-                    hooks.push(new Text("Fire resist: ÿc1" + unit.getStat(39), x, y + 30, 4, 13, 2));
-                    hooks.push(new Text("Cold resist: ÿc3" + unit.getStat(43), x, y + 45, 4, 13, 2));
-                    hooks.push(new Text("Lightning resist: ÿc9" + unit.getStat(41), x, y + 60, 4, 13, 2));
-                    hooks.push(new Text("Poison resist: ÿc2" + unit.getStat(45), x, y + 75, 4, 13, 2));
-                    hooks.push(new Text("Physical resist: ÿc0" + unit.getStat(36), x, y + 90, 4, 13, 2));
-                    hooks.push(new Text("Magic resist: ÿc0" + unit.getStat(37), x, y + 105, 4, 13, 2));
+                    this.hooks.push(new Text("Classid: ÿc0" + unit.classid, this.x, this.y, 4, 13, 2));
+                    this.hooks.push(new Text("HP percent: ÿc0" + Math.round(unit.hp * 100 / 128), this.x, this.y + 15, 4, 13, 2));
+                    this.hooks.push(new Text("Fire resist: ÿc1" + unit.getStat(39), this.x, this.y + 30, 4, 13, 2));
+                    this.hooks.push(new Text("Cold resist: ÿc3" + unit.getStat(43), this.x, this.y + 45, 4, 13, 2));
+                    this.hooks.push(new Text("Lightning resist: ÿc9" + unit.getStat(41), this.x, this.y + 60, 4, 13, 2));
+                    this.hooks.push(new Text("Poison resist: ÿc2" + unit.getStat(45), this.x, this.y + 75, 4, 13, 2));
+                    this.hooks.push(new Text("Physical resist: ÿc0" + unit.getStat(36), this.x, this.y + 90, 4, 13, 2));
+                    this.hooks.push(new Text("Magic resist: ÿc0" + unit.getStat(37), this.x, this.y + 105, 4, 13, 2));
 
-                    cleared = false;
+                    this.cleared = false;
 
-                    hooks.push(new Box(x + 2, y - 15, 136 + 85, frameYsize, 0x0, 1, 2));
-                    hooks.push(new Frame(x, y - 15, 140 + 85, frameYsize, 2));
+                    this.hooks.push(new Box(this.x + 2, this.y - 15, 136 + 85, frameYsize, 0x0, 1, 2));
+                    this.hooks.push(new Frame(this.x, this.y - 15, 140 + 85, frameYsize, 2));
 
-                    hooks[hooks.length - 2].zorder = 0;
+                    this.hooks[this.hooks.length - 2].zorder = 0;
                 };
 
-                function itemInfo (unit) {
+                this.itemInfo = function (unit) {
                     var i = 0,
                         frameYsize = 50;
 
-                    if (!currentGid) {
-                        currentGid = unit.gid;
+                    if (!this.currentGid) {
+                        this.currentGid = unit.gid;
                     }
 
-                    if (currentGid === unit.gid && !cleared) {
+                    if (this.currentGid === unit.gid && !this.cleared) {
                         return;
                     }
 
-                    if (currentGid !== unit.gid) {
-                        remove();
-                        currentGid = unit.gid;
+                    if (this.currentGid !== unit.gid) {
+                        this.remove();
+                        this.currentGid = unit.gid;
                     }
 
-                    hooks.push(new Text("Classid: ÿc0" + unit.classid, x, y, 4, 13, 2));
-                    hooks.push(new Text("Code: ÿc0" + unit.code, x, y + 15, 4, 13, 2));
-                    hooks.push(new Text("Item level: ÿc0" + unit.ilvl, x, y + 30, 4, 13, 2));
+                    this.hooks.push(new Text("Classid: ÿc0" + unit.classid, this.x, this.y, 4, 13, 2));
+                    this.hooks.push(new Text("Code: ÿc0" + unit.code, this.x, this.y + 15, 4, 13, 2));
+                    this.hooks.push(new Text("Item level: ÿc0" + unit.ilvl, this.x, this.y + 30, 4, 13, 2));
 
-                    cleared = false;
-                    socketedItems = unit.getItems();
+                    this.cleared = false;
+                    this.socketedItems = unit.getItems();
 
-                    if (socketedItems[0]) {
-                        hooks.push(new Text("Socketed with:", x, y + 45, 4, 13, 2));
+                    if (this.socketedItems[0]) {
+                        this.hooks.push(new Text("Socketed with:", this.x, this.y + 45, 4, 13, 2));
                         frameYsize += 15;
 
-                        for (i = 0; i < socketedItems.length; i += 1) {
-                            hooks.push(new Text(socketedItems[i].fname.split("\n").reverse().join(" "), x, y + (i + 4) * 15, 0, 13, 2));
+                        for (i = 0; i < this.socketedItems.length; i += 1) {
+                            this.hooks.push(new Text(this.socketedItems[i].fname.split("\n").reverse().join(" "), this.x, this.y + (i + 4) * 15, 0, 13, 2));
 
                             frameYsize += 15;
                         }
@@ -2018,8 +2018,8 @@ function RogerThat() {
 
                     // Get prefix and suffix from identified magic items
                     if (unit.quality === 4 && unit.getFlag(0x10)) {
-                        hooks.push(new Text("Prefix: ÿc0" + unit.prefixnum, x, y + frameYsize - 5, 4, 13, 2));
-                        hooks.push(new Text("Suffix: ÿc0" + unit.suffixnum, x, y + frameYsize + 10, 4, 13, 2));
+                        this.hooks.push(new Text("Prefix: ÿc0" + unit.prefixnum, this.x, this.y + frameYsize - 5, 4, 13, 2));
+                        this.hooks.push(new Text("Suffix: ÿc0" + unit.suffixnum, this.x, this.y + frameYsize + 10, 4, 13, 2));
 
                         frameYsize += 30;
                     }
@@ -2031,7 +2031,7 @@ function RogerThat() {
                             n = 0;
 
                         while (n < prefixes.length) {
-                            hooks.push(new Text("Prefix: ÿc0" + prefixes[n], x, y + frameYsize - 5, 4, 13, 2));
+                            this.hooks.push(new Text("Prefix: ÿc0" + prefixes[n], this.x, this.y + frameYsize - 5, 4, 13, 2));
                             frameYsize += 15;
                             n += 1
                         }
@@ -2040,24 +2040,24 @@ function RogerThat() {
                         n = 0;
 
                         while (n < suffixes.length) {
-                            hooks.push(new Text("Suffix: ÿc0" + suffixes[n], x, y + frameYsize - 5, 4, 13, 2));
+                            this.hooks.push(new Text("Suffix: ÿc0" + suffixes[n], this.x, this.y + frameYsize - 5, 4, 13, 2));
                             frameYsize += 15;
                             n += 1
                         }
                     }
 
-                    hooks.push(new Box(x + 2, y - 15, 116 + 105, frameYsize, 0x0, 1, 2));
-                    hooks.push(new Frame(x, y - 15, 120 + 105, frameYsize, 2));
+                    this.hooks.push(new Box(this.x + 2, this.y - 15, 116 + 105, frameYsize, 0x0, 1, 2));
+                    this.hooks.push(new Frame(this.x, this.y - 15, 120 + 105, frameYsize, 2));
 
-                    hooks[hooks.length - 2].zorder = 0;
+                    this.hooks[this.hooks.length - 2].zorder = 0;
                 };
 
-                function remove () {
-                    while (hooks.length > 0) {
-                        hooks.shift().remove();
+                this.remove = function () {
+                    while (this.hooks.length > 0) {
+                        this.hooks.shift().remove();
                     }
 
-                    cleared = true;
+                    this.cleared = true;
                 };
             }
 
