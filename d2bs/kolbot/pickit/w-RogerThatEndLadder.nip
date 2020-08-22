@@ -63,16 +63,16 @@
             [name] == hydrabow            && [quality] == unique # [manaleech] == 8 // windforce
     //+ CHARMS ===============================================================================
         //- Small Charms ------------------------------------------------------------------
+            [name] == smallcharm          && [quality] == magic # [maxhp] == 20 //# [maxquantity] == 2
             [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 3 //# [maxquantity] == 2
             [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 4 //# [maxquantity] == 2
             [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 5 //# [maxquantity] == 2
             [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 6 //# [maxquantity] == 2
             [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 7 //# [maxquantity] == 2
             [name] == smallcharm          && [quality] == magic # [itemmagicbonus] >= 3 && ([fireresist] >= 3 && [coldresist] >= 3 || [maxmana] >= 17 || [fireresist] >= 5 || [lightresist] >= 5 || [coldresist] >= 5 || [poisonresist] >= 5 || [fhr] == 5 || [maxhp] >= 15)
-            [name] == smallcharm          && [quality] == magic # [maxhp] == 20 //# [maxquantity] == 2
         //- Grand Charms ------------------------------------------------------------------
-            [name] == grandcharm          && [quality] == magic # [itemaddskilltab] == 1 && [cursesskilltab]+[druidsummoningskilltab]+[defensiveaurasskilltab] == 0 //&& [maxhp] >= 25
             [name] == grandcharm          && [quality] == magic # ([coldresist] == 15 && [lightresist] == 15)
+            [name] == grandcharm          && [quality] == magic # [itemaddskilltab] == 1 && [cursesskilltab]+[druidsummoningskilltab]+[defensiveaurasskilltab] == 0 //&& [maxhp] >= 25
             [name] == grandcharm          && [quality] == unique # [itemmagicbonus] >= 20 // gheed's fortune - max 40% mf
     //+ DAGGERS ==============================================================================
         //- Unique ------------------------------------------------------------------------
@@ -141,10 +141,10 @@
             [type] == ring                && [quality] <= rare # [itemmagicbonus] >= 30
     //+ SHIELDS ==============================================================================
         //- White -------------------------------------------------------------------------
-            [name] == monarch             && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 4) && [enhanceddefense] == 15 && [itemmaxdurabilitypercent] == 15 // spirit 15% edef
             [name] == monarch             && [quality] == normal   && [flag] != ethereal # [sockets] == 0 # [maxquantity] == 1                           // spirit cube
             [name] == monarch             && [quality] == normal   && [flag] != ethereal # [sockets] == 4                                                // spirit
             [type] == auricshields        && [quality] <= superior && [flag] != ethereal # [fireresist] >= 45 && ([sockets] == 0 || [sockets] == 4)      // spirit
+            [name] == monarch             && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 4) && [enhanceddefense] == 15 && [itemmaxdurabilitypercent] == 15 // spirit 15% edef
             [type] == auricshields        && [quality] <= superior && [flag] != ethereal # [enhanceddamage] == 65 && [tohit] == 121 && ([sockets] == 0 || [sockets] == 4) // dmg spirit
             [type] == auricshields        && [quality] <= superior && [class] == elite && [flag] == ethereal # ([enhanceddamage] == 65 && [tohit] == 121 || [fireresist] >= 45) && ([sockets] == 0 || [sockets] == 4) // exile
             [type] == auricshields        && [quality] <= superior && [class] == elite && [flag] != ethereal # ([enhanceddamage] == 65 && [tohit] == 121 || [fireresist] >= 45) && ([sockets] == 0 || [sockets] == 4) // spirit
@@ -173,6 +173,7 @@
             [name] == quarterstaff        && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 300 // ribcracker
     //+ SWORDS ===============================================================================
         //- White -------------------------------------------------------------------------
+            // [name] == crystalsword        && [quality] <= superior # [sockets] == 5 # [maxquantity] == 1 // cta
             [name] == broadsword          && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
             [name] == crystalsword        && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [sockets] == 4                     // spirit
             [name] == longsword           && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // spirit
@@ -185,7 +186,6 @@
             [name] == phaseblade          && [quality] == superior # [enhanceddamage] >= 15 && [tohit] == 3 &&  ([sockets] == 0 || [sockets] == 6) // last wish
             [name] == highlandblade       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4) // oath
             [name] == colossusblade       && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 4 || [sockets] == 5) // oath / death
-            // [name] == crystalsword        && [quality] <= superior # [sockets] == 5 # [maxquantity] == 1 // cta
     //+ SETS =================================================================================
         //* Tal Rasha's Wrappings =========================================================
             [name] == swirlingcrystal     && [quality] == set //# ([skilllightningmastery] == 2 && [skillfiremastery] == 2 && [skillcoldmastery] == 2) // Tal Rasha's Lidless Eye
