@@ -29,6 +29,11 @@ include("common/Runewords.js");
 include("common/Storage.js");
 include("common/Town.js");
 include("AutoRogerThat.js");
+include("config/common/UpdateAttack.js")
+include("config/common/UpdateInventory.js")
+include("config/common/UpdateCubing.js")
+include("config/common/UpdateRunewords.js")
+include("config/common/UpdatePickitFiles.js")
 const sdk = require('../libs/modules/sdk')
 
 function main() {
@@ -58,6 +63,23 @@ function main() {
 	CraftingSystem.buildLists();
 	Runewords.init();
 	Cubing.init();
+
+	if (Config.Cubing) {
+		UpdateCubing.call();
+	}
+
+	if (Config.MakeRunewords) {
+		UpdateRunewords.call();
+	}
+
+	if (me.ladder !== 0) {
+		UpdatePickitFiles.call();
+	}
+
+	if (Config.RogerThatInventoryFlag) {
+		UpdateAttack.call();
+		UpdateInventory.call();
+	}
 
 	for (i = 0; i < 5; i += 1) {
 		timerLastDrink[i] = 0;

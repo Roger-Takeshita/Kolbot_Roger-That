@@ -8,7 +8,7 @@
         //- Unique ------------------------------------------------------------------------
             // [name] == amulet              && [quality] == unique # [itemallskills] == 1 && [itemlightradius] == 7 && [itemlightradius] == 5 && [coldmindam] == 2 && [coldmaxdam] >= 5 && [armorclassvsmissile] == 40 // the eye of etlich
             // [name] == amulet              && [quality] == unique # [fireskilltab] >= 2 // the rising sun
-            [name] == amulet              && [quality] == unique # [itemallskills] == 2 && [offensiveaurasskilltab] >= 2 // seraph
+            // [name] == amulet              && [quality] == unique # [itemallskills] == 2 && [offensiveaurasskilltab] >= 2 // seraph
             [name] == amulet              && [quality] == unique # [strength] == 5 && [fireresist] == 30 // mara
             [name] == amulet              && [quality] == unique # [tohit] >= 450 && [plusdefense] >= 350 && [fireresist] >= 35 // metalgrid
             // [name] == amulet              && [quality] == unique # [lightresist] == 35 // highlord
@@ -335,6 +335,7 @@
             // [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 7 //# [maxquantity] == 2
             // [name] == smallcharm          && [quality] == magic # [itemmagicbonus] >= 3 && ([fireresist] >= 3 && [coldresist] >= 3 || [maxmana] >= 17 || [fireresist] >= 5 || [lightresist] >= 5 || [coldresist] >= 5 || [poisonresist] >= 5 || [fhr] == 5 || [maxhp] >= 15)
             [name] == smallcharm          && [quality] == magic # [itemmagicbonus] >= 7 && (([fireresist] >= 3 && [coldresist] >= 3) || [fireresist]+[coldresist]+[poisonresist]+[lightresist] >= 5 || [fhr] == 5)
+            [name] == smallcharm          && [quality] == magic # [maxhp] == 20 && [maxmana] >= 17
             [name] == smallcharm          && [quality] == magic # ([maxhp] == 20 || [fhr] == 5 || [frw] == 3 || [maxdamage] >= 3) && [tohit] >= 25
             [name] == smallcharm          && [quality] == magic # ([maxhp] == 20 || [fhr] == 5 || [frw] == 3 || [maxdamage] >= 3) && [poisonmaxdam] >= 205
             [name] == smallcharm          && [quality] == magic # ([maxhp] == 20 || [fhr] == 5 || [frw] == 3 || [maxdamage] >= 3) && [fireresist] >= 5 && [coldresist] >= 5
@@ -607,28 +608,29 @@
             [type] == ring                && [quality] == unique # [itemmagicbonus] >= 30 && [tohit] == 75 // nagel
             // [type] == ring                && [quality] == unique # [maxhp] == 40 && [magicdamagereduction] == 15 // dwarf
         //- Rare --------------------------------------------------------------------------
-            [type] == ring                && [quality] <= rare && [quality] != set # [fcr] == 10 && [itemmagicbonus] >= 15
+            [type] == ring                && [quality] == rare && [quality] != set # [fcr] == 10 && [itemmagicbonus] >= 15
             [type] == ring                && [quality] <= rare && [quality] != set # [fcr] == 10 && ([strength] >= 15 || [strength]+[dexterity] >= 15) && [maxmana] >= 30
             [type] == ring                && [quality] <= rare && [quality] != set # [fcr] == 10 && [strength] >= 15 && [dexterity] >= 10 && [maxmana] >= 60 && [itemlevelreq] <= 57
             [type] == ring                && [quality] <= rare && [quality] != set # [fcr] == 10 && [tohit] >= 90 && [maxhp] >= 30 && [maxmana] >= 60
             [type] == ring                && [quality] <= rare && [quality] != set # [tohit] >= 100 && [strength]+[dexterity] >= 30
             [type] == ring                && [quality] <= rare && [quality] != set # ([strength]+[dexterity] >= 30) && ([maxmana] >= 70 || [maxhp] >= 30)
             [type] == ring                && [quality] <= rare && [quality] != set # ([strength]+[dexterity] >= 35)
-            [type] == ring                && [quality] <= rare && [quality] != set # [strength] >= 20 && [dexterity] >= 10
-            [type] == ring                && [quality] <= rare && [quality] != set # [fcr] == 10 && ([strength] >= 20 || [strength]+[dexterity] >= 15 && ([maxhp] >= 30 || [maxmana] >= 60) || [maxhp] >= 30 && [maxmana] >= 50)
+            [type] == ring                && [quality] <= rare && [quality] != set # [strength] >= 20 && [dexterity] >= 15
+            [type] == ring                && [quality] <= rare && [quality] != set # [fcr] == 10 && [strength] >= 20 && ([maxhp] >= 30 || [maxmana] >= 60 || [maxhp] >= 30 && [maxmana] >= 50)
+            [type] == ring                && [quality] <= rare && [quality] != set # [fcr] == 10 && [strength]+[dexterity] >= 15 && ([maxhp] >= 30 || [maxmana] >= 60 || [maxhp] >= 30 && [maxmana] >= 50)
             [type] == ring                && [quality] <= rare && [quality] != set # [fcr] == 10 && [dexterity] >= 12 && [maxhp] >= 30 && ([fireresist] >= 20 || [lightresist] >= 20 || [fireresist] >= 9 && [lightresist] >= 9) // hdin ring
             [type] == ring                && [quality] <= rare # [fcr]*1.5+[strength]+[dexterity]*0.8+[maxhp]*0.4+[maxmana]*0.2+[energy]*0.4+[hpregen]*0.8+[coldresist]*0.4+[lightresist]*0.3+[fireresist]*0.3 >= 48 // 48 = ca. 10fcr 40life 25cr 25fr
             [type] == ring                && [quality] <= rare # [mindamage]+[maxdamage]+[tohit]*0.1+[strength]+[dexterity]*0.8+[maxhp]*0.3+[hpregen]*0.6+[coldresist]*0.4+[lightresist]*0.3+[fireresist]*0.3 >= 51 // 51 = ca. 100ar 15str 30life 25cr 25fr
         //- Magic -------------------------------------------------------------------------
-            [type] == ring                && [quality] == magic # [itemmagicbonus] >= 38
+            [type] == ring                && [quality] == magic # [itemmagicbonus] >= 40
             // [type] == ring                && [quality] == magic # [fcr] == 10 && [itemmagicbonus] >= 15
             // [type] == ring                && [quality] == magic # [fcr] == 10 && [fireresist] >= 15 && [coldresist] >= 15
             [type] == ring                && [quality] == magic # [fcr] == 10 && [maxmana] >= 120
         //- Craft--------------------------------------------------------------------------
-            [type] == ring                && [quality] == crafted # [maxhp] >= 10 && [strength] >= 1 && [itemmagicbonus] >= 25
-            [type] == ring                && [quality] == crafted # [fcr] >= 10 && [strength] >= 1 && [maxhp] >= 35
+            [type] == ring                && [quality] == crafted # [fcr] >= 10 && [strength] >= 1 && [maxhp] >= 45
             [type] == ring                && [quality] == crafted # [fcr] >= 10 && [strength] >= 1 && [dexterity] >= 10 && [maxhp] >= 25
-            [type] == ring                && [quality] == crafted # [fcr] >= 10 && [strength] >= 20 && [dexterity] >= 10
+            [type] == ring                && [quality] == crafted # [fcr] >= 10 && [strength] >= 20 && [dexterity] >= 14
+            [type] == ring                && [quality] == crafted # [maxhp] >= 10 && [strength] >= 1 && [itemmagicbonus] >= 25
             [type] == ring                && [quality] == crafted # [maxhp] >= 10 && [dexterity] == 15 && [strength] == 20
             [type] == ring                && [quality] == crafted # [maxhp] >= 10 && [fcr] >= 10 && ([dexterity] >= 13 || [strength] >= 17) && [hpregen] >= 7
             [type] == ring                && [quality] == crafted # [maxhp] >= 10 && [fcr] >= 10 && ([dexterity] >= 13 || [strength] >= 17) && ([coldresist] >= 15 || [fireresist] >= 15 || [lightresist] >= 15)
@@ -710,19 +712,6 @@
             [name] == pavise              && [quality] == rare && [color] == darkred # [fbr] >= 30 && [enhanceddefense]*0.15+[strength]+[maxdamage]*2-[itemreqpercent]*0.05 >= 16 // 16 = ca. [red 30/20] 80ed 4str
             [name] == pavise              && [quality] == rare && [color] == lightyellow # [fbr] >= 30 && [enhanceddefense]*0.15+[strength]+[maxdamage]*2-[itemreqpercent]*0.05 >= 16 // 16 = ca. [nana 30/20] 80ed 4str
             [name] == pavise              && [quality] == rare && [color] == crystalblue # [fbr] >= 30 && [enhanceddefense]*0.15+[strength]+[maxdamage]*2-[itemreqpercent]*0.05 >= 16 // 16 = ca. [blue 30/20] 80ed 4str
-            [name] == grimshield          && [quality] == rare && [color] == crystalgreen # [fbr] >= 30 && [enhanceddefense]*0.3+[strength]+[maxdamage]*2 >= 36 // 36 = ca. [green 30/20] 100ed 6str
-            [name] == grimshield          && [quality] == rare && [color] == darkgold # [fbr] >= 30 && [enhanceddefense]*0.3+[strength]+[maxdamage]*2 >= 39 // 39 = ca. [dark 30/20] 100ed 9str
-            [name] == grimshield          && [quality] == rare && [color] == orange # [fbr] >= 30 && [enhanceddefense]*0.3+[strength]+[maxdamage]*2 >= 38 // 38 = ca. [orange 30/20] 100ed 8str
-            [name] == grimshield          && [quality] == rare && [color] == darkred # [fbr] >= 30 && [enhanceddefense]*0.3+[strength]+[maxdamage]*2 >= 36 // 36 = ca. [red 30/20] 100ed 6str
-            [name] == grimshield          && [quality] == rare && [color] == lightyellow # [fbr] >= 30 && [enhanceddefense]*0.3+[strength]+[maxdamage]*2 >= 36 // 36 = ca. [nana 30/20] 100ed 6str
-            [name] == grimshield          && [quality] == rare && [color] == crystalblue # [fbr] >= 30 && [enhanceddefense]*0.3+[strength]+[maxdamage]*2 >= 36 // 36 = ca. [blue 30/20] 100ed 6str
-            [name] == towershield         && [quality] == rare && [color] == lightpurple # [fbr] >= 30 && [strength]+[maxdamage]*2+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 44 // 44 = ca. [purple 30/20] 16prism 40dualstack 6str
-            [name] == towershield         && [quality] == rare && [color] == crystalgreen # [fbr] >= 30 && [strength]+[maxdamage]*2+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 36 // 36 = ca. [green 30/20] 16prism 40stack 8str
-            [name] == towershield         && [quality] == rare && [color] == darkgold # [fbr] >= 30 && [strength]+[maxdamage]*2+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 38 // 38 = ca. [dark 30/20] 16prism 45stack 8str
-            [name] == towershield         && [quality] == rare && [color] == orange # [fbr] >= 30 && [strength]+[maxdamage]*2+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 38 // 38 = ca. [orange 30/20] 16prism 45stack 8str
-            [name] == towershield         && [quality] == rare && [color] == darkred # [fbr] >= 30 && [strength]+[maxdamage]*2+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 36 // 36 = ca. [red 30/20] 16prism 40stack 8str
-            [name] == towershield         && [quality] == rare && [color] == lightyellow # [fbr] >= 30 && [strength]+[maxdamage]*2+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 36 // 36 = ca. [nana 30/20] 16prism 40stack 8str
-            [name] == towershield         && [quality] == rare && [color] == crystalblue # [fbr] >= 30 && [strength]+[maxdamage]*2+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 36 // 36 = ca. [blue 30/20] 16prism 40stack 8str
             [name] == pavise              && [quality] == rare && [color] == lightpurple # [fbr] >= 30 && [enhanceddefense]*0.1+[strength]+[maxdamage]*2-[itemreqpercent]*0.05+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 40 // 40 = ca. [purple 30/20] 16prism 35dualstack 6str
             [name] == pavise              && [quality] == rare && [color] == crystalgreen # [fbr] >= 30 && [enhanceddefense]*0.1+[strength]+[maxdamage]*2-[itemreqpercent]*0.05+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 32 // 32 = ca. [green 30/20] 16prism 40stack 4str
             [name] == pavise              && [quality] == rare && [color] == darkgold # [fbr] >= 30 && [enhanceddefense]*0.1+[strength]+[maxdamage]*2-[itemreqpercent]*0.05+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 34 // 34 = ca. [dark 30/20] 16prism 40stack 6str
@@ -730,6 +719,25 @@
             [name] == pavise              && [quality] == rare && [color] == darkred # [fbr] >= 30 && [enhanceddefense]*0.1+[strength]+[maxdamage]*2-[itemreqpercent]*0.05+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 32 // 32 = ca. [red 30/20] 16prism 40stack 4str
             [name] == pavise              && [quality] == rare && [color] == lightyellow # [fbr] >= 30 && [enhanceddefense]*0.1+[strength]+[maxdamage]*2-[itemreqpercent]*0.05+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 32 // 32 = ca. [nana 30/20] 16prism 40stack 4str
             [name] == pavise              && [quality] == rare && [color] == crystalblue # [fbr] >= 30 && [enhanceddefense]*0.1+[strength]+[maxdamage]*2-[itemreqpercent]*0.05+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 32 // 32 = ca. [blue 30/20] 16prism 40stack 4str
+            [name] == towershield         && [quality] == rare && [color] == lightpurple # [fbr] >= 30 && [strength]+[maxdamage]*2+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 44 // 44 = ca. [purple 30/20] 16prism 40dualstack 6str
+            [name] == towershield         && [quality] == rare && [color] == crystalgreen # [fbr] >= 30 && [strength]+[maxdamage]*2+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 36 // 36 = ca. [green 30/20] 16prism 40stack 8str
+            [name] == towershield         && [quality] == rare && [color] == darkgold # [fbr] >= 30 && [strength]+[maxdamage]*2+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 38 // 38 = ca. [dark 30/20] 16prism 45stack 8str
+            [name] == towershield         && [quality] == rare && [color] == orange # [fbr] >= 30 && [strength]+[maxdamage]*2+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 38 // 38 = ca. [orange 30/20] 16prism 45stack 8str
+            [name] == towershield         && [quality] == rare && [color] == darkred # [fbr] >= 30 && [strength]+[maxdamage]*2+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 36 // 36 = ca. [red 30/20] 16prism 40stack 8str
+            [name] == towershield         && [quality] == rare && [color] == lightyellow # [fbr] >= 30 && [strength]+[maxdamage]*2+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 36 // 36 = ca. [nana 30/20] 16prism 40stack 8str
+            [name] == towershield         && [quality] == rare && [color] == crystalblue # [fbr] >= 30 && [strength]+[maxdamage]*2+[coldresist]*0.5+[lightresist]*0.4+[fireresist]*0.3 >= 36 // 36 = ca. [blue 30/20] 16prism 40stack 8str
+            [name] == towershield         && [quality] == rare && [color] == crystalgreen # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 87 // 87 = ca. [green +2pala] 16prism 40stack -30req
+            [name] == towershield         && [quality] == rare && [color] == darkgold # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 81 // 81 = ca. [dark +2pala] 16prism 9str -30req
+            [name] == towershield         && [quality] == rare && [color] == orange # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 87 // 87 = ca. [orange +2pala] 16prism 40stack -30req
+            [name] == towershield         && [quality] == rare && [color] == darkred # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 82 // 82 = ca. [red +2pala] 16prism 35stack -30req
+            [name] == towershield         && [quality] == rare && [color] == lightyellow # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 48 // 48 = ca. [nana +2pala] 16prism
+            [name] == towershield         && [quality] == rare && [color] == crystalblue # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 48 // 48 = ca. [blue +2pala] 16prism
+            [name] == grimshield          && [quality] == rare && [color] == crystalgreen # [fbr] >= 30 && [enhanceddefense]*0.3+[strength]+[maxdamage]*2 >= 36 // 36 = ca. [green 30/20] 100ed 6str
+            [name] == grimshield          && [quality] == rare && [color] == darkgold # [fbr] >= 30 && [enhanceddefense]*0.3+[strength]+[maxdamage]*2 >= 39 // 39 = ca. [dark 30/20] 100ed 9str
+            [name] == grimshield          && [quality] == rare && [color] == orange # [fbr] >= 30 && [enhanceddefense]*0.3+[strength]+[maxdamage]*2 >= 38 // 38 = ca. [orange 30/20] 100ed 8str
+            [name] == grimshield          && [quality] == rare && [color] == darkred # [fbr] >= 30 && [enhanceddefense]*0.3+[strength]+[maxdamage]*2 >= 36 // 36 = ca. [red 30/20] 100ed 6str
+            [name] == grimshield          && [quality] == rare && [color] == lightyellow # [fbr] >= 30 && [enhanceddefense]*0.3+[strength]+[maxdamage]*2 >= 36 // 36 = ca. [nana 30/20] 100ed 6str
+            [name] == grimshield          && [quality] == rare && [color] == crystalblue # [fbr] >= 30 && [enhanceddefense]*0.3+[strength]+[maxdamage]*2 >= 36 // 36 = ca. [blue 30/20] 100ed 6str
             [name] == boneshield          && [quality] == rare && [color] == crystalgreen # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 82 // 82 = ca. [green +2pala] 10fhr 16prism 40stack
             [name] == boneshield          && [quality] == rare && [color] == darkgold # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 76 // 76 = ca. [dark +2pala] 10fhr 16prism 9str
             [name] == boneshield          && [quality] == rare && [color] == orange # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 82 // 82 = ca. [orange +2pala] 10fhr 16prism 40stack
@@ -743,6 +751,13 @@
             [name] == grimshield          && [quality] == rare && [color] == darkred # [paladinskills] >= 2 && [enhanceddefense] >= 70 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist]-[itemreqpercent]*0.5 >= 48 // 48 = ca. [red +2pala 70ed] 16prism
             [name] == grimshield          && [quality] == rare && [color] == lightyellow # [paladinskills] >= 2 && [enhanceddefense] >= 90 // ca. [nana +2pala 90ed]
             [name] == grimshield          && [quality] == rare && [color] == crystalblue # [paladinskills] >= 2 && [enhanceddefense] >= 90 // ca. [blue +2pala 90ed]
+            [name] == boneshield          && [quality] == rare && [color] == crystalgreen # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 62 // 62 = ca. [green 30/20] 16prism 30stack
+            [name] == boneshield          && [quality] == rare && [color] == darkgold # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 87 // 87 = ca. [dark 30/20] 10fhr 16prism 40stack
+            [name] == boneshield          && [quality] == rare && [color] == orange # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 87 // 87 = ca. [orange 30/20] 10fhr 16prism 40stack
+            [name] == boneshield          && [quality] == rare && [color] == darkred # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 87 // 87 = ca. [red 30/20] 10fhr 16prism 40stack
+            [name] == boneshield          && [quality] == rare && [color] == lightyellow # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 62 // 62 = ca. [nana30/20] 16prism 30stack
+            [name] == boneshield          && [quality] == rare && [color] == crystalblue # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 62 // 62 = ca. [blue 30/20] 16prism 30stack
+            [name] == boneshield          && [quality] == rare && [color] == lightpurple # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 117 // 97 = ca. [purple 30/20] 17fhr 16prism 30dualstack
             [name] == spikedshield        && [quality] == rare && [color] == crystalgreen # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 89 // 89 = ca. [green +2pala] 17fhr 16prism 40stack
             [name] == spikedshield        && [quality] == rare && [color] == darkgold # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 83 // 83 = ca. [dark +2pala] 17fhr 16prism 9str
             [name] == spikedshield        && [quality] == rare && [color] == orange # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 89 // 89 = ca. [orange +2pala] 17fhr 16prism 40stack
@@ -755,19 +770,6 @@
             [name] == barbedshield        && [quality] == rare && [color] == darkred # [paladinskills] >= 2 && [fhr]+[strength]*2+[maxdamage]*3+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist]-[itemreqpercent]*0.5 >= 77 // 77 = ca. [red +2pala] 16prism 35stack -20req
             [name] == barbedshield        && [quality] == rare && [color] == lightyellow # [paladinskills] >= 2 && [fhr]+[strength]*2+[maxdamage]*3+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist]-[itemreqpercent]*0.5 >= 58 // 58 = ca. [nana +2pala] 16prism -20req
             [name] == barbedshield        && [quality] == rare && [color] == crystalblue # [paladinskills] >= 2 && [fhr]+[strength]*2+[maxdamage]*3+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist]-[itemreqpercent]*0.5 >= 58 // 58 = ca. [blue +2pala] 16prism -20req
-            [name] == towershield         && [quality] == rare && [color] == crystalgreen # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 87 // 87 = ca. [green +2pala] 16prism 40stack -30req
-            [name] == towershield         && [quality] == rare && [color] == darkgold # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 81 // 81 = ca. [dark +2pala] 16prism 9str -30req
-            [name] == towershield         && [quality] == rare && [color] == orange # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 87 // 87 = ca. [orange +2pala] 16prism 40stack -30req
-            [name] == towershield         && [quality] == rare && [color] == darkred # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 82 // 82 = ca. [red +2pala] 16prism 35stack -30req
-            [name] == towershield         && [quality] == rare && [color] == lightyellow # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 48 // 48 = ca. [nana +2pala] 16prism
-            [name] == towershield         && [quality] == rare && [color] == crystalblue # [paladinskills] >= 2 && [fhr]+[strength]*2+[hpregen]*1.5+[coldresist]+[lightresist]+[fireresist] >= 48 // 48 = ca. [blue +2pala] 16prism
-            [name] == boneshield          && [quality] == rare && [color] == crystalgreen # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 62 // 62 = ca. [green 30/20] 16prism 30stack
-            [name] == boneshield          && [quality] == rare && [color] == darkgold # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 87 // 87 = ca. [dark 30/20] 10fhr 16prism 40stack
-            [name] == boneshield          && [quality] == rare && [color] == orange # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 87 // 87 = ca. [orange 30/20] 10fhr 16prism 40stack
-            [name] == boneshield          && [quality] == rare && [color] == darkred # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 87 // 87 = ca. [red 30/20] 10fhr 16prism 40stack
-            [name] == boneshield          && [quality] == rare && [color] == lightyellow # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 62 // 62 = ca. [nana30/20] 16prism 30stack
-            [name] == boneshield          && [quality] == rare && [color] == crystalblue # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 62 // 62 = ca. [blue 30/20] 16prism 30stack
-            [name] == boneshield          && [quality] == rare && [color] == lightpurple # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 117 // 97 = ca. [purple 30/20] 17fhr 16prism 30dualstack
             [name] == spikedshield        && [quality] == rare && [color] == crystalgreen # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 72 // 72 = ca. [green 30/20] 16prism 40stack
             [name] == spikedshield        && [quality] == rare && [color] == darkgold # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 97 // 97 = ca. [dark 30/20] 17fhr 16prism 40stack
             [name] == spikedshield        && [quality] == rare && [color] == orange # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 97 // 97 = ca. [orange 30/20] 17fhr 16prism 40stack
@@ -775,12 +777,12 @@
             [name] == spikedshield        && [quality] == rare && [color] == lightyellow # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 72 // 72 = ca. [nana 30/20] 16prism 40stack
             [name] == spikedshield        && [quality] == rare && [color] == crystalblue # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 72 // 72 = ca. [blue 30/20] 16prism 40stack
             [name] == spikedshield        && [quality] == rare && [color] == lightpurple # [fbr] >= 30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 107 // 107 = ca. [purple 30/20] 17fhr 16prism 5str 40stack
-            [name] == towershield         && [quality] == rare # [fbr] >= 30 && [itemreqpercent] <= -30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 87 // 87 = ca. [30/20 -30req] 10fhr 16prism 40stack
-            [name] == grimshield          && [quality] == rare # [fbr] >= 30 && [enhanceddefense] >= 75 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist]-[itemreqpercent]*0.4 >= 87 // 87 = ca. [30/20 75ed] 10fhr 16prism 40stack
             [name] == defender            && [quality] == rare && [color] != lightpurple # [fbr] >= 30 && [itemreqpercent] <= -20 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 97 // 97 = ca. [non-purple 30/20 -20req] 17fhr 16prism 40stack
             [name] == kiteshield          && [quality] == rare && [color] != lightpurple # [fbr] >= 30 && [itemreqpercent] <= -20 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 97 // 97 = ca. [non-purple 30/20 -20req] 17fhr 16prism 40stack
             [name] == roundshield         && [quality] == rare && [color] != lightpurple # [fbr] >= 30 && [itemreqpercent] <= -30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 97 // 97 = ca. [non-purple 30/20 -30req] 17fhr 16prism 40stack
             [name] == barbedshield        && [quality] == rare && [color] != lightpurple # [fbr] >= 30 && [itemreqpercent] <= -30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 97 // 97 = ca. [non-purple 30/20 -30req] 17fhr 16prism 40stack
+            [name] == towershield         && [quality] == rare # [fbr] >= 30 && [itemreqpercent] <= -30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 87 // 87 = ca. [30/20 -30req] 10fhr 16prism 40stack
+            [name] == grimshield          && [quality] == rare # [fbr] >= 30 && [enhanceddefense] >= 75 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist]-[itemreqpercent]*0.4 >= 87 // 87 = ca. [30/20 75ed] 10fhr 16prism 40stack
             [name] == defender            && [quality] == rare # [fbr] >= 30 && [itemreqpercent] <= -20 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 111 // 111 = ca. [30/20 -20req] 17fhr 16prism 35dualstack
             [name] == kiteshield          && [quality] == rare # [fbr] >= 30 && [itemreqpercent] <= -20 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 111 // 111 = ca. [30/20 -20req] 17fhr 16prism 35dualstack
             [name] == roundshield         && [quality] == rare # [fbr] >= 30 && [itemreqpercent] <= -30 && [fhr]*1.5+[strength]*2+[maxmana]+[hpregen]*2+[coldresist]+[lightresist]+[fireresist] >= 111 // 111 = ca. [30/20 -30req] 17fhr 16prism 35dualstack
@@ -822,16 +824,16 @@
             [type] == scepter             && [quality] == magic # [skillholyshield]+[paladinskills]+[palicombatskilltab] >= 5
             [type] == scepter             && [quality] == magic # ([palicombatskilltab] >= 3 || [paladinskills] >= 2) && ([skillblessedhammer]+[skillconcentration] >= 6 || [skillfistoftheheavens]+[skillconviction] >= 6 || [skillholyshield] == 3)
             [type] == scepter             && [quality] == magic # ([skillconcentration]+[skillblessedhammer] >= 6 || [skillfistoftheheavens]+[skillconviction] >= 6) && [sockets] >= 4
+            [type] == scepter             && [quality] == magic # ([paladinskills]+[skillblessedhammer] >= 5) && ([skillconcentration] >= 3 || ([fcr] >= 10 && [skillconcentration] >= 2))
+            [type] == scepter             && [quality] == magic # ([paladinskills]+[skillfistoftheheavens] >= 5) && ([skillconviction] >= 3 || ([fcr] >= 10 && [skillconviction] >= 2))
+            [type] == scepter             && [quality] == magic # ([palicombatskilltab]+[skillblessedhammer] >= 6) && ([skillconcentration] >= 3 || ([fcr] >= 10 && [skillconcentration] >= 2))
+            [type] == scepter             && [quality] == magic # ([palicombatskilltab]+[skillfistoftheheavens] >= 6) && ([skillconviction] >= 3 || ([fcr] >= 10 && [skillconviction] >= 2))
             [name] == caduceus            && [quality] == magic # ([skillconcentration]+[skillblessedhammer] >= 6 || [skillfistoftheheavens]+[skillconviction] >= 6) && [sockets] >= 4
             [name] == divinescepter       && [quality] == magic # ([skillconcentration]+[skillblessedhammer] >= 6 || [skillfistoftheheavens]+[skillconviction] >= 6) && [sockets] >= 4
             [name] == warscepter          && [quality] == magic # ([skillconcentration]+[skillblessedhammer] >= 6 || [skillfistoftheheavens]+[skillconviction] >= 6) && [sockets] >= 4
             [name] == scourge             && [quality] == magic && [flag] != ethereal # [sockets] >= 4 && [itemskillonhit] == 66
             [name] == scourge             && [quality] == magic && [flag] == ethereal # ([ias] >= 40 || [maxdamage] >= 63) && [enhanceddamage] >= 300
             [name] == thundermaul         && [quality] == magic && [flag] == ethereal # ([ias] >= 40 || [maxdamage] >= 63) && [enhanceddamage] >= 300
-            [type] == scepter             && [quality] == magic # ([paladinskills]+[skillblessedhammer] >= 5) && ([skillconcentration] >= 3 || ([fcr] >= 10 && [skillconcentration] >= 2))
-            [type] == scepter             && [quality] == magic # ([paladinskills]+[skillfistoftheheavens] >= 5) && ([skillconviction] >= 3 || ([fcr] >= 10 && [skillconviction] >= 2))
-            [type] == scepter             && [quality] == magic # ([palicombatskilltab]+[skillblessedhammer] >= 6) && ([skillconcentration] >= 3 || ([fcr] >= 10 && [skillconcentration] >= 2))
-            [type] == scepter             && [quality] == magic # ([palicombatskilltab]+[skillfistoftheheavens] >= 6) && ([skillconviction] >= 3 || ([fcr] >= 10 && [skillconviction] >= 2))
     //+ SPEARS ===============================================================================
         //- White -------------------------------------------------------------------------
             [name] == warpike             && [quality] <= superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 6)

@@ -1,5 +1,5 @@
 var StarterConfig = {
-	MinGameTime: 360,   // Minimum game length in seconds.
+	MinGameTime: 30,   // Minimum game length in seconds.
 
 	SwitchKeyDelay      : rand(5, 15),    // Seconds to wait before switching a used/banned key or after realm down
 	RealmDownDelay      : rand(5, 10),    // Minutes to wait after getting Realm Down message

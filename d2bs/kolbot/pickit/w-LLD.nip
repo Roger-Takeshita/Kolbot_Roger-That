@@ -64,7 +64,7 @@
         //- Unique -------------------------------------------------------------------------
             // [name] == greaves          && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 80 // Tearhaunch
         //- Rare ---------------------------------------------------------------------------
-            [name] == greaves && [quality] == rare # [itemlevelreq] <= 18 && [frw] == 20 && [fhr] >= 10 && [coldresist]+[lightresist]+[fireresist] >= 90 && [itemhalffreezeduration] >= 1  // ca. [20frw 10fhr hfd] 90res   
+            [name] == greaves && [quality] == rare # [itemlevelreq] <= 18 && [frw] == 20 && [fhr] >= 10 && [coldresist]+[lightresist]+[fireresist] >= 90 && [itemhalffreezeduration] >= 1  // ca. [20frw 10fhr hfd] 90res
             [type] == boots               && [quality] == rare && [flag] != ethereal && [class] == normal # ([fhr] == 10 || [frw] == 10) && [dexterity] == 3 && [tohit] == 15 && [itemlevelreq] <= 9
     //+ BOWS ==================================================================================
         //- White --------------------------------------------------------------------------
@@ -120,8 +120,8 @@
             [type] == gloves              && [quality] == rare && [flag] != ethereal # [javelinandspearskilltab] == 2 && [ias] == 10 && [hpregen] >= 5 && [itemlevelreq] <= 30
     //+ HELMS =================================================================================
         //- White --------------------------------------------------------------------------
-            [name] == crown               && [quality] == superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 15 || [itemmaxdurabilitypercent] == 0) && [sockets] == 3
-            [name] == grandcrown          && [quality] == superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 15 || [itemmaxdurabilitypercent] == 0) && [sockets] == 3
+            // [name] == crown               && [quality] == superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 15 || [itemmaxdurabilitypercent] == 0) && [sockets] == 3
+            // [name] == grandcrown          && [quality] == superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 15 || [itemmaxdurabilitypercent] == 0) && [sockets] == 3
             [type] == pelt                && [quality] <= superior && [flag] != ethereal # [skillfury] == 3 && [skillheartofwolverine] > 0 && ([sockets] == 0 || [sockets] == 3) && [itemlevelreq] <= 30
             [name] == avengerguard        && [quality] <= superior && [flag] != ethereal # [skillwhirlwind] >= 2 && ([sockets] == 0 || [sockets] == 3) && [itemlevelreq] <= 30
             [name] == assaulthelmet       && [quality] <= superior && [flag] != ethereal # [skillwhirlwind] >= 2 && ([sockets] == 0 || [sockets] == 3) && [itemlevelreq] <= 30
@@ -226,7 +226,6 @@
             [type] == ring                && [quality] <= rare && [quality] != set # ([dexterity] >= 4 || [strength] >= 4) && ([tohit] >= 70 || [mindamage] == 3) && [maxmana] >= 30 && [hpregen] >= 4 && [itemlevelreq] <= 18
             [type] == ring                && [quality] <= rare # [itemlevelreq] <= 15 && [fcr] >= 10 && [hpregen] >= 5 && [maxmana] >= 25   // ca. [10fcr 5repl] 25mana
             [type] == ring                && [quality] <= rare # [itemlevelreq] <= 18 && [fcr] >= 10 && [hpregen] >= 5 && [maxmana] >= 35   // ca. [10fcr 5repl] 35mana
-
     //+ SCEPTERS ==============================================================================
         //- White --------------------------------------------------------------------------
             [name] == warscepter          && [quality] <= superior # ([sockets] == 0 || [sockets] == 5) && [skillholyshield] == 3
@@ -253,7 +252,7 @@
             [name] == crownshield         && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 4) && [enhanceddamage] == 65 && [tohit] == 121
             [name] == heraldicshield      && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 4) && [enhanceddamage] == 65 && [tohit] == 121
             [name] == aerinshield         && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 4) && [enhanceddamage] == 65 && [tohit] == 121
-            [name] == grimshield          && [quality] == superior && [flag] != ethereal # [enhanceddefense] == 15 && [sockets] == 2 // for rhyme runeword
+            // [name] == grimshield          && [quality] == superior && [flag] != ethereal # [enhanceddefense] == 15 && [sockets] == 2 // for rhyme runeword
             [name] == rondache            && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 4) && [enhanceddamage] == 65 && [tohit] == 121
             [type] == voodooheads         && [quality] <= superior # [skillbonespear] >= 3 && [skillbonespirit] >= 3 && [sockets] != 1 && [itemlevelreq] <= 30
         //- Rare ---------------------------------------------------------------------------
