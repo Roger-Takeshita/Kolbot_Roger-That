@@ -97,6 +97,43 @@ var Config = {
 			}
 		}
 
+		if (notify) {
+			try {
+				if (me.ladder !== 0) {
+					if (!include("config/common/UpdatePickitFiles.js")) {
+						throw new Error();
+					}
+					UpdatePickitFiles.call();
+				}
+				if (Config.Cubing) {
+					if (!include("config/common/UpdateCubing.js")) {
+						throw new Error("Failed to load common cubing recipes.");
+					}
+					UpdateCubing.call();
+				}
+
+				if (Config.MakeRunewords) {
+					if (!include("config/common/UpdateRunewords.js")) {
+						throw new Error("Failed to load common runeword recipes.");
+					}
+					UpdateRunewords.call();
+				}
+
+				if (Config.RogerThatInventoryFlag) {
+					if (!include("config/common/UpdateAttack.js")) {
+						throw new Error("Failed to load custom attack config.");
+					}
+					if (!include("config/common/UpdateInventory.js")) {
+						throw new Error("Failed to load custom inventory config.");
+					}
+					UpdateAttack.call();
+					UpdateInventory.call();
+				}
+			} catch (error) {
+				throw new Error(error.message);
+			}
+		}
+
 		if (Config.Silence && !Config.LocalChat.Enabled) {
 			// Override the say function with print, so it just gets printed to console
 			global._say = global.say;
