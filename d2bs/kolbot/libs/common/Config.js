@@ -8,7 +8,7 @@ var Scripts = {};
 var updateFlag = false;
 
 var Config = {
-	init: function (notify) {
+	init: function (notify, update = false) {
 		var i, n,
 			configFilename = "",
 			classes = ["Amazon", "Sorceress", "Necromancer", "Paladin", "Barbarian", "Druid", "Assassin"];
@@ -97,7 +97,7 @@ var Config = {
 			}
 		}
 
-		if (notify) {
+		if (notify && update) {
 			try {
 				if (me.ladder !== 0) {
 					if (!include("config/common/UpdatePickitFiles.js")) {
