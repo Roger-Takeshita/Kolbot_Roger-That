@@ -40,7 +40,7 @@ function UpdateCubing() {
         // Config.Recipes.push([Recipe.Rune,              "Ber Rune"]);    // Upgrade Ber   to  Jah
         // Config.Recipes.push([Recipe.Rune,              "Jah Rune"]);    // Upgrade Jah   to  Cham
         // Config.Recipes.push([Recipe.Rune,             "Cham Rune"]);    // Upgrade Cham  to  Zod
-    //+ SOCKET -----------------------------------------------------------------
+    //+ SOCKETS ----------------------------------------------------------------
         // Config.Recipes.push([Recipe.Socket.Weapon, "Giant Thresher",    Roll.NonEth]);
         // Config.Recipes.push([Recipe.Socket.Weapon, "Great Poleaxe",     Roll.NonEth]);
         // Config.Recipes.push([Recipe.Socket.Weapon, "Thresher",          Roll.NonEth]);
@@ -89,54 +89,69 @@ function UpdateCubing() {
         Config.Recipes.push([Recipe.Socket.Shield, "Vortex Shield",        Roll.Eth]);
         Config.Recipes.push([Recipe.Socket.Weapon, "Berserker Axe",        Roll.Eth]);
         Config.Recipes.push([Recipe.Socket.Weapon, "Colossus Blade",       Roll.Eth]);
-    //+ UPGRADE ----------------------------------------------------------------
-        // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Heavy Gloves",       Roll.NonEth]);    // Upgrade Bloodfist to Exceptional
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Sharkskin Gloves",   Roll.NonEth]);    // Upgrade Bloodfist or Grave Palm to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Light Gauntlets",    Roll.NonEth]);    // Upgrade Magefist to Exceptional
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Battle Gauntlets",   Roll.NonEth]);    // Upgrade Magefist or Lavagout to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Chain Gloves",       Roll.NonEth]);    // Upgrade Chance Guards to Exceptional
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Heavy Bracers",      Roll.NonEth]);    // Upgrade Chance Guards or Lavagout to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Sash",               Roll.NonEth]);    // Upgrade Lenymo to Exceptional
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Demonhide Sash",     Roll.NonEth]);    // Upgrade Lenymo or String of Ears to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Heavy Belt",         Roll.NonEth]);    // Upgrade Goldwrap to Exceptional
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Battle Belt",        Roll.NonEth]);    // Upgrade Goldwrap or Snowclash to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "War Belt",           Roll.NonEth]);    // Upgrade War Belt to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Boots",              Roll.NonEth]);    // Upgrade Hotspur to Exceptional
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Demonhide Boots",    Roll.NonEth]);    // Upgrade Hotspur or Infernostride to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Sharkskin Boots",    Roll.NonEth]);    // Upgrade Waterwalk to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Light Plated Boots", Roll.NonEth]);    // Upgrade Goblin Toe to Exceptional
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Battle Boots",       Roll.NonEth]);    // Upgrade Goblin Toe or War Traveler to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "War Boots",          Roll.NonEth]);    // Upgrade Gore Rider to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Templarcoat",        Roll.NonEth]);    // Upgrade Guardian Angel to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Templarcoat",           Roll.Eth]);    // Upgrade Eth Guardian Angel to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Russetarmor",        Roll.NonEth]);    // Upgrade Skullders to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Russetarmor",           Roll.Eth]);    // Upgrade Eth Skullders to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Serpentskinarmor",   Roll.NonEth]);    // Upgrade Skin of the Vipermagi to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Mesharmor",          Roll.NonEth]);    // Upgrade Shaftstop to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Mesharmor",             Roll.Eth]);    // Upgrade Eth Shaftstop to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Casque",             Roll.NonEth]);    // Upgrade Stealskull to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Casque",                Roll.Eth]);    // Upgrade Eth Stealskull to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Tiara",              Roll.NonEth]);    // Upgrade Kira's Guardian to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Bonevisage",         Roll.NonEth]);    // Upgrade Vampire Gaze to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Bonevisage",            Roll.Eth]);    // Upgrade Eth Vampire Gaze to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Slayer Guard",       Roll.NonEth]);    // Upgrade Arreat's Face to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Slayer Guard",          Roll.Eth]);    // Upgrade Eth Arreat's Face to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Totemic Mask",       Roll.NonEth]);    // Upgrade Jalal's Mane to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Totemic Mask",          Roll.Eth]);    // Upgrade Eth Jalal's Mane to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Defender",           Roll.NonEth]);    // Upgrade Visceratuant to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Round Shield",       Roll.NonEth]);    // Upgrade Moser's Blessed Circle to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Spiked Shield",      Roll.NonEth]);    // Upgrade Swordback Hold to Exceptional
-        // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Spiked Shield",         Roll.Eth]);    // Upgrade Eth Swordback Hold to Exceptional
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Barbed Shield",      Roll.NonEth]);    // Upgrade Lance Guard or Swordback Hold to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Barbed Shield",         Roll.Eth]);    // Upgrade Eth Lance Guard or Swordback Hold to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Grim Shield",        Roll.NonEth]);    // Upgrade Lidless Wall to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Grim Shield",           Roll.Eth]);    // Upgrade Eth Lidless Wall to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Gilded Shield",      Roll.NonEth]);    // Upgrade Herald Of Zakarum to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Gilded Shield",         Roll.Eth]);    // Upgrade Eth Herald Of Zakarum to Elite
-        // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Hierophant Trophy",  Roll.NonEth]);    // Upgrade Homunculus to Elite
-        // Config.Recipes.push([Recipe.Unique.Weapon.ToElite,         "Ceremonial Javelin", Roll.NonEth]);    // Upgrade Titan's Revenge to Elite
-        // Config.Recipes.push([Recipe.Unique.Weapon.ToElite,         "Ceremonial Javelin",    Roll.Eth]);    // Upgrade Eth Titan's Revenge to Elite
-        // Config.Recipes.push([Recipe.Unique.Weapon.ToElite,         "Quarterstaff",       Roll.NonEth]);    // Upgrade Ribcracker to Elite
-        // Config.Recipes.push([Recipe.Unique.Weapon.ToElite,         "Quarterstaff",          Roll.Eth]);    // Upgrade Eth Ribcracker to Elite
+    //+ UPGRADES ---------------------------------------------------------------
+        //- ARMORS -----------------------------------------------------------
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Cuirass",            Roll.NonEth]);    // Upgrade Duriel's Shell to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Cuirass",               Roll.Eth]);    // Upgrade Eth Duriel's Shell to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Russet Armor",       Roll.NonEth]);    // Upgrade Skullders to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Russet Armor",          Roll.Eth]);    // Upgrade Eth Skullders to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Sharktooth Armor",      Roll.Eth]);    // Upgrade Eth Sharktooth to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Templar Coat",       Roll.NonEth]);    // Upgrade Guardian Angel to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Templar Coat",          Roll.Eth]);    // Upgrade Eth Guardian Angel to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Mesh Armor",         Roll.NonEth]);    // Upgrade Shaftstop to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Mesh Armor",            Roll.Eth]);    // Upgrade Eth Shaftstop to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Serpentskin Armor",  Roll.NonEth]);    // Upgrade Skin of the Vipermagi to Elite
+        //- BELTS ------------------------------------------------------------
+            Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Sash",               Roll.NonEth]);    // Upgrade Lenymo to Exceptional
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Demonhide Sash",     Roll.NonEth]);    // Upgrade Lenymo or String of Ears to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Heavy Belt",         Roll.NonEth]);    // Upgrade Goldwrap to Exceptional
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Battle Belt",        Roll.NonEth]);    // Upgrade Goldwrap or Snowclash to Elite
+            // Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "War Belt",           Roll.NonEth]);    // Upgrade War Belt to Elite
+        //- BOOTS ------------------------------------------------------------
+            Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Boots",              Roll.NonEth]);    // Upgrade Hotspur to Exceptional
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Demonhide Boots",    Roll.NonEth]);    // Upgrade Hotspur or Infernostride to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Sharkskin Boots",    Roll.NonEth]);    // Upgrade Waterwalk to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Light Plated Boots", Roll.NonEth]);    // Upgrade Goblin Toe to Exceptional
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Battle Boots",       Roll.NonEth]);    // Upgrade Goblin Toe or War Traveler to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "War Boots",          Roll.NonEth]);    // Upgrade Gore Rider to Elite
+        //- GLOVES -----------------------------------------------------------
+            Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Heavy Gloves",       Roll.NonEth]);    // Upgrade Bloodfist to Exceptional
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Sharkskin Gloves",   Roll.NonEth]);    // Upgrade Bloodfist or Grave Palm to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Gauntlets",          Roll.NonEth]);    // Upgrade Frostburn to Exceptional
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "War Gauntlets",      Roll.NonEth]);    // Upgrade Frostburn or Hellmouth to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Chain Gloves",       Roll.NonEth]);    // Upgrade Chance Guards to Exceptional
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Heavy Bracers",      Roll.NonEth]);    // Upgrade Chance Guards or Lavagout to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Light Gauntlets",    Roll.NonEth]);    // Upgrade Magefist to Exceptional
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Battle Gauntlets",   Roll.NonEth]);    // Upgrade Magefist or Lavagout to Elite
+        //- HELMS ------------------------------------------------------------
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Casque",             Roll.NonEth]);    // Upgrade Stealskull to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Casque",                Roll.Eth]);    // Upgrade Eth Stealskull to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Slayer Guard",       Roll.NonEth]);    // Upgrade Arreat's Face to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Slayer Guard",          Roll.Eth]);    // Upgrade Eth Arreat's Face to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Totemic Mask",       Roll.NonEth]);    // Upgrade Jalal's Mane to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Totemic Mask",          Roll.Eth]);    // Upgrade Eth Jalal's Mane to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Grim Helm",          Roll.NonEth]);    // Upgrade Vampire Gaze to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Grim Helm",             Roll.Eth]);    // Upgrade Eth Vampire Gaze to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Tiara",              Roll.NonEth]);    // Upgrade Kira's Guardian to Elite
+        //- SHIELDS ----------------------------------------------------------
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Defender",           Roll.NonEth]);    // Upgrade Visceratuant to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Round Shield",       Roll.NonEth]);    // Upgrade Moser's Blessed Circle to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Spiked Shield",      Roll.NonEth]);    // Upgrade Swordback Hold to Exceptional
+            Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Spiked Shield",         Roll.Eth]);    // Upgrade Eth Swordback Hold to Exceptional
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Barbed Shield",      Roll.NonEth]);    // Upgrade Lance Guard or Swordback Hold to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Barbed Shield",         Roll.Eth]);    // Upgrade Eth Lance Guard or Swordback Hold to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Grim Shield",        Roll.NonEth]);    // Upgrade Lidless Wall to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Grim Shield",           Roll.Eth]);    // Upgrade Eth Lidless Wall to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Gilded Shield",      Roll.NonEth]);    // Upgrade Herald Of Zakarum to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Gilded Shield",         Roll.Eth]);    // Upgrade Eth Herald Of Zakarum to Elite
+            Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Hierophant Trophy",  Roll.NonEth]);    // Upgrade Homunculus to Elite
+        //- WEAPONS ----------------------------------------------------------
+            Config.Recipes.push([Recipe.Unique.Weapon.ToElite,         "Ceremonial Javelin", Roll.NonEth]);    // Upgrade Titan's Revenge to Elite
+            Config.Recipes.push([Recipe.Unique.Weapon.ToElite,         "Ceremonial Javelin",    Roll.Eth]);    // Upgrade Eth Titan's Revenge to Elite
+            Config.Recipes.push([Recipe.Unique.Weapon.ToElite,         "Ghost Glaive",       Roll.NonEth]);    // Upgrade Wraith to Elite
+            Config.Recipes.push([Recipe.Unique.Weapon.ToElite,         "Ghost Glaive",          Roll.Eth]);    // Upgrade Eth Wraith to Elite
+            Config.Recipes.push([Recipe.Unique.Weapon.ToElite,         "Yari",                  Roll.Eth]);    // Upgrade Eth Hone Sundan to Elite
+            Config.Recipes.push([Recipe.Unique.Weapon.ToElite,         "Quarterstaff",       Roll.NonEth]);    // Upgrade Ribcracker to Elite
+            Config.Recipes.push([Recipe.Unique.Weapon.ToElite,         "Quarterstaff",          Roll.Eth]);    // Upgrade Eth Ribcracker to Elite
     print("ÿc9Updated Cube: ÿc2Recipes");
 }

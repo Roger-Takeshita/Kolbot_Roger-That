@@ -25,11 +25,11 @@ function UpdateAttack() {
             case "Amazon":
                 if (me.getSkill(6, 0) >= 1) {
                     typeOfAmazon = "Bow";
-                    print("ÿc9Updated Attack: ÿc2" + charClass + " ÿc1" + typeOfAmazon);
+                    Config.UpdateAttackMsg = "ÿc9Updated Attack: ÿc2" + charClass + " ÿc1" + typeOfAmazon;
                     Config.SkipImmune = ["physical"];
                 } else {
                     typeOfAmazon = "Javelin";
-                    print("ÿc9Updated Attack: ÿc2" + charClass + " ÿc9" + typeOfAmazon);
+                    Config.UpdateAttackMsg = "ÿc9Updated Attack: ÿc2" + charClass + " ÿc9" + typeOfAmazon;
                     Config.SkipImmune = ["lightning"];
                 }
 
@@ -62,18 +62,18 @@ function UpdateAttack() {
                 if (me.getSkill(36, 0) >= 1) {
                     typeOfSorc = "Fire";
                     Config.SkipImmune = ["fire"];
-                    print("ÿc9Updated Attack ÿc2" + charClass + " ÿc1" + typeOfSorc);
+                    Config.UpdateAttackMsg = "ÿc9Updated Attack ÿc2" + charClass + " ÿc1" + typeOfSorc;
                 } else if (me.getSkill(39, 0) >= 1) {
                     typeOfSorc = "Cold";
                     Config.SkipImmune = ["cold"];
-                    print("ÿc9Updated Attack: ÿc2" + charClass + " ÿc3" + typeOfSorc);
+                    Config.UpdateAttackMsg = "ÿc9Updated Attack: ÿc2" + charClass + " ÿc3" + typeOfSorc;
                 } else if (me.getSkill(38, 0) >= 1) {
                     typeOfSorc = "Lighting";
                     Config.SkipImmune = ["lightning"];
-                    print("ÿc9Updated Attack: ÿc2" + charClass + " ÿc9" + typeOfSorc);
+                    Config.UpdateAttackMsg = "ÿc9Updated Attack: ÿc2" + charClass + " ÿc9" + typeOfSorc;
                 } else {
                     typeOfSorc = "";
-                    print("ÿc9Updated Attack: ÿc2" + charClass + "ÿc1  undefined type of sorc");
+                    Config.UpdateAttackMsg = "ÿc9Updated Attack: ÿc2" + charClass + "ÿc1  undefined type of sorc";
                 }
 
                 if (me.charlvl == 1) {
@@ -142,11 +142,11 @@ function UpdateAttack() {
             case "Necromancer":
                 if (me.getSkill(67, 0) >= 1) {
                     typeOfNecro = "Spear";
-                    print("ÿc9Updated Attack: ÿc2" + charClass + " ÿc3" + typeOfNecro);
+                    Config.UpdateAttackMsg = "ÿc9Updated Attack: ÿc2" + charClass + " ÿc3" + typeOfNecro;
                     Config.SkipImmune = ["magic"];
                 } else {
                     typeOfNecro = "Summoning";
-                    print("ÿc9Updated Attack: ÿc2" + charClass + " ÿc1" + typeOfNecro);
+                    Config.UpdateAttackMsg = "ÿc9Updated Attack: ÿc2" + charClass + " ÿc1" + typeOfNecro;
                 }
 
                 if (me.charlvl <= 30) {
@@ -186,11 +186,11 @@ function UpdateAttack() {
             case "Paladin":
                 if (me.getSkill(103, 0) >= 1) {
                     typeOfPally = "FOH";
-                    print("ÿc9Updated Attack: ÿc2" + charClass + " ÿc9" + typeOfPally);
+                    Config.UpdateAttackMsg = "ÿc9Updated Attack: ÿc2" + charClass + " ÿc9" + typeOfPally;
                     Config.SkipImmune = ["lightning"];
                 } else {
                     typeOfPally = "Hammer";
-                    print("ÿc9Updated Attack: ÿc2" + charClass + " ÿc3" + typeOfPally);
+                    Config.UpdateAttackMsg = "ÿc9Updated Attack: ÿc2" + charClass + " ÿc3" + typeOfPally;
                     Config.SkipImmune = ["magic"];
                 }
 
@@ -239,17 +239,17 @@ function UpdateAttack() {
                 Config.SkipImmune = ["physical"];
                 Config.FindItem = false;      // Use Find Item skill on corpses after clearing.
                 Config.FindItemSwitch = false;      // Switch to non-primary slot when using Find Item skills
-                print("ÿc9Updated Attack: ÿc2" + charClass + " ÿc1 Attack");
+                Config.UpdateAttackMsg = "ÿc9Updated Attack: ÿc2" + charClass + " ÿc1 Attack";
 
                 break;
             case "Druid":
                 if (me.getSkill(223, 0) >= 1) {
                     typeOfDruid = "Wolf";
-                    print("ÿc9Updated Attack: ÿc2" + charClass + " ÿc1" + typeOfDruid);
+                    Config.UpdateAttackMsg = "ÿc9Updated Attack: ÿc2" + charClass + " ÿc1" + typeOfDruid;
                     Config.Wereform = 1;
                 } else {
                     typeOfDruid = "Tornado";
-                    print("ÿc9Updated Attack: ÿc2" + charClass + " ÿc3" + typeOfDruid);
+                    Config.UpdateAttackMsg = "ÿc9Updated Attack: ÿc2" + charClass + " ÿc3" + typeOfDruid;
                 }
 
                 if (me.charlvl <= 30) {
@@ -301,13 +301,13 @@ function UpdateAttack() {
                 Config.UseVenom = false;                     // Set to true to use Venom prebuff. Set to false if you don't have the skill and have Arachnid Mesh - it will cause connection drop otherwise.
                 Config.UseCloakofShadows = true;                 // Set to true to use Cloak of Shadows while fighting. Useful for blinding regular monsters/minions.
                 Config.AggressiveCloak = false;                // Move into Cloak range or cast if already close
-                print("ÿc9Updated Attack: ÿc2" + charClass + " ÿc9 Attack");
+                Config.UpdateAttackMsg = "ÿc9Updated Attack: ÿc2" + charClass + " ÿc9 Attack";
 
                 break;
         }
 
-        // print("Attack: " + JSON.stringify(Config.AttackSkill));
-        // print("Low Mana Attack: " + JSON.stringify(Config.LowManaSkill));
+        // Config.UpdateAttackMsg = "Attack: " + JSON.stringify(Config.AttackSkill);
+        // Config.UpdateAttackMsg = "Low Mana Attack: " + JSON.stringify(Config.LowManaSkill);
         return true;
     }
 

@@ -89,48 +89,52 @@ var Config = {
 
 		try {
 			LoadConfig.call();
-		} catch (e2) {
-			if (notify) {
-				print("ÿc8Error in " + e2.fileName.substring(e2.fileName.lastIndexOf("\\") + 1, e2.fileName.length) + "(line " + e2.lineNumber + "): " + e2.message);
 
-				throw new Error("Config.init: Error in character config.");
+			if (notify && update) {
+				try {
+					if (me.ladder !== 0) {
+						if (!include("config/common/UpdatePickitFiles.js")) {
+							throw new Error();
+						}
+						UpdatePickitFiles.call();
+					}
+					if (Config.Cubing) {
+						if (!include("config/common/UpdateCubing.js")) {
+							throw new Error("Failed to load common cubing recipes.");
+						}
+						UpdateCubing.call();
+					}
+
+					if (Config.MakeRunewords) {
+						if (!include("config/common/UpdateRunewords.js")) {
+							throw new Error("Failed to load common runeword recipes.");
+						}
+						UpdateRunewords.call();
+					}
+				} catch (error) {
+					throw new Error(error.message);
+				}
 			}
-		}
-
-		if (notify && update) {
-			try {
-				if (me.ladder !== 0) {
-					if (!include("config/common/UpdatePickitFiles.js")) {
-						throw new Error();
-					}
-					UpdatePickitFiles.call();
-				}
-				if (Config.Cubing) {
-					if (!include("config/common/UpdateCubing.js")) {
-						throw new Error("Failed to load common cubing recipes.");
-					}
-					UpdateCubing.call();
-				}
-
-				if (Config.MakeRunewords) {
-					if (!include("config/common/UpdateRunewords.js")) {
-						throw new Error("Failed to load common runeword recipes.");
-					}
-					UpdateRunewords.call();
-				}
-
-				if (Config.RogerThatInventoryFlag) {
+			if (Config.RogerThatInventoryFlag) {
+				try {
 					if (!include("config/common/UpdateAttack.js")) {
 						throw new Error("Failed to load custom attack config.");
 					}
 					if (!include("config/common/UpdateInventory.js")) {
 						throw new Error("Failed to load custom inventory config.");
 					}
+
 					UpdateAttack.call();
 					UpdateInventory.call();
+				} catch (error) {
+					throw new Error(error.message);
 				}
-			} catch (error) {
-				throw new Error(error.message);
+			}
+		} catch (e2) {
+			if (notify) {
+				print("ÿc8Error in " + e2.fileName.substring(e2.fileName.lastIndexOf("\\") + 1, e2.fileName.length) + "(line " + e2.lineNumber + "): " + e2.message);
+
+				throw new Error("Config.init: Error in character config.");
 			}
 		}
 
@@ -240,6 +244,8 @@ var Config = {
 	GoToTownHP: false,
 	GoToTownMP: false,
 	UpdateSkill: false,
+	UpdateAttackMsg: '',
+	UpdateInventoryMsg: '',
 	RogerThatInventory1: [],
 	RogerThatInventory2: [],
 	RogerThatInventory3: [],

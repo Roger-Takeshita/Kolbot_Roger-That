@@ -1,19 +1,11 @@
 function UpdateInventory () {
-    function printInventory () {
-        print(Config.Inventory[0]);
-        print(Config.Inventory[1]);
-        print(Config.Inventory[2]);
-        print(Config.Inventory[3]);
-    }
-
     for (let i = 0; i < Config.RogerThatInventory1.length; i++) {
         if (me.name === Config.RogerThatInventory1[i]) {
             Config.Inventory[0] = Config.Inventory1[0];
             Config.Inventory[1] = Config.Inventory1[1];
             Config.Inventory[2] = Config.Inventory1[2];
             Config.Inventory[3] = Config.Inventory1[3];
-            print("ÿc9Updated Inventory: ÿc2One");
-            printInventory();
+            Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc2One";
             return true;
         }
     }
@@ -24,8 +16,7 @@ function UpdateInventory () {
             Config.Inventory[1] = Config.Inventory2[1];
             Config.Inventory[2] = Config.Inventory2[2];
             Config.Inventory[3] = Config.Inventory2[3];
-            print("ÿc9Updated Inventory: ÿc2Two");
-            printInventory();
+            Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc2Two";
             return true;
         }
     }
@@ -36,8 +27,7 @@ function UpdateInventory () {
             Config.Inventory[1] = Config.Inventory3[1];
             Config.Inventory[2] = Config.Inventory3[2];
             Config.Inventory[3] = Config.Inventory3[3];
-            print("ÿc9Updated Inventory: ÿc2Three");
-            printInventory();
+            Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc2Three";
             return true;
         }
     }
@@ -48,8 +38,7 @@ function UpdateInventory () {
             Config.Inventory[1] = Config.Inventory4[1];
             Config.Inventory[2] = Config.Inventory4[2];
             Config.Inventory[3] = Config.Inventory4[3];
-            print("ÿc9Updated Inventory: ÿc2Four");
-            printInventory();
+            Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc2Four";
             return true;
         }
     }
@@ -60,8 +49,7 @@ function UpdateInventory () {
             Config.Inventory[1] = Config.Inventory5[1];
             Config.Inventory[2] = Config.Inventory5[2];
             Config.Inventory[3] = Config.Inventory5[3];
-            print("ÿc9Updated Inventory: ÿc2Five");
-            printInventory();
+            Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc2Five";
             return true;
         }
     }
@@ -72,8 +60,7 @@ function UpdateInventory () {
             Config.Inventory[1] = Config.Inventory6[1];
             Config.Inventory[2] = Config.Inventory6[2];
             Config.Inventory[3] = Config.Inventory6[3];
-            print("ÿc9Updated Inventory: ÿc2Six");
-            printInventory();
+            Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc2Six";
             return true;
         }
     }
@@ -84,8 +71,7 @@ function UpdateInventory () {
             Config.Inventory[1] = Config.Inventory7[1];
             Config.Inventory[2] = Config.Inventory7[2];
             Config.Inventory[3] = Config.Inventory7[3];
-            print("ÿc9Updated Inventory: ÿc2Seven");
-            printInventory();
+            Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc2Seven";
             return true;
         }
     }
@@ -96,8 +82,7 @@ function UpdateInventory () {
             Config.Inventory[1] = Config.Inventory8[1];
             Config.Inventory[2] = Config.Inventory8[2];
             Config.Inventory[3] = Config.Inventory8[3];
-            print("ÿc9Updated Inventory: ÿc2Eight");
-            printInventory();
+            Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc2Eight";
             return true;
         }
     }
@@ -106,7 +91,6 @@ function UpdateInventory () {
     Config.Inventory[1] = Config.InventoryGeneric[1];
     Config.Inventory[2] = Config.InventoryGeneric[2];
     Config.Inventory[3] = Config.InventoryGeneric[3];
-    print("ÿc9Updated Inventory: ÿc1Generic");
-    printInventory();
+    Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc1Generic";
     return true;
 }

@@ -223,6 +223,15 @@ function main() {
 		addEventListener("itemaction", this.itemEvent);
 	}
 
+	if (Config.RogerThatInventoryFlag) {
+		print(Config.UpdateAttackMsg);
+		print(Config.UpdateInventoryMsg);
+		print(Config.Inventory[0]);
+		print(Config.Inventory[1]);
+		print(Config.Inventory[2]);
+		print(Config.Inventory[3]);
+	}
+
 	// One time maintenance - get corpse, clear leftover items, pick items in case anything important was dropped
 	if (!Scripts.UserAddon && !Scripts.Test) {
 		Town.getCorpse();
