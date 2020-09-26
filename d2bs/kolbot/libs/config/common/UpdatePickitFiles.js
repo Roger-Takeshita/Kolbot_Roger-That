@@ -8,5 +8,4 @@ function UpdatePickitFiles() {
         // Config.PickitFiles.push("w-RogerThatMidLadder.nip");
         Config.PickitFiles.push("w-RogerThatEndLadder.nip");
     }
-    print("ÿc9Added: ÿc4Ladder Pickit Files");
 }

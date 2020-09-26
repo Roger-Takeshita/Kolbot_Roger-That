@@ -5,10 +5,9 @@
 */
 
 var Scripts = {};
-var updateFlag = false;
 
 var Config = {
-	init: function (notify, update = false) {
+	init: function (notify) {
 		var i, n,
 			configFilename = "",
 			classes = ["Amazon", "Sorceress", "Necromancer", "Paladin", "Barbarian", "Druid", "Assassin"];
@@ -90,45 +89,39 @@ var Config = {
 		try {
 			LoadConfig.call();
 
-			if (notify && update) {
-				try {
-					if (me.ladder !== 0) {
-						if (!include("config/common/UpdatePickitFiles.js")) {
-							throw new Error();
-						}
-						UpdatePickitFiles.call();
-					}
-					if (Config.Cubing) {
-						if (!include("config/common/UpdateCubing.js")) {
-							throw new Error("Failed to load common cubing recipes.");
-						}
-						UpdateCubing.call();
-					}
-
-					if (Config.MakeRunewords) {
-						if (!include("config/common/UpdateRunewords.js")) {
-							throw new Error("Failed to load common runeword recipes.");
-						}
-						UpdateRunewords.call();
-					}
-				} catch (error) {
-					throw new Error(error.message);
-				}
-			}
-			if (Config.RogerThatInventoryFlag) {
-				try {
+			try {
+				if (Config.RogerThatInventoryFlag) {
 					if (!include("config/common/UpdateAttack.js")) {
 						throw new Error("Failed to load custom attack config.");
 					}
 					if (!include("config/common/UpdateInventory.js")) {
 						throw new Error("Failed to load custom inventory config.");
 					}
-
 					UpdateAttack.call();
 					UpdateInventory.call();
-				} catch (error) {
-					throw new Error(error.message);
 				}
+
+				if (me.ladder !== 0) {
+					if (!include("config/common/UpdatePickitFiles.js")) {
+						throw new Error("Failed to load common pickit files.");
+					}
+					UpdatePickitFiles.call();
+				}
+				if (Config.Cubing) {
+					if (!include("config/common/UpdateCubing.js")) {
+						throw new Error("Failed to load common cubing recipes.");
+					}
+					UpdateCubing.call();
+				}
+
+				if (Config.MakeRunewords) {
+					if (!include("config/common/UpdateRunewords.js")) {
+						throw new Error("Failed to load common runeword recipes.");
+					}
+					UpdateRunewords.call();
+				}
+			} catch (error) {
+				throw new Error(error.message);
 			}
 		} catch (e2) {
 			if (notify) {

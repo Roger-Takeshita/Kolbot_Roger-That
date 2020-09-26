@@ -153,5 +153,4 @@ function UpdateCubing() {
             Config.Recipes.push([Recipe.Unique.Weapon.ToElite,         "Yari",                  Roll.Eth]);    // Upgrade Eth Hone Sundan to Elite
             Config.Recipes.push([Recipe.Unique.Weapon.ToElite,         "Quarterstaff",       Roll.NonEth]);    // Upgrade Ribcracker to Elite
             Config.Recipes.push([Recipe.Unique.Weapon.ToElite,         "Quarterstaff",          Roll.Eth]);    // Upgrade Eth Ribcracker to Elite
-    print("ÿc9Updated Cube: ÿc2Recipes");
 }

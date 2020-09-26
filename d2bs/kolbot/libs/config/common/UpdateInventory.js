@@ -5,7 +5,7 @@ function UpdateInventory () {
             Config.Inventory[1] = Config.Inventory1[1];
             Config.Inventory[2] = Config.Inventory1[2];
             Config.Inventory[3] = Config.Inventory1[3];
-            Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc2One";
+            Config.UpdateInventoryMsg = "ÿc9Updated: ÿc2Inventory ÿc2One";
             return true;
         }
     }
@@ -16,7 +16,7 @@ function UpdateInventory () {
             Config.Inventory[1] = Config.Inventory2[1];
             Config.Inventory[2] = Config.Inventory2[2];
             Config.Inventory[3] = Config.Inventory2[3];
-            Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc2Two";
+            Config.UpdateInventoryMsg = "ÿc9Updated: ÿc2Inventory ÿc2Two";
             return true;
         }
     }
@@ -27,7 +27,7 @@ function UpdateInventory () {
             Config.Inventory[1] = Config.Inventory3[1];
             Config.Inventory[2] = Config.Inventory3[2];
             Config.Inventory[3] = Config.Inventory3[3];
-            Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc2Three";
+            Config.UpdateInventoryMsg = "ÿc9Updated: ÿc2Inventory ÿc2Three";
             return true;
         }
     }
@@ -38,7 +38,7 @@ function UpdateInventory () {
             Config.Inventory[1] = Config.Inventory4[1];
             Config.Inventory[2] = Config.Inventory4[2];
             Config.Inventory[3] = Config.Inventory4[3];
-            Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc2Four";
+            Config.UpdateInventoryMsg = "ÿc9Updated: ÿc2Inventory ÿc2Four";
             return true;
         }
     }
@@ -49,7 +49,7 @@ function UpdateInventory () {
             Config.Inventory[1] = Config.Inventory5[1];
             Config.Inventory[2] = Config.Inventory5[2];
             Config.Inventory[3] = Config.Inventory5[3];
-            Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc2Five";
+            Config.UpdateInventoryMsg = "ÿc9Updated: ÿc2Inventory ÿc2Five";
             return true;
         }
     }
@@ -60,7 +60,7 @@ function UpdateInventory () {
             Config.Inventory[1] = Config.Inventory6[1];
             Config.Inventory[2] = Config.Inventory6[2];
             Config.Inventory[3] = Config.Inventory6[3];
-            Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc2Six";
+            Config.UpdateInventoryMsg = "ÿc9Updated: ÿc2Inventory ÿc2Six";
             return true;
         }
     }
@@ -71,7 +71,7 @@ function UpdateInventory () {
             Config.Inventory[1] = Config.Inventory7[1];
             Config.Inventory[2] = Config.Inventory7[2];
             Config.Inventory[3] = Config.Inventory7[3];
-            Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc2Seven";
+            Config.UpdateInventoryMsg = "ÿc9Updated: ÿc2Inventory ÿc2Seven";
             return true;
         }
     }
@@ -82,7 +82,7 @@ function UpdateInventory () {
             Config.Inventory[1] = Config.Inventory8[1];
             Config.Inventory[2] = Config.Inventory8[2];
             Config.Inventory[3] = Config.Inventory8[3];
-            Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc2Eight";
+            Config.UpdateInventoryMsg = "ÿc9Updated: ÿc2Inventory ÿc2Eight";
             return true;
         }
     }
@@ -91,6 +91,6 @@ function UpdateInventory () {
     Config.Inventory[1] = Config.InventoryGeneric[1];
     Config.Inventory[2] = Config.InventoryGeneric[2];
     Config.Inventory[3] = Config.InventoryGeneric[3];
-    Config.UpdateInventoryMsg = "ÿc9Updated Inventory: ÿc1Generic";
+    Config.UpdateInventoryMsg = "ÿc9Updated: ÿc2Inventory ÿc1Generic";
     return true;
 }

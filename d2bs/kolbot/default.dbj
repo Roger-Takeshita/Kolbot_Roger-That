@@ -143,7 +143,7 @@ function main() {
 	}
 
 	// Initialize libs - load config variables, build pickit list, attacks, containers and cubing and runeword recipes
-	Config.init(true, true);
+	Config.init(true);
 	Pickit.init(true);
 	Attack.init();
 	Storage.Init();
@@ -221,6 +221,18 @@ function main() {
 	if (Config.FastPick) {
 		print("ÿc2Fast pickit active.");
 		addEventListener("itemaction", this.itemEvent);
+	}
+
+	if (me.ladder !== 0) {
+		print("ÿc9Updated: ÿc2Pickit Files ÿc4Ladder");
+	}
+
+	if (Config.Cubing) {
+		print("ÿc9Updated: ÿc2Cube Recipes");
+	}
+
+	if (Config.MakeRunewords) {
+		print("ÿc9Updated: ÿc2Make Runewords");
 	}
 
 	if (Config.RogerThatInventoryFlag) {
