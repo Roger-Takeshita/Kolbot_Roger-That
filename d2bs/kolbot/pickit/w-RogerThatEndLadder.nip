@@ -13,6 +13,9 @@
             [name] == amulet              && [quality] == unique # [lightresist] == 35 // highlord
             [name] == amulet              && [quality] == unique # [dexterity] == 25 // cat's eye
     //+ ARMOR ================================================================================
+        //- Unique ------------------------------------------------------------------------
+            [name] == serpentskinarmor    && [quality] == unique && [flag] != ethereal # [fireresist] == 35 // skin of the vipermagi
+            [name] == russetarmor         && [quality] == unique # [enhanceddefense] == 200 // skullder's
         //- White -------------------------------------------------------------------------
             [name] == duskshroud          && [quality] != magic && [quality] == superior && [flag] != ethereal # [enhanceddefense] == 15 && ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
             [name] == wyrmhide            && [quality] != magic && [quality] == superior && [flag] != ethereal # [enhanceddefense] == 15 && ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
@@ -21,10 +24,7 @@
             [name] == archonplate         && [quality] != magic && [quality] == superior && [flag] != ethereal # [enhanceddefense] == 15 && ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
             [name] == mageplate           && [quality] != magic && [quality] == superior && [flag] != ethereal # [enhanceddefense] == 15 && ([sockets] == 0 || [sockets] == 3 || [sockets] == 3)
             [type] == armor               && [quality] != magic && [quality] == normal && [class] == elite && [flag] == ethereal # [sockets] == 0 && [defense] >= 700 // merc armor
-            [type] == armor               && [quality] != magic && [quality] == normal && [class] == elite && [flag] == ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4) && [defense] >= 1000
-        //- Unique ------------------------------------------------------------------------
-            [name] == serpentskinarmor    && [quality] == unique && [flag] != ethereal # [fireresist] == 35 // skin of the vipermagi
-            [name] == russetarmor         && [quality] == unique # [enhanceddefense] == 200 // skullder's
+            [type] == armor               && [quality] != magic && [quality] == normal && [class] == elite && [flag] == ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4) && [defense] >= 1100
     //+ AXES =================================================================================
         //- White -------------------------------------------------------------------------
             [name] == warspike            && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 4 || [sockets] == 5)                   // oath / death
@@ -36,7 +36,6 @@
             [name] == decapitator         && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4 || [sockets] == 5) // oath / death
     //+ BELTS ================================================================================
         //- Unique ------------------------------------------------------------------------
-            [name] == sash                && [quality] == unique && [flag] != ethereal # [fireresist] >= 5 // lenymo sash
             [name] == spiderwebsash       && [quality] == unique && [flag] != ethereal # [enhanceddefense] >= 90 // arachnid mesh - max 120 def
             [name] == mithrilcoil         && [quality] == unique && [flag] != ethereal # [damageresist] == 15 //&& [vitality] == 40 // verdungo's hearty cord
             [name] == demonhidesash       && [quality] == unique && [flag] != ethereal # [damageresist] == 15 //&& [magicdamagereduction] == 15 && [lifeleech] == 8 && [enhanceddefense] == 180 // string of ears
@@ -50,6 +49,8 @@
             [name] == scarabshellboots    && [quality] == unique && [flag] != ethereal # [maxhp] == 65 // waterwalk x1
             [name] == battleboots         && [quality] == unique && [flag] != ethereal # [itemmagicbonus] >= 30 // war traveler - max 50% mf
     //+ BOWS =================================================================================
+        //- Unique ------------------------------------------------------------------------
+            [name] == hydrabow            && [quality] == unique # [manaleech] == 8 // windforce
         //- White -------------------------------------------------------------------------
             [name] == diamondbow          && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4
             [name] == greatbow            && [quality] == superior # [enhanceddamage] == 15 && ([sockets] == 0 || [sockets] == 4)
@@ -59,8 +60,6 @@
             [name] == hydrabow            && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4
             [name] == matriarchalbow      && [quality] <= superior # [bowandcrossbowskilltab] == 3 && [enhanceddamage] == 15 && [sockets] == 4 // faith
             [name] == grandmatronbow      && [quality] <= superior # [bowandcrossbowskilltab] == 3 && [enhanceddamage] == 15 && [sockets] == 4 // faith
-        //- Unique ------------------------------------------------------------------------
-            [name] == hydrabow            && [quality] == unique # [manaleech] == 8 // windforce
     //+ CHARMS ===============================================================================
         //- Small Charms ------------------------------------------------------------------
             [name] == smallcharm          && [quality] == magic # [maxhp] == 20 //# [maxquantity] == 2
@@ -86,19 +85,19 @@
             [name] == lightgauntlets      && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 30 // magefist
             [name] == gauntlets           && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 20 // frostburn
     //+ HELMS ================================================================================
+        //- Unique ------------------------------------------------------------------------
+            [name] == casque              && [quality] == unique # [itemmagicbonus] == 50 // stealskull
+            [name] == tiara               && [quality] == unique # [fireresist] == 70 // kira's guardian
+            [name] == spiredhelm          && [quality] == unique # [passivecoldmastery] >= 15 // nightwing's veil - max 15% cd
+            [name] == demonhead           && [quality] == unique # [strength] >= 30 && [lifeleech] >= 8 && [enhanceddefense] >= 100 // andariel's visage - max 30 str, 10% ll and 150% edef
+            [name] == demonhead           && [quality] == unique # [strength] >= 25 && [lifeleech] >= 10 && [enhanceddefense] >= 100 // andariel's visage - max 30 str, 10% ll and 150% edef
+            [name] == grimhelm            && [quality] == unique # [damageresist] == 20 // vampgaze
         //- White -------------------------------------------------------------------------
             [name] == demonhead           && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 0 || [itemmaxdurabilitypercent] == 15) && [sockets] == 3
             [name] == bonevisage          && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 0 || [itemmaxdurabilitypercent] == 15) && [sockets] == 3
             [name] == diadem              && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 0 || [itemmaxdurabilitypercent] == 15) && [sockets] == 3
             // [name] == demonhead           && [quality] == normal && [flag] == ethereal # [sockets] == 0
             // [name] == bonevisage          && [quality] == normal && [flag] == ethereal # [sockets] == 0
-        //- Unique ------------------------------------------------------------------------
-            [name] == tiara               && [quality] == unique # [fireresist] == 70 // kira's guardian
-            [name] == casque              && [quality] == unique # [itemmagicbonus] == 50 // stealskull
-            [name] == spiredhelm          && [quality] == unique # [passivecoldmastery] >= 10 // nightwing's veil - max 15% cd
-            [name] == demonhead           && [quality] == unique # [strength] >= 25 && [lifeleech] >= 8 && [enhanceddefense] >= 100 // andariel's visage - max 30 str, 10% ll and 150% edef
-            [name] == demonhead           && [quality] == unique # [strength] >= 25 && [lifeleech] >= 8 && [enhanceddefense] >= 100 // andariel's visage - max 30 str, 10% ll and 150% edef
-            [name] == grimhelm            && [quality] == unique # [damageresist] == 20 // vampgaze
     //+ MACES ================================================================================
         //- White -------------------------------------------------------------------------
             [name] == flail               && [quality] <= superior # [sockets] == 4 # [maxquantity] == 1 // hoto
@@ -109,6 +108,9 @@
         //- Unique ------------------------------------------------------------------------
             [name] == swirlingcrystal     && [quality] == unique && [flag] == ethereal // oculus
     //+ POLEARMS =============================================================================
+        //- Unique ------------------------------------------------------------------------
+            [name] == ogreaxe             && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 320 // bonehew
+            [name] == thresher            && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 240 && [lifeleech] == 15 // the reaper's toll
         //- White -------------------------------------------------------------------------
             [name] == giantthresher       && [quality] <= superior && [flag] == ethereal # [sockets] == 4 // eth insight/infinity
             [name] == greatpoleaxe        && [quality] <= superior && [flag] == ethereal # [sockets] == 4 // eth insight/infinity
@@ -126,9 +128,6 @@
             [name] == crypticaxe          && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [sockets] == 4 // eth insight/infinity
             [name] == colossusvoulge      && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [sockets] == 0 // eth insight/infinity
             [name] == colossusvoulge      && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [sockets] == 4 // eth insight/infinity
-        //- Unique ------------------------------------------------------------------------
-            [name] == ogreaxe             && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 320 // bonehew
-            [name] == thresher            && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 240 && [lifeleech] == 15 // the reaper's toll
     //+ RINGS ================================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == ring                && [quality] == unique # [damageresist] >= 7 // nature piece - max 11% dr
@@ -140,6 +139,14 @@
         //- Rare --------------------------------------------------------------------------
             [type] == ring                && [quality] <= rare # [itemmagicbonus] >= 30
     //+ SHIELDS ==============================================================================
+        //- Unique ------------------------------------------------------------------------
+            [name] == defender            && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 150 // visceratuant
+            [name] == roundshield         && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 220 // moser
+            [name] == spikedshield        && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 60 // swordback hold
+            [name] == spikedshield        && [quality] == unique && [flag] == ethereal # [enhanceddefense] == 60 // swordback hold eth
+            [name] == monarch             && [quality] == unique # [defense] == 148 // stormshield
+            [name] == hierophanttrophy    && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 200 // homunculus
+            [name] == bloodlordskull      && [quality] == unique && [flag] != ethereal # [poisonandboneskilltab] >= 3 && [cursesskilltab] >= 3 && [necromancersummoningskilltab] >= 3 //&& [enhanceddefense] == 150 // darkforce spawn
         //- White -------------------------------------------------------------------------
             [name] == monarch             && [quality] == normal   && [flag] != ethereal # [sockets] == 0 # [maxquantity] == 1                           // spirit cube
             [name] == monarch             && [quality] == normal   && [flag] != ethereal # [sockets] == 4                                                // spirit
@@ -148,15 +155,10 @@
             [type] == auricshields        && [quality] <= superior && [flag] != ethereal # [enhanceddamage] == 65 && [tohit] == 121 && ([sockets] == 0 || [sockets] == 4) // dmg spirit
             [type] == auricshields        && [quality] <= superior && [class] == elite && [flag] == ethereal # ([enhanceddamage] == 65 && [tohit] == 121 || [fireresist] >= 45) && ([sockets] == 0 || [sockets] == 4) // exile
             [type] == auricshields        && [quality] <= superior && [class] == elite && [flag] != ethereal # ([enhanceddamage] == 65 && [tohit] == 121 || [fireresist] >= 45) && ([sockets] == 0 || [sockets] == 4) // spirit
-        //- Unique ------------------------------------------------------------------------
-            [name] == defender            && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 150 // visceratuant
-            [name] == roundshield         && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 220 // moser
-            [name] == spikedshield        && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 60 // swordback hold
-            [name] == spikedshield        && [quality] == unique && [flag] == ethereal # [enhanceddefense] == 60 // swordback hold eth
-            [name] == monarch             && [quality] == unique # [defense] == 148 // stormshield
-            [name] == hierophanttrophy    && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 200 // homunculus
-            [name] == bloodlordskull      && [quality] == unique && [flag] != ethereal # [poisonandboneskilltab] >= 1 && [cursesskilltab] >= 1 && [necromancersummoningskilltab] >= 1 //&& [enhanceddefense] == 150 // darkforce spawn
     //+ STAVES ===============================================================================
+        //- Unique ------------------------------------------------------------------------
+            [name] == elderstaff          && [quality] == unique # [itemallskills] == 4 // ondal's wisdom
+            [name] == quarterstaff        && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 300 // ribcracker
         //- White -------------------------------------------------------------------------
             [type] == staff               && [quality] <= superior # [skillfireball] >= 3 && [sockets] == 2 // leaf (tir + ral)
             [name] == warstaff            && [quality] <= superior # ([skillenergyshield] >= 3 || [skillchillingarmor] > 0 || [skillshiverarmor] > 0 || [skillfrozenarmor] >0) && ([skillfireball] >= 3 || [skillfrozenorb] >= 3 || [skillblizzard] >= 3 ||[skilllightning] >= 3 || [skillchainlightning] >= 3) && ([sockets] == 0 || [sockets] == 4) // insight
@@ -168,12 +170,8 @@
             [name] == elderstaff          && [quality] <= superior # ([skillenergyshield] >= 3 || [skillchillingarmor] > 0 || [skillshiverarmor] > 0 || [skillfrozenarmor] >0) && ([skillfireball] >= 3 || [skillfrozenorb] >= 3 || [skillblizzard] >= 3 ||[skilllightning] >= 3 || [skillchainlightning] >= 3) && ([sockets] == 0 || [sockets] == 4) // insight
             [name] == shillelagh          && [quality] <= superior # ([skillenergyshield] >= 3 || [skillchillingarmor] > 0 || [skillshiverarmor] > 0 || [skillfrozenarmor] >0) && ([skillfireball] >= 3 || [skillfrozenorb] >= 3 || [skillblizzard] >= 3 ||[skilllightning] >= 3 || [skillchainlightning] >= 3) && ([sockets] == 0 || [sockets] == 4) // insight
             [name] == archonstaff         && [quality] <= superior # ([skillenergyshield] >= 3 || [skillchillingarmor] > 0 || [skillshiverarmor] > 0 || [skillfrozenarmor] >0) && ([skillfireball] >= 3 || [skillfrozenorb] >= 3 || [skillblizzard] >= 3 ||[skilllightning] >= 3 || [skillchainlightning] >= 3) && [sockets] == 4                     // insight
-        //- Unique ------------------------------------------------------------------------
-            [name] == elderstaff          && [quality] == unique # [itemallskills] == 4 // ondal's wisdom
-            [name] == quarterstaff        && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 300 // ribcracker
     //+ SWORDS ===============================================================================
         //- White -------------------------------------------------------------------------
-            // [name] == crystalsword        && [quality] <= superior # [sockets] == 5 # [maxquantity] == 1 // cta
             [name] == broadsword          && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [tohit] == 3 && ([sockets] == 0 || [sockets] == 4) // spirit
             [name] == crystalsword        && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [tohit] == 3 && [sockets] == 4                     // spirit
             [name] == longsword           && [quality] == superior && [flag] == ethereal # [enhanceddamage] == 15 && [tohit] == 3 && ([sockets] == 0 || [sockets] == 4) // spirit

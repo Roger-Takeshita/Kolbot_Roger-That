@@ -12,13 +12,6 @@
         //- Rare --------------------------------------------------------------------------
             [type] == amulet              && [quality] <= rare # [itemmagicbonus] >= 35
     //+ ARMOR ================================================================================
-        //- White -------------------------------------------------------------------------
-            [name] == duskshroud          && [quality] != magic && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
-            [name] == wyrmhide            && [quality] != magic && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
-            [name] == scarabhusk          && [quality] != magic && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
-            [name] == greathauberk        && [quality] != magic && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
-            [name] == archonplate         && [quality] != magic && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
-            [name] == mageplate           && [quality] != magic && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3)
         //- Unique ------------------------------------------------------------------------
             [name] == balrogskin          && [quality] == unique && [flag] == identified // arkaine's valor
             [name] == shadowplate         && [quality] == unique && [flag] == identified // steel carapace
@@ -31,6 +24,13 @@
             [name] == mesharmor           && [quality] == unique && [flag] == ethereal && [flag] == identified // shaftstop
             [name] == sacredarmor         && [quality] == unique && [flag] == identified // tyrael's might
             [name] == duskshroud          && [quality] == unique && [flag] == identified // ormus
+        //- White -------------------------------------------------------------------------
+            [name] == duskshroud          && [quality] != magic && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == wyrmhide            && [quality] != magic && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == scarabhusk          && [quality] != magic && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == greathauberk        && [quality] != magic && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == archonplate         && [quality] != magic && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
+            [name] == mageplate           && [quality] != magic && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3)
     //+ BELTS ================================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == mithrilcoil         && [quality] == unique && [flag] != ethereal && [flag] == identified // verdungo's hearty cord
@@ -53,14 +53,14 @@
             [name] == wyrmhideboots       && [quality] == unique && [flag] != ethereal && [flag] == identified // hotspur x2
             [name] == boots               && [quality] == unique && [flag] != ethereal # [fireresist] == 45 && [enhanceddefense] >= 10 // hotspur
     //+ BOWS =================================================================================
+        //- Unique ------------------------------------------------------------------------
+            [name] == wardbow             && [quality] == unique && [flag] == identified // widowmaker
+            [name] == hydrabow            && [quality] == unique && [flag] == identified // windforce
         //- White -------------------------------------------------------------------------
             [name] == matriarchalbow      && [quality] <= superior # [bowandcrossbowskilltab] == 3 && [sockets] == 4 // faith
             [name] == grandmatronbow      && [quality] <= superior # [bowandcrossbowskilltab] == 3 && [sockets] == 4 // faith
             [name] == matriarchalbow      && [quality] <= superior # [bowandcrossbowskilltab] == 3 && ([sockets] == 0 || [sockets] == 5) // cta
             [name] == grandmatronbow      && [quality] <= superior # [bowandcrossbowskilltab] == 3 && ([sockets] == 0 || [sockets] == 5) // cta
-        //- Unique ------------------------------------------------------------------------
-            [name] == wardbow             && [quality] == unique && [flag] == identified // widowmaker
-            [name] == hydrabow            && [quality] == unique && [flag] == identified // windforce
     //+ GLOVES ===============================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == vampirebonegloves   && [quality] == unique && [flag] != ethereal && [flag] == identified // dracul's grasp
@@ -98,6 +98,10 @@
             [name] == eldritchorb         && [quality] == unique && [flag] == identified // eschuta's temper
             [name] == swirlingcrystal     && [quality] == unique && [flag] == identified // oculus
     //+ POLEARMS =============================================================================
+        //- Unique ------------------------------------------------------------------------
+            [name] == ogreaxe             && [quality] == unique && [flag] == identified // bonehew
+            [name] == thresher            && [quality] == unique && [flag] == identified // the reaper's toll
+            [name] == crypticaxe          && [quality] == unique && [flag] == identified // tomb reaver
         //- White -------------------------------------------------------------------------
             [name] == crypticaxe          && [quality] == normal # [sockets] == 0 # [maxquantity] == 1 // insight cube
             [name] == greatpoleaxe        && [quality] == normal # [sockets] == 0 # [maxquantity] == 1 // insight cube
@@ -109,10 +113,6 @@
             [name] == colossusvoulge      && [quality] <= superior # [sockets] == 4 // insight
             [name] == thresher            && [quality] <= superior # [sockets] == 4 // insight
             [name] == giantthresher       && [quality] <= superior # [sockets] == 4 // insight
-        //- Unique ------------------------------------------------------------------------
-            [name] == ogreaxe             && [quality] == unique && [flag] == identified // bonehew
-            [name] == thresher            && [quality] == unique && [flag] == identified // the reaper's toll
-            [name] == crypticaxe          && [quality] == unique && [flag] == identified // tomb reaver
     //+ SHIELDS ==============================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == defender            && [quality] == unique && [flag] != ethereal && [flag] == identified // visceratuant
@@ -136,6 +136,8 @@
         //- Unique ------------------------------------------------------------------------
             [name] == elderstaff          && [quality] == unique && [flag] == identified // ondal's wisdom
     //+ SWORDS ===============================================================================
+        //- Unique ------------------------------------------------------------------------
+            [name] == tulwar              && [quality] == unique && [flag] == identified // blade of ali baba
         //- White -------------------------------------------------------------------------
             [name] == broadsword          && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4 // spirit
             [name] == battlesword         && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4 // spirit
@@ -145,8 +147,6 @@
             [name] == crypticsword        && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4 // spirit
             [name] == crystalsword        && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4 // spirit
             [name] == dimensionalblade    && [quality] == superior # [enhanceddamage] == 15 && [sockets] == 4 // spirit
-        //- Unique ------------------------------------------------------------------------
-            [name] == tulwar              && [quality] == unique && [flag] == identified // blade of ali baba
     //+ WANDS ================================================================================
         //- Unique ------------------------------------------------------------------------
             [name] == lichwand            && [quality] == unique && [flag] == identified // boneshade

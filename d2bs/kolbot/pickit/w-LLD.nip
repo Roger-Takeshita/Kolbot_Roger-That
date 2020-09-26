@@ -202,18 +202,18 @@
         //- Small Charm --------------------------------------------------------------------
             [name] == smallcharm          && [quality] == magic # [maxhp] == 10 && [defense] >= 3 && [itemlevelreq] <= 15
             [name] == smallcharm          && [quality] == magic # [maxhp] >= 12 && [maxdamage] == 3 && [itemlevelreq] <= 30
-            [name] == smallcharm          && [quality] == magic # [maxhp] == 15 && ([lightresist] == 7 || [coldresist] == 7 || [fireresist] == 7) && [itemlevelreq] <= 18
+            [name] == smallcharm          && [quality] == magic # [maxhp] == 15 && ([lightresist] >= 7 || [coldresist] >= 7 || [fireresist] >= 7 || [poisonresist] >= 7) && [itemlevelreq] <= 18
             [name] == smallcharm          && [quality] == magic # [maxhp] >= 15 && [coldmindam] >= 2 && [coldmaxdam] >= 4 && [itemlevelreq] <= 30
             [name] == smallcharm          && [quality] == magic # [maxhp] == 15 && ([maxmana] >= 6 || [tohit] == 12 || [plusdefense] >= 8 || [LightMaxdam] >= 7) && [itemlevelreq] <= 18
             [name] == smallcharm          && [quality] == magic # [maxhp] == 15 && ([poisonmaxdam] >= 15 || [coldmaxdam] >= 2 || [FireMaxDam] >= 3) && [itemlevelreq] <= 18
             [name] == smallcharm          && [quality] == magic # [maxhp] >= 15 && ([fireresist] >= 10 || [lightresist] >= 10 || [coldresist] >= 10 || [poisonresist] >= 10) && [itemlevelreq] <= 30
-            [name] == smallcharm          && [quality] == magic # [maxhp] >= 15 && ([poisonmaxdam] == 128 || [maxmana] >= 12 || [maxdamage] >= 3 || [defense] == 20 || [fireresist] >= 10 || [lightresist] >= 10 || [coldresist] >= 10 || [fireresist] >= 5 && [coldresist] >= 5) && [itemlevelreq] <= 30
+            [name] == smallcharm          && [quality] == magic # [maxhp] >= 15 && ([poisonmaxdam] == 128 || [maxmana] >= 12 || [maxdamage] >= 3 || [defense] == 20 || [fireresist] >= 10 || [lightresist] >= 10 || [coldresist] >= 10 || [poisonresist] >= 10 || [fireresist] >= 5 && [coldresist] >= 5) && [itemlevelreq] <= 30
             [name] == smallcharm          && [quality] == magic # [maxhp] >= 15 && ([poisonmaxdam] == 52 && [maxmana] >= 5 || [tohit] >= 10 || [defense] >= 8) && [itemlevelreq] <= 18
             [name] == smallcharm          && [quality] == magic # [poisonmaxdam] == 91 // 62 pdsc level 18
             [name] == smallcharm          && [quality] == magic # ([maxhp]+[maxmana]) >= 24 && [itemlevelreq] <= 30
-            [name] == smallcharm          && [quality] == magic # ([maxhp] >= 15 || [frw] == 3 || [fhr] == 5) && ([fireresist] == 9 || [lightresist] == 9 || [coldresist] == 9) && [itemlevelreq] <= 30
+            [name] == smallcharm          && [quality] == magic # ([maxhp] >= 15 || [frw] == 3 || [fhr] == 5) && ([fireresist] >= 9 || [lightresist] >= 9 || [coldresist] >= 9 || [poisonresist] >= 9) && [itemlevelreq] <= 30
             [name] == smallcharm          && [quality] == magic # ([maxhp] >= 15 || [frw] == 3 || [fhr] == 5) && [coldresist]+[lightresist]+[fireresist] == 15 && [itemlevelreq] <= 30
-            [name] == smallcharm          && [quality] == magic # [frw] == 3 && ([poisonmaxdam] == 128 || [maxmana] >= 12 || [maxdamage] >= 3 || [fireresist] >= 10 || [lightresist] >= 10 || [coldresist] >= 10 || [fireresist] >= 5 && [coldresist] >= 5) && [itemlevelreq] <= 30
+            [name] == smallcharm          && [quality] == magic # [frw] == 3 && ([poisonmaxdam] == 128 || [maxmana] >= 12 || [maxdamage] >= 3 || [fireresist] >= 10 || [lightresist] >= 10 || [coldresist] >= 10 || [poisonresist] >= 10 || [fireresist] >= 5 && [coldresist] >= 5) && [itemlevelreq] <= 30
             [name] == smallcharm          && [quality] == magic # ([frw] == 3 || [fhr] == 5) && [maxmana] == 12 && [itemlevelreq] <= 30
             [name] == smallcharm          && [quality] == magic # ([frw] == 3 || [fhr] == 5 || [strength] == 2 || [dexterity] == 2) && [maxdamage] >= 3 && [tohit] == 20 && [itemlevelreq] <= 30
             [name] == smallcharm          && [quality] == magic # [fhr] == 5 && ([maxmana] >= 12 || [fireresist] == 9 || [coldresist] == 9 || [lightresist] == 9 || ([maxdamage] >= 3 && [tohit] >= 15)) && [itemlevelreq] <= 30
