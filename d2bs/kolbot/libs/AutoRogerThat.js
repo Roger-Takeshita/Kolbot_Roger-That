@@ -320,7 +320,7 @@ var AutoRogerThat = {
                                 break;
                             case "helm":
                             case "helms":        // Helms
-                                itemCodes = [306, 307, 308, 309, 310, 311, 312, 349, 352, 353, 354, 355, 356, 357, 358, 395, 399, 400, 401, 402, 403, 404, 405, 406, 407, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 465, 468, 470, 472, 473, 474, 475, 476, 477, 488, 493, 494, 495, 496, 497];
+                                itemCodes = [306, 307, 308, 309, 310, 311, 312, 349, 352, 353, 354, 355, 356, 357, 358, 395, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 465, 468, 470, 472, 473, 474, 475, 476, 477, 488, 493, 494, 495, 496, 497];
                                 for (let j = 0; j < itemCodes.length; j++) {
                                     dropObj[itemCodes[j]] = {
                                         qty: qtyArray ? qtyArray[i] : 0,
@@ -412,6 +412,16 @@ var AutoRogerThat = {
                                 }
 
                                 break;
+                            case "mr":
+                            case "mrs":          // Mid runes
+                                for (let j = 632 ; j <= 634 ; j++) {
+                                    dropObj[j] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: codes[j]
+                                    };
+                                }
+
+                                break;
                             case "hr":
                             case "hrs":          // High runes
                                 for (let j = 635 ; j <= 642 ; j++) {
@@ -492,6 +502,26 @@ var AutoRogerThat = {
                             case "sockets":      // Drop socket items
                                 return this.dropProfileItems("socket");
 
+                            case "spirit":       // Drop spirit runes
+                                itemCodes = [616, 619, 618, 620];
+                                for (let j = 0; j < itemCodes.length; j++) {
+                                    dropObj[itemCodes[j]] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: "spirit"
+                                    };
+                                }
+
+                                break
+                            case "insight":       // Drop insight runes
+                                itemCodes = [612, 616, 617, 621];
+                                for (let j = 0; j < itemCodes.length; j++) {
+                                    dropObj[itemCodes[j]] = {
+                                        qty: qtyArray ? qtyArray[i] : 0,
+                                        name: "insight"
+                                    };
+                                }
+
+                                break
                             default:             // Drop runes
                                 if (runes[itemsArray[i]]) {
                                     dropObj[runes[itemsArray[i]]] = {
