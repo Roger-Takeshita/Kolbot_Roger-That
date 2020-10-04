@@ -405,7 +405,6 @@
             // [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 7 //# [maxquantity] == 2
             [name] == smallcharm          && [quality] == magic # [itemmagicbonus] >= 7 && (([fireresist] >= 3 && [coldresist] >= 3) || [fireresist]+[coldresist]+[poisonresist]+[lightresist] >= 5 || [fhr] == 5)
             [name] == smallcharm          && [quality] == magic # [maxhp] == 20 && [maxmana] >= 17
-            [name] == smallcharm          && [quality] == magic # [maxhp] >= 10 && [maxdamage] >= 3 && [tohit] >= 20
             [name] == smallcharm          && [quality] == magic # [maxhp] == 20 && [tohit] >= 20
             [name] == smallcharm          && [quality] == magic # [maxhp] == 20 && [strength]+[dexterity] >= 2
             [name] == smallcharm          && [quality] == magic # ([fhr] == 5 || [frw] == 3) && [tohit] >= 35
@@ -414,7 +413,12 @@
             [name] == smallcharm          && [quality] == magic # ([maxhp] == 20 || [fhr] == 5 || [frw] == 3 || [maxdamage] >= 3) && [fireresist] >= 5 && [coldresist] >= 5
             [name] == smallcharm          && [quality] == magic # ([maxhp] == 20 || [fhr] == 5 || [frw] == 3 || [maxdamage] >= 3) && ([fireresist] >= 10 || [lightresist] >= 10 || [coldresist] >= 10 || [poisonresist] >= 10)
             [name] == smallcharm          && [quality] == magic # ([maxhp] == 20 || [fhr] == 5 || [frw] == 3 || [maxdamage] >= 3) && ([coldmindam] == 10 && [coldmaxdam] == 20) || [lightmaxdam] == 71 || ([firemindam] == 19 && [firemaxdam] == 29)
+            [name] == smallcharm          && [quality] == magic # [fireresist] >= 5 && [coldresist] >= 5
+            [name] == smallcharm          && [quality] == magic # [fireresist] >= 5 && [coldresist] >= 5 && [strength]+[dexterity] >= 2
             [name] == smallcharm          && [quality] == magic # [maxdamage] >= 3 && [tohit] >= 25
+            [name] == smallcharm          && [quality] == magic # [maxdamage] >= 3 && [maxhp] == 20
+            [name] == smallcharm          && [quality] == magic # [maxdamage] >= 3 && [maxhp] >= 10 && [tohit] >= 20
+            [name] == smallcharm          && [quality] == magic # [maxdamage] >= 3 && [maxhp] >= 15 && [tohit] >= 10
             [name] == smallcharm          && [quality] == magic # [maxdamage] >= 3 && [tohit] >= 15 && [strength]+[dexterity] >= 2
             [name] == smallcharm          && [quality] == magic # [lightmaxdam] == 99 || ([firemindam] == 26 && [firemaxdam] == 42) || ([firemindam] == 19 && [firemaxdam] == 29 && [lightmaxdam] == 28) || ([firemindam] == 7 && [firemaxdam] == 13 && [lightmaxdam] == 71)
             [name] == smallcharm          && [quality] == magic # [poisonmaxdam] >= 291 || [poisonmaxdam] >= 338 || [poisonmaxdam] >= 351 || [poisonmaxdam] >= 385 // 313, 330, 377, 451
