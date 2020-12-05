@@ -102,7 +102,7 @@ function UpdateCubing() {
             Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Mesh Armor",            Roll.Eth]);    // Upgrade Eth Shaftstop to Elite
             Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Serpentskin Armor",  Roll.NonEth]);    // Upgrade Skin of the Vipermagi to Elite
         //- BELTS ------------------------------------------------------------
-            Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Sash",               Roll.NonEth]);    // Upgrade Lenymo to Exceptional
+            // Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Sash",               Roll.NonEth]);    // Upgrade Lenymo to Exceptional
             Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Demonhide Sash",     Roll.NonEth]);    // Upgrade Lenymo or String of Ears to Elite
             Config.Recipes.push([Recipe.Unique.Armor.ToExceptional,    "Heavy Belt",         Roll.NonEth]);    // Upgrade Goldwrap to Exceptional
             Config.Recipes.push([Recipe.Unique.Armor.ToElite,          "Battle Belt",        Roll.NonEth]);    // Upgrade Goldwrap or Snowclash to Elite
