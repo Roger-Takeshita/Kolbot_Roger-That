@@ -105,7 +105,6 @@ function LoadConfig() {
       // Config.PickitFiles.push("w-bot3.nip");
       // Config.PickitFiles.push("w-bot4.nip");
       // Config.PickitFiles.push("w-potions.nip");
-      Config.PickitFiles.push("w-RogerThat-Mule.nip");
       Config.PickitFiles.push("w-RogerThat.nip");
       Config.PickitFiles.push("w-LLD.nip");
       Config.PickRange = 40;

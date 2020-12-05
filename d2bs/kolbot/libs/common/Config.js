@@ -101,12 +101,11 @@ var Config = {
 					UpdateInventory.call();
 				}
 
-				if (me.ladder !== 0) {
-					if (!include("config/common/UpdatePickitFiles.js")) {
-						throw new Error("Failed to load common pickit files.");
-					}
-					UpdatePickitFiles.call();
+				if (!include("config/common/UpdatePickitFiles.js")) {
+					throw new Error("Failed to load common pickit files.");
 				}
+				UpdatePickitFiles.call();
+
 				if (Config.Cubing) {
 					if (!include("config/common/UpdateCubing.js")) {
 						throw new Error("Failed to load common cubing recipes.");
