@@ -302,7 +302,7 @@ function RogerThat() {
                                 npc.openMenu();
                                 maxTime = 1;
 
-                                while (maxTime <= 300) {
+                                while (maxTime <= 180) {
                                     if (!runFlag) {
                                         break;
                                     }
