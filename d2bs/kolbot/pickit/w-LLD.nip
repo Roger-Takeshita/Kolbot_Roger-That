@@ -504,7 +504,7 @@
             [type] == orb                 && [quality] >= magic # [coldskilltab] == 2 && ([skillfrozenorb] == 3 || [skillblizzard] == 3) && [fcr] >= 20 && [itemlevelreq] <= 30
     //+ MACES =================================================================================
         //- White --------------------------------------------------------------------------
-            [name] == knout               && [quality] == superior # [enhanceddamage] == 15 && [tohit] == 3 && ([sockets] == 0 || [sockets] == 5) // honor
+            // [name] == knout               && [quality] == superior # [enhanceddamage] == 15 && [tohit] == 3 && ([sockets] == 0 || [sockets] == 5) // honor
         //- Rare ---------------------------------------------------------------------------
             [name] == knout               && [quality] == rare && [flag] == ethereal # [enhanceddamage]+[plusmaxdamage] >= 100 && ([ias] >= 10 || [sockets] == 2) && [itemreplenishdurability] > 0 && [itemlevelreq] <= 30
             [name] == knout               && [quality] == rare && [flag] == ethereal # ([enhanceddamage] >= 100 ||  [itemskillonhit] == 66 && [enhanceddamage] >= 85) && ([ias] >= 10 && [sockets] >= 2 || [ias] >= 30) && ([firemaxdam]+[coldmaxdam]+[lightmaxdam]) == 0 && [itemreplenishdurability] > 0 && [itemlevelreq] <= 30
@@ -543,7 +543,7 @@
             [type] == polearm             && [quality] == rare && [flag] == ethereal # [itemreplenishdurability] > 0 && [enhanceddamage] >= 300 && [ias] >= 20 && [sockets] == 2 && [itemlevelreq] <= 49
             [type] == polearm             && [quality] == rare && [flag] != ethereal # [enhanceddamage] >= 400 && [ias] >= 20 && [sockets] >= 2 && [itemlevelreq] <= 49
         //- White --------------------------------------------------------------------------
-            [name] == grimscythe          && [quality] == superior && [flag] != ethereal # [enhanceddamage] == 15 && [tohit] == 3 && ([sockets] == 0 || [sockets] == 6)
+            // [name] == grimscythe          && [quality] == superior && [flag] != ethereal # [enhanceddamage] == 15 && [tohit] == 3 && ([sockets] == 0 || [sockets] == 6)
     //+ RINGS =================================================================================
         //- Rare ---------------------------------------------------------------------------
             [type] == ring                && [quality] == rare # [fcr] >= 10 && [maxmana] >= 60 && ([strength] >= 8 || [dexterity] >= 8 || [hpregen] >= 5) && [itemlevelreq] <= 30
