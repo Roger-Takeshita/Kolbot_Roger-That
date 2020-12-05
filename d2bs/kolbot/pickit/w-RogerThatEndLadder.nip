@@ -69,6 +69,7 @@
             [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 6 //# [maxquantity] == 2
             [name] == smallcharm          && [quality] == magic # [itemmagicbonus] == 7 //# [maxquantity] == 2
             [name] == smallcharm          && [quality] == magic # [itemmagicbonus] >= 3 && ([fireresist] >= 3 && [coldresist] >= 3 || [maxmana] >= 17 || [fireresist] >= 5 || [lightresist] >= 5 || [coldresist] >= 5 || [poisonresist] >= 5 || [fhr] == 5 || [maxhp] >= 15)
+            [name] == smallcharm          && [quality] == magic # [fireresist] >= 5 && [coldresist] >= 5
         //- Grand Charms ------------------------------------------------------------------
             [name] == grandcharm          && [quality] == magic # ([coldresist] == 15 && [lightresist] == 15)
             [name] == grandcharm          && [quality] == magic # [itemaddskilltab] == 1 && [cursesskilltab]+[druidsummoningskilltab]+[defensiveaurasskilltab] == 0 //&& [maxhp] >= 25

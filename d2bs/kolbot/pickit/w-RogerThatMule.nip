@@ -1,0 +1,46 @@
+//! =========================================================================================== //
+//!              __   _         _   _                _   ___   _      ___  ___                  //
+//!             /__  |_  |\ |  |_  |_)   /\   |     |_)   |   /   |/   |    |                   //
+//!             \_|  |_  | \|  |_  | \  /--\  |_    |    _|_  \_  |\  _|_   |                   //
+//!                                                                                             //
+//! =========================================================================================== //
+    //+ ORGANS ===============================================================================
+        [name] == diablo'shorn
+        [name] == mephisto'sbrain
+        [name] == baal'seye //'
+    //+ RUNES ================================================================================
+        // [name] == talrune
+        // [name] == thulrune
+        // [name] == ortrune
+        // [name] == amnrune
+        // [name] == ralrune
+        // [name] == tirrune
+        // [name] == solrune
+        // [name] == elrune
+        // [name] == eldrune
+        // [name] == nefrune
+        // [name] == ethrune
+        // [name] == ithrune
+        // [name] == shaelrune
+        // [name] == dolrune
+        // [name] == iorune
+        // [name] == lumrune
+        // [name] == falrune
+        // [name] == lemrune
+        // [name] == korune
+        // [name] == helrune
+        // [name] == pulrune
+        // [name] == umrune
+        // [name] == malrune
+        // [name] == istrune
+        [name] > gulrune && [name] <= zodrune
+    //+ TOKEN ================================================================================
+        [name] == twistedessenceofsuffering     // Blue   - Andariel & Duriel
+        [name] == chargedessenceofhatred        // Yellow - Mephisto
+        [name] == burningessenceofterror        // Red    - Diablo
+        [name] == festeringessenceofdestruction // Green  - Baal
+        [name] == tokenofabsolution
+    //+ KEYS =================================================================================
+        [name] == keyofhate
+        [name] == keyofterror
+        [name] == keyofdestruction

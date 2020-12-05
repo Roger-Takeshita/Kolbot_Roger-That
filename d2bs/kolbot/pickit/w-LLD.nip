@@ -200,7 +200,6 @@
             [name] == handscythe          && [quality] <= superior # [sockets] != 1 && ([skilllightningsentry] == 3)+([skillmindblast] >= 3)+([skilldragonflight] >= 3)+([skillweaponblock] >= 3)+([skillshadowmaster] >= 3)+([skillbladeshield] >= 3) == 3
     //+ CHARMS ================================================================================
         //- Small Charm --------------------------------------------------------------------
-            [name] == smallcharm          && [quality] == magic # [maxhp] == 10 && [defense] >= 3 && [itemlevelreq] <= 15
             [name] == smallcharm          && [quality] == magic # [maxhp] >= 12 && [maxdamage] == 3 && [itemlevelreq] <= 30
             [name] == smallcharm          && [quality] == magic # [maxhp] == 15 && ([lightresist] >= 7 || [coldresist] >= 7 || [fireresist] >= 7 || [poisonresist] >= 7) && [itemlevelreq] <= 18
             [name] == smallcharm          && [quality] == magic # [maxhp] >= 15 && [coldmindam] >= 2 && [coldmaxdam] >= 4 && [itemlevelreq] <= 30
@@ -219,7 +218,6 @@
             [name] == smallcharm          && [quality] == magic # [fhr] == 5 && ([maxmana] >= 12 || [fireresist] == 9 || [coldresist] == 9 || [lightresist] == 9 || ([maxdamage] >= 3 && [tohit] >= 15)) && [itemlevelreq] <= 30
             [name] == smallcharm          && [quality] == magic # ([maxdamage] >= 1 && [tohit] >= 17 || [plusdefense] == 20) && [maxhp] == 15 && [itemlevelreq] <= 30
             [name] == smallcharm          && [quality] == magic # [strength] == 2 && [maxmana] == 7 && [itemlevelreq] <= 18
-            [name] == smallcharm          && [quality] == magic # ([strength] == 1 || [dexterity] == 1) && [maxmana] == 7 && [itemlevelreq] <= 12
         //- Large Charm --------------------------------------------------------------------
             // [name] == largecharm          && [quality] == magic # [maxhp] == 15 && [itemlevelreq] <= 9
             [name] == largecharm          && [quality] == magic # [maxdamage] == 6 && [frw] == 5
