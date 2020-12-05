@@ -1874,9 +1874,6 @@ MainLoop:
 		return mode === 0 ? contents : true;
 	},
 
-	errorConsolePrint: true,
-	screenshotErrors: false,
-
 	// Report script errors to logs/ScriptErrorLog.txt
 	errorReport: function (error, script) {
 		var i, date, dateString, msg, oogmsg, filemsg, source, stack,
@@ -1922,15 +1919,18 @@ MainLoop:
 			}
 		}
 
-		if (this.errorConsolePrint) {
+		if (Config.D2BotPrintScriptError) {
 			D2Bot.printToConsole(oogmsg, 10);
 		}
 
 		showConsole();
 		print(msg);
-		this.fileAction("logs/ScriptErrorLog.txt", 2, filemsg);
 
-		if (this.screenshotErrors) {
+		if (Config.D2BotLogScriptError) {
+			this.fileAction("logs/ScriptErrorLog.txt", 2, filemsg);
+		}
+
+		if (Config.D2BotScreenShotScriptError) {
 			takeScreenshot();
 			delay(500);
 		}
