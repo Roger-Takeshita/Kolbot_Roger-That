@@ -229,7 +229,6 @@ var Attack = {
 		}
 
 		if (!target) {
-			if (!Config.D2BotPrintScriptError) return false;
 			throw new Error("Attack.kill: Target not found");
 		}
 
@@ -299,7 +298,6 @@ var Attack = {
 		}
 
 		if (target.hp > 0 && target.mode !== 0 && target.mode !== 12) {
-			if (!Config.D2BotPrintScriptError) return false;
 			throw new Error("Failed to kill " + target.name + errorInfo);
 		}
 
@@ -437,7 +435,6 @@ var Attack = {
 			}
 
 			if (!boss) {
-				if (!Config.D2BotPrintScriptError) return false;
 				throw new Error("Attack.clear: " + bossId + " not found");
 			}
 
@@ -901,11 +898,12 @@ var Attack = {
 				room = getRoom(me.x, me.y);
 			}
 
-			if (Config.MFHelper && Config.MFHelper.BreakClearLevel && Config.Leader !== "") {
+			if (Loader.scriptName() === "MFHelper" && Config.MFHelper.BreakClearLevel && Config.Leader !== "") {
 				var leader = Misc.findPlayer(Config.Leader);
 
-				if (leader.area !== me.area && (!leader.inTown || Misc.getPlayerAct(Config.Leader) !== me.act)) {
+				if (leader && leader.area !== me.area && !leader.inTown) {
 					me.overhead("break the clearing in " + getArea().name);
+
 					return true;
 				}
 			}

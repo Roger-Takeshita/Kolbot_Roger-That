@@ -849,6 +849,10 @@ var Misc = {
 	getPlayerAct: function (player) {
 		var unit = this.findPlayer(player);
 
+		if (!unit) {
+			return false;
+		}
+
 		if (unit.area <= 39) {
 			return 1;
 		}
@@ -1919,15 +1923,11 @@ MainLoop:
 		}
 
 		if (this.errorConsolePrint) {
-			if (Config.D2BotPrintScriptError) {
-				D2Bot.printToConsole(oogmsg, 10);
-			}
+			D2Bot.printToConsole(oogmsg, 10);
 		}
 
-		if (Config.D2BotPrintScriptError) {
-			showConsole();
-			print(msg);
-		}
+		showConsole();
+		print(msg);
 		this.fileAction("logs/ScriptErrorLog.txt", 2, filemsg);
 
 		if (this.screenshotErrors) {
