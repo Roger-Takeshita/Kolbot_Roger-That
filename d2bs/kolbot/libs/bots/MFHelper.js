@@ -180,9 +180,6 @@ MainLoop:
 					} else {
 						print("Failed to use portal.");
 					}
-				} else if (command.indexOf("MFHelper, you are free") > -1) {
-					me.overhead("End of MFHelper");
-					return true;
 				} else {
 					for (i = 0; i < 5; i += 1) {
 						if (Pather.usePortal(player.area, player.name)) {
