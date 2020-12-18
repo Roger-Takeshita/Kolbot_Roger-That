@@ -1,0 +1,8 @@
+{
+    "realm": "useast",
+    "password": "password",
+    "accounts": [
+        "your_account_1",
+        "your_account_2"
+    ]
+}

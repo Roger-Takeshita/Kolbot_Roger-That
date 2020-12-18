@@ -1,6 +1,7 @@
 .gitignore
 .prettierignore
 d2bs\kolbot\data\secure
+d2bs\kolbot\data\accounts.json
 d2bs\kolbot\mules
 D2_RogerThat_BKP.txt
 d2bs\d2bs.ini
