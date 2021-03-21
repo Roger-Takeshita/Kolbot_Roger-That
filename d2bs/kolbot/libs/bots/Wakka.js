@@ -280,7 +280,7 @@ function Wakka() {
 
 				if (portal) {
 					if (!safeTP) {
-						delay(5000);
+						delay(7000);
 					}
 
 					//Pather.usePortal(108, leader);
@@ -310,7 +310,7 @@ function Wakka() {
 						break;
 					}
 
-					if (tick && getTickCount() - tick >= 5000) {
+					if (tick && getTickCount() - tick >= 2000) {
 						vizClear = true;
 						tick = false;
 
@@ -333,7 +333,7 @@ function Wakka() {
 						break;
 					}
 
-					if (tick && getTickCount() - tick >= 7000) {
+					if (tick && getTickCount() - tick >= 2000) {
 						seisClear = true;
 						tick = false;
 
@@ -397,7 +397,7 @@ function Wakka() {
 				me.revive();
 			}
 
-		delay(1000);
+		delay(500);
 		}
 	} else {
 		throw new Error("Empty game.");
