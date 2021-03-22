@@ -13,7 +13,7 @@ function AutoBaalRogerThat() {
 		// internal variables
 		safeMsg = ["safe", "throne clear", "leechers can come", "tp is up", "1 clear", "come"], // safe message - casing doesn't matter
 		baalMsg = ["baal"], // baal message - casing doesn't matter
-		hotMsg = ["hot", "warm", "dangerous", "lethal", "chegay"]; // used for shrine hunt
+		hotMsg = ["go", "chegay", "hot", "warm", "dangerous", "lethal"]; // used for shrine hunt
 	var shrineFlag = false;
 
 	leader = Config.Leader;
@@ -194,12 +194,13 @@ function AutoBaalRogerThat() {
 					}
 				}
 
-					Town.goToTown();
+				Town.goToTown();
 				if (!shrineFlag) {
 					Pather.useWaypoint(5);
 
 					for (i = 5; i < 8; i += 1) {
 						if (Misc.getShrinesInArea(i, 15, true)) {
+							shrineFlag = true;
 							break;
 						}
 					}
