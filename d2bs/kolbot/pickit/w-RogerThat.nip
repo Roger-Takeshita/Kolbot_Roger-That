@@ -541,7 +541,7 @@
             [name] == grandcrown          && [quality] == unique && [flag] == ethereal # [itemgoldbonus] == 100 // eth crown of thieves
             // [name] == totemicmask         && [quality] == unique # [enhanceddefense] == 200 // jalal's mane
             [name] == skyspirit           && [quality] == unique # [enhanceddefense] == 150 && [energy] == 30 && [passivefirepierce] == 20 && [fireresist] == 25 // ravenlore
-            [name] == earthspirit         && [quality] == unique # [enhanceddefense] == 190 && [druidskills] == 2 && [fireresist] == 40 && [itemabsorblight] == 14 && [itemabsorbcoldpercent] == 25 // spirit keeper
+            [name] == earthspirit         && [quality] == unique # [enhanceddefense] == 190 && [druidskills] == 2 && [fireresist] == 40 && [itemabsorblight] == 14 && [itemabsorbcold] == 25 // spirit keeper
             [name] == bloodspirit         && [quality] == unique # [enhanceddefense] == 140 && [itemtohitpercent] == 120 && [shapeshiftingskilltab] == 4 && [skillferalrage] == 2 && [lifeleech] == 10 // cerebus' bite
             // [name] == slayerguard         && [quality] == unique # [enhanceddefense] == 200 // arreat's face
             [name] == furyvisor           && [quality] == unique && [flag] != ethereal # [warcriesskilltab] == 3 && [skillwerewolf]+[skilllycanthropy]+[skillferalrage] == 18 && [strength]+[dexterity]+[vitality] >= 45 // wolfhowl
@@ -554,8 +554,8 @@
             [name] == demonhead           && [quality] == unique # [strength] >= 30 && [lifeleech] >= 10 //&& [enhanceddefense] >= 150 // andariel's visage
             [name] == demonhead           && [quality] == unique && [flag] == ethereal # [strength] >= 25 && [lifeleech] >= 8 && [enhanceddefense] >= 100 // eth-andariel's visage - max 30 str, 10% ll and 150% edef
             [name] == diadem              && [quality] == unique # [passiveltngmastery] >= 10 && [passiveltngpierce] >= 15 // griffon's eye
-            [name] == spiredhelm          && [quality] == unique # [passivecoldmastery] == 15 // nightwing's veil
-            [name] == corona              && [quality] == unique # [coldresist] >= 20 && [lightresist] >= 20// crown of ages
+            [name] == spiredhelm          && [quality] == unique # [passivecoldmastery] >= 15 && [dexterity] >= 20 && [itemabsorbcold] >= 9 // nightwing's veil
+            [name] == corona              && [quality] == unique # [damageresist] == 15 && [sockets] == 2 // crown of ages
             [name] == bonevisage          && [quality] == unique # [sockets] == 2 && [strength] == 35 // giant skull
         //- Upgrades ----------------------------------------------------------------------
             [name] == armet               && [quality] == unique # [itemmagicbonus] == 50 // stealskull x1
