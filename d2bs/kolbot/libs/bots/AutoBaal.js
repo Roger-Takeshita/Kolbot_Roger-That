@@ -14,6 +14,7 @@ function AutoBaal() {
 		safeMsg = ["safe", "throne clear", "leechers can come", "tp is up", "1 clear", "come"], // safe message - casing doesn't matter
 		baalMsg = ["baal"], // baal message - casing doesn't matter
 		hotMsg = ["hot", "warm", "dangerous", "lethal", "chegay"]; // used for shrine hunt
+	var shrineFlag = false;
 
 	addEventListener('chatmsg', // chat event, listen to what leader says
 		function (nick, msg) { // handler function
@@ -190,17 +191,20 @@ function AutoBaal() {
 				Precast.doPrecast(true);
 
 				for (i = 4; i > 1; i -= 1) {
-					if (Misc.getShrinesInArea(i, 15, true)) {
+					shrineFlag = Misc.getShrinesInArea(i, 15);
+					if (shrineFlag) {
 						break;
 					}
+
 				}
 
-				if (i === 1) {
+				if (i === 1 && !shrineFlag) {
 					Town.goToTown();
 					Pather.useWaypoint(5);
 
 					for (i = 5; i < 8; i += 1) {
-						if (Misc.getShrinesInArea(i, 15, true)) {
+						shrineFlag = Misc.getShrinesInArea(i, 15);
+						if (shrineFlag) {
 							break;
 						}
 					}
@@ -208,7 +212,6 @@ function AutoBaal() {
 
 				Town.goToTown(5);
 				Town.move("portalspot");
-
 				hotCheck = false;
 			}
 

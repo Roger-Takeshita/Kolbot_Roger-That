@@ -25,30 +25,30 @@ function LoadConfig() {
    //! SCRIPTS -------------------------------------------------------------------------
       Scripts.Wakka             = true;           // Walking chaos leecher with auto leader assignment, stays at safe distance from the leader
       Scripts.AutoBaalRogerThat = true;           // Set true if you want to leech at the baal tp
-         Config.AutoBaal.FindShrine = 2;          // false = disabled, 1 = search after hot tp message, 2 = search as soon as leader is found
+         Config.AutoBaal.FindShrine = 1;          // false = disabled, 1 = search after hot tp message, 2 = search as soon as leader is found
          Config.AutoBaal.LeechSpot = [15115, 5050];
          Config.AutoBaal.LongRangeSupport = false;
    //! INVENTORY SETTINGS --------------------------------------------------------------
       //+ Inventory 1 ---------------------------------------------------------------
-         Config.Inventory1[0]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory1[1]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory1[2]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory1[3]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory1[0]       = [1,0,0,0,0,0,0,0,0,0];
+         Config.Inventory1[1]       = [1,0,0,0,0,0,0,0,0,0];
+         Config.Inventory1[2]       = [1,0,0,0,0,0,0,0,0,0];
+         Config.Inventory1[3]       = [0,0,0,0,0,0,0,0,0,0];
       //+ Inventory 2 ---------------------------------------------------------------
-         Config.Inventory2[0]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory2[1]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory2[2]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory2[3]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory2[0]       = [1,1,1,1,1,0,0,0,0,0];
+         Config.Inventory2[1]       = [1,1,1,1,1,0,0,0,0,0];
+         Config.Inventory2[2]       = [1,1,1,1,1,0,0,0,0,0];
+         Config.Inventory2[3]       = [1,1,1,1,1,0,0,0,0,0];
       //+ Inventory 3 ---------------------------------------------------------------
-         Config.Inventory3[0]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory3[1]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory3[2]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory3[3]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory3[0]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory3[1]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory3[2]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory3[3]       = [0,0,0,0,0,0,0,0,0,0];
       //+ Inventory 4 ---------------------------------------------------------------
-         Config.Inventory4[0]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory4[1]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory4[2]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory4[3]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory4[0]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory4[1]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory4[2]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory4[3]       = [0,0,0,0,0,0,0,0,0,0];
       //+ Inventory 5 ---------------------------------------------------------------
          Config.Inventory5[0]       = [0,0,0,0,0,0,0,0,0,0];
          Config.Inventory5[1]       = [0,0,0,0,0,0,0,0,0,0];
@@ -70,10 +70,10 @@ function LoadConfig() {
          Config.Inventory8[2]       = [0,0,0,0,0,0,0,0,0,0];
          Config.Inventory8[3]       = [0,0,0,0,0,0,0,0,0,0];
       //+ Generic Inventory ---------------------------------------------------------
-         Config.InventoryGeneric[0] = [1,1,1,1,1,1,1,1,1,1];
-         Config.InventoryGeneric[1] = [1,1,1,1,1,1,1,1,1,1];
-         Config.InventoryGeneric[2] = [1,1,1,1,1,1,1,1,1,1];
-         Config.InventoryGeneric[3] = [1,1,1,1,1,1,1,1,1,1];
+         Config.InventoryGeneric[0] = [0,0,0,0,0,0,0,0,0,0];
+         Config.InventoryGeneric[1] = [0,0,0,0,0,0,0,0,0,0];
+         Config.InventoryGeneric[2] = [0,0,0,0,0,0,0,0,0,0];
+         Config.InventoryGeneric[3] = [0,0,0,0,0,0,0,0,0,0];
 
       Config.BeltColumn   = ["hp", "mp", "mp", "rv"];
       Config.MinColumn    = [3, 3, 3, 0];
@@ -126,7 +126,7 @@ function LoadConfig() {
       Config.LastMessage = "";                           // Message or array of messages to say at the end of the run. Use $nextgame to say next game - "Next game: $nextgame" (works with lead entry point)
       Config.TeleSwitch  = false;                        // Switch to secondary (non-primary) slot when teleporting more than 5 nodes.
       Config.MiniShopBot = true;                         // Scan items in NPC shops.
-      Config.ScanShrines = [15, 2, 3];                   // 15 = XP, 2 = Health, 3 = Mana
+      Config.ScanShrines = [];                           // 15 = XP, 2 = Health, 3 = Mana
       Config.WalkIfManaLessThan = 10;
    //! MF SWITCH -----------------------------------------------------------------------
       Config.MFSwitchPercent =  0;                       // Boss life % to switch to non-primary weapon slot. Set to 0 to disable.
@@ -198,10 +198,10 @@ function LoadConfig() {
       Config.KillDclone = true;                          // Go to Palace Cellar 3 and try to kill Diablo Clone. Pointless if you already have Annihilus.
       Config.DCloneQuit = 0;                             // 1 = quit when Diablo walks, 2 = quit on soj sales, 0 = disabled
    //! PUBLIC GAMES OPTIONS ------------------------------------------------------------
-      Config.LocalChat.Enabled = false;                  // enable the LocalChat system
+      Config.LocalChat.Enabled = true;                  // enable the LocalChat system
          Config.LocalChat.Toggle = false;                // optional, set to KEY value to toggle through modes 0, 1, 2
          Config.LocalChat.Mode = 0;                      // 0 = disabled, 1 = chat from 'say' (recommended), 2 = all chat (for manual play)
-         Config.PublicMode = 3;                          // 1 = invite and accept, 2 = accept only, 3 = invite only, 0 = disable
+         Config.PublicMode = 2;                          // 1 = invite and accept, 2 = accept only, 3 = invite only, 0 = disable
    //! CUBING / RUNEWORDS --------------------------------------------------------------
       Config.Cubing = false;                             // config/common/UpdateCubing.js
          //+ CRAFT ------------------------------------------------------------------

@@ -26,25 +26,25 @@ function LoadConfig() {
       Scripts.RogerThat = true;
    //! INVENTORY SETTINGS --------------------------------------------------------------
       //+ Inventory 1 ---------------------------------------------------------------
-         Config.Inventory1[0]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory1[1]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory1[2]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory1[3]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory1[0]       = [1,1,1,1,1,1,1,1,0,0];
+         Config.Inventory1[1]       = [1,1,1,1,1,1,1,1,0,0];
+         Config.Inventory1[2]       = [1,1,1,1,1,1,1,1,0,0];
+         Config.Inventory1[3]       = [1,1,1,1,1,1,1,1,0,0];
       //+ Inventory 2 ---------------------------------------------------------------
-         Config.Inventory2[0]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory2[1]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory2[2]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory2[3]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory2[0]       = [1,1,1,1,1,1,1,1,0,0];
+         Config.Inventory2[1]       = [1,1,1,1,1,1,1,1,0,0];
+         Config.Inventory2[2]       = [1,1,1,1,1,1,1,1,0,0];
+         Config.Inventory2[3]       = [1,1,1,1,1,1,1,1,0,0];
       //+ Inventory 3 ---------------------------------------------------------------
-         Config.Inventory3[0]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory3[1]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory3[2]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory3[3]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory3[0]       = [1,1,1,1,1,1,1,0,0,0];
+         Config.Inventory3[1]       = [1,1,1,1,1,1,1,0,0,0];
+         Config.Inventory3[2]       = [1,1,1,1,1,1,1,0,0,0];
+         Config.Inventory3[3]       = [1,1,1,1,1,1,1,0,0,0];
       //+ Inventory 4 ---------------------------------------------------------------
-         Config.Inventory4[0]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory4[1]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory4[2]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory4[3]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory4[0]       = [1,1,1,1,1,1,1,0,0,0];
+         Config.Inventory4[1]       = [1,1,1,1,1,1,1,0,0,0];
+         Config.Inventory4[2]       = [1,1,1,1,1,1,1,0,0,0];
+         Config.Inventory4[3]       = [1,1,1,1,1,1,1,0,0,0];
       //+ Inventory 5 ---------------------------------------------------------------
          Config.Inventory5[0]       = [0,0,0,0,0,0,0,0,0,0];
          Config.Inventory5[1]       = [0,0,0,0,0,0,0,0,0,0];

@@ -24,7 +24,7 @@ function LoadConfig() {
          Config.RogerThatInventory8 = ["TMFSorc-VII"];
    //! SCRIPTS -------------------------------------------------------------------------
       Scripts.DiabloHelper = true;
-         Config.DiabloHelper.Wait = 240;
+         Config.DiabloHelper.Wait = 900;
          Config.DiabloHelper.Entrance = true;
          Config.DiabloHelper.SkipTP = false;
          Config.DiabloHelper.SkipIfBaal = true;
@@ -33,32 +33,32 @@ function LoadConfig() {
          Config.DiabloHelper.RecheckSeals = true;
          Config.Diablo.SealOrder = ["vizier", "seis", "infector"];
       Scripts.BaalHelper = true;
-         Config.BaalHelper.Wait = 240;
+         Config.BaalHelper.Wait = 700;
          Config.BaalHelper.SoulQuit = false;
          Config.BaalHelper.DollQuit = false;
          Config.BaalHelper.KillBaal = true;
          Config.BaalHelper.SkipTP = false;
    //! INVENTORY SETTINGS --------------------------------------------------------------
       //+ Inventory 1 ---------------------------------------------------------------
-         Config.Inventory1[0]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory1[1]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory1[2]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory1[3]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory1[0]       = [1,1,1,1,1,1,1,1,0,0];
+         Config.Inventory1[1]       = [1,1,1,1,1,1,1,1,0,0];
+         Config.Inventory1[2]       = [1,1,1,1,1,1,1,1,0,0];
+         Config.Inventory1[3]       = [1,1,1,1,1,1,1,1,0,0];
       //+ Inventory 2 ---------------------------------------------------------------
-         Config.Inventory2[0]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory2[1]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory2[2]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory2[3]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory2[0]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory2[1]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory2[2]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory2[3]       = [0,0,0,0,0,0,0,0,0,0];
       //+ Inventory 3 ---------------------------------------------------------------
-         Config.Inventory3[0]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory3[1]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory3[2]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory3[3]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory3[0]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory3[1]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory3[2]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory3[3]       = [0,0,0,0,0,0,0,0,0,0];
       //+ Inventory 4 ---------------------------------------------------------------
-         Config.Inventory4[0]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory4[1]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory4[2]       = [1,1,1,1,1,1,0,0,0,0];
-         Config.Inventory4[3]       = [1,1,1,1,1,1,0,0,0,0];
+         Config.Inventory4[0]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory4[1]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory4[2]       = [0,0,0,0,0,0,0,0,0,0];
+         Config.Inventory4[3]       = [0,0,0,0,0,0,0,0,0,0];
       //+ Inventory 5 ---------------------------------------------------------------
          Config.Inventory5[0]       = [0,0,0,0,0,0,0,0,0,0];
          Config.Inventory5[1]       = [0,0,0,0,0,0,0,0,0,0];
@@ -80,10 +80,10 @@ function LoadConfig() {
          Config.Inventory8[2]       = [0,0,0,0,0,0,0,0,0,0];
          Config.Inventory8[3]       = [0,0,0,0,0,0,0,0,0,0];
       //+ Generic Inventory ---------------------------------------------------------
-         Config.InventoryGeneric[0] = [1,1,1,1,1,1,1,1,1,1];
-         Config.InventoryGeneric[1] = [1,1,1,1,1,1,1,1,1,1];
-         Config.InventoryGeneric[2] = [1,1,1,1,1,1,1,1,1,1];
-         Config.InventoryGeneric[3] = [1,1,1,1,1,1,1,1,1,1];
+         Config.InventoryGeneric[0] = [0,0,0,0,0,0,0,0,0,0];
+         Config.InventoryGeneric[1] = [0,0,0,0,0,0,0,0,0,0];
+         Config.InventoryGeneric[2] = [0,0,0,0,0,0,0,0,0,0];
+         Config.InventoryGeneric[3] = [0,0,0,0,0,0,0,0,0,0];
 
       Config.BeltColumn   = ["hp", "mp", "mp", "rv"];
       Config.MinColumn    = [3, 3, 3, 0];
@@ -98,7 +98,7 @@ function LoadConfig() {
       //+ Potion settings -----------------------------------------------------------
          Config.UseHP        = 85;                       // Drink a healing potion if life is under designated percent.
          Config.UseRejuvHP   = 65;                       // Drink a rejuvenation potion if life is under designated percent.
-         Config.UseMP        = 30;                       // Drink a mana potion if mana is under designated percent.
+         Config.UseMP        = 50;                       // Drink a mana potion if mana is under designated percent.
          Config.UseMercHP    = 85;                       // Give a healing potion to your merc if his/her life is under designated percent.
          Config.UseMercRejuv = 50;                       // Give a rejuvenation potion to your merc if his/her life is under designated percent.
          Config.HPBuffer     =  0;                       // Number of healing potions to keep in inventory.
@@ -185,7 +185,7 @@ function LoadConfig() {
          Config.CubeRepair = false;                      // Repair weapons with Ort and armor with Ral rune. Don't use it if you don't understand the risk of losing items.
          Config.RepairPercent = 40;                      // Durability percent of any equipped item that will trigger repairs.
       //+ Gambling config -----------------------------------------------------------
-         Config.Gamble = false;
+         Config.Gamble = true;
             Config.GambleGoldStart = 2000000;
             Config.GambleGoldStop  =  500000;
             Config.GambleItems.push("Amulet");
@@ -208,28 +208,28 @@ function LoadConfig() {
       Config.KillDclone = true;                          // Go to Palace Cellar 3 and try to kill Diablo Clone. Pointless if you already have Annihilus.
       Config.DCloneQuit = 0;                             // 1 = quit when Diablo walks, 2 = quit on soj sales, 0 = disabled
    //! PUBLIC GAMES OPTIONS ------------------------------------------------------------
-      Config.LocalChat.Enabled = false;                  // enable the LocalChat system
+      Config.LocalChat.Enabled = true;                   // enable the LocalChat system
          Config.LocalChat.Toggle = false;                // optional, set to KEY value to toggle through modes 0, 1, 2
          Config.LocalChat.Mode = 0;                      // 0 = disabled, 1 = chat from 'say' (recommended), 2 = all chat (for manual play)
-         Config.PublicMode = 3;                          // 1 = invite and accept, 2 = accept only, 3 = invite only, 0 = disable
+         Config.PublicMode = 2;                          // 1 = invite and accept, 2 = accept only, 3 = invite only, 0 = disable
    //! CUBING / RUNEWORDS --------------------------------------------------------------
-      Config.Cubing = false;                             // config/common/UpdateCubing.js
+      Config.Cubing = true;                              // config/common/UpdateCubing.js
          //+ CRAFT ------------------------------------------------------------------
             Config.Recipes.push([Recipe.Caster.Amulet]);                              // Craft Caster Amulet
             Config.Recipes.push([Recipe.Blood.Ring]);                                 // Craft Blood Ring
-            Config.Recipes.push([Recipe.Caster.Belt,        "Sharkskin Belt"]);       // Craft Caster Sharkskin Belt
-            Config.Recipes.push([Recipe.Caster.Belt,      "Vampirefang Belt"]);       // Craft Caster Vampirefang Belt
+            // Config.Recipes.push([Recipe.Caster.Belt,        "Sharkskin Belt"]);       // Craft Caster Sharkskin Belt
+            // Config.Recipes.push([Recipe.Caster.Belt,      "Vampirefang Belt"]);       // Craft Caster Vampirefang Belt
             Config.Recipes.push([Recipe.Blood.Gloves,     "Sharkskin Gloves"]);       // Craft Blood Sharkskin Gloves
             Config.Recipes.push([Recipe.Blood.Gloves,   "Vampirebone Gloves"]);       // Craft Blood Vampirebone Gloves
-            Config.Recipes.push([Recipe.HitPower.Gloves,         "Vambraces"]);       // Craft Hit Power Vambraces
-            Config.Recipes.push([Recipe.HitPower.Gloves,      "Chain Gloves"]);       // Craft Hit Power Chain Gloves
-            Config.Recipes.push([Recipe.HitPower.Gloves,     "Heavy Bracers"]);       // Craft Hit Power Heavy Bracers
-            Config.Recipes.push([Recipe.Blood.Helm,                  "Armet"]);       // Craft Blood Armet
+            // Config.Recipes.push([Recipe.HitPower.Gloves,         "Vambraces"]);       // Craft Hit Power Vambraces
+            // Config.Recipes.push([Recipe.HitPower.Gloves,      "Chain Gloves"]);       // Craft Hit Power Chain Gloves
+            // Config.Recipes.push([Recipe.HitPower.Gloves,     "Heavy Bracers"]);       // Craft Hit Power Heavy Bracers
+            // Config.Recipes.push([Recipe.Blood.Helm,                  "Armet"]);       // Craft Blood Armet
          //+ OTHERS -----------------------------------------------------------------
             Config.Recipes.push([Recipe.Reroll.Magic,          "Grand Charm"]);       // Reroll magic Grand Charm (ilvl 91+)
-            Config.Recipes.push([Recipe.Reroll.Magic,               "Diadem"]);       // Reroll magic Diadem
-            Config.Recipes.push([Recipe.Reroll.Rare,                "Diadem"]);       // Reroll rare Diadem
-            Config.Recipes.push([Recipe.Token]);                                      // Make Token of Absolution
+            // Config.Recipes.push([Recipe.Reroll.Magic,               "Diadem"]);       // Reroll magic Diadem
+            // Config.Recipes.push([Recipe.Reroll.Rare,                "Diadem"]);       // Reroll rare Diadem
+            // Config.Recipes.push([Recipe.Token]);                                      // Make Token of Absolution
       Config.MakeRunewords = false;                      // config/common/UpdateMakeRunewords.js
    //! MONSTER SKIP CONFIG -------------------------------------------------------------
       Config.SkipImmune  = [];

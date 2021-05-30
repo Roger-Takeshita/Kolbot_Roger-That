@@ -31,9 +31,12 @@ function LoadConfig() {
          Config.Diablo.Entrance = true;
          Config.Diablo.SealOrder = ["vizier", "seis", "infector"];
       Scripts.Baal = true;
-         Config.Baal.HotTPMessage = "";
-         Config.Baal.SafeTPMessage = "";
-         Config.Baal.BaalMessage = "";
+         Config.Baal.XPShrine = false;
+         Config.Baal.BaalMessage = false;
+            Config.Baal.XPShrineMessage = "go";
+            Config.Baal.HotTPMessage = "chegay";
+            Config.Baal.SafeTPMessage = "come";
+            Config.Baal.BaalMessage = "baal";
          Config.Baal.SoulQuit = false;
          Config.Baal.DollQuit = false;
          Config.Baal.KillBaal = true;

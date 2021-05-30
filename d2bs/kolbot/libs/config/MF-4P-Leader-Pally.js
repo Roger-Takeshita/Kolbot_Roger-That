@@ -35,9 +35,12 @@ function LoadConfig() {
       Scripts.Frozenstein = true;
       Scripts.Snapchip = true;
       Scripts.Baal = true;
-         Config.Baal.HotTPMessage = "";
-         Config.Baal.SafeTPMessage = "";
-         Config.Baal.BaalMessage = "";
+         Config.Baal.XPShrine = false;
+         Config.Baal.BaalMessage = false;
+            Config.Baal.XPShrineMessage = "go";
+            Config.Baal.HotTPMessage = "chegay";
+            Config.Baal.SafeTPMessage = "come";
+            Config.Baal.BaalMessage = "baal";
          Config.Baal.SoulQuit = false;
          Config.Baal.DollQuit = false;
          Config.Baal.KillBaal = true;
@@ -67,10 +70,10 @@ function LoadConfig() {
       Scripts.ClearAnyArea = false;                      // Clear any area. Uses Config.ClearType to determine which type of monsters to kill.
          Config.ClearAnyArea.AreaList = [128, 129, 130]; // List of area ids to clear. See sdk/areas.txt
    //! INVENTORY SETTINGS --------------------------------------------------------------
-      Config.Inventory[0] = [1,1,1,1,1,1,0,0,0,0];
-      Config.Inventory[1] = [1,1,1,1,1,1,0,0,0,0];
-      Config.Inventory[2] = [1,1,1,1,1,1,0,0,0,0];
-      Config.Inventory[3] = [1,1,1,1,1,1,0,0,0,0];
+      Config.Inventory[0] = [1,1,1,1,1,1,1,1,0,0];
+      Config.Inventory[1] = [1,1,1,1,1,1,1,1,0,0];
+      Config.Inventory[2] = [1,1,1,1,1,1,1,1,0,0];
+      Config.Inventory[3] = [1,1,1,1,1,1,1,1,0,0];
 
       Config.BeltColumn   = ["hp", "mp", "rv", "rv"];
       Config.MinColumn    = [3, 3, 0, 0];
@@ -193,7 +196,7 @@ function LoadConfig() {
    //! PUBLIC GAMES OPTIONS ------------------------------------------------------------
       Config.LocalChat.Enabled = true;                   // enable the LocalChat system
          Config.LocalChat.Toggle = false;                // optional, set to KEY value to toggle through modes 0, 1, 2
-         Config.LocalChat.Mode = 1;                      // 0 = disabled, 1 = chat from 'say' (recommended), 2 = all chat (for manual play)
+         Config.LocalChat.Mode = 0;                      // 0 = disabled, 1 = chat from 'say' (recommended), 2 = all chat (for manual play)
          Config.PublicMode = 3;                          // 1 = invite and accept, 2 = accept only, 3 = invite only, 0 = disable
       Config.Greetings = [];                             // Example: ["Hello, $name (level $level $class)"]
       Config.DeathMessages = [];                         // Example: ["Watch out for that $killer, $name!"]
@@ -213,7 +216,7 @@ function LoadConfig() {
             Config.Recipes.push([Recipe.Blood.Ring]);                                 // Craft Blood Ring
             // Config.Recipes.push([Recipe.Caster.Belt,        "Sharkskin Belt"]);       // Craft Caster Sharkskin Belt
             // Config.Recipes.push([Recipe.Caster.Belt,      "Vampirefang Belt"]);       // Craft Caster Vampirefang Belt
-            // Config.Recipes.push([Recipe.Blood.Gloves,     "Sharkskin Gloves"]);       // Craft Blood Sharkskin Gloves
+            Config.Recipes.push([Recipe.Blood.Gloves,     "Sharkskin Gloves"]);       // Craft Blood Sharkskin Gloves
             Config.Recipes.push([Recipe.Blood.Gloves,   "Vampirebone Gloves"]);       // Craft Blood Vampirebone Gloves
             // Config.Recipes.push([Recipe.HitPower.Gloves,         "Vambraces"]);       // Craft Hit Power Vambraces
             // Config.Recipes.push([Recipe.HitPower.Gloves,      "Chain Gloves"]);       // Craft Hit Power Chain Gloves

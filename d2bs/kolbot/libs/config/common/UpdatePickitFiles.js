@@ -8,7 +8,7 @@ function UpdatePickitFiles() {
 
         Config.PickitFiles.push("w-RogerThatEndLadder.nip");
     } else {
-        if (Config.RogerThatInventoryFlag) {
+        if (me.profile.includes("Mule") && Config.RogerThatInventoryFlag) {
             Config.PickitFiles.push("w-RogerThatMule.nip");
         }
     }

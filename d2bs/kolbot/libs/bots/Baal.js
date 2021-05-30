@@ -226,7 +226,7 @@ function Baal() {
 		this.announce();
 		Pather.moveTo(15118, 5002);
 		Pather.makePortal();
-		if (Config.Baal.HotTPMessage !== "") {
+		if ((Config.Baal.XPShrine || Config.Baal.BaalMessage) && Config.Baal.HotTPMessage != "") {
 			say(Config.Baal.HotTPMessage);
 		}
 		Attack.clear(15);
@@ -237,7 +237,7 @@ function Baal() {
 	if (Config.PublicMode) {
 		Pather.moveTo(15118, 5045);
 		Pather.makePortal();
-		if (Config.Baal.SafeTPMessage !== "") {
+		if ((Config.Baal.XPShrine || Config.Baal.BaalMessage) && Config.Baal.SafeTPMessage != "") {
 			say(Config.Baal.SafeTPMessage);
 		}
 		Precast.doPrecast(true);
@@ -310,7 +310,7 @@ MainLoop:
 
 	if (Config.Baal.KillBaal) {
 		if (Config.PublicMode) {
-			if (Config.Baal.BaalMessage !== "") {
+			if ((Config.Baal.XPShrine || Config.Baal.BaalMessage) && Config.Baal.BaalMessage != "") {
 				say(Config.Baal.BaalMessage);
 			}
 		}

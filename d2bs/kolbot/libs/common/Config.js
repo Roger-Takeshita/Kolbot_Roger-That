@@ -522,9 +522,12 @@ var Config = {
 	},
 	Baal: {
 		WaitPlayerCount: 0,
+		XPShrine: false,
+		BaalMessage: false,
 		DollQuit: false,
 		SoulQuit: false,
 		KillBaal: false,
+		XPShrineMessage: "",
 		HotTPMessage: "",
 		SafeTPMessage: "",
 		BaalMessage: ""

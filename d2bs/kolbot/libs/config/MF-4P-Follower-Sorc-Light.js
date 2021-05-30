@@ -68,10 +68,10 @@ function LoadConfig() {
       Scripts.ClearAnyArea = false;                      // Clear any area. Uses Config.ClearType to determine which type of monsters to kill.
          Config.ClearAnyArea.AreaList = [128, 129, 130]; // List of area ids to clear. See sdk/areas.txt
    //! INVENTORY SETTINGS --------------------------------------------------------------
-      Config.Inventory[0] = [1,1,1,1,1,1,0,0,0,0];
-      Config.Inventory[1] = [1,1,1,1,1,1,0,0,0,0];
-      Config.Inventory[2] = [1,1,1,1,1,1,0,0,0,0];
-      Config.Inventory[3] = [1,1,1,1,1,1,0,0,0,0];
+      Config.Inventory[0] = [1,1,1,1,1,1,1,1,0,0];
+      Config.Inventory[1] = [1,1,1,1,1,1,1,1,0,0];
+      Config.Inventory[2] = [1,1,1,1,1,1,1,1,0,0];
+      Config.Inventory[3] = [1,1,1,1,1,1,1,1,0,0];
 
       Config.BeltColumn   = ["hp", "mp", "mp", "rv"];
       Config.MinColumn    = [3, 3, 3, 0];
@@ -215,7 +215,7 @@ function LoadConfig() {
             Config.Recipes.push([Recipe.Blood.Ring]);                                 // Craft Blood Ring
             // Config.Recipes.push([Recipe.Caster.Belt,        "Sharkskin Belt"]);       // Craft Caster Sharkskin Belt
             // Config.Recipes.push([Recipe.Caster.Belt,      "Vampirefang Belt"]);       // Craft Caster Vampirefang Belt
-            // Config.Recipes.push([Recipe.Blood.Gloves,     "Sharkskin Gloves"]);       // Craft Blood Sharkskin Gloves
+            Config.Recipes.push([Recipe.Blood.Gloves,     "Sharkskin Gloves"]);       // Craft Blood Sharkskin Gloves
             Config.Recipes.push([Recipe.Blood.Gloves,   "Vampirebone Gloves"]);       // Craft Blood Vampirebone Gloves
             // Config.Recipes.push([Recipe.HitPower.Gloves,         "Vambraces"]);       // Craft Hit Power Vambraces
             // Config.Recipes.push([Recipe.HitPower.Gloves,      "Chain Gloves"]);       // Craft Hit Power Chain Gloves

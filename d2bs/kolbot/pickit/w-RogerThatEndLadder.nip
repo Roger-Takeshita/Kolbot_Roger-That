@@ -16,6 +16,11 @@
         //- Unique ------------------------------------------------------------------------
             [name] == serpentskinarmor    && [quality] == unique && [flag] != ethereal # [fireresist] == 35 // skin of the vipermagi
             [name] == russetarmor         && [quality] == unique # [enhanceddefense] == 200 // skullder's
+            [name] == mesharmor           && [quality] == unique # [enhanceddefense] == 220 // shaftstop
+            [name] == duskshroud          && [quality] == unique && [flag] != ethereal # [passivecoldmastery] == 15 && [skillblizzard] == 3 // bizzard ormus
+            [name] == duskshroud          && [quality] == unique && [flag] != ethereal # [passivefiremastery] == 15 && [skillfireball] == 3 // fire ball ormus
+            [name] == duskshroud          && [quality] == unique && [flag] != ethereal # [passiveltngmastery] == 15 && ([skilllightning] == 3 || [skillnova] == 3) // lightning ormus
+            [name] == duskshroud          && [quality] == unique && [flag] != ethereal # ([passivecoldmastery] == 15 || [passivefiremastery] == 15 || [passiveltngmastery] == 15) && [skillenergyshield] == 3 // ormus
         //- White -------------------------------------------------------------------------
             [name] == duskshroud          && [quality] != magic && [quality] == superior && [flag] != ethereal # [enhanceddefense] == 15 && ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
             [name] == wyrmhide            && [quality] != magic && [quality] == superior && [flag] != ethereal # [enhanceddefense] == 15 && ([sockets] == 0 || [sockets] == 3 || [sockets] == 4)
@@ -93,6 +98,9 @@
             [name] == demonhead           && [quality] == unique # [strength] >= 30 && [lifeleech] >= 8 && [enhanceddefense] >= 100 // andariel's visage - max 30 str, 10% ll and 150% edef
             [name] == demonhead           && [quality] == unique # [strength] >= 25 && [lifeleech] >= 10 && [enhanceddefense] >= 100 // andariel's visage - max 30 str, 10% ll and 150% edef
             [name] == grimhelm            && [quality] == unique # [damageresist] == 20 // vampgaze
+        //- Magic -------------------------------------------------------------------------
+            [type] == circlet             && [quality] == magic && [flag] != ethereal # [amazonskills]+[necromancerskills] == 2 && [frw] == 30
+            [type] == circlet             && [quality] == magic && [flag] != ethereal # [fcr] == 20 && ([sorceressskills]+[necromancerskills]+[paladinskills]+[assassinskills]+[druidskills] == 2)
         //- White -------------------------------------------------------------------------
             [name] == demonhead           && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 0 || [itemmaxdurabilitypercent] == 15) && [sockets] == 3
             [name] == bonevisage          && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 0 || [itemmaxdurabilitypercent] == 15) && [sockets] == 3
@@ -158,7 +166,7 @@
             [type] == auricshields        && [quality] <= superior && [class] == elite && [flag] != ethereal # ([enhanceddamage] == 65 && [tohit] == 121 || [fireresist] >= 45) && ([sockets] == 0 || [sockets] == 4) // spirit
     //+ STAVES ===============================================================================
         //- Unique ------------------------------------------------------------------------
-            [name] == elderstaff          && [quality] == unique # [itemallskills] == 4 // ondal's wisdom
+            [name] == elderstaff          && [quality] == unique # [itemallskills] >= 2 // ondal's wisdom
             [name] == quarterstaff        && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 300 // ribcracker
         //- White -------------------------------------------------------------------------
             [type] == staff               && [quality] <= superior # [skillfireball] >= 3 && [sockets] == 2 // leaf (tir + ral)

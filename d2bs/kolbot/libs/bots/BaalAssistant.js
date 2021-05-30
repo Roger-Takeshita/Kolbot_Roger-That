@@ -339,7 +339,7 @@ function BaalAssistant() {
 						if (safeCheck) {
 							break;
 						}
-						if (Misc.getShrinesInArea(i, 15, true)) {
+						if (Misc.getShrinesInArea(i, 15)) {
 							break;
 						}
 					}
@@ -354,7 +354,7 @@ function BaalAssistant() {
 								if (safeCheck) {
 									break;
 								}
-								if (Misc.getShrinesInArea(i, 15, true)) {
+								if (Misc.getShrinesInArea(i, 15)) {
 									break;
 								}
 							}

@@ -13,6 +13,10 @@ function Snapchip() {
 		throw new Error("Failed to move to Snapchip Shatter");
 	}
 
+	if (Config.Baal.XPShrine && Config.Baal.XPShrineMessage != "") {
+		say(Config.Baal.XPShrineMessage);
+	}
+
 	Attack.clear(15, 0, getLocaleString(22496)); // Snapchip Shatter
 
 	if (Config.Snapchip.ClearIcyCellar) {

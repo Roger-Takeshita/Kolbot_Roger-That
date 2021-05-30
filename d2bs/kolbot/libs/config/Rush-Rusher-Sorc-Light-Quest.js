@@ -50,10 +50,10 @@ function LoadConfig() {
       Scripts.ClearAnyArea = false;                      // Clear any area. Uses Config.ClearType to determine which type of monsters to kill.
          Config.ClearAnyArea.AreaList = [128, 129, 130]; // List of area ids to clear. See sdk/areas.txt
    //! INVENTORY SETTINGS --------------------------------------------------------------
-      Config.Inventory[0] = [1,1,1,1,1,1,0,0,0,0];
-      Config.Inventory[1] = [1,1,1,1,1,1,0,0,0,0];
-      Config.Inventory[2] = [1,1,1,1,1,1,0,0,0,0];
-      Config.Inventory[3] = [1,1,1,1,1,1,0,0,0,0];
+      Config.Inventory[0] = [1,1,1,1,1,1,1,1,0,0];
+      Config.Inventory[1] = [1,1,1,1,1,1,1,1,0,0];
+      Config.Inventory[2] = [1,1,1,1,1,1,1,1,0,0];
+      Config.Inventory[3] = [1,1,1,1,1,1,1,1,0,0];
 
       Config.BeltColumn   = ["hp", "mp", "mp", "rv"];
       Config.MinColumn    = [3, 3, 3, 0];
